@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>6</zoom_level>
+  <zoom_level>3</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>102</x>
-      <y>210</y>
-      <w>216</w>
-      <h>150</h>
+      <x>120</x>
+      <y>150</y>
+      <w>111</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
 Produto
@@ -31,10 +31,10 @@ bg=black
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>324</x>
-      <y>210</y>
-      <w>246</w>
-      <h>138</h>
+      <x>120</x>
+      <y>234</y>
+      <w>144</w>
+      <h>78</h>
     </coordinates>
     <panel_attributes>PlacaMae
 bg=black
@@ -44,36 +44,47 @@ bg=black
 - entradasUSB: int
 - entradasPCIExpress: int
 - tamanho: String
+- bluetooth: boolean
 --
 + PlacaMae (wifi: boolean, entradasRAM: int, entradasUSB: int,
-                     entradasPCIExpress: int, tamanho: String)
+                     entradasPCIExpress: int, tamanho: String, bluetooth: boolean)
 + getWifi (): boolean
 + getEntradasRAM (): int
 + getEntradasUSB (): int
 + getEntradasPCIExpress (): int
 + getTamanho (): String
++ getBluetooth (): boolean
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>234</x>
-      <y>414</y>
-      <w>60</w>
-      <h>18</h>
+      <x>351</x>
+      <y>318</y>
+      <w>114</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>MemoriaRAM
-bg=black</panel_attributes>
+bg=black
+--
+- capacidade: int
+- ddr: int
+- velocidade: float
+--
++ MemoriaRAM (capacidade: int, ddr: int, velocidade: float)
++ getCapacidade (): int
++ getDdr (): int
++ getVelocidade (): float</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>576</x>
-      <y>210</y>
-      <w>216</w>
-      <h>102</h>
+      <x>390</x>
+      <y>234</y>
+      <w>108</w>
+      <h>51</h>
     </coordinates>
     <panel_attributes>PlacaDeVideo
 bg=black
@@ -92,133 +103,224 @@ bg=black
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>300</x>
-      <y>414</y>
-      <w>66</w>
-      <h>18</h>
+      <x>570</x>
+      <y>318</y>
+      <w>126</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>Armazenamento
-bg=black</panel_attributes>
+bg=black
+--
+- capacidade: int
+- velocidade: float
+- tipo: String
+--
++ Armazenanento (capacidade: int, velocidade: float, tipo:String)
++ getCapacidade (): int
++ getVelocidade (): float
++ getTipo (): String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>372</x>
-      <y>414</y>
-      <w>60</w>
-      <h>18</h>
+      <x>615</x>
+      <y>234</y>
+      <w>123</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>Processador
-bg=black</panel_attributes>
+bg=black
+--
+- geracao: int
+- nucleos: int
+- velocidadeNucleo: float
+--
++ Processador (geracao: int, nuclos: int, velocidadeNucleo: float)
++ getGeracao (): int
++ getNucleos (): int
++ getVelocidadeNucleo (): float</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>438</x>
-      <y>414</y>
-      <w>60</w>
-      <h>18</h>
+      <x>468</x>
+      <y>318</y>
+      <w>99</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Cooler
-bg=black</panel_attributes>
+bg=black
+--
+- velocidadeVentoinha: float
+- tamanho: int
+--
++ Cooler (velocidadeVentoinha: float, tamanho: int)
++ getVelocidadeVentoinha (): float
++ getTamanho (): int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>102</x>
-      <y>438</y>
-      <w>60</w>
-      <h>18</h>
+      <x>120</x>
+      <y>318</y>
+      <w>108</w>
+      <h>69</h>
     </coordinates>
     <panel_attributes>Monitor
-bg=black</panel_attributes>
+bg=black
+--
+- resolucao: int
+- tamanho: float
+- aspecto: string
+- wide: boolean
+- frameRate: int
+--
++ Monitor (resolucao: int, tamanho: float, aspecto: String,
+                  wide: boolean, frameRate: int)
++ getResolucao (): int
++ getTamanho (): float
++ getAspecto (): string
++ getWide (): boolean
++ getFrameRate (): int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>168</x>
-      <y>438</y>
-      <w>60</w>
-      <h>18</h>
+      <x>231</x>
+      <y>318</y>
+      <w>117</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>Teclado
-bg=black</panel_attributes>
+bg=black
+--
+- tipo: String
+- numerico: boolean
+- semFio: boolean
+- bluetooth: boolean
+--
++ Teclado (tipo: String, numerico: boolean, semFio: boolean,
+                  bluetooth: boolean)
++ getTipo (): String
++ getNumerico (): boolean
++ getSemFio (): boolean
++ getBluetooth (): boolean</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>234</x>
-      <y>438</y>
-      <w>60</w>
-      <h>18</h>
+      <x>741</x>
+      <y>234</y>
+      <w>105</w>
+      <h>51</h>
     </coordinates>
     <panel_attributes>Mouse
-bg=black</panel_attributes>
+bg=black
+--
+- botoesLaterais: boolean
+- semFio: boolean
+- bluetooth: boolean
+--
++ Mouse (botoesLaterais: boolean, semFio: boolean,
+                bluetooth: boolean) 
++ getBotoesLaterais (): boolean
++ getSemFio (): boolean
++ getBluetooth (): boolean</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>300</x>
-      <y>438</y>
-      <w>60</w>
-      <h>18</h>
+      <x>267</x>
+      <y>234</y>
+      <w>120</w>
+      <h>57</h>
     </coordinates>
     <panel_attributes>Headset
-bg=black</panel_attributes>
+bg=black
+--
+- semFio: boolean
+- microfone: boolean
+- tipo: String
+- bluetooth: boolean
+--
++ Headset (semFio: boolean, microfone: boolean, tipo: String,
+                   bluetooth: boolean)
++ gets/sets</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>504</x>
-      <y>414</y>
-      <w>60</w>
-      <h>18</h>
+      <x>501</x>
+      <y>234</y>
+      <w>111</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Fonte
-bg=black</panel_attributes>
+bg=black
+--
+- tensao: int
+- certificacao: String
+--
++ Fonte (tensao: int, certificacao: String)
++ getTensao (): int
++ getCertificacao (): String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>366</x>
-      <y>438</y>
-      <w>60</w>
-      <h>18</h>
+      <x>699</x>
+      <y>318</y>
+      <w>117</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>Gabinete
-bg=black</panel_attributes>
+bg=black
+--
+- tamanho: int
+- peso: float
+--
++ Gabinete (tamanho: int, peso: float)
++ gets/sets</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>432</x>
-      <y>438</y>
-      <w>60</w>
-      <h>18</h>
+      <x>849</x>
+      <y>234</y>
+      <w>99</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>Computador
-bg=black</panel_attributes>
+bg=black
+--
+--
++ Computador ()
++ gets/sets</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>498</x>
-      <y>438</y>
-      <w>60</w>
-      <h>18</h>
+      <x>819</x>
+      <y>318</y>
+      <w>99</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>Notebook
-bg=black</panel_attributes>
+bg=black
+--
+--
++ Notebook ()
++ gets/sets</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
