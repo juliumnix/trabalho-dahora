@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>102</x>
+      <y>210</y>
+      <w>216</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+Produto
+bg=black
+--
+# modelo: String
+# valor: float
+# descricao: String
+# marca: String
+# categoria: String
+--
++ Hardware (modelo: String, valor: float, descricao: String,
+                     marca: String, categorias: String)
++ getNome (): String
++ getValor (): float
++ getDescricao (): String
++ getMarca (): String
++ getCategoria (): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>324</x>
+      <y>210</y>
+      <w>246</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>PlacaMae
+bg=black
+--
+- wifi: boolean
+- entradasRAM: int
+- entradasUSB: int
+- entradasPCIExpress: int
+- tamanho: String
+--
++ PlacaMae (wifi: boolean, entradasRAM: int, entradasUSB: int,
+                     entradasPCIExpress: int, tamanho: String)
++ getWifi (): boolean
++ getEntradasRAM (): int
++ getEntradasUSB (): int
++ getEntradasPCIExpress (): int
++ getTamanho (): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>234</x>
+      <y>414</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>MemoriaRAM
+bg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>576</x>
+      <y>210</y>
+      <w>216</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>PlacaDeVideo
+bg=black
+--
+- interface: String
+- alimentacao: boolean
+- memoria: int
+--
++ PlacaDeVideo (interface: String, alimentacao: boolean,
+                            memoria: int)
++ getInterface (): String
++ getAlimentacao (): boolean
++ getMemoria (): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>300</x>
+      <y>414</y>
+      <w>66</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>Armazenamento
+bg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>372</x>
+      <y>414</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>Processador
+bg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>438</x>
+      <y>414</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>Cooler
+bg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>102</x>
+      <y>438</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>Monitor
+bg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>168</x>
+      <y>438</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>Teclado
+bg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>234</x>
+      <y>438</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>Mouse
+bg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>300</x>
+      <y>438</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>Headset
+bg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>414</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>Fonte
+bg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>366</x>
+      <y>438</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>Gabinete
+bg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>432</x>
+      <y>438</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>Computador
+bg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>498</x>
+      <y>438</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>Notebook
+bg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
