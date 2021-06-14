@@ -62,28 +62,10 @@ public class Headset extends Produto {
     }
 
     @Override
-    public String getModelo() {
-        return super.getModelo();
+    public String toString() 
+    {
+        return "Headset{" + "semFio=" + semFio + ", microfone=" + microfone + ", tipo=" + tipo + ", bluetooth=" + bluetooth + '}';
     }
-
-    @Override
-    public float getValor() {
-        return super.getValor();
-    }
-
-    @Override
-    public String getDescricao() {
-        return super.getDescricao();
-    }
-
-    @Override
-    public String getMarca() {
-        return super.getMarca();
-    }
-
-    @Override
-    public String getCategoria() {
-        return super.getCategoria();
-    }
+    
 }
 

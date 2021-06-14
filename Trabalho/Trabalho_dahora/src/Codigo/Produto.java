@@ -45,6 +45,35 @@ public abstract class Produto {
         return categoria;
     }
 
+    public void setModelo(String modelo) 
+    {
+        this.modelo = modelo;
+    }
 
+    public void setValor(float valor) 
+    {
+        this.valor = valor;
+    }
+
+    public void setDescricao(String descricao) 
+    {
+        this.descricao = descricao;
+    }
+
+    public void setMarca(String marca) 
+    {
+        this.marca = marca;
+    }
+
+    public void setCategoria(String categoria) 
+    {
+        this.categoria = categoria;
+    }
+
+    @Override
+    public String toString() 
+    {
+        return "Produto{" + "modelo=" + modelo + ", valor=" + valor + ", descricao=" + descricao + ", marca=" + marca + ", categoria=" + categoria + '}';
+    }
 }
 

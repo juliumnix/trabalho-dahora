@@ -7,12 +7,12 @@ package Codigo;
 
 /**
  *
- * @author juliu
+ * @author Mateus
  */
-public class Computador extends Produto{
-
-    public Computador(String modelo, float valor, String descricao, String marca, String categoria) {
+public class Notebook extends Produto {
+    
+    public Notebook(String modelo, float valor, String descricao, String marca, String categoria) 
+    {
         super(modelo, valor, descricao, marca, categoria);
-    }    
+    }
 }
-
