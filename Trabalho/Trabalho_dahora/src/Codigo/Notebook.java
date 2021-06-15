@@ -15,4 +15,10 @@ public class Notebook extends Produto {
     {
         super(modelo, valor, descricao, marca, categoria);
     }
+    
+    @Override
+    public String toString() 
+    {
+        return "Notebook - " + super.toString();
+    }
 }

@@ -47,7 +47,7 @@ public class Fonte extends Produto{
     @Override
     public String toString() 
     {
-        return "Fonte{" + "tensao=" + tensao + ", certificacao=" + certificacao + '}';
+        return "Fonte - " +super.toString() + ", Tensão: " + tensao + ", Certificação: " + certificacao;
     }
 }
 

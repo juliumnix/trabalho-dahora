@@ -46,7 +46,10 @@ public class Teclado extends Produto{
 
     public void setTipo(String tipo) 
     {
-        this.tipo = tipo;
+        if(!tipo.isBlank())
+        {
+            this.tipo = tipo;
+        }
     }
 
     public void setNumerico(boolean numerico) 
@@ -67,7 +70,7 @@ public class Teclado extends Produto{
     @Override
     public String toString() 
     {
-        return "Teclado{" + "tipo=" + tipo + ", numerico=" + numerico + ", semFio=" + semFio + ", bluetooth=" + bluetooth + '}';
+        return "Teclado - " + super.toString() + ", Tipo: " + tipo + ", Numérico: " + numerico + ", Sem fio: " + semFio + ", Bluetooth: " + bluetooth;
     }
     
 }

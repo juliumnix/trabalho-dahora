@@ -61,7 +61,7 @@ public class Processador extends Produto{
     @Override
     public String toString() 
     {
-        return "Processador{" + "geracao=" + geracao + ", nucleos=" + nucleos + ", velocidadeNucleo=" + velocidadeNucleo + '}';
+        return "Processador - " + super.toString() + ", Geração: " + geracao + ", Núcleos: " + nucleos + ", Velocidade do Núcleo: " + velocidadeNucleo;
     }
     
 }

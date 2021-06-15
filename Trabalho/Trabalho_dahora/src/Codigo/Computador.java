@@ -13,6 +13,14 @@ public class Computador extends Produto{
 
     public Computador(String modelo, float valor, String descricao, String marca, String categoria) {
         super(modelo, valor, descricao, marca, categoria);
-    }    
+    }
+
+    @Override
+    public String toString() 
+    {
+        return "Computador - " + super.toString();
+    }
+    
+    
 }
 

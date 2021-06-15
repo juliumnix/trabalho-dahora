@@ -32,18 +32,24 @@ public class Cooler extends Produto {
 
     public void setVelocidadeVentoinha(float velocidadeVentoinha) 
     {
-        this.velocidadeVentoinha = velocidadeVentoinha;
+        if (velocidadeVentoinha > 0)
+        {
+            this.velocidadeVentoinha = velocidadeVentoinha;
+        }
     }
 
     public void setTamanho(int tamanho) 
     {
-        this.tamanho = tamanho;
+        if (tamanho > 0)
+        {
+            this.tamanho = tamanho;
+        }
     }
 
     @Override
     public String toString() 
     {
-        return "Cooler{" + "velocidadeVentoinha=" + velocidadeVentoinha + ", tamanho=" + tamanho + '}';
+        return "Cooler - " + super.toString() + ", Velocidade da ventoinha: " + velocidadeVentoinha + ", Tamanho: " + tamanho;
     }
     
 }

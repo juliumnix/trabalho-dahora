@@ -53,17 +53,26 @@ public class Monitor extends Produto{
 
     public void setResolucao(int resolucao) 
     {
-        this.resolucao = resolucao;
+        if (resolucao > 0)
+        {
+            this.resolucao = resolucao;
+        }
     }
 
     public void setTamanho(float tamanho) 
     {
-        this.tamanho = tamanho;
+        if (tamanho > 0)
+        {
+            this.tamanho = tamanho;
+        }
     }
 
     public void setAspecto(String aspecto) 
     {
-        this.aspecto = aspecto;
+        if (!aspecto.isBlank())
+        {
+            this.aspecto = aspecto;
+        }
     }
 
     public void setWide(boolean wide) 
@@ -73,13 +82,16 @@ public class Monitor extends Produto{
 
     public void setFrameRate(int frameRate) 
     {
-        this.frameRate = frameRate;
+        if (frameRate > 0)
+        {
+            this.frameRate = frameRate;
+        }
     }
 
     @Override
     public String toString() 
     {
-        return "Monitor{" + "resolucao=" + resolucao + ", tamanho=" + tamanho + ", aspecto=" + aspecto + ", wide=" + wide + ", frameRate=" + frameRate + '}';
+        return "Monitor - " + super.toString() + ", Resolução: " + resolucao + ", Tamanho: " + tamanho + ", Aspecto: " + aspecto + ", Wide: " + wide + ", Frame Rate: " + frameRate;
     }
     
 }

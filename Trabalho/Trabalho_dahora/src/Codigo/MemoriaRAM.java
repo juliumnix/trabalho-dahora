@@ -39,23 +39,32 @@ public class MemoriaRAM extends Produto{
 
     public void setCapacidade(int capacidade) 
     {
-        this.capacidade = capacidade;
+        if (capacidade > 0)
+        {
+            this.capacidade = capacidade;
+        }
     }
 
     public void setDdr(int ddr) 
     {
-        this.ddr = ddr;
+        if (ddr > 0)
+        {
+            this.ddr = ddr;
+        }
     }
 
     public void setVelocidade(float velocidade) 
     {
-        this.velocidade = velocidade;
+        if (velocidade > 0)
+        {
+            this.velocidade = velocidade;
+        }
     }
 
     @Override
     public String toString() 
     {
-        return "MemoriaRAM{" + "capacidade=" + capacidade + ", ddr=" + ddr + ", velocidade=" + velocidade + '}';
+        return "Memória RAM - " + super.toString() + ", Capacidade: " + capacidade + ", DDR: " + ddr + ", Velocidade: " + velocidade;
     }
     
 }

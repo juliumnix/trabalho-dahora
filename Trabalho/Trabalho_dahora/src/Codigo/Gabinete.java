@@ -32,18 +32,24 @@ public class Gabinete extends Produto {
 
     public void setTamanho(int tamanho) 
     {
-        this.tamanho = tamanho;
+        if (tamanho > 0)
+        {
+            this.tamanho = tamanho;
+        }
     }
 
     public void setPeso(float peso) 
     {
-        this.peso = peso;
+        if (peso > 0)
+        {
+            this.peso = peso;
+        }
     }
 
     @Override
     public String toString() 
     {
-        return "Gabinete{" + "tamanho=" + tamanho + ", peso=" + peso + '}';
+        return "Gabinete - " + super.toString() + ", Tamanho: " + tamanho + ", Peso: " + peso;
     }
     
 }

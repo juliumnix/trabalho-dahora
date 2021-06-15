@@ -9,7 +9,7 @@ package Codigo;
  *
  * @author Mateus
  */
-public class Armazenamento extends Produto{
+public class Armazenamento extends Produto {
     private int capacidade;
     private float velocidade;
     private String tipo;
@@ -39,23 +39,31 @@ public class Armazenamento extends Produto{
 
     public void setCapacidade(int capacidade) 
     {
-        this.capacidade = capacidade;
+        if (capacidade > 0)
+        {
+            this.capacidade = capacidade;
+        }
     }
 
     public void setVelocidade(float velocidade) 
     {
-        this.velocidade = velocidade;
+        if (velocidade > 0)
+        {
+            this.velocidade = velocidade;
+        }
     }
 
     public void setTipo(String tipo) 
     {
-        this.tipo = tipo;
+        if (!tipo.isBlank())
+        {
+            this.tipo = tipo;
+        }
     }
 
     @Override
     public String toString() 
     {
-        return "Armazenamento{" + "capacidade=" + capacidade + ", velocidade=" + velocidade + ", tipo=" + tipo + '}';
+        return "Armazenamento - " + super.toString() + ", Capacidade: " + capacidade + ", Velocidade: " + velocidade + ", Tipo: " + tipo;
     }
-            
 }

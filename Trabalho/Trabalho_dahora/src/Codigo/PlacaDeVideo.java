@@ -56,7 +56,7 @@ public class PlacaDeVideo extends Produto {
 
     @Override
     public String toString() {
-        return "PlacaDeVideo{" + "interfaceMemoria=" + interfaceMemoria + ", alimentacao=" + alimentacao + ", memoria=" + memoria + '}';
+        return "Placa de Video - " + super.toString()+ ", Interface Memoria: " + interfaceMemoria + ", Alimentação: " + alimentacao + ", Memória: " + memoria;
     }
     
 }

@@ -64,7 +64,7 @@ public class Headset extends Produto {
     @Override
     public String toString() 
     {
-        return "Headset{" + "semFio=" + semFio + ", microfone=" + microfone + ", tipo=" + tipo + ", bluetooth=" + bluetooth + '}';
+        return "Headset - " + super.toString() + ", Sem Fio: " + semFio + ", Microfone: " + microfone + ", Tipo: " + tipo + ", Bluetooth: " + bluetooth;
     }
     
 }

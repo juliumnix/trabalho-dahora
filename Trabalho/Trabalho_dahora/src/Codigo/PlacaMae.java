@@ -95,7 +95,7 @@ public class PlacaMae extends Produto {
 
     @Override
     public String toString() {
-        return "PlacaMae{" + "wifi=" + wifi + ", entradasRAM=" + entradasRAM + ", entradasUSB=" + entradasUSB + ", entradasPCIExpress=" + entradasPCIExpress + ", tamanho=" + tamanho + ", bluetooth=" + bluetooth + '}';
+        return "Placa Mãe - " + super.toString() + ", Wifi: " + wifi + ", Entradas RAM: " + entradasRAM + ", Entradas USB: " + entradasUSB + ", Entradas PCIExpress: " + entradasPCIExpress + ", Tamanho: " + tamanho + ", Bluetooth: " + bluetooth;
     }
     
 }

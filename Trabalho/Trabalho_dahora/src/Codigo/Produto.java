@@ -47,33 +47,48 @@ public abstract class Produto {
 
     public void setModelo(String modelo) 
     {
-        this.modelo = modelo;
+        if (!modelo.isBlank())
+        {
+            this.modelo = modelo;
+        }
     }
 
     public void setValor(float valor) 
     {
-        this.valor = valor;
+        if(valor > 0)
+        {
+            this.valor = valor;
+        }
     }
 
     public void setDescricao(String descricao) 
     {
-        this.descricao = descricao;
+        if(!descricao.isBlank())
+        {
+            this.descricao = descricao;
+        }
     }
 
     public void setMarca(String marca) 
     {
-        this.marca = marca;
+        if(!marca.isBlank())
+        {
+            this.marca = marca;
+        }
     }
 
     public void setCategoria(String categoria) 
     {
-        this.categoria = categoria;
+        if(!categoria.isBlank())
+        {
+            this.categoria = categoria;
+        }
     }
 
     @Override
     public String toString() 
     {
-        return "Produto{" + "modelo=" + modelo + ", valor=" + valor + ", descricao=" + descricao + ", marca=" + marca + ", categoria=" + categoria + '}';
+        return "Modelo: " + modelo + ", Valor: " + valor + ", Descrição: " + descricao + ", Marca: " + marca + ", Categoria:" + categoria;
     }
 }
 

@@ -49,7 +49,7 @@ public class Mouse extends Produto {
     @Override
     public String toString() 
     {
-        return "Mouse{" + "botoesLaterais=" + botoesLaterais + ", semFio=" + semFio + ", bluetooth=" + bluetooth + '}';
+        return "Mouse - " + super.toString() + ", Botões laterais: " + botoesLaterais + ", Sem fio: " + semFio + ", Bluetooth: " + bluetooth;
     }
     
 }
