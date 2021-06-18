@@ -5,6 +5,8 @@
  */
 package Telas;
 
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -44,20 +46,20 @@ public class HomeScreenView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabelIcon = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        jLabel_Armazenamento = new javax.swing.JLabel();
+        jLabel_Computador = new javax.swing.JLabel();
+        jLabel_Cooler = new javax.swing.JLabel();
+        jLabel_Fonte = new javax.swing.JLabel();
+        jLabel_Gabinete = new javax.swing.JLabel();
+        jLabel_Headset = new javax.swing.JLabel();
+        jLabel_RAM = new javax.swing.JLabel();
+        jLabel_Monitor = new javax.swing.JLabel();
+        jLabel_Mouse = new javax.swing.JLabel();
+        jLabel_Notebook = new javax.swing.JLabel();
+        jLabel_Video = new javax.swing.JLabel();
+        jLabel_Mae = new javax.swing.JLabel();
+        jLabel_Processador = new javax.swing.JLabel();
+        jLabel_Teclado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -69,75 +71,187 @@ public class HomeScreenView extends javax.swing.JFrame {
         jPanel2.setForeground(new java.awt.Color(121, 112, 169));
         jPanel2.setPreferredSize(new java.awt.Dimension(121, 720));
 
-        jLabel1.setBackground(new java.awt.Color(255, 202, 128));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(248, 248, 242));
-        jLabel1.setText("Armazenamento");
+        jLabel_Armazenamento.setBackground(new java.awt.Color(255, 202, 128));
+        jLabel_Armazenamento.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel_Armazenamento.setForeground(new java.awt.Color(248, 248, 242));
+        jLabel_Armazenamento.setText("Armazenamento");
+        jLabel_Armazenamento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_ArmazenamentoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_ArmazenamentoMouseExited(evt);
+            }
+        });
 
-        jLabel2.setBackground(new java.awt.Color(255, 202, 128));
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(248, 248, 242));
-        jLabel2.setText("Computador");
+        jLabel_Computador.setBackground(new java.awt.Color(255, 202, 128));
+        jLabel_Computador.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel_Computador.setForeground(new java.awt.Color(248, 248, 242));
+        jLabel_Computador.setText("Computador");
+        jLabel_Computador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_ComputadorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_ComputadorMouseExited(evt);
+            }
+        });
 
-        jLabel3.setBackground(new java.awt.Color(255, 202, 128));
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(248, 248, 242));
-        jLabel3.setText("Cooler");
+        jLabel_Cooler.setBackground(new java.awt.Color(255, 202, 128));
+        jLabel_Cooler.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel_Cooler.setForeground(new java.awt.Color(248, 248, 242));
+        jLabel_Cooler.setText("Cooler");
+        jLabel_Cooler.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_CoolerMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_CoolerMouseExited(evt);
+            }
+        });
 
-        jLabel4.setBackground(new java.awt.Color(255, 202, 128));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(248, 248, 242));
-        jLabel4.setText("Fonte");
+        jLabel_Fonte.setBackground(new java.awt.Color(255, 202, 128));
+        jLabel_Fonte.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel_Fonte.setForeground(new java.awt.Color(248, 248, 242));
+        jLabel_Fonte.setText("Fonte");
+        jLabel_Fonte.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_FonteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_FonteMouseExited(evt);
+            }
+        });
 
-        jLabel5.setBackground(new java.awt.Color(255, 202, 128));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(248, 248, 242));
-        jLabel5.setText("Gabinete");
+        jLabel_Gabinete.setBackground(new java.awt.Color(255, 202, 128));
+        jLabel_Gabinete.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel_Gabinete.setForeground(new java.awt.Color(248, 248, 242));
+        jLabel_Gabinete.setText("Gabinete");
+        jLabel_Gabinete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_GabineteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_GabineteMouseExited(evt);
+            }
+        });
 
-        jLabel6.setBackground(new java.awt.Color(255, 202, 128));
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(248, 248, 242));
-        jLabel6.setText("Headset");
+        jLabel_Headset.setBackground(new java.awt.Color(255, 202, 128));
+        jLabel_Headset.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel_Headset.setForeground(new java.awt.Color(248, 248, 242));
+        jLabel_Headset.setText("Headset");
+        jLabel_Headset.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_HeadsetMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_HeadsetMouseExited(evt);
+            }
+        });
 
-        jLabel7.setBackground(new java.awt.Color(255, 202, 128));
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(248, 248, 242));
-        jLabel7.setText("Memória RAM");
+        jLabel_RAM.setBackground(new java.awt.Color(255, 202, 128));
+        jLabel_RAM.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel_RAM.setForeground(new java.awt.Color(248, 248, 242));
+        jLabel_RAM.setText("Memória RAM");
+        jLabel_RAM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_RAMMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_RAMMouseExited(evt);
+            }
+        });
 
-        jLabel8.setBackground(new java.awt.Color(255, 202, 128));
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(248, 248, 242));
-        jLabel8.setText("Monitor");
+        jLabel_Monitor.setBackground(new java.awt.Color(255, 202, 128));
+        jLabel_Monitor.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel_Monitor.setForeground(new java.awt.Color(248, 248, 242));
+        jLabel_Monitor.setText("Monitor");
+        jLabel_Monitor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_MonitorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_MonitorMouseExited(evt);
+            }
+        });
 
-        jLabel9.setBackground(new java.awt.Color(255, 202, 128));
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(248, 248, 242));
-        jLabel9.setText("Mouse");
+        jLabel_Mouse.setBackground(new java.awt.Color(255, 202, 128));
+        jLabel_Mouse.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel_Mouse.setForeground(new java.awt.Color(248, 248, 242));
+        jLabel_Mouse.setText("Mouse");
+        jLabel_Mouse.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_MouseMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_MouseMouseExited(evt);
+            }
+        });
 
-        jLabel10.setBackground(new java.awt.Color(255, 202, 128));
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(248, 248, 242));
-        jLabel10.setText("Notebook");
+        jLabel_Notebook.setBackground(new java.awt.Color(255, 202, 128));
+        jLabel_Notebook.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel_Notebook.setForeground(new java.awt.Color(248, 248, 242));
+        jLabel_Notebook.setText("Notebook");
+        jLabel_Notebook.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_NotebookMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_NotebookMouseExited(evt);
+            }
+        });
 
-        jLabel11.setBackground(new java.awt.Color(255, 202, 128));
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(248, 248, 242));
-        jLabel11.setText("Placa de Vídeo");
+        jLabel_Video.setBackground(new java.awt.Color(255, 202, 128));
+        jLabel_Video.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel_Video.setForeground(new java.awt.Color(248, 248, 242));
+        jLabel_Video.setText("Placa de Vídeo");
+        jLabel_Video.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_VideoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_VideoMouseExited(evt);
+            }
+        });
 
-        jLabel12.setBackground(new java.awt.Color(255, 202, 128));
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(248, 248, 242));
-        jLabel12.setText("Placa Mãe");
+        jLabel_Mae.setBackground(new java.awt.Color(255, 202, 128));
+        jLabel_Mae.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel_Mae.setForeground(new java.awt.Color(248, 248, 242));
+        jLabel_Mae.setText("Placa Mãe");
+        jLabel_Mae.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_MaeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_MaeMouseExited(evt);
+            }
+        });
 
-        jLabel13.setBackground(new java.awt.Color(255, 202, 128));
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(248, 248, 242));
-        jLabel13.setText("Processador");
+        jLabel_Processador.setBackground(new java.awt.Color(255, 202, 128));
+        jLabel_Processador.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel_Processador.setForeground(new java.awt.Color(248, 248, 242));
+        jLabel_Processador.setText("Processador");
+        jLabel_Processador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_ProcessadorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_ProcessadorMouseExited(evt);
+            }
+        });
 
-        jLabel14.setBackground(new java.awt.Color(255, 202, 128));
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(248, 248, 242));
-        jLabel14.setText("Teclado");
+        jLabel_Teclado.setBackground(new java.awt.Color(255, 202, 128));
+        jLabel_Teclado.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel_Teclado.setForeground(new java.awt.Color(248, 248, 242));
+        jLabel_Teclado.setText("Teclado");
+        jLabel_Teclado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel_TecladoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel_TecladoMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -150,22 +264,22 @@ public class HomeScreenView extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel_Armazenamento, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel14))
+                            .addComponent(jLabel_Computador)
+                            .addComponent(jLabel_Cooler)
+                            .addComponent(jLabel_Fonte)
+                            .addComponent(jLabel_Gabinete)
+                            .addComponent(jLabel_Headset)
+                            .addComponent(jLabel_RAM)
+                            .addComponent(jLabel_Monitor)
+                            .addComponent(jLabel_Mouse)
+                            .addComponent(jLabel_Notebook)
+                            .addComponent(jLabel_Video)
+                            .addComponent(jLabel_Mae)
+                            .addComponent(jLabel_Processador)
+                            .addComponent(jLabel_Teclado))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -174,33 +288,33 @@ public class HomeScreenView extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabelIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addComponent(jLabel_Armazenamento)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addComponent(jLabel_Computador)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(jLabel_Cooler)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(jLabel_Fonte)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5)
+                .addComponent(jLabel_Gabinete)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel6)
+                .addComponent(jLabel_Headset)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel7)
+                .addComponent(jLabel_RAM)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel8)
+                .addComponent(jLabel_Monitor)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel9)
+                .addComponent(jLabel_Mouse)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel10)
+                .addComponent(jLabel_Notebook)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel11)
+                .addComponent(jLabel_Video)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel12)
+                .addComponent(jLabel_Mae)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel13)
+                .addComponent(jLabel_Processador)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel14)
+                .addComponent(jLabel_Teclado)
                 .addContainerGap(166, Short.MAX_VALUE))
         );
 
@@ -217,7 +331,7 @@ public class HomeScreenView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -237,23 +351,152 @@ public class HomeScreenView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    
+    
+    private void jLabel_ArmazenamentoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ArmazenamentoMouseEntered
+        
+        jLabel_Armazenamento.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Armazenamento.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_ArmazenamentoMouseEntered
+
+    private void jLabel_ArmazenamentoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ArmazenamentoMouseExited
+        jLabel_Armazenamento.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_ArmazenamentoMouseExited
+
+    private void jLabel_ComputadorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ComputadorMouseEntered
+        jLabel_Computador.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Computador.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_ComputadorMouseEntered
+
+    private void jLabel_ComputadorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ComputadorMouseExited
+        jLabel_Computador.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_ComputadorMouseExited
+
+    private void jLabel_CoolerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CoolerMouseEntered
+        jLabel_Cooler.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Cooler.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_CoolerMouseEntered
+
+    private void jLabel_CoolerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CoolerMouseExited
+        jLabel_Cooler.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_CoolerMouseExited
+
+    private void jLabel_FonteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_FonteMouseEntered
+        jLabel_Fonte.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Fonte.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_FonteMouseEntered
+
+    private void jLabel_FonteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_FonteMouseExited
+        jLabel_Fonte.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_FonteMouseExited
+
+    private void jLabel_GabineteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GabineteMouseEntered
+        jLabel_Gabinete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Gabinete.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_GabineteMouseEntered
+
+    private void jLabel_GabineteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GabineteMouseExited
+        jLabel_Gabinete.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_GabineteMouseExited
+
+    private void jLabel_HeadsetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_HeadsetMouseEntered
+        jLabel_Headset.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Headset.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_HeadsetMouseEntered
+
+    private void jLabel_HeadsetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_HeadsetMouseExited
+        jLabel_Headset.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_HeadsetMouseExited
+
+    private void jLabel_RAMMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_RAMMouseEntered
+        jLabel_RAM.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_RAM.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_RAMMouseEntered
+
+    private void jLabel_RAMMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_RAMMouseExited
+        jLabel_RAM.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_RAMMouseExited
+
+    private void jLabel_MonitorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MonitorMouseEntered
+        jLabel_Monitor.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Monitor.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_MonitorMouseEntered
+
+    private void jLabel_MonitorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MonitorMouseExited
+        jLabel_Monitor.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_MonitorMouseExited
+
+    private void jLabel_MouseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MouseMouseEntered
+        jLabel_Mouse.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Mouse.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_MouseMouseEntered
+
+    private void jLabel_MouseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MouseMouseExited
+        jLabel_Mouse.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_MouseMouseExited
+
+    private void jLabel_NotebookMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_NotebookMouseEntered
+        jLabel_Notebook.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Notebook.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_NotebookMouseEntered
+
+    private void jLabel_NotebookMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_NotebookMouseExited
+        jLabel_Notebook.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_NotebookMouseExited
+
+    private void jLabel_VideoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_VideoMouseEntered
+        jLabel_Video.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Video.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_VideoMouseEntered
+
+    private void jLabel_VideoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_VideoMouseExited
+        jLabel_Video.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_VideoMouseExited
+
+    private void jLabel_MaeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MaeMouseEntered
+        jLabel_Mae.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Mae.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_MaeMouseEntered
+
+    private void jLabel_MaeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MaeMouseExited
+        jLabel_Mae.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_MaeMouseExited
+
+    private void jLabel_ProcessadorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ProcessadorMouseEntered
+        jLabel_Processador.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Processador.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_ProcessadorMouseEntered
+
+    private void jLabel_ProcessadorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ProcessadorMouseExited
+       jLabel_Processador.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_ProcessadorMouseExited
+
+    private void jLabel_TecladoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TecladoMouseEntered
+        jLabel_Teclado.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Teclado.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_TecladoMouseEntered
+
+    private void jLabel_TecladoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TecladoMouseExited
+        jLabel_Teclado.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_TecladoMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelIcon;
+    private javax.swing.JLabel jLabel_Armazenamento;
+    private javax.swing.JLabel jLabel_Computador;
+    private javax.swing.JLabel jLabel_Cooler;
+    private javax.swing.JLabel jLabel_Fonte;
+    private javax.swing.JLabel jLabel_Gabinete;
+    private javax.swing.JLabel jLabel_Headset;
+    private javax.swing.JLabel jLabel_Mae;
+    private javax.swing.JLabel jLabel_Monitor;
+    private javax.swing.JLabel jLabel_Mouse;
+    private javax.swing.JLabel jLabel_Notebook;
+    private javax.swing.JLabel jLabel_Processador;
+    private javax.swing.JLabel jLabel_RAM;
+    private javax.swing.JLabel jLabel_Teclado;
+    private javax.swing.JLabel jLabel_Video;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
