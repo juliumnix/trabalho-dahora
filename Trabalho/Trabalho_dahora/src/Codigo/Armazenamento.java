@@ -5,6 +5,9 @@
  */
 package Codigo;
 
+import java.util.Objects;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Mateus
@@ -21,6 +24,41 @@ public class Armazenamento extends Produto {
         this.velocidade = velocidade;
         this.tipo = tipo;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Armazenamento other = (Armazenamento) obj;
+        if (this.capacidade != other.capacidade) {
+            
+            return false;
+        }
+        if (Float.floatToIntBits(this.velocidade) != Float.floatToIntBits(other.velocidade)) {
+            
+            return false;
+        }
+        if (!Objects.equals(this.tipo, other.tipo)) {
+            
+            return false;
+        }
+        return true;
+    }
+    
     
     public int getCapacidade ()
     {
