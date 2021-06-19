@@ -7,6 +7,7 @@ package Telas;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -22,6 +23,7 @@ public class LoginView extends javax.swing.JFrame {
     public LoginView() {
         initComponents();
         apareceImagem();
+        JLabelIcon.requestFocus();
     }
 
     /**
@@ -41,8 +43,8 @@ public class LoginView extends javax.swing.JFrame {
         pfSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("BOOM - Loja de Informática");
         setBackground(new java.awt.Color(121, 112, 169));
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(34, 33, 44));
@@ -201,6 +203,7 @@ public class LoginView extends javax.swing.JFrame {
         Image image = imgIco.getImage().getScaledInstance(JLabelIcon.getWidth(), JLabelIcon.getHeight(), Image.SCALE_SMOOTH);
         
         JLabelIcon.setIcon(new ImageIcon(image));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
     }
         /**
      * @param args the command line arguments
