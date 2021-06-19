@@ -8,6 +8,7 @@ package Telas;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
 /**
@@ -25,13 +26,28 @@ public class HomeScreenView extends javax.swing.JFrame {
         this.login = login;
         initComponents();
         apareceImagem();
+        jLabelIcon.requestFocus();
     }
     
     public void apareceImagem(){
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
+        
         ImageIcon imgIco = new ImageIcon(getClass().getResource("/imagens/BOOM.png"));
         Image image = imgIco.getImage().getScaledInstance(jLabelIcon.getWidth(), jLabelIcon.getHeight(), Image.SCALE_SMOOTH);
-        
         jLabelIcon.setIcon(new ImageIcon(image));
+        
+        ImageIcon imageIcon = new ImageIcon (getClass().getResource("/imagens/IconSearch.png"));
+        Image imageIconSearch = imageIcon.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH);
+        jButton1.setIcon(new ImageIcon(imageIconSearch));
+        
+        ImageIcon iconCart = new ImageIcon (getClass().getResource("/imagens/IconCart.png"));
+        Image iconCartAUX = iconCart.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH);
+        btCart.setIcon(new ImageIcon(iconCartAUX));
+        
+        ImageIcon iconFavorites = new ImageIcon (getClass().getResource("/imagens/IconFavorites.png"));
+        Image iconFavoritesAUX = iconFavorites.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH);
+        btFavorites.setIcon(new ImageIcon(iconFavoritesAUX));
+        
     }
 
     /**
@@ -60,12 +76,18 @@ public class HomeScreenView extends javax.swing.JFrame {
         jLabel_Mae = new javax.swing.JLabel();
         jLabel_Processador = new javax.swing.JLabel();
         jLabel_Teclado = new javax.swing.JLabel();
+        tfPesquisa = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        btCart = new javax.swing.JButton();
+        btFavorites = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("BOOM - Loja de Informática");
         setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(34, 33, 44));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel2.setBackground(new java.awt.Color(121, 112, 169));
         jPanel2.setForeground(new java.awt.Color(121, 112, 169));
@@ -315,8 +337,30 @@ public class HomeScreenView extends javax.swing.JFrame {
                 .addComponent(jLabel_Processador)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel_Teclado)
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
+
+        tfPesquisa.setBackground(new java.awt.Color(69, 65, 88));
+        tfPesquisa.setForeground(new java.awt.Color(255, 149, 128));
+        tfPesquisa.setText("Pesquisa");
+        tfPesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        tfPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfPesquisaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfPesquisaFocusLost(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(121, 112, 169));
+        jButton1.setBorder(null);
+
+        btCart.setBackground(new java.awt.Color(121, 112, 169));
+        btCart.setBorder(null);
+
+        btFavorites.setBackground(new java.awt.Color(121, 112, 169));
+        btFavorites.setBorder(null);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -325,13 +369,29 @@ public class HomeScreenView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1153, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btCart, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btFavorites, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 679, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tfPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                            .addComponent(btCart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btFavorites, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -339,149 +399,163 @@ public class HomeScreenView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 835, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    
-    
-    private void jLabel_ArmazenamentoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ArmazenamentoMouseEntered
-        
-        jLabel_Armazenamento.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jLabel_Armazenamento.setForeground(new Color(255,149,128));
-    }//GEN-LAST:event_jLabel_ArmazenamentoMouseEntered
 
-    private void jLabel_ArmazenamentoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ArmazenamentoMouseExited
-        jLabel_Armazenamento.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_jLabel_ArmazenamentoMouseExited
+    private void tfPesquisaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfPesquisaFocusLost
+        if (tfPesquisa.getText().equals(""))
+        {
+            tfPesquisa.setText("Pesquisa");
+        }
+    }//GEN-LAST:event_tfPesquisaFocusLost
 
-    private void jLabel_ComputadorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ComputadorMouseEntered
-        jLabel_Computador.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jLabel_Computador.setForeground(new Color(255,149,128));
-    }//GEN-LAST:event_jLabel_ComputadorMouseEntered
+    private void tfPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfPesquisaFocusGained
+        if (tfPesquisa.getText().equals("Pesquisa"))
+        {
+            tfPesquisa.setText("");
+        }
+    }//GEN-LAST:event_tfPesquisaFocusGained
 
-    private void jLabel_ComputadorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ComputadorMouseExited
-        jLabel_Computador.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_jLabel_ComputadorMouseExited
-
-    private void jLabel_CoolerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CoolerMouseEntered
-        jLabel_Cooler.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jLabel_Cooler.setForeground(new Color(255,149,128));
-    }//GEN-LAST:event_jLabel_CoolerMouseEntered
-
-    private void jLabel_CoolerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CoolerMouseExited
-        jLabel_Cooler.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_jLabel_CoolerMouseExited
-
-    private void jLabel_FonteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_FonteMouseEntered
-        jLabel_Fonte.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jLabel_Fonte.setForeground(new Color(255,149,128));
-    }//GEN-LAST:event_jLabel_FonteMouseEntered
-
-    private void jLabel_FonteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_FonteMouseExited
-        jLabel_Fonte.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_jLabel_FonteMouseExited
-
-    private void jLabel_GabineteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GabineteMouseEntered
-        jLabel_Gabinete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jLabel_Gabinete.setForeground(new Color(255,149,128));
-    }//GEN-LAST:event_jLabel_GabineteMouseEntered
-
-    private void jLabel_GabineteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GabineteMouseExited
-        jLabel_Gabinete.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_jLabel_GabineteMouseExited
-
-    private void jLabel_HeadsetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_HeadsetMouseEntered
-        jLabel_Headset.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jLabel_Headset.setForeground(new Color(255,149,128));
-    }//GEN-LAST:event_jLabel_HeadsetMouseEntered
-
-    private void jLabel_HeadsetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_HeadsetMouseExited
-        jLabel_Headset.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_jLabel_HeadsetMouseExited
-
-    private void jLabel_RAMMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_RAMMouseEntered
-        jLabel_RAM.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jLabel_RAM.setForeground(new Color(255,149,128));
-    }//GEN-LAST:event_jLabel_RAMMouseEntered
-
-    private void jLabel_RAMMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_RAMMouseExited
-        jLabel_RAM.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_jLabel_RAMMouseExited
-
-    private void jLabel_MonitorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MonitorMouseEntered
-        jLabel_Monitor.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jLabel_Monitor.setForeground(new Color(255,149,128));
-    }//GEN-LAST:event_jLabel_MonitorMouseEntered
-
-    private void jLabel_MonitorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MonitorMouseExited
-        jLabel_Monitor.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_jLabel_MonitorMouseExited
-
-    private void jLabel_MouseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MouseMouseEntered
-        jLabel_Mouse.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jLabel_Mouse.setForeground(new Color(255,149,128));
-    }//GEN-LAST:event_jLabel_MouseMouseEntered
-
-    private void jLabel_MouseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MouseMouseExited
-        jLabel_Mouse.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_jLabel_MouseMouseExited
-
-    private void jLabel_NotebookMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_NotebookMouseEntered
-        jLabel_Notebook.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jLabel_Notebook.setForeground(new Color(255,149,128));
-    }//GEN-LAST:event_jLabel_NotebookMouseEntered
-
-    private void jLabel_NotebookMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_NotebookMouseExited
-        jLabel_Notebook.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_jLabel_NotebookMouseExited
-
-    private void jLabel_VideoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_VideoMouseEntered
-        jLabel_Video.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jLabel_Video.setForeground(new Color(255,149,128));
-    }//GEN-LAST:event_jLabel_VideoMouseEntered
-
-    private void jLabel_VideoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_VideoMouseExited
-        jLabel_Video.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_jLabel_VideoMouseExited
-
-    private void jLabel_MaeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MaeMouseEntered
-        jLabel_Mae.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jLabel_Mae.setForeground(new Color(255,149,128));
-    }//GEN-LAST:event_jLabel_MaeMouseEntered
-
-    private void jLabel_MaeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MaeMouseExited
-        jLabel_Mae.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_jLabel_MaeMouseExited
-
-    private void jLabel_ProcessadorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ProcessadorMouseEntered
-        jLabel_Processador.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        jLabel_Processador.setForeground(new Color(255,149,128));
-    }//GEN-LAST:event_jLabel_ProcessadorMouseEntered
-
-    private void jLabel_ProcessadorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ProcessadorMouseExited
-       jLabel_Processador.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_jLabel_ProcessadorMouseExited
+    private void jLabel_TecladoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TecladoMouseExited
+        jLabel_Teclado.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_TecladoMouseExited
 
     private void jLabel_TecladoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TecladoMouseEntered
         jLabel_Teclado.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         jLabel_Teclado.setForeground(new Color(255,149,128));
     }//GEN-LAST:event_jLabel_TecladoMouseEntered
 
-    private void jLabel_TecladoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_TecladoMouseExited
-        jLabel_Teclado.setForeground(new Color(255,255,255));
-    }//GEN-LAST:event_jLabel_TecladoMouseExited
+    private void jLabel_ProcessadorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ProcessadorMouseExited
+        jLabel_Processador.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_ProcessadorMouseExited
 
+    private void jLabel_ProcessadorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ProcessadorMouseEntered
+        jLabel_Processador.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Processador.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_ProcessadorMouseEntered
+
+    private void jLabel_MaeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MaeMouseExited
+        jLabel_Mae.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_MaeMouseExited
+
+    private void jLabel_MaeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MaeMouseEntered
+        jLabel_Mae.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Mae.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_MaeMouseEntered
+
+    private void jLabel_VideoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_VideoMouseExited
+        jLabel_Video.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_VideoMouseExited
+
+    private void jLabel_VideoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_VideoMouseEntered
+        jLabel_Video.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Video.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_VideoMouseEntered
+
+    private void jLabel_NotebookMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_NotebookMouseExited
+        jLabel_Notebook.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_NotebookMouseExited
+
+    private void jLabel_NotebookMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_NotebookMouseEntered
+        jLabel_Notebook.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Notebook.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_NotebookMouseEntered
+
+    private void jLabel_MouseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MouseMouseExited
+        jLabel_Mouse.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_MouseMouseExited
+
+    private void jLabel_MouseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MouseMouseEntered
+        jLabel_Mouse.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Mouse.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_MouseMouseEntered
+
+    private void jLabel_MonitorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MonitorMouseExited
+        jLabel_Monitor.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_MonitorMouseExited
+
+    private void jLabel_MonitorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MonitorMouseEntered
+        jLabel_Monitor.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Monitor.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_MonitorMouseEntered
+
+    private void jLabel_RAMMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_RAMMouseExited
+        jLabel_RAM.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_RAMMouseExited
+
+    private void jLabel_RAMMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_RAMMouseEntered
+        jLabel_RAM.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_RAM.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_RAMMouseEntered
+
+    private void jLabel_HeadsetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_HeadsetMouseExited
+        jLabel_Headset.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_HeadsetMouseExited
+
+    private void jLabel_HeadsetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_HeadsetMouseEntered
+        jLabel_Headset.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Headset.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_HeadsetMouseEntered
+
+    private void jLabel_GabineteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GabineteMouseExited
+        jLabel_Gabinete.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_GabineteMouseExited
+
+    private void jLabel_GabineteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_GabineteMouseEntered
+        jLabel_Gabinete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Gabinete.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_GabineteMouseEntered
+
+    private void jLabel_FonteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_FonteMouseExited
+        jLabel_Fonte.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_FonteMouseExited
+
+    private void jLabel_FonteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_FonteMouseEntered
+        jLabel_Fonte.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Fonte.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_FonteMouseEntered
+
+    private void jLabel_CoolerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CoolerMouseExited
+        jLabel_Cooler.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_CoolerMouseExited
+
+    private void jLabel_CoolerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_CoolerMouseEntered
+        jLabel_Cooler.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Cooler.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_CoolerMouseEntered
+
+    private void jLabel_ComputadorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ComputadorMouseExited
+        jLabel_Computador.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_ComputadorMouseExited
+
+    private void jLabel_ComputadorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ComputadorMouseEntered
+        jLabel_Computador.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Computador.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_ComputadorMouseEntered
+
+    private void jLabel_ArmazenamentoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ArmazenamentoMouseExited
+        jLabel_Armazenamento.setForeground(new Color(255,255,255));
+    }//GEN-LAST:event_jLabel_ArmazenamentoMouseExited
+
+    private void jLabel_ArmazenamentoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_ArmazenamentoMouseEntered
+
+        jLabel_Armazenamento.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        jLabel_Armazenamento.setForeground(new Color(255,149,128));
+    }//GEN-LAST:event_jLabel_ArmazenamentoMouseEntered
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCart;
+    private javax.swing.JButton btFavorites;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabelIcon;
     private javax.swing.JLabel jLabel_Armazenamento;
     private javax.swing.JLabel jLabel_Computador;
@@ -499,5 +573,6 @@ public class HomeScreenView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_Video;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField tfPesquisa;
     // End of variables declaration//GEN-END:variables
 }
