@@ -15,13 +15,15 @@ public abstract class Produto {
     protected String descricao;
     protected String marca;
     protected String categoria;
+    protected String imagem;
 
-    public Produto(String modelo, float valor, String descricao, String marca, String categoria) {
+    public Produto(String modelo, float valor, String descricao, String marca, String categoria, String imagem) {
         this.modelo = modelo;
         this.valor = valor;
         this.descricao = descricao;
         this.marca = marca;
         this.categoria = categoria;
+        this.imagem = imagem;
     };
 
     //gets
@@ -43,6 +45,10 @@ public abstract class Produto {
 
     public String getCategoria() {
         return categoria;
+    }
+
+    public String getImagem() {
+        return imagem;
     }
 
     public void setModelo(String modelo) 
@@ -84,6 +90,15 @@ public abstract class Produto {
             this.categoria = categoria;
         }
     }
+
+    public void setImagem(String imagem) {
+        if(!imagem.isBlank())
+        {
+            this.imagem = imagem;
+        }
+    }
+    
+    
 
     @Override
     public String toString() 

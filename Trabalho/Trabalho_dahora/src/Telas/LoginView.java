@@ -8,8 +8,13 @@ package Telas;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -17,15 +22,20 @@ import javax.swing.JOptionPane;
  */
 public class LoginView extends javax.swing.JFrame {
 
+    public String login;
+    public String senha;
+    //HomeScreenView Home = new HomeScreenView(this);
+    TelaPrincipal principal = new TelaPrincipal(this);
     /**
      * Creates new form LoginView
      */
     public LoginView() {
         initComponents();
+
         apareceImagem();
         JLabelIcon.requestFocus();
+        
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,9 +55,15 @@ public class LoginView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BOOM - Loja de Informática");
         setBackground(new java.awt.Color(121, 112, 169));
+        setBounds(new java.awt.Rectangle(0, 0, 800, 600));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(null);
+        setMinimumSize(null);
         setResizable(false);
+        setSize(new java.awt.Dimension(800, 600));
 
         jPanel1.setBackground(new java.awt.Color(34, 33, 44));
+        jPanel1.setForeground(new java.awt.Color(34, 33, 44));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
 
         JLabelIcon.setBackground(new java.awt.Color(225, 225, 128));
@@ -81,6 +97,7 @@ public class LoginView extends javax.swing.JFrame {
             }
         });
 
+        jCheckBoxVisivel.setBackground(new java.awt.Color(34, 33, 44));
         jCheckBoxVisivel.setForeground(new java.awt.Color(255, 149, 128));
         jCheckBoxVisivel.setText("Mostrar senha");
         jCheckBoxVisivel.addActionListener(new java.awt.event.ActionListener() {
@@ -193,8 +210,11 @@ public class LoginView extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBoxVisivelActionPerformed
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
-        HomeScreenView Home = new HomeScreenView(this);
-        Home.setVisible(true);
+        login = tfEmail.getText();
+        senha = pfSenha.getText();
+        
+        //Home.setVisible(true);
+        principal.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btLoginActionPerformed
 
@@ -222,22 +242,43 @@ public class LoginView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tela_teste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tela_teste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tela_teste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tela_teste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                try {
+                    UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InstantiationException ex) {
+                    Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IllegalAccessException ex) {
+                    Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (UnsupportedLookAndFeelException ex) {
+                    Logger.getLogger(LoginView.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 new LoginView().setVisible(true);
+                
             }
         });
+    }
+    //gets
+    public String getLogin ()
+    {
+        return this.login;
+    }
+    public String getSenha ()
+    {
+        return this.senha;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -15,9 +15,10 @@ public class Teclado extends Produto{
     private boolean semFio;
     private boolean bluetooth;
     
-    public Teclado (String modelo, float valor, String descricao, String marca, String categoria, String tipo, boolean numerico, boolean semFio, boolean bluetooth)
+    public Teclado (String modelo, float valor, String descricao, String marca, String categoria, String imagem,
+            String tipo, boolean numerico, boolean semFio, boolean bluetooth)
     {
-        super(modelo, valor, descricao, marca, categoria);
+        super(modelo, valor, descricao, marca, categoria, imagem);
         this.tipo = tipo;
         this.numerico = numerico;
         this.semFio = semFio;

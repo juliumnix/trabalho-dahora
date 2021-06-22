@@ -11,8 +11,8 @@ package Codigo;
  */
 public class Computador extends Produto{
 
-    public Computador(String modelo, float valor, String descricao, String marca, String categoria) {
-        super(modelo, valor, descricao, marca, categoria);
+    public Computador(String modelo, float valor, String descricao, String marca, String categoria, String imagem) {
+        super(modelo, valor, descricao, marca, categoria, imagem);
     }
 
     @Override

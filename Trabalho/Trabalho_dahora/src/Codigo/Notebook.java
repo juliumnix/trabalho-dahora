@@ -11,9 +11,9 @@ package Codigo;
  */
 public class Notebook extends Produto {
     
-    public Notebook(String modelo, float valor, String descricao, String marca, String categoria) 
+    public Notebook(String modelo, float valor, String descricao, String marca, String categoria, String imagem) 
     {
-        super(modelo, valor, descricao, marca, categoria);
+        super(modelo, valor, descricao, marca, categoria, imagem);
     }
     
     @Override

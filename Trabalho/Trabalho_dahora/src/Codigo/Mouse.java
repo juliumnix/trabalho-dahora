@@ -14,9 +14,9 @@ public class Mouse extends Produto {
     private boolean semFio;
     private boolean bluetooth;
 
-    public Mouse(String modelo, float valor, String descricao, String marca, String categoria,
+    public Mouse(String modelo, float valor, String descricao, String marca, String categoria, String imagem,
                  boolean botoesLaterais, boolean semFio, boolean bluetooth) {
-        super(modelo, valor, descricao, marca, categoria);
+        super(modelo, valor, descricao, marca, categoria, imagem);
         this.botoesLaterais = botoesLaterais;
         this.semFio = semFio;
         this.bluetooth = bluetooth;

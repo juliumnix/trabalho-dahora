@@ -12,13 +12,13 @@ import Codigo.Armazenamento;
  * @author juliu
  */
 public class Teste_de_cadastro extends javax.swing.JFrame {
-    private HomeScreenView homeScreen;
+    private TelaPrincipal principal;
 
     /**
      * Creates new form teste_de_cadastro
      */
-    public Teste_de_cadastro(HomeScreenView homeScreen) {
-        this.homeScreen = homeScreen;
+    public Teste_de_cadastro(TelaPrincipal principal) {
+        this.principal = principal;
         initComponents();
     }
 
@@ -82,11 +82,12 @@ public class Teste_de_cadastro extends javax.swing.JFrame {
             String descricao = "descricao";
             String marca = "marca";
             String categoria = "categoria";
+            String imagem = "https://pbs.twimg.com/media/EXSG-shXQAUAati.jpg";
             int capacidade = 1;
             float velocidade = 123;
-            Armazenamento armazenamento = new Armazenamento(modelo,valor, descricao, marca, categoria, capacidade, velocidade, tipo);
+            Armazenamento armazenamento = new Armazenamento(modelo,valor, descricao, marca, categoria, imagem, capacidade, velocidade, tipo);
             
-            if (this.homeScreen.getArmazenamentos().add(armazenamento) == true) {
+            if (this.principal.getArmazenamentos().add(armazenamento) == true) {
                 
                 jOptionPane1.showMessageDialog(null, "Cadastro realizado com sucesso");
             } else {
