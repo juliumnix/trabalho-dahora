@@ -8,7 +8,8 @@ package Telas;
 import Codigo.Armazenamento;
 import java.awt.*;
 import java.net.URL;
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -17,15 +18,17 @@ import javax.swing.*;
  */
 public class TelaArmazenamentoCompra extends javax.swing.JFrame {
      private TelaPrincipal principal;
-     private ArrayList<Armazenamento> armazenamentos;
-     private ArrayList<JPanel> jPanells;
-     private ArrayList<JLabel> jLabellsImg;
-     private ArrayList<JLabel> jLabellsText;
+     private LoginView login;
+     private List<Armazenamento> armazenamentos;
+     private List<JPanel> jPanells;
+     private List<JLabel> jLabellsImg;
+     private List<JLabel> jLabellsText;
     /**
      * Creates new form TelaArmazenamentoCompra
      */
     public TelaArmazenamentoCompra(TelaPrincipal principal) {
         this.principal = principal;
+        this.login = principal.getLogin();
         this.armazenamentos = new ArrayList<Armazenamento>(principal.getArmazenamentos());
         this.jPanells = new ArrayList<JPanel>();
         this.jLabellsImg = new ArrayList<JLabel>();
@@ -35,7 +38,7 @@ public class TelaArmazenamentoCompra extends javax.swing.JFrame {
         addJLabelImg();
         addJLabelText();
         apareceImagem();
-        criarObjetos();
+        //criarObjetos();
         lIconAC.requestFocus();
         pFavoritesAC.setVisible(false);
         ObjetosNovaPagina ();
@@ -216,6 +219,11 @@ public class TelaArmazenamentoCompra extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         bgAC3.setBackground(new java.awt.Color(34, 33, 44));
         bgAC3.setMaximumSize(new java.awt.Dimension(800, 600));
@@ -385,7 +393,7 @@ public class TelaArmazenamentoCompra extends javax.swing.JFrame {
                 .addComponent(btProcessadorAC3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btTecladoAC3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btSairAC3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -393,7 +401,7 @@ public class TelaArmazenamentoCompra extends javax.swing.JFrame {
         tfPesquisaAC.setBackground(new java.awt.Color(69, 65, 88));
         tfPesquisaAC.setForeground(new java.awt.Color(255, 149, 128));
         tfPesquisaAC.setText("Pesquisa");
-        tfPesquisaAC.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        tfPesquisaAC.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tfPesquisaAC.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tfPesquisaACFocusGained(evt);
@@ -805,10 +813,18 @@ public class TelaArmazenamentoCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPesquisaACFocusGained
 
     private void btSairACActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairACActionPerformed
-        LoginView LoginV = new LoginView ();
-        LoginV.setVisible(true);
+        login.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btSairACActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+          
+        System.out.println(principal.getArmazenamentos());
+         this.armazenamentos.clear();
+         this.armazenamentos.addAll(principal.getArmazenamentos());
+         ObjetosNovaPagina();
+         
+    }//GEN-LAST:event_formWindowActivated
 
     
 

@@ -26,11 +26,15 @@ public class TelaPrincipal extends javax.swing.JFrame implements Autenticador, I
 
     private LoginView login;
     private HashSet<Armazenamento> armazenamentos;
-
+    private TelaArmazenamentoCompra telaDeCompra ;
+    
+    
     public TelaPrincipal(LoginView login) {
+        
         this.login = login;
         this.armazenamentos = new HashSet<Armazenamento>();
         initComponents();
+        this.telaDeCompra = new TelaArmazenamentoCompra(this);
         apareceImagem();
         icon.requestFocus();
         taProd1.setLineWrap(true);
@@ -72,6 +76,9 @@ public class TelaPrincipal extends javax.swing.JFrame implements Autenticador, I
         btFavorites.setIcon(new ImageIcon(iconFavoritesAUX));
     }
         
+    public LoginView getLogin (){
+        return this.login;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -582,8 +589,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements Autenticador, I
             teste_tela.setVisible(true);
         } else
         {
-            TelaArmazenamentoCompra TACompra = new TelaArmazenamentoCompra(this);
-            TACompra.setVisible(true);
+            telaDeCompra.setVisible(true);
             this.setVisible(false);
         }
     }//GEN-LAST:event_btArmazenamentoActionPerformed
