@@ -13,9 +13,9 @@ public class Cooler extends Produto {
     private float velocidadeVentoinha;
     private int tamanho;
     
-    public Cooler (String modelo, float valor, String descricao, String marca, String categoria, float velocidadeVentoinha, int tamanho)
+    public Cooler (String modelo, float valor, String descricao, String marca, String categoria, String imagem, float velocidadeVentoinha, int tamanho)
     {
-        super(modelo, valor, descricao, marca, categoria);
+        super(modelo, valor, descricao, marca, categoria, imagem);
         this.velocidadeVentoinha = velocidadeVentoinha;
         this.tamanho = tamanho;
     }

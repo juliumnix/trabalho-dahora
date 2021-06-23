@@ -16,9 +16,10 @@ public class Monitor extends Produto{
     private boolean wide;
     private int frameRate;
     
-    public Monitor (String modelo, float valor, String descricao, String marca, String categoria, int resolucao, float tamanho, String aspecto, boolean wide, int frameRate)
+    public Monitor (String modelo, float valor, String descricao, String marca, String categoria, String imagem,
+            int resolucao, float tamanho, String aspecto, boolean wide, int frameRate)
     {
-        super(modelo, valor, descricao, marca, categoria);
+        super(modelo, valor, descricao, marca, categoria, imagem);
         this.resolucao = resolucao;
         this.tamanho = tamanho;
         this.aspecto = aspecto;

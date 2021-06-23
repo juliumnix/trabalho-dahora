@@ -13,9 +13,9 @@ public class Fonte extends Produto{
     private int tensao;
     private String certificacao;
 
-    public Fonte(String modelo, float valor, String descricao, String marca, String categoria,
+    public Fonte(String modelo, float valor, String descricao, String marca, String categoria, String imagem,
                  int tensao, String certificacao) {
-        super(modelo, valor, descricao, marca, categoria);
+        super(modelo, valor, descricao, marca, categoria, imagem);
         this.tensao = tensao;
         this.certificacao = certificacao;
     }

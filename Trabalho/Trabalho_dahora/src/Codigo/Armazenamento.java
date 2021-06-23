@@ -17,9 +17,10 @@ public class Armazenamento extends Produto {
     private float velocidade;
     private String tipo;
     
-    public Armazenamento (String modelo, float valor, String descricao, String marca, String categoria, int capacidade, float velocidade, String tipo)
+    public Armazenamento (String modelo, float valor, String descricao, String marca, String categoria, String imagem,
+            int capacidade, float velocidade, String tipo)
     {
-        super(modelo, valor, descricao, marca, categoria);
+        super(modelo, valor, descricao, marca, categoria, imagem);
         this.capacidade = capacidade;
         this.velocidade = velocidade;
         this.tipo = tipo;

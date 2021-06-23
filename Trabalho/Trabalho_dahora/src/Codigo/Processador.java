@@ -14,9 +14,9 @@ public class Processador extends Produto{
     private int nucleos;
     private float velocidadeNucleo;
 
-    public Processador(String modelo, float valor, String descricao, String marca, String categoria,
+    public Processador(String modelo, float valor, String descricao, String marca, String categoria, String imagem,
                        int geracao, int nucleos, float velocidadeNucleo) {
-        super(modelo, valor, descricao, marca, categoria);
+        super(modelo, valor, descricao, marca, categoria, imagem);
         this.geracao = geracao;
         this.nucleos = nucleos;
         this.velocidadeNucleo = velocidadeNucleo;

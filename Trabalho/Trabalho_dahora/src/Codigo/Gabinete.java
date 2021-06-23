@@ -13,9 +13,9 @@ public class Gabinete extends Produto {
     private int tamanho;
     private float peso;
     
-    public Gabinete (String modelo, float valor, String descricao, String marca, String categoria, int tamanho, float peso)
+    public Gabinete (String modelo, float valor, String descricao, String marca, String categoria, String imagem, int tamanho, float peso)
     {
-        super(modelo, valor, descricao, marca, categoria);
+        super(modelo, valor, descricao, marca, categoria, imagem);
         this.tamanho = tamanho;
         this.peso = peso;
     }

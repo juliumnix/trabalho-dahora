@@ -15,9 +15,9 @@ public class Headset extends Produto {
     private String tipo;
     private boolean bluetooth;
 
-    public Headset(String modelo, float valor, String descricao, String marca, String categoria,
+    public Headset(String modelo, float valor, String descricao, String marca, String categoria, String imagem,
                    boolean semFio, boolean microfone, String tipo, boolean bluetooth) {
-        super(modelo, valor, descricao, marca, categoria);
+        super(modelo, valor, descricao, marca, categoria, imagem);
         this.semFio = semFio;
         this.microfone = microfone;
         this.tipo = tipo;

@@ -14,9 +14,9 @@ public class PlacaDeVideo extends Produto {
     private boolean alimentacao;
     private int memoria;
 
-    public PlacaDeVideo(String modelo, float valor, String descricao, String marca, String categoria,
+    public PlacaDeVideo(String modelo, float valor, String descricao, String marca, String categoria, String imagem,
                         String interfaceMemoria, boolean alimentacao, int memoria) {
-        super(modelo, valor, descricao, marca, categoria);
+        super(modelo, valor, descricao, marca, categoria, imagem);
         this.interfaceMemoria = interfaceMemoria;
         this.alimentacao = alimentacao;
         this.memoria = memoria;

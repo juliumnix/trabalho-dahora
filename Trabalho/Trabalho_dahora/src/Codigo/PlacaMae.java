@@ -17,9 +17,9 @@ public class PlacaMae extends Produto {
     private String tamanho;
     private boolean bluetooth;
 
-    public PlacaMae(String modelo, float valor, String descricao, String marca, String categoria,
+    public PlacaMae(String modelo, float valor, String descricao, String marca, String categoria, String imagem,
                     boolean wifi, int entradasRAM,int entradasUSB,int entradasPCIExpress, String tamanho ,boolean bluetooth) {
-        super(modelo, valor, descricao, marca, categoria);
+        super(modelo, valor, descricao, marca, categoria, imagem);
         this.wifi = wifi;
         this.entradasRAM = entradasRAM;
         this.entradasUSB = entradasUSB;

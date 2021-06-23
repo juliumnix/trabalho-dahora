@@ -14,9 +14,10 @@ public class MemoriaRAM extends Produto{
     private int ddr;
     private float velocidade;
     
-    public MemoriaRAM (String modelo, float valor, String descricao, String marca, String categoria, int capacidade, int ddt, float velocidade)
+    public MemoriaRAM (String modelo, float valor, String descricao, String marca, String categoria, String imagem,
+            int capacidade, int ddt, float velocidade)
     {
-        super(modelo, valor, descricao, marca, categoria);
+        super(modelo, valor, descricao, marca, categoria, imagem);
         this.capacidade = capacidade;
         this.ddr = ddr;
         this.velocidade = velocidade;
