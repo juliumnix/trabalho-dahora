@@ -11,5 +11,5 @@ package Codigo;
  */
 public interface Autenticador {
     
-    boolean verificaAdm (String teste);
+    boolean verificaAdm ();
 }

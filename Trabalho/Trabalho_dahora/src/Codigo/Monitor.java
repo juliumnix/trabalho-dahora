@@ -13,17 +13,15 @@ public class Monitor extends Produto{
     private int resolucao;
     private float tamanho;
     private String aspecto;
-    private boolean wide;
     private int frameRate;
     
     public Monitor (String modelo, float valor, String descricao, String marca, String categoria, String imagem,
-            int resolucao, float tamanho, String aspecto, boolean wide, int frameRate)
+            int resolucao, float tamanho, String aspecto, int frameRate)
     {
         super(modelo, valor, descricao, marca, categoria, imagem);
         this.resolucao = resolucao;
         this.tamanho = tamanho;
         this.aspecto = aspecto;
-        this.wide = wide;
         this.frameRate = frameRate;
     }
     
@@ -40,11 +38,6 @@ public class Monitor extends Produto{
     public String getAspecto ()
     {
         return this.aspecto;
-    }
-    
-    public boolean getWide ()
-    {
-        return this.wide;
     }
     
     public int getFrameRate ()
@@ -76,11 +69,6 @@ public class Monitor extends Produto{
         }
     }
 
-    public void setWide(boolean wide) 
-    {
-        this.wide = wide;
-    }
-
     public void setFrameRate(int frameRate) 
     {
         if (frameRate > 0)
@@ -92,7 +80,7 @@ public class Monitor extends Produto{
     @Override
     public String toString() 
     {
-        return "Monitor - " + super.toString() + ", Resolução: " + resolucao + ", Tamanho: " + tamanho + ", Aspecto: " + aspecto + ", Wide: " + wide + ", Frame Rate: " + frameRate;
+        return "Monitor - " + super.toString() + ", Resolução: " + resolucao + ", Tamanho: " + tamanho + ", Aspecto: " + aspecto + ", Frame Rate: " + frameRate;
     }
     
 }

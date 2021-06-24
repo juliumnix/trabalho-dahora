@@ -5,19 +5,15 @@
  */
 package Telas;
 
-import Codigo.Armazenamento;
-import Codigo.Autenticador;
 import Telas.LoginView;
 import java.awt.*;
-import java.util.*;
 import javax.swing.*;
-import java.net.URL;
 
 /**
  *
  * @author Mateus
  */
-public class TelaBase extends javax.swing.JFrame implements Autenticador {
+public class TelaBase extends javax.swing.JFrame {
 
     private LoginView login;
 
@@ -295,18 +291,7 @@ public class TelaBase extends javax.swing.JFrame implements Autenticador {
         bg.add(btFavorites, new org.netbeans.lib.awtextra.AbsoluteConstraints(766, 6, 28, 28));
 
         popUpMenu.setBackground(new java.awt.Color(69, 65, 88));
-
-        javax.swing.GroupLayout popUpMenuLayout = new javax.swing.GroupLayout(popUpMenu);
-        popUpMenu.setLayout(popUpMenuLayout);
-        popUpMenuLayout.setHorizontalGroup(
-            popUpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        popUpMenuLayout.setVerticalGroup(
-            popUpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
+        popUpMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         bg.add(popUpMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 52, 109, 542));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -348,25 +333,13 @@ public class TelaBase extends javax.swing.JFrame implements Autenticador {
     }//GEN-LAST:event_btArmazenamentoActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        LoginView LoginV = new LoginView ();
-        LoginV.setVisible(true);
+        login.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btSairActionPerformed
 
     private void tfPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPesquisaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfPesquisaActionPerformed
-    //A conta é de administrador ou usuário padrão?
-    @Override
-    public boolean verificaAdm(String teste) {
-        if (teste.contains("@adm.com"))
-        {
-            return true;
-        }else
-        {
-            return false;
-        }
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JButton btArmazenamento;
