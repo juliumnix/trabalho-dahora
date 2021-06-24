@@ -6,48 +6,53 @@
 package Telas;
 
 import Codigo.Armazenamento;
-import Codigo.Autenticador;
-import Codigo.InternetImage;
+import Codigo.Utilitarios;
 import Codigo.Produto;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.net.URL;
 import java.util.HashSet;
 import javax.swing.ImageIcon;
 import Telas.LoginView;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Mateus
  */
-public class TelaPrincipal extends javax.swing.JFrame implements Autenticador, InternetImage {
+public class TelaPrincipal extends javax.swing.JFrame {
 
     private LoginView login;
     private HashSet<Armazenamento> armazenamentos;
-    private TelaArmazenamentoCompra telaDeCompra ;
+    private List<Produto> produtos;
+    private TelaCategorias telaDeCompra ;
     
     
     public TelaPrincipal(LoginView login) {
         
         this.login = login;
         this.armazenamentos = new HashSet<Armazenamento>();
+        this.produtos = new ArrayList<>();
         initComponents();
-        this.telaDeCompra = new TelaArmazenamentoCompra(this);
+        this.telaDeCompra = new TelaCategorias(this);
         apareceImagem();
         icon.requestFocus();
         taProd1.setLineWrap(true);
         taProd2.setLineWrap(true);
         popUpMenu.setVisible(false);
-        imageLabelUrl("https://s1.static.brasilescola.uol.com.br/be/vestibular/-5824728585f3d.jpg", img1, "Texto teste", text1);
-        imageLabelUrl("https://s1.static.brasilescola.uol.com.br/be/vestibular/-5824728585f3d.jpg", img2, "Texto teste", text2);
-        imageLabelUrl("https://s1.static.brasilescola.uol.com.br/be/vestibular/-5824728585f3d.jpg", img3, "Texto teste", text3);   
+        Utilitarios.criarPainelProduto("https://s1.static.brasilescola.uol.com.br/be/vestibular/-5824728585f3d.jpg", img1, "Texto teste", text1);
+        Utilitarios.criarPainelProduto("https://s1.static.brasilescola.uol.com.br/be/vestibular/-5824728585f3d.jpg", img2, "Texto teste", text2);
+        Utilitarios.criarPainelProduto("https://s1.static.brasilescola.uol.com.br/be/vestibular/-5824728585f3d.jpg", img3, "Texto teste", text3);   
 
     }
     public HashSet<Armazenamento> getArmazenamentos ()
     {
         return this.armazenamentos;
+    }
+    
+    public List<Produto> getProdutos ()
+    {
+        return this.produtos;
     }
     
     public void criarArmazenamentos (String tipo, String modelo, float valor, String descricao, String marca, String categoria, String imagem, int capacidade, float velocidade)
@@ -130,7 +135,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements Autenticador, I
         taProd1 = new javax.swing.JTextArea();
         descricaoProd2 = new javax.swing.JPanel();
         imgProd2 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         taProd2 = new javax.swing.JTextArea();
         btCompare = new javax.swing.JButton();
 
@@ -312,7 +317,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements Autenticador, I
         tfPesquisa.setBackground(new java.awt.Color(69, 65, 88));
         tfPesquisa.setForeground(new java.awt.Color(255, 149, 128));
         tfPesquisa.setText("Pesquisa");
-        tfPesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        tfPesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tfPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tfPesquisaFocusGained(evt);
@@ -341,108 +346,45 @@ public class TelaPrincipal extends javax.swing.JFrame implements Autenticador, I
         bg.add(btFavorites, new org.netbeans.lib.awtextra.AbsoluteConstraints(766, 6, 28, 28));
 
         popUpMenu.setBackground(new java.awt.Color(69, 65, 88));
-
-        javax.swing.GroupLayout popUpMenuLayout = new javax.swing.GroupLayout(popUpMenu);
-        popUpMenu.setLayout(popUpMenuLayout);
-        popUpMenuLayout.setHorizontalGroup(
-            popUpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 109, Short.MAX_VALUE)
-        );
-        popUpMenuLayout.setVerticalGroup(
-            popUpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 542, Short.MAX_VALUE)
-        );
-
+        popUpMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         bg.add(popUpMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 52, 109, 542));
 
         destaque1.setBackground(new java.awt.Color(69, 65, 88));
         destaque1.setPreferredSize(new java.awt.Dimension(170, 170));
+        destaque1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         img1.setPreferredSize(new java.awt.Dimension(150, 120));
+        destaque1.add(img1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        javax.swing.GroupLayout destaque1Layout = new javax.swing.GroupLayout(destaque1);
-        destaque1.setLayout(destaque1Layout);
-        destaque1Layout.setHorizontalGroup(
-            destaque1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, destaque1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(text1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
-            .addGroup(destaque1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(img1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
-        );
-        destaque1Layout.setVerticalGroup(
-            destaque1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(destaque1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(img1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(text1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        text1.setBackground(new java.awt.Color(255, 149, 128));
+        text1.setForeground(new java.awt.Color(255, 149, 128));
+        destaque1.add(text1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 136, 150, 28));
 
         bg.add(destaque1, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 52, -1, -1));
 
         destaque2.setBackground(new java.awt.Color(69, 65, 88));
         destaque2.setPreferredSize(new java.awt.Dimension(170, 170));
+        destaque2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        text2.setBackground(new java.awt.Color(255, 149, 128));
+        text2.setForeground(new java.awt.Color(255, 149, 128));
+        destaque2.add(text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 136, 150, 28));
 
         img2.setPreferredSize(new java.awt.Dimension(150, 120));
-
-        javax.swing.GroupLayout destaque2Layout = new javax.swing.GroupLayout(destaque2);
-        destaque2.setLayout(destaque2Layout);
-        destaque2Layout.setHorizontalGroup(
-            destaque2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(destaque2Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(text2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, destaque2Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(img2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
-        );
-        destaque2Layout.setVerticalGroup(
-            destaque2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(destaque2Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(img2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(text2, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        destaque2.add(img2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         bg.add(destaque2, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 52, -1, -1));
 
         destaque3.setBackground(new java.awt.Color(69, 65, 88));
         destaque3.setPreferredSize(new java.awt.Dimension(170, 170));
+        destaque3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        text3.setBackground(new java.awt.Color(255, 149, 128));
+        text3.setForeground(new java.awt.Color(255, 149, 128));
+        destaque3.add(text3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 136, 150, 28));
 
         img3.setPreferredSize(new java.awt.Dimension(150, 120));
-
-        javax.swing.GroupLayout destaque3Layout = new javax.swing.GroupLayout(destaque3);
-        destaque3.setLayout(destaque3Layout);
-        destaque3Layout.setHorizontalGroup(
-            destaque3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(destaque3Layout.createSequentialGroup()
-                .addGroup(destaque3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(destaque3Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(text3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(destaque3Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(img3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10))
-        );
-        destaque3Layout.setVerticalGroup(
-            destaque3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(destaque3Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(img3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(text3, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        destaque3.add(img3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         bg.add(destaque3, new org.netbeans.lib.awtextra.AbsoluteConstraints(497, 52, -1, -1));
 
@@ -467,46 +409,30 @@ public class TelaPrincipal extends javax.swing.JFrame implements Autenticador, I
         bg.add(cbProduto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 283, -1, -1));
 
         descricaoProd1.setBackground(new java.awt.Color(69, 65, 88));
+        descricaoProd1.setPreferredSize(new java.awt.Dimension(240, 274));
+        descricaoProd1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imgProd1.setPreferredSize(new java.awt.Dimension(90, 90));
+        descricaoProd1.add(imgProd1, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 9, -1, -1));
 
         taProd1.setBackground(new java.awt.Color(34, 33, 44));
         taProd1.setColumns(20);
         taProd1.setRows(5);
         taProd1.setBorder(null);
         taProd1.setMinimumSize(new java.awt.Dimension(230, 80));
-        taProd1.setPreferredSize(new java.awt.Dimension(230, 80));
+        taProd1.setPreferredSize(new java.awt.Dimension(235, 80));
         jScrollPane1.setViewportView(taProd1);
 
-        javax.swing.GroupLayout descricaoProd1Layout = new javax.swing.GroupLayout(descricaoProd1);
-        descricaoProd1.setLayout(descricaoProd1Layout);
-        descricaoProd1Layout.setHorizontalGroup(
-            descricaoProd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, descricaoProd1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(descricaoProd1Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(imgProd1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
-        );
-        descricaoProd1Layout.setVerticalGroup(
-            descricaoProd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, descricaoProd1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(imgProd1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        descricaoProd1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 108, 228, 160));
 
         bg.add(descricaoProd1, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 320, -1, -1));
 
         descricaoProd2.setBackground(new java.awt.Color(69, 65, 88));
         descricaoProd2.setPreferredSize(new java.awt.Dimension(240, 274));
+        descricaoProd2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         imgProd2.setPreferredSize(new java.awt.Dimension(90, 90));
+        descricaoProd2.add(imgProd2, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 9, -1, -1));
 
         taProd2.setBackground(new java.awt.Color(34, 33, 44));
         taProd2.setColumns(20);
@@ -514,32 +440,12 @@ public class TelaPrincipal extends javax.swing.JFrame implements Autenticador, I
         taProd2.setBorder(null);
         taProd2.setMinimumSize(new java.awt.Dimension(230, 80));
         taProd2.setPreferredSize(new java.awt.Dimension(230, 80));
-        jScrollPane2.setViewportView(taProd2);
+        jScrollPane3.setViewportView(taProd2);
 
-        javax.swing.GroupLayout descricaoProd2Layout = new javax.swing.GroupLayout(descricaoProd2);
-        descricaoProd2.setLayout(descricaoProd2Layout);
-        descricaoProd2Layout.setHorizontalGroup(
-            descricaoProd2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, descricaoProd2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
-            .addGroup(descricaoProd2Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(imgProd2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
-        );
-        descricaoProd2Layout.setVerticalGroup(
-            descricaoProd2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, descricaoProd2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(imgProd2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        descricaoProd2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 108, 228, 160));
 
-        bg.add(descricaoProd2, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 320, -1, -1));
+        bg.add(descricaoProd2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 320, -1, -1));
+        descricaoProd2.getAccessibleContext().setAccessibleName("");
 
         btCompare.setBackground(new java.awt.Color(121, 112, 169));
         btCompare.setForeground(new java.awt.Color(69, 65, 88));
@@ -583,13 +489,16 @@ public class TelaPrincipal extends javax.swing.JFrame implements Autenticador, I
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void btArmazenamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btArmazenamentoActionPerformed
-        if (verificaAdm(this.login.getLogin()))
+        if (login.verificaAdm() == true)
         {
             Teste_de_cadastro teste_tela = new Teste_de_cadastro(this);
             teste_tela.setVisible(true);
         } else
         {
+            this.produtos.clear();
+            this.produtos.addAll(armazenamentos);
             telaDeCompra.setVisible(true);
+            telaDeCompra.ObjetosNovaPagina ();
             this.setVisible(false);
         }
     }//GEN-LAST:event_btArmazenamentoActionPerformed
@@ -598,17 +507,6 @@ public class TelaPrincipal extends javax.swing.JFrame implements Autenticador, I
         login.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btSairActionPerformed
-    //A conta é de administrador ou usuário padrão?
-    @Override
-    public boolean verificaAdm(String teste) {
-        if (teste.contains("@adm.com"))
-        {
-            return true;
-        }else
-        {
-            return false;
-        }
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JButton btArmazenamento;
@@ -645,7 +543,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements Autenticador, I
     private javax.swing.JLabel imgProd1;
     private javax.swing.JLabel imgProd2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel popUpMenu;
     private javax.swing.JTextArea taProd1;
@@ -655,18 +553,4 @@ public class TelaPrincipal extends javax.swing.JFrame implements Autenticador, I
     private javax.swing.JLabel text3;
     private javax.swing.JTextField tfPesquisa;
     // End of variables declaration//GEN-END:variables
-    @Override
-    public void imageLabelUrl(String urlInternet, JLabel jLabel, String label, JLabel jLabelText) {
-        ImageIcon image;
-        try {
-            URL url  = new URL(urlInternet);
-            image = new ImageIcon(url);
-            Image imagemScale = image.getImage().getScaledInstance(jLabel.getWidth(), jLabel.getHeight(), Image.SCALE_SMOOTH);
-            
-            jLabel.setIcon(new ImageIcon(imagemScale));
-            jLabelText.setText(label);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
 }

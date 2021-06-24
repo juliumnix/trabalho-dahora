@@ -10,28 +10,14 @@ package Codigo;
  * @author juliu
  */
 public class PlacaDeVideo extends Produto {
-    private String interfaceMemoria;
     private boolean alimentacao;
     private int memoria;
 
     public PlacaDeVideo(String modelo, float valor, String descricao, String marca, String categoria, String imagem,
-                        String interfaceMemoria, boolean alimentacao, int memoria) {
+                    boolean alimentacao, int memoria) {
         super(modelo, valor, descricao, marca, categoria, imagem);
-        this.interfaceMemoria = interfaceMemoria;
         this.alimentacao = alimentacao;
         this.memoria = memoria;
-    }
-
-    public String getInterfaceMemoria() {
-        return interfaceMemoria;
-    }
-
-    public boolean setInterfaceMemoria(String interfaceMemoria) {
-        if (interfaceMemoria.isBlank()) {
-            return false;
-        }
-        this.interfaceMemoria = interfaceMemoria;
-        return true;
     }
 
     public boolean getAlimentacao() {
@@ -56,7 +42,7 @@ public class PlacaDeVideo extends Produto {
 
     @Override
     public String toString() {
-        return "Placa de Video - " + super.toString()+ ", Interface Memoria: " + interfaceMemoria + ", Alimentação: " + alimentacao + ", Memória: " + memoria;
+        return "Placa de Video - " + super.toString()+ ", Alimentação: " + alimentacao + ", Memória: " + memoria;
     }
     
 }

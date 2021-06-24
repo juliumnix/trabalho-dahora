@@ -5,14 +5,12 @@
  */
 package Telas;
 
-import java.awt.Color;
+import Codigo.Autenticador;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -20,11 +18,10 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author Mateus
  */
-public class LoginView extends javax.swing.JFrame {
+public class LoginView extends javax.swing.JFrame implements Autenticador{
 
-    public String login;
-    public String senha;
-    //HomeScreenView Home = new HomeScreenView(this);
+    private String login;
+    private String senha;
     TelaPrincipal principal = new TelaPrincipal(this);
     /**
      * Creates new form LoginView
@@ -289,4 +286,15 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JPasswordField pfSenha;
     private javax.swing.JTextField tfEmail;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public boolean verificaAdm() {
+        if (this.login.contains("@adm.com"))
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
 }
