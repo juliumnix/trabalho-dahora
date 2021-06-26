@@ -168,7 +168,7 @@ public class TelaCadastroPrimeira extends javax.swing.JFrame {
             SetarValores();
             TelaCadastroSegunda segunda = new TelaCadastroSegunda (this, principal);
             segunda.setVisible(true);
-        this.setVisible(false);
+            this.setVisible(false);
         } catch (Exception e) {
             jOptionPane1.showMessageDialog(null, "Preencha todos os campos");
         }

@@ -106,7 +106,7 @@ public class TelaCategorias extends javax.swing.JFrame {
             jPanells.get(i).setVisible(true);
 //            jLabellsText.get(i).setText(produtos.get(i).toString());
 //            jLabellsImg.get(i).
-            Utilitarios.criarPainelProduto(principal.getProdutos().get(i).getImagem(), jLabellsImg.get(i), principal.getProdutos().get(i).toString(), jLabellsText.get(i));
+            Utilitarios.criarPainelProduto(principal.getProdutos().get(i).getImagem(), jLabellsImg.get(i), principal.getProdutos().get(i).getModelo(), jLabellsText.get(i));
             
         }
 
