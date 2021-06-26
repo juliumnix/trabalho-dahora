@@ -32,8 +32,15 @@ public class Utilitarios {
     
     public static void criarPainelProduto (String caminhoFoto, JLabel foto, String textoProduto ,JLabel texto)
     {
+        try {
         Image imagem = imagemInternet(caminhoFoto).getImage().getScaledInstance(foto.getWidth(), foto.getHeight(), Image.SCALE_SMOOTH);
         foto.setIcon(new ImageIcon(imagem));
         texto.setText(textoProduto);
+            
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        
+        
     }
 }

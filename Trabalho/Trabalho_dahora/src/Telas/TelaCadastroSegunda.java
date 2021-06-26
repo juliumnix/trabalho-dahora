@@ -64,7 +64,8 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jTextField1.setVisible(true);
         jComboBox1.setLocation(155, 40);
         jComboBox1.setVisible(true);
-        jComboBox1.addItem(""); 
+        jComboBox1.addItem("Cooler comum");
+        jComboBox1.addItem("Water Cooler");
     }
     
     public void fonte ()
@@ -76,10 +77,20 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jLabel2.setText("Tensão:");
         jComboBox1.setLocation(155, 10);
         jComboBox1.setVisible(true);
-        jComboBox1.addItem("");
+        jComboBox1.addItem("Plus");
+        jComboBox1.addItem("Bronze");
+        jComboBox1.addItem("Silver");
+        jComboBox1.addItem("Gold");
+        jComboBox1.addItem("Platinum");
+        jComboBox1.addItem("Titanium");
         jComboBox2.setLocation(155, 40);
         jComboBox2.setVisible(true);
-        jComboBox2.addItem("");
+        jComboBox2.addItem("550W");
+        jComboBox2.addItem("650W");
+        jComboBox2.addItem("750W");
+        jComboBox2.addItem("850W");
+        jComboBox2.addItem("950W");
+        jComboBox2.addItem("1050W");
     }
     
     public void gabinete ()
@@ -92,32 +103,39 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jTextField1.setVisible(true);
         jComboBox1.setLocation(155, 40);
         jComboBox1.setVisible(true);
-        jComboBox1.addItem(""); 
+        jComboBox1.addItem("Pequeno");
+        jComboBox1.addItem("Médio");
+        jComboBox1.addItem("Grande");
     }
     
     public void headset ()
     {
         setarVisibleFalse();
         jLabel1.setVisible(true);
-        jLabel1.setText("Bluetooth:");
+        jLabel1.setText("Possui Bluetooth:");
         jLabel2.setVisible(true);
-        jLabel2.setText("Microfone:");
+        jLabel2.setText("Possui Microfone:");
         jLabel3.setVisible(true);
-        jLabel3.setText("Sem Fio:");
+        jLabel3.setText("É Sem Fio:");
         jLabel4.setVisible(true);
         jLabel4.setText("Tipo:");
         jComboBox1.setLocation(155, 10);
         jComboBox1.setVisible(true);
-        jComboBox1.addItem("");
+        jComboBox1.addItem("Possui");
+        jComboBox1.addItem("Não possui");
         jComboBox2.setLocation(155, 40);
         jComboBox2.setVisible(true);
-        jComboBox2.addItem("");
+        jComboBox2.addItem("Possui");
+        jComboBox2.addItem("Não possui");
         jComboBox3.setLocation(155, 70);
         jComboBox3.setVisible(true);
-        jComboBox3.addItem("");
+        jComboBox3.addItem("Sim");
+        jComboBox3.addItem("Não");
         jComboBox4.setLocation(155, 100);
         jComboBox4.setVisible(true);
-        jComboBox4.addItem("");
+        jComboBox4.addItem("2.0 (estéreo)");
+        jComboBox4.addItem("5.1");
+        jComboBox4.addItem("7.1 (surround)");
     }
     
     public void memoriaRam ()
@@ -133,7 +151,8 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jTextField2.setVisible(true);
         jComboBox1.setLocation(155, 70);
         jComboBox1.setVisible(true);
-        jComboBox1.addItem("");
+        jComboBox1.addItem("DDR3");
+        jComboBox1.addItem("DDR4");
     }
     
     public void monitor ()
@@ -150,33 +169,44 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jTextField1.setVisible(true);
         jComboBox1.setLocation(155, 40);
         jComboBox1.setVisible(true);
-        jComboBox1.addItem("");
+        jComboBox1.addItem("4:3");
+        jComboBox1.addItem("16:9");
+        jComboBox1.addItem("21:9");       
         jComboBox2.setLocation(155, 70);
         jComboBox2.setVisible(true);
-        jComboBox2.addItem("");
+        jComboBox2.addItem("60 hz");
+        jComboBox2.addItem("75 hz");
+        jComboBox2.addItem("90 hz");
+        jComboBox2.addItem("120 hz");
+        jComboBox2.addItem("144 hz");
         jComboBox3.setLocation(155, 100);
         jComboBox3.setVisible(true);
-        jComboBox3.addItem("");
+        jComboBox3.addItem("HD");
+        jComboBox3.addItem("Full HD");
+        jComboBox3.addItem("4k");
     }
     
     public void mouse ()
     {
         setarVisibleFalse();
         jLabel1.setVisible(true);
-        jLabel1.setText("Bluetooth:");
+        jLabel1.setText("Apresenta Bluetooth:");
         jLabel2.setVisible(true);
-        jLabel2.setText("Botões Laterais:");
+        jLabel2.setText("Apresenta Botões Laterais:");
         jLabel3.setVisible(true);
-        jLabel3.setText("Sem Fio:");
+        jLabel3.setText("É Sem Fio:");
         jComboBox1.setLocation(155, 10);
         jComboBox1.setVisible(true);
-        jComboBox1.addItem("");
+        jComboBox1.addItem("Sim");
+        jComboBox1.addItem("Não");
         jComboBox2.setLocation(155, 40);
         jComboBox2.setVisible(true);
-        jComboBox2.addItem("");
+        jComboBox2.addItem("Sim");
+        jComboBox2.addItem("Não");
         jComboBox3.setLocation(155, 70);
         jComboBox3.setVisible(true);
-        jComboBox3.addItem("");
+        jComboBox3.addItem("Sim");
+        jComboBox3.addItem("Não");
     }
     
     public void placaDeVideo ()
@@ -185,11 +215,12 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jLabel1.setVisible(true);
         jLabel1.setText("Memória:");
         jLabel2.setVisible(true);
-        jLabel2.setText("Alimentação:");
+        jLabel2.setText("Necessita Alimentação:");
         jTextField1.setVisible(true);
         jComboBox1.setLocation(155, 40);
         jComboBox1.setVisible(true);
-        jComboBox1.addItem("");
+        jComboBox1.addItem("Sim");
+        jComboBox1.addItem("Não");
     }
     
     public void placaMae ()
@@ -202,23 +233,31 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jLabel3.setVisible(true);
         jLabel3.setText("Entradas USB:"); 
         jLabel4.setVisible(true);
-        jLabel4.setText("Bluetooth:"); 
+        jLabel4.setText("Apresenta Bluetooth:"); 
         jLabel5.setVisible(true);
         jLabel5.setText("Tamanho:"); 
         jLabel6.setVisible(true);
-        jLabel6.setText("Wi-Fi:");
+        jLabel6.setText("Apresenta Wi-Fi:");
         jTextField1.setVisible(true);
         jTextField2.setVisible(true);
         jTextField3.setVisible(true);
         jComboBox1.setLocation(155, 100);
         jComboBox1.setVisible(true);
-        jComboBox1.addItem("");
+        jComboBox1.addItem("Sim");
+        jComboBox1.addItem("Não");
         jComboBox2.setLocation(155, 130);
         jComboBox2.setVisible(true);
-        jComboBox2.addItem("");
+        jComboBox2.addItem("AT");
+        jComboBox2.addItem("ATX");
+        jComboBox2.addItem("BABY AT");
+        jComboBox2.addItem("BTX");
+        jComboBox2.addItem("ITX");
+        jComboBox2.addItem("LPX");
+        jComboBox2.addItem("NLX");
         jComboBox3.setLocation(155, 160);
         jComboBox3.setVisible(true);
-        jComboBox3.addItem("");
+        jComboBox3.addItem("Sim");
+        jComboBox3.addItem("Não");
     }
     
     public void processador ()
@@ -239,20 +278,23 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
     {
         setarVisibleFalse();
         jLabel1.setVisible(true);
-        jLabel1.setText("Bluetooth:");
+        jLabel1.setText("Apresenta Bluetooth:");
         jLabel2.setVisible(true);
-        jLabel2.setText("Numérico:");
+        jLabel2.setText("Apresenta Numérico:");
         jLabel3.setVisible(true);
         jLabel3.setText("Sem Fio:");
         jComboBox1.setLocation(155, 10);
         jComboBox1.setVisible(true);
-        jComboBox1.addItem("");
+        jComboBox1.addItem("Sim");
+        jComboBox1.addItem("Não");
         jComboBox2.setLocation(155, 40);
         jComboBox2.setVisible(true);
-        jComboBox2.addItem("");
+        jComboBox2.addItem("Sim");
+        jComboBox2.addItem("Não");
         jComboBox3.setLocation(155, 70);
         jComboBox3.setVisible(true);
-        jComboBox3.addItem("");
+        jComboBox3.addItem("Sim");
+        jComboBox3.addItem("Não");
     }
     
     public void componentesCategoria ()
