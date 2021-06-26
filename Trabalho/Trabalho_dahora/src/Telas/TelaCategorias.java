@@ -7,6 +7,7 @@ package Telas;
 
 import Codigo.Armazenamento;
 import Codigo.Produto;
+import Codigo.Utilitarios;
 import Telas.LoginView;
 import java.awt.*;
 import java.net.URL;
@@ -99,25 +100,13 @@ public class TelaCategorias extends javax.swing.JFrame {
     public void ObjetosNovaPagina ()
     {
         setVisiblesFalse();
-        this.produtos.clear();
-        this.produtos.addAll(principal.getProdutos());
-        for (int i = 0; i < produtos.size(); i++) 
+        principal.getProdutos();
+        for (int i = 0; i < principal.getProdutos().size(); i++) 
         {
             jPanells.get(i).setVisible(true);
-            jLabellsText.get(i).setText(produtos.get(i).toString());
-            try
-            {   
-            
-            ImageIcon image;
-            URL url  = new URL("https://s1.static.brasilescola.uol.com.br/be/vestibular/-5824728585f3d.jpg");
-            image = new ImageIcon(url);
-            Image imagemScale = image.getImage().getScaledInstance(jLabellsImg.get(i).getWidth(), jLabellsImg.get(i).getHeight(), Image.SCALE_SMOOTH);
-            jLabellsImg.get(i).setIcon(new ImageIcon(imagemScale));
-            }catch(Exception e)
-            {
-                System.out.println(e);
-            }
-            
+//            jLabellsText.get(i).setText(produtos.get(i).toString());
+//            jLabellsImg.get(i).
+            Utilitarios.criarPainelProduto(principal.getProdutos().get(i).getImagem(), jLabellsImg.get(i), principal.getProdutos().get(i).toString(), jLabellsText.get(i));
             
         }
 
