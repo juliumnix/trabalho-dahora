@@ -11,6 +11,7 @@ import Codigo.Cooler;
 import Codigo.Fonte;
 import Codigo.Gabinete;
 import Codigo.Headset;
+import Codigo.MapManipulator;
 import Codigo.MemoriaRAM;
 import Codigo.Monitor;
 import Codigo.Mouse;
@@ -26,15 +27,28 @@ import java.awt.Toolkit;
 import java.util.HashSet;
 import javax.swing.ImageIcon;
 import Telas.LoginView;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import javax.swing.AbstractAction;
+import javax.swing.Icon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author Mateus
  */
-public class TelaPrincipal extends javax.swing.JFrame {
+public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,ActionListener{
 
     private LoginView login;
     private Set<Armazenamento> armazenamentos;
@@ -54,6 +68,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private List<Produto> produtos;
     private TelaCategorias telaDeCompra;
     private String categoriaEscolhida;
+    private Map<Integer, String> favoritos;
+    private static int valueTeste;
     
     
     public TelaPrincipal(LoginView login) {
@@ -74,6 +90,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.processadores = new HashSet<>();
         this.teclados = new HashSet<>();
         this.produtos = new ArrayList<>();
+        this.favoritos = new HashMap<>();
         initComponents();
         this.telaDeCompra = new TelaCategorias(this);
         apareceImagem();
@@ -503,6 +520,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         btCart.setBackground(new java.awt.Color(121, 112, 169));
         btCart.setBorder(null);
+        btCart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCartActionPerformed(evt);
+            }
+        });
         bg.add(btCart, new org.netbeans.lib.awtextra.AbsoluteConstraints(732, 6, 28, 28));
 
         btFavorites.setBackground(new java.awt.Color(121, 112, 169));
@@ -621,6 +643,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btCompare.setText("X");
         btCompare.setBorder(null);
         btCompare.setPreferredSize(new java.awt.Dimension(26, 26));
+        btCompare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCompareActionPerformed(evt);
+            }
+        });
         bg.add(btCompare, new org.netbeans.lib.awtextra.AbsoluteConstraints(395, 283, -1, -1));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -900,6 +927,46 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btTecladoActionPerformed
 
+    public void verifyContentFavorites () {
+        this.constructorValuesteste();
+        popUpMenu.revalidate();
+        popUpMenu.repaint();
+        
+        
+    
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String action = e.getActionCommand();
+        int value = Integer.parseInt(action);
+        this.removefavorito(value);
+        
+    }
+    public void constructorValuesteste () {
+        popUpMenu.removeAll();
+        popUpMenu.setLayout(new GridLayout(0, 1));
+        for (Map.Entry<Integer, String> entry : favoritos.entrySet()) {
+            JLabel _lbl = new JLabel("<html><div><p style='color: #FFCA80'>id:"+entry.getKey()+"&nbsp; &nbsp;"+entry.getValue()+"</p></div></html>");
+            JButton botaoDelete = new JButton ("<html><div><p style='color: #FFCA80; background: #7970A9;'>Delete</p></div></html>");
+            botaoDelete.setBackground(new Color(121,112,169));
+          botaoDelete.addActionListener(this);
+          botaoDelete.setActionCommand(entry.getKey().toString());
+        popUpMenu.add(_lbl);
+        popUpMenu.add(botaoDelete);
+        }
+    }
+    
+    
+    private void btCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCartActionPerformed
+       this.adicionaFavorito("ulalau");
+       this.verifyContentFavorites();
+    }//GEN-LAST:event_btCartActionPerformed
+
+    private void btCompareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCompareActionPerformed
+       
+    }//GEN-LAST:event_btCompareActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JButton btArmazenamento;
@@ -946,4 +1013,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel text3;
     private javax.swing.JTextField tfPesquisa;
     // End of variables declaration//GEN-END:variables
+
+    
+    
+    @Override
+    public void adicionaFavorito(String value) {
+        this.favoritos.put(valueTeste, value + valueTeste);
+        valueTeste++;
+    }
+
+    @Override
+    public void removefavorito(int key) {
+        this.favoritos.remove(key);
+        this.constructorValuesteste();    
+        popUpMenu.revalidate();
+        popUpMenu.repaint();
+    }
+
+    
 }
