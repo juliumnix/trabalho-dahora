@@ -29,7 +29,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
         setMaximumSize(new java.awt.Dimension(400, 600));
         setMinimumSize(new java.awt.Dimension(400, 600));
-        setPreferredSize(new java.awt.Dimension(400, 700));
         setResizable(false);
         setSize(new java.awt.Dimension(400, 700));
 
