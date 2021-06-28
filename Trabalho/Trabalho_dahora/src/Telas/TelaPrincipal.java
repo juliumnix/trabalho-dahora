@@ -27,8 +27,17 @@ import java.awt.Toolkit;
 import java.util.HashSet;
 import javax.swing.ImageIcon;
 import Telas.LoginView;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics2D;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -42,6 +51,9 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.SpringLayout;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 /**
@@ -70,8 +82,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
     private String categoriaEscolhida;
     private Map<Integer, String> favoritos;
     private static int valueTeste;
-    
-    
+  
     public TelaPrincipal(LoginView login) {
         
         this.login = login;
@@ -92,6 +103,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         this.produtos = new ArrayList<>();
         this.favoritos = new HashMap<>();
         initComponents();
+        
         this.telaDeCompra = new TelaCategorias(this);
         apareceImagem();
         icon.requestFocus();
@@ -215,6 +227,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jOptionPane1 = new javax.swing.JOptionPane();
         bg = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
         icon = new javax.swing.JLabel();
@@ -259,6 +272,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         jScrollPane3 = new javax.swing.JScrollPane();
         taProd2 = new javax.swing.JTextArea();
         btCompare = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BOOM - Loja de Informática");
@@ -649,6 +663,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
             }
         });
         bg.add(btCompare, new org.netbeans.lib.awtextra.AbsoluteConstraints(395, 283, -1, -1));
+        bg.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 540));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -944,27 +959,49 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         
     }
     public void constructorValuesteste () {
+        int count = 0;
         popUpMenu.removeAll();
-        popUpMenu.setLayout(new GridLayout(0, 1));
+//        popUpMenu.setLayout(new GridLayout(0, 2));
+        popUpMenu.setLayout(new FlowLayout());
         for (Map.Entry<Integer, String> entry : favoritos.entrySet()) {
-            JLabel _lbl = new JLabel("<html><div><p style='color: #FFCA80'>id:"+entry.getKey()+"&nbsp; &nbsp;"+entry.getValue()+"</p></div></html>");
-            JButton botaoDelete = new JButton ("<html><div><p style='color: #FFCA80; background: #7970A9;'>Delete</p></div></html>");
-            botaoDelete.setBackground(new Color(121,112,169));
+          //"<html><div><p style='color: #FFCA80; text-align: center;'>id:"+entry.getKey()+" "+entry.getValue()+"</p></div></html>"
+          JLabel _lbl = new JLabel("<html><div><p style='color: #FFCA80; text-align: center;'>id:"+entry.getKey()+" "+entry.getValue()+"</p></div></html>");
+          _lbl.setText(entry.getValue()); 
+          int width = _lbl.getText().length();
+          if(width > 10) {
+             _lbl.setFont(new Font("Dialog", 0, 10));  
+          }
+          _lbl.setForeground(new Color(255,202,128));
+          
+          _lbl.setMinimumSize(new Dimension(116, 16));
+          JButton botaoDelete = new JButton ("<html><div><p style=' color: #FFCA80; background: #7970A9; text-align: center;'>Delete</p></div></html>");
+          botaoDelete.setBackground(new Color(121,112,169));
           botaoDelete.addActionListener(this);
           botaoDelete.setActionCommand(entry.getKey().toString());
-        popUpMenu.add(_lbl);
-        popUpMenu.add(botaoDelete);
+            popUpMenu.add(_lbl);
+            popUpMenu.add(botaoDelete);
+        
+        
         }
     }
     
     
     private void btCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCartActionPerformed
-       this.adicionaFavorito("ulalau");
+       if(this.favoritos.size() == 10){
+          jOptionPane1.showMessageDialog(null, "Ops, você só pode adicionar 10 itens aos seus favoritos");
+       } else {
+       this.adicionaFavorito("Armazenamento");
        this.verifyContentFavorites();
+       }
     }//GEN-LAST:event_btCartActionPerformed
 
     private void btCompareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCompareActionPerformed
-       
+       if(this.favoritos.size() == 10){
+          jOptionPane1.showMessageDialog(null, "Ops, você só pode adicionar 10 itens aos seus favoritos");
+       } else {
+       this.adicionaFavorito("123456");
+       this.verifyContentFavorites();
+       }
     }//GEN-LAST:event_btCompareActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1002,7 +1039,9 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
     private javax.swing.JLabel img3;
     private javax.swing.JLabel imgProd1;
     private javax.swing.JLabel imgProd2;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel popUpMenu;
