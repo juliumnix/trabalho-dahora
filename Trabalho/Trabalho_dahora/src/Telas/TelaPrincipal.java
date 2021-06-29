@@ -35,9 +35,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 
-public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,ActionListener{
+public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator, Comparator<JTextArea>{
 
     private LoginView login;
     private Set<Armazenamento> armazenamentos;
@@ -946,13 +948,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
     
     }
     
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String action = e.getActionCommand();
-        int value = Integer.parseInt(action);
-        this.removefavorito(value);
-        
-    }
+
     public void constructorValue () {
         popUpMenu.removeAll();
 //        popUpMenu.setLayout(new GridLayout(0, 2));
@@ -970,8 +966,16 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
           _lbl.setMinimumSize(new Dimension(116, 16));
           JButton botaoDelete = new JButton ("<html><div><p style=' color: #FFCA80; background: #7970A9; text-align: center;'>Delete</p></div></html>");
           botaoDelete.setBackground(new Color(121,112,169));
-          botaoDelete.addActionListener(this);
-          botaoDelete.setActionCommand(entry.getKey().toString());
+          botaoDelete.addActionListener(new ActionListener(){
+              @Override
+              public void actionPerformed(ActionEvent e) {
+              String action = e.getActionCommand();
+              int value = Integer.parseInt(action);
+              removefavorito(value);
+              }
+              
+          });
+            botaoDelete.setActionCommand(entry.getKey().toString());
             popUpMenu.add(_lbl);
             popUpMenu.add(botaoDelete);
         
@@ -1122,6 +1126,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
        }
     }//GEN-LAST:event_btCartActionPerformed
 
+    
+    
     private void btCompareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCompareActionPerformed
         melhorCompra1.setVisible(false);
         melhorCompra2.setVisible(false);
@@ -1173,13 +1179,36 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
                 break;
         }
         
+       
         imgProd1.setIcon(new ImageIcon(Utilitarios.imagemInternet(produtos.get(produtos.indexOf(cbProduto1.getSelectedItem())).getImagem()).getImage().getScaledInstance(imgProd1.getWidth(), imgProd1.getHeight(), Image.SCALE_SMOOTH)));
         imgProd2.setIcon(new ImageIcon(Utilitarios.imagemInternet(produtos.get(produtos.indexOf(cbProduto2.getSelectedItem())).getImagem()).getImage().getScaledInstance(imgProd2.getWidth(), imgProd2.getHeight(), Image.SCALE_SMOOTH)));
         taProd1.setText(produtos.get(produtos.indexOf(cbProduto1.getSelectedItem())).imprimirDados(produtos.get(0).getCategoria()));
         taProd2.setText(produtos.get(produtos.indexOf(cbProduto2.getSelectedItem())).imprimirDados(produtos.get(0).getCategoria()));
         
+        
+        int resultadoTeste = compare(taProd1, taProd2);
+        if(resultadoTeste == 0){
+            jOptionPane1.showMessageDialog(null, "Selecione produtos diferentes para comparar");
+        } else {
+            if(produtos.get(produtos.indexOf(cbProduto1.getSelectedItem())).getValor() <= produtos.get(produtos.indexOf(cbProduto2.getSelectedItem())).getValor()){
+                melhorCompra1.setVisible(true);
+            } else {
+                melhorCompra2.setVisible(true);
+            }
+        }
+        
+        
     }//GEN-LAST:event_btCompareActionPerformed
 
+//    public static Comparator<JTextArea> NameComparator = new Comparator<JTextArea>() {
+//    @Override
+//    public int compare(JTextArea e1, JTextArea e2) {
+//        return e1.getText().compareTo(e2.getText());
+//        }
+//    };
+    
+   
+    
     private void cbTipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbTipoItemStateChanged
         aparecerComboComparar();
     }//GEN-LAST:event_cbTipoItemStateChanged
@@ -1268,4 +1297,16 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         popUpMenu.revalidate();
         popUpMenu.repaint();
     }
+
+
+    @Override
+    public int compare(JTextArea o1, JTextArea o2) {
+        return o1.getText().compareTo(o2.getText());
+    }
+
+    
+
+    
+
+    
 }
