@@ -103,7 +103,12 @@ public abstract class Produto {
     @Override
     public String toString() 
     {
-        return "Modelo: " + modelo + ", Valor: " + valor + ", Descrição: " + descricao + ", Marca: " + marca + ", Categoria:" + categoria;
+        return modelo;
+    }
+    
+    public String imprimirDados (String cat)
+    {
+        return cat+":\n Modelo: " + modelo + "\n Valor: " + valor + "\n Descrição: " + descricao + "\n Marca: " + marca + "\n Categoria: " + categoria;
     }
 }
 

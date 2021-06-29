@@ -11,13 +11,13 @@ package Codigo;
  */
 public class Cooler extends Produto {
     private float velocidadeVentoinha;
-    private int tamanho;
+    private String tipo;
     
-    public Cooler (String modelo, float valor, String descricao, String marca, String categoria, String imagem, float velocidadeVentoinha, int tamanho)
+    public Cooler (String modelo, float valor, String descricao, String marca, String categoria, String imagem, float velocidadeVentoinha, String tipo)
     {
         super(modelo, valor, descricao, marca, categoria, imagem);
         this.velocidadeVentoinha = velocidadeVentoinha;
-        this.tamanho = tamanho;
+        this.tipo = tipo;
     }
     
     public float getVelocidadeVentoinha ()
@@ -25,9 +25,9 @@ public class Cooler extends Produto {
         return this.velocidadeVentoinha;
     }
     
-    public int getTamanho ()
+    public String getTipo ()
     {
-        return this.tamanho;
+        return this.tipo;
     }
 
     public void setVelocidadeVentoinha(float velocidadeVentoinha) 
@@ -38,18 +38,18 @@ public class Cooler extends Produto {
         }
     }
 
-    public void setTamanho(int tamanho) 
+    public void setTipo(String tipo) 
     {
-        if (tamanho > 0)
+        if (!tipo.isEmpty())
         {
-            this.tamanho = tamanho;
+            this.tipo = tipo;
         }
     }
 
     @Override
-    public String toString() 
+    public String imprimirDados(String imprimir) 
     {
-        return "Cooler - " + super.toString() + ", Velocidade da ventoinha: " + velocidadeVentoinha + ", Tamanho: " + tamanho;
+        return super.imprimirDados(imprimir) + ", Velocidade da ventoinha: " + velocidadeVentoinha + ", Tamanho: " + tipo;
     }
     
 }

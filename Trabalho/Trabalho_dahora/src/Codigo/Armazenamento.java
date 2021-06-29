@@ -99,10 +99,10 @@ public class Armazenamento extends Produto {
             this.tipo = tipo;
         }
     }
-
+    
     @Override
-    public String toString() 
+    public String imprimirDados (String imprimir)
     {
-        return "Armazenamento - " + super.toString() + ", Capacidade: " + capacidade + ", Velocidade: " + velocidade + ", Tipo: " + tipo;
+        return super.imprimirDados(imprimir) + "\n Capacidade: " + capacidade + "\n Velocidade: " + velocidade + "\n Tipo: " + tipo;
     }
 }

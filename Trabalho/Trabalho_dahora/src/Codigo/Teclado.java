@@ -16,7 +16,7 @@ public class Teclado extends Produto{
     private boolean bluetooth;
     
     public Teclado (String modelo, float valor, String descricao, String marca, String categoria, String imagem,
-            String tipo, boolean numerico, boolean semFio, boolean bluetooth)
+    boolean bluetooth, boolean numerico, String tipo, boolean semFio)
     {
         super(modelo, valor, descricao, marca, categoria, imagem);
         this.tipo = tipo;
@@ -69,9 +69,9 @@ public class Teclado extends Produto{
     }
 
     @Override
-    public String toString() 
+    public String imprimirDados(String imprimir) 
     {
-        return "Teclado - " + super.toString() + ", Tipo: " + tipo + ", Numérico: " + numerico + ", Sem fio: " + semFio + ", Bluetooth: " + bluetooth;
+        return super.imprimirDados(imprimir) + ", Tipo: " + tipo + ", Numérico: " + numerico + ", Sem fio: " + semFio + ", Bluetooth: " + bluetooth;
     }
     
 }

@@ -104,13 +104,26 @@ public class TelaCategorias extends javax.swing.JFrame {
         for (int i = 0; i < principal.getProdutos().size(); i++) 
         {
             jPanells.get(i).setVisible(true);
-//            jLabellsText.get(i).setText(produtos.get(i).toString());
-//            jLabellsImg.get(i).
-            Utilitarios.criarPainelProduto(principal.getProdutos().get(i).getImagem(), jLabellsImg.get(i), principal.getProdutos().get(i).getModelo(), jLabellsText.get(i));
+            Utilitarios.criarPainelProduto(principal.getProdutos().get(i).getImagem(), jLabellsImg.get(i), principal.getProdutos().get(i).getModelo()+" R$ "+principal.getProdutos().get(i).getValor(), jLabellsText.get(i));
             
         }
 
     }
+    
+//    public void ObjetosNovaPagina (String pesquisa)
+//    {
+//        setVisiblesFalse();
+//        principal.getProdutos();
+//        int count = 0;
+//        for (int i = 0; i < principal.getProdutos().size(); i++) 
+//        {
+//            if (principal.)
+//            jPanells.get(i).setVisible(true);
+//            Utilitarios.criarPainelProduto(principal.getProdutos().get(i).getImagem(), jLabellsImg.get(i), principal.getProdutos().get(i).getModelo()+" R$ "+principal.getProdutos().get(i).getValor(), jLabellsText.get(i));
+//            
+//        }
+//
+//    }
     
     
     public void apareceImagem(){
@@ -228,6 +241,11 @@ public class TelaCategorias extends javax.swing.JFrame {
         btArmazenamento.setBorder(null);
         btArmazenamento.setBorderPainted(false);
         btArmazenamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btArmazenamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btArmazenamentoActionPerformed(evt);
+            }
+        });
         menu.add(btArmazenamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 107, 109, 25));
 
         btComputador.setBackground(new java.awt.Color(121, 112, 169));
@@ -237,6 +255,11 @@ public class TelaCategorias extends javax.swing.JFrame {
         btComputador.setBorder(null);
         btComputador.setMaximumSize(new java.awt.Dimension(103, 20));
         btComputador.setMinimumSize(new java.awt.Dimension(103, 20));
+        btComputador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btComputadorActionPerformed(evt);
+            }
+        });
         menu.add(btComputador, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 136, 109, 25));
 
         btCooler.setBackground(new java.awt.Color(121, 112, 169));
@@ -246,6 +269,11 @@ public class TelaCategorias extends javax.swing.JFrame {
         btCooler.setBorder(null);
         btCooler.setMaximumSize(new java.awt.Dimension(103, 20));
         btCooler.setMinimumSize(new java.awt.Dimension(103, 20));
+        btCooler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCoolerActionPerformed(evt);
+            }
+        });
         menu.add(btCooler, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 165, 109, 25));
 
         btFonte.setBackground(new java.awt.Color(121, 112, 169));
@@ -255,6 +283,11 @@ public class TelaCategorias extends javax.swing.JFrame {
         btFonte.setBorder(null);
         btFonte.setMaximumSize(new java.awt.Dimension(103, 20));
         btFonte.setMinimumSize(new java.awt.Dimension(103, 20));
+        btFonte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btFonteActionPerformed(evt);
+            }
+        });
         menu.add(btFonte, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 194, 109, 25));
 
         btGabinete.setBackground(new java.awt.Color(121, 112, 169));
@@ -264,6 +297,11 @@ public class TelaCategorias extends javax.swing.JFrame {
         btGabinete.setBorder(null);
         btGabinete.setMaximumSize(new java.awt.Dimension(103, 20));
         btGabinete.setMinimumSize(new java.awt.Dimension(103, 20));
+        btGabinete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGabineteActionPerformed(evt);
+            }
+        });
         menu.add(btGabinete, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 223, 109, 25));
 
         btHeadset.setBackground(new java.awt.Color(121, 112, 169));
@@ -273,6 +311,11 @@ public class TelaCategorias extends javax.swing.JFrame {
         btHeadset.setBorder(null);
         btHeadset.setMaximumSize(new java.awt.Dimension(103, 20));
         btHeadset.setMinimumSize(new java.awt.Dimension(103, 20));
+        btHeadset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btHeadsetActionPerformed(evt);
+            }
+        });
         menu.add(btHeadset, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 252, 109, 25));
 
         btMemoriaRAM.setBackground(new java.awt.Color(121, 112, 169));
@@ -282,6 +325,11 @@ public class TelaCategorias extends javax.swing.JFrame {
         btMemoriaRAM.setBorder(null);
         btMemoriaRAM.setMaximumSize(new java.awt.Dimension(103, 20));
         btMemoriaRAM.setMinimumSize(new java.awt.Dimension(103, 20));
+        btMemoriaRAM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btMemoriaRAMActionPerformed(evt);
+            }
+        });
         menu.add(btMemoriaRAM, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 281, 109, 25));
 
         btMonitor.setBackground(new java.awt.Color(121, 112, 169));
@@ -291,6 +339,11 @@ public class TelaCategorias extends javax.swing.JFrame {
         btMonitor.setBorder(null);
         btMonitor.setMaximumSize(new java.awt.Dimension(103, 20));
         btMonitor.setMinimumSize(new java.awt.Dimension(103, 20));
+        btMonitor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btMonitorActionPerformed(evt);
+            }
+        });
         menu.add(btMonitor, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 310, 109, 25));
 
         btMouse.setBackground(new java.awt.Color(121, 112, 169));
@@ -300,6 +353,11 @@ public class TelaCategorias extends javax.swing.JFrame {
         btMouse.setBorder(null);
         btMouse.setMaximumSize(new java.awt.Dimension(103, 20));
         btMouse.setMinimumSize(new java.awt.Dimension(103, 20));
+        btMouse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btMouseActionPerformed(evt);
+            }
+        });
         menu.add(btMouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 339, 109, 25));
 
         btNotebook.setBackground(new java.awt.Color(121, 112, 169));
@@ -309,6 +367,11 @@ public class TelaCategorias extends javax.swing.JFrame {
         btNotebook.setBorder(null);
         btNotebook.setMaximumSize(new java.awt.Dimension(103, 20));
         btNotebook.setMinimumSize(new java.awt.Dimension(103, 20));
+        btNotebook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNotebookActionPerformed(evt);
+            }
+        });
         menu.add(btNotebook, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 368, 109, 25));
 
         btPlacaDeVideo.setBackground(new java.awt.Color(121, 112, 169));
@@ -318,6 +381,11 @@ public class TelaCategorias extends javax.swing.JFrame {
         btPlacaDeVideo.setBorder(null);
         btPlacaDeVideo.setMaximumSize(new java.awt.Dimension(103, 20));
         btPlacaDeVideo.setMinimumSize(new java.awt.Dimension(103, 20));
+        btPlacaDeVideo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPlacaDeVideoActionPerformed(evt);
+            }
+        });
         menu.add(btPlacaDeVideo, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 397, 109, 25));
 
         btPlacaMae.setBackground(new java.awt.Color(121, 112, 169));
@@ -327,6 +395,11 @@ public class TelaCategorias extends javax.swing.JFrame {
         btPlacaMae.setBorder(null);
         btPlacaMae.setMaximumSize(new java.awt.Dimension(103, 20));
         btPlacaMae.setMinimumSize(new java.awt.Dimension(103, 20));
+        btPlacaMae.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPlacaMaeActionPerformed(evt);
+            }
+        });
         menu.add(btPlacaMae, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 426, 109, 25));
 
         btProcessador.setBackground(new java.awt.Color(121, 112, 169));
@@ -335,6 +408,11 @@ public class TelaCategorias extends javax.swing.JFrame {
         btProcessador.setText("Processador");
         btProcessador.setBorder(null);
         btProcessador.setMinimumSize(new java.awt.Dimension(103, 20));
+        btProcessador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btProcessadorActionPerformed(evt);
+            }
+        });
         menu.add(btProcessador, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 455, 109, 25));
 
         btSair.setBackground(new java.awt.Color(34, 33, 44));
@@ -358,6 +436,11 @@ public class TelaCategorias extends javax.swing.JFrame {
         btTeclado.setBorder(null);
         btTeclado.setMaximumSize(new java.awt.Dimension(103, 20));
         btTeclado.setMinimumSize(new java.awt.Dimension(103, 20));
+        btTeclado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btTecladoActionPerformed(evt);
+            }
+        });
         menu.add(btTeclado, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 484, 109, 25));
 
         bg.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, 588));
@@ -559,9 +642,94 @@ public class TelaCategorias extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPesquisaActionPerformed
 
     private void iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconMouseClicked
+        principal.aparecerComboComparar();
         principal.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_iconMouseClicked
+
+    private void btArmazenamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btArmazenamentoActionPerformed
+        principal.getProdutos().clear();
+        principal.getProdutos().addAll(principal.getArmazenamentos());
+        ObjetosNovaPagina ();
+    }//GEN-LAST:event_btArmazenamentoActionPerformed
+
+    private void btComputadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComputadorActionPerformed
+        principal.getProdutos().clear();
+        principal.getProdutos().addAll(principal.getComputador());
+        ObjetosNovaPagina ();
+    }//GEN-LAST:event_btComputadorActionPerformed
+
+    private void btCoolerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCoolerActionPerformed
+        principal.getProdutos().clear();
+        principal.getProdutos().addAll(principal.getCooler());
+        ObjetosNovaPagina ();
+    }//GEN-LAST:event_btCoolerActionPerformed
+
+    private void btFonteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFonteActionPerformed
+        principal.getProdutos().clear();
+        principal.getProdutos().addAll(principal.getFonte());
+        ObjetosNovaPagina ();
+    }//GEN-LAST:event_btFonteActionPerformed
+
+    private void btGabineteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGabineteActionPerformed
+        principal.getProdutos().clear();
+        principal.getProdutos().addAll(principal.getGabinete());
+        ObjetosNovaPagina ();
+    }//GEN-LAST:event_btGabineteActionPerformed
+
+    private void btHeadsetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHeadsetActionPerformed
+        principal.getProdutos().clear();
+        principal.getProdutos().addAll(principal.getHeadset());
+        ObjetosNovaPagina ();
+    }//GEN-LAST:event_btHeadsetActionPerformed
+
+    private void btMemoriaRAMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMemoriaRAMActionPerformed
+        principal.getProdutos().clear();
+        principal.getProdutos().addAll(principal.getMemoriaRAM());
+        ObjetosNovaPagina ();
+    }//GEN-LAST:event_btMemoriaRAMActionPerformed
+
+    private void btMonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMonitorActionPerformed
+        principal.getProdutos().clear();
+        principal.getProdutos().addAll(principal.getMonitor());
+        ObjetosNovaPagina ();
+    }//GEN-LAST:event_btMonitorActionPerformed
+
+    private void btMouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMouseActionPerformed
+        principal.getProdutos().clear();
+        principal.getProdutos().addAll(principal.getMouse());
+        ObjetosNovaPagina ();
+    }//GEN-LAST:event_btMouseActionPerformed
+
+    private void btNotebookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNotebookActionPerformed
+        principal.getProdutos().clear();
+        principal.getProdutos().addAll(principal.getNotebook());
+        ObjetosNovaPagina ();
+    }//GEN-LAST:event_btNotebookActionPerformed
+
+    private void btPlacaDeVideoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPlacaDeVideoActionPerformed
+        principal.getProdutos().clear();
+        principal.getProdutos().addAll(principal.getPlacaDeVideo());
+        ObjetosNovaPagina ();
+    }//GEN-LAST:event_btPlacaDeVideoActionPerformed
+
+    private void btPlacaMaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPlacaMaeActionPerformed
+        principal.getProdutos().clear();
+        principal.getProdutos().addAll(principal.getPlacaMae());
+        ObjetosNovaPagina ();
+    }//GEN-LAST:event_btPlacaMaeActionPerformed
+
+    private void btProcessadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcessadorActionPerformed
+        principal.getProdutos().clear();
+        principal.getProdutos().addAll(principal.getProcessador());
+        ObjetosNovaPagina ();
+    }//GEN-LAST:event_btProcessadorActionPerformed
+
+    private void btTecladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTecladoActionPerformed
+        principal.getProdutos().clear();
+        principal.getProdutos().addAll(principal.getTeclado());
+        ObjetosNovaPagina ();
+    }//GEN-LAST:event_btTecladoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;

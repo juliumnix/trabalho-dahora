@@ -16,7 +16,7 @@ public class Headset extends Produto {
     private boolean bluetooth;
 
     public Headset(String modelo, float valor, String descricao, String marca, String categoria, String imagem,
-                   boolean semFio, boolean microfone, String tipo, boolean bluetooth) {
+    boolean bluetooth, boolean microfone, boolean semFio, String tipo) {
         super(modelo, valor, descricao, marca, categoria, imagem);
         this.semFio = semFio;
         this.microfone = microfone;
@@ -62,9 +62,9 @@ public class Headset extends Produto {
     }
 
     @Override
-    public String toString() 
+    public String imprimirDados(String imprimir) 
     {
-        return "Headset - " + super.toString() + ", Sem Fio: " + semFio + ", Microfone: " + microfone + ", Tipo: " + tipo + ", Bluetooth: " + bluetooth;
+        return super.imprimirDados(imprimir) + ", Sem Fio: " + semFio + ", Microfone: " + microfone + ", Tipo: " + tipo + ", Bluetooth: " + bluetooth;
     }
     
 }

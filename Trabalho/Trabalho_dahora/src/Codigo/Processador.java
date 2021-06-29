@@ -15,7 +15,7 @@ public class Processador extends Produto{
     private float velocidadeNucleo;
 
     public Processador(String modelo, float valor, String descricao, String marca, String categoria, String imagem,
-                       int geracao, int nucleos, float velocidadeNucleo) {
+    int geracao, int nucleos, float velocidadeNucleo) {
         super(modelo, valor, descricao, marca, categoria, imagem);
         this.geracao = geracao;
         this.nucleos = nucleos;
@@ -59,9 +59,9 @@ public class Processador extends Produto{
     }
 
     @Override
-    public String toString() 
+    public String imprimirDados(String imprimir) 
     {
-        return "Processador - " + super.toString() + ", Geração: " + geracao + ", Núcleos: " + nucleos + ", Velocidade do Núcleo: " + velocidadeNucleo;
+        return super.imprimirDados(imprimir) + ", Geração: " + geracao + ", Núcleos: " + nucleos + ", Velocidade do Núcleo: " + velocidadeNucleo;
     }
     
 }

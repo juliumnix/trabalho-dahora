@@ -18,7 +18,7 @@ public class PlacaMae extends Produto {
     private boolean bluetooth;
 
     public PlacaMae(String modelo, float valor, String descricao, String marca, String categoria, String imagem,
-                    boolean wifi, int entradasRAM,int entradasUSB,int entradasPCIExpress, String tamanho ,boolean bluetooth) {
+    int entradasPCIExpress, int entradasRAM, int entradasUSB, boolean bluetooth, String tamanho, boolean wifi) {
         super(modelo, valor, descricao, marca, categoria, imagem);
         this.wifi = wifi;
         this.entradasRAM = entradasRAM;
@@ -94,8 +94,8 @@ public class PlacaMae extends Produto {
     }
 
     @Override
-    public String toString() {
-        return "Placa Mãe - " + super.toString() + ", Wifi: " + wifi + ", Entradas RAM: " + entradasRAM + ", Entradas USB: " + entradasUSB + ", Entradas PCIExpress: " + entradasPCIExpress + ", Tamanho: " + tamanho + ", Bluetooth: " + bluetooth;
+    public String imprimirDados(String imprimir) {
+        return super.imprimirDados(imprimir) + ", Wifi: " + wifi + ", Entradas RAM: " + entradasRAM + ", Entradas USB: " + entradasUSB + ", Entradas PCIExpress: " + entradasPCIExpress + ", Tamanho: " + tamanho + ", Bluetooth: " + bluetooth;
     }
     
 }
