@@ -10,17 +10,17 @@ package Codigo;
  * @author Mateus
  */
 public class Gabinete extends Produto {
-    private int tamanho;
+    private String tamanho;
     private float peso;
     
-    public Gabinete (String modelo, float valor, String descricao, String marca, String categoria, String imagem, int tamanho, float peso)
+    public Gabinete (String modelo, float valor, String descricao, String marca, String categoria, String imagem, float peso, String tamanho)
     {
         super(modelo, valor, descricao, marca, categoria, imagem);
         this.tamanho = tamanho;
         this.peso = peso;
     }
-    
-    public int getTamanho ()
+  
+    public String getTamanho ()
     {
         return this.tamanho;
     }
@@ -30,9 +30,9 @@ public class Gabinete extends Produto {
         return this.peso;
     }
 
-    public void setTamanho(int tamanho) 
+    public void setTamanho(String tamanho) 
     {
-        if (tamanho > 0)
+        if (!tamanho.isEmpty())
         {
             this.tamanho = tamanho;
         }
@@ -47,9 +47,9 @@ public class Gabinete extends Produto {
     }
 
     @Override
-    public String toString() 
+    public String imprimirDados(String imprimir) 
     {
-        return "Gabinete - " + super.toString() + ", Tamanho: " + tamanho + ", Peso: " + peso;
+        return super.imprimirDados(imprimir) + ", Tamanho: " + tamanho + ", Peso: " + peso;
     }
     
 }

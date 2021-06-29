@@ -14,7 +14,7 @@ public class Fonte extends Produto{
     private String certificacao;
 
     public Fonte(String modelo, float valor, String descricao, String marca, String categoria, String imagem,
-                 int tensao, String certificacao) {
+        String certificacao, int tensao) {
         super(modelo, valor, descricao, marca, categoria, imagem);
         this.tensao = tensao;
         this.certificacao = certificacao;
@@ -45,9 +45,9 @@ public class Fonte extends Produto{
     }
 
     @Override
-    public String toString() 
+    public String imprimirDados(String imprimir) 
     {
-        return "Fonte - " +super.toString() + ", Tensão: " + tensao + ", Certificação: " + certificacao;
+        return super.imprimirDados(imprimir) + ", Tensão: " + tensao + ", Certificação: " + certificacao;
     }
 }
 

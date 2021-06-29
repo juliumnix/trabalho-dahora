@@ -10,13 +10,13 @@ package Codigo;
  * @author Mateus
  */
 public class Monitor extends Produto{
-    private int resolucao;
+    private String resolucao;
     private float tamanho;
     private String aspecto;
     private int frameRate;
     
     public Monitor (String modelo, float valor, String descricao, String marca, String categoria, String imagem,
-            int resolucao, float tamanho, String aspecto, int frameRate)
+    float tamanho, String aspecto, int frameRate, String resolucao)
     {
         super(modelo, valor, descricao, marca, categoria, imagem);
         this.resolucao = resolucao;
@@ -25,7 +25,7 @@ public class Monitor extends Produto{
         this.frameRate = frameRate;
     }
     
-    public int getResolucao ()
+    public String getResolucao ()
     {
         return this.resolucao;
     }
@@ -45,9 +45,9 @@ public class Monitor extends Produto{
         return this.frameRate;
     }
 
-    public void setResolucao(int resolucao) 
+    public void setResolucao(String resolucao) 
     {
-        if (resolucao > 0)
+        if (!resolucao.isEmpty())
         {
             this.resolucao = resolucao;
         }
@@ -78,9 +78,9 @@ public class Monitor extends Produto{
     }
 
     @Override
-    public String toString() 
+    public String imprimirDados(String imprimir) 
     {
-        return "Monitor - " + super.toString() + ", Resolução: " + resolucao + ", Tamanho: " + tamanho + ", Aspecto: " + aspecto + ", Frame Rate: " + frameRate;
+        return super.imprimirDados(imprimir) + ", Resolução: " + resolucao + ", Tamanho: " + tamanho + ", Aspecto: " + aspecto + ", Frame Rate: " + frameRate;
     }
     
 }

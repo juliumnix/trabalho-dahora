@@ -16,9 +16,9 @@ public class Computador extends Produto{
     }
 
     @Override
-    public String toString() 
+    public String imprimirDados(String imprimir) 
     {
-        return "Computador - " + super.toString();
+        return super.imprimirDados(imprimir);
     }
     
     

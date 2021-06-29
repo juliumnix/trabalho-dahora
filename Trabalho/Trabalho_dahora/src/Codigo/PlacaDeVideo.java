@@ -14,7 +14,7 @@ public class PlacaDeVideo extends Produto {
     private int memoria;
 
     public PlacaDeVideo(String modelo, float valor, String descricao, String marca, String categoria, String imagem,
-                    boolean alimentacao, int memoria) {
+    int memoria, boolean alimentacao) {
         super(modelo, valor, descricao, marca, categoria, imagem);
         this.alimentacao = alimentacao;
         this.memoria = memoria;
@@ -41,8 +41,8 @@ public class PlacaDeVideo extends Produto {
     }
 
     @Override
-    public String toString() {
-        return "Placa de Video - " + super.toString()+ ", Alimentação: " + alimentacao + ", Memória: " + memoria;
+    public String imprimirDados(String imprimir) {
+        return super.imprimirDados(imprimir)+ ", Alimentação: " + alimentacao + ", Memória: " + memoria;
     }
     
 }

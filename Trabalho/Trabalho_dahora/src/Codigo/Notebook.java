@@ -17,8 +17,8 @@ public class Notebook extends Produto {
     }
     
     @Override
-    public String toString() 
+    public String imprimirDados(String imprimir) 
     {
-        return "Notebook - " + super.toString();
+        return super.imprimirDados(imprimir);
     }
 }

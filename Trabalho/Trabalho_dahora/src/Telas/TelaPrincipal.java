@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Telas;
 
 import Codigo.Armazenamento;
@@ -27,39 +22,21 @@ import java.awt.Toolkit;
 import java.util.HashSet;
 import javax.swing.ImageIcon;
 import Telas.LoginView;
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics2D;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import javax.swing.AbstractAction;
-import javax.swing.Icon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.SpringLayout;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
-/**
- *
- * @author Mateus
- */
 public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,ActionListener{
 
     private LoginView login;
@@ -78,7 +55,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
     private Set<Processador> processadores;
     private Set<Teclado> teclados;
     private List<Produto> produtos;
-    private TelaCategorias telaDeCompra;
+    private TelaCategorias telaCategorias;
     private String categoriaEscolhida;
     private Map<Integer, String> favoritos;
     private static int valueTeste;
@@ -104,11 +81,13 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         this.favoritos = new HashMap<>();
         initComponents();
         
-        this.telaDeCompra = new TelaCategorias(this);
+        this.telaCategorias = new TelaCategorias(this);
         apareceImagem();
         icon.requestFocus();
         taProd1.setLineWrap(true);
         taProd2.setLineWrap(true);
+        melhorCompra1.setVisible(false);
+        melhorCompra2.setVisible(false);
         popUpMenu.setVisible(false);
         Utilitarios.criarPainelProduto("https://s1.static.brasilescola.uol.com.br/be/vestibular/-5824728585f3d.jpg", img1, "Texto teste", text1);
         Utilitarios.criarPainelProduto("https://s1.static.brasilescola.uol.com.br/be/vestibular/-5824728585f3d.jpg", img2, "Texto teste", text2);
@@ -189,12 +168,6 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         return this.produtos;
     }
     
-    public void criarArmazenamentos (String tipo, String modelo, float valor, String descricao, String marca, String categoria, String imagem, int capacidade, float velocidade)
-    {
-        Armazenamento armazenamento = new Armazenamento(modelo,valor, descricao, marca, categoria, imagem, capacidade, velocidade, tipo);
-        getArmazenamentos().add(armazenamento);
-    }
-    
     public void apareceImagem(){
         this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
         
@@ -267,12 +240,13 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         imgProd1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         taProd1 = new javax.swing.JTextArea();
+        melhorCompra1 = new javax.swing.JLabel();
         descricaoProd2 = new javax.swing.JPanel();
         imgProd2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         taProd2 = new javax.swing.JTextArea();
+        melhorCompra2 = new javax.swing.JLabel();
         btCompare = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BOOM - Loja de Informática");
@@ -530,6 +504,11 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
 
         btPesquisa.setBackground(new java.awt.Color(121, 112, 169));
         btPesquisa.setBorder(null);
+        btPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPesquisaActionPerformed(evt);
+            }
+        });
         bg.add(btPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 6, 41, 28));
 
         btCart.setBackground(new java.awt.Color(121, 112, 169));
@@ -595,10 +574,15 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
 
         cbTipo.setBackground(new java.awt.Color(69, 65, 88));
         cbTipo.setForeground(new java.awt.Color(255, 149, 128));
-        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Armazenamento", "Computador", "Cooler", "Fonte", "Gabinete", "Headset", "Memória RAM", "Monitor", "Mouse", "Notebook", "Placa Mãe", "Processador", "Teclado" }));
+        cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Armazenamento", "Computador", "Cooler", "Fonte", "Gabinete", "Headset", "Memória RAM", "Monitor", "Mouse", "Notebook", "Placa de Vídeo", "Placa Mãe", "Processador", "Teclado" }));
         cbTipo.setBorder(null);
         cbTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cbTipo.setPreferredSize(new java.awt.Dimension(521, 26));
+        cbTipo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbTipoItemStateChanged(evt);
+            }
+        });
         bg.add(cbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 240, -1, -1));
 
         cbProduto1.setBackground(new java.awt.Color(69, 65, 88));
@@ -617,11 +601,12 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         descricaoProd1.setPreferredSize(new java.awt.Dimension(240, 274));
         descricaoProd1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        imgProd1.setPreferredSize(new java.awt.Dimension(90, 90));
-        descricaoProd1.add(imgProd1, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 9, -1, -1));
+        imgProd1.setPreferredSize(new java.awt.Dimension(80, 80));
+        descricaoProd1.add(imgProd1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
 
         taProd1.setBackground(new java.awt.Color(34, 33, 44));
         taProd1.setColumns(20);
+        taProd1.setForeground(new java.awt.Color(255, 149, 128));
         taProd1.setRows(5);
         taProd1.setBorder(null);
         taProd1.setMinimumSize(new java.awt.Dimension(230, 80));
@@ -630,17 +615,23 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
 
         descricaoProd1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 108, 228, 160));
 
+        melhorCompra1.setForeground(new java.awt.Color(255, 149, 128));
+        melhorCompra1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        melhorCompra1.setText("Melhor compra");
+        descricaoProd1.add(melhorCompra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 220, -1));
+
         bg.add(descricaoProd1, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 320, -1, -1));
 
         descricaoProd2.setBackground(new java.awt.Color(69, 65, 88));
         descricaoProd2.setPreferredSize(new java.awt.Dimension(240, 274));
         descricaoProd2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        imgProd2.setPreferredSize(new java.awt.Dimension(90, 90));
-        descricaoProd2.add(imgProd2, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 9, -1, -1));
+        imgProd2.setPreferredSize(new java.awt.Dimension(80, 80));
+        descricaoProd2.add(imgProd2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
 
         taProd2.setBackground(new java.awt.Color(34, 33, 44));
         taProd2.setColumns(20);
+        taProd2.setForeground(new java.awt.Color(255, 149, 128));
         taProd2.setRows(5);
         taProd2.setBorder(null);
         taProd2.setMinimumSize(new java.awt.Dimension(230, 80));
@@ -648,6 +639,11 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         jScrollPane3.setViewportView(taProd2);
 
         descricaoProd2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 108, 228, 160));
+
+        melhorCompra2.setForeground(new java.awt.Color(255, 149, 128));
+        melhorCompra2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        melhorCompra2.setText("Melhor compra");
+        descricaoProd2.add(melhorCompra2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 220, -1));
 
         bg.add(descricaoProd2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 320, -1, -1));
         descricaoProd2.getAccessibleContext().setAccessibleName("");
@@ -663,7 +659,6 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
             }
         });
         bg.add(btCompare, new org.netbeans.lib.awtextra.AbsoluteConstraints(395, 283, -1, -1));
-        bg.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 540));
 
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -710,8 +705,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtos.clear();
             this.produtos.addAll(armazenamentos);
-            telaDeCompra.setVisible(true);
-            telaDeCompra.ObjetosNovaPagina ();
+            telaCategorias.setVisible(true);
+            telaCategorias.ObjetosNovaPagina ();
             this.setVisible(false);
         }
     }//GEN-LAST:event_btArmazenamentoActionPerformed
@@ -732,8 +727,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtos.clear();
             this.produtos.addAll(computadores);
-            telaDeCompra.setVisible(true);
-            telaDeCompra.ObjetosNovaPagina ();
+            telaCategorias.setVisible(true);
+            telaCategorias.ObjetosNovaPagina ();
             this.setVisible(false);
         }
     }//GEN-LAST:event_btComputadorActionPerformed
@@ -749,8 +744,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtos.clear();
             this.produtos.addAll(coolers);
-            telaDeCompra.setVisible(true);
-            telaDeCompra.ObjetosNovaPagina ();
+            telaCategorias.setVisible(true);
+            telaCategorias.ObjetosNovaPagina ();
             this.setVisible(false);
         }
     }//GEN-LAST:event_btCoolerActionPerformed
@@ -766,8 +761,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtos.clear();
             this.produtos.addAll(fontes);
-            telaDeCompra.setVisible(true);
-            telaDeCompra.ObjetosNovaPagina ();
+            telaCategorias.setVisible(true);
+            telaCategorias.ObjetosNovaPagina ();
             this.setVisible(false);
         }
     }//GEN-LAST:event_btFonteActionPerformed
@@ -783,8 +778,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtos.clear();
             this.produtos.addAll(gabinetes);
-            telaDeCompra.setVisible(true);
-            telaDeCompra.ObjetosNovaPagina ();
+            telaCategorias.setVisible(true);
+            telaCategorias.ObjetosNovaPagina ();
             this.setVisible(false);
         }
     }//GEN-LAST:event_btGabineteActionPerformed
@@ -800,8 +795,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtos.clear();
             this.produtos.addAll(headsets);
-            telaDeCompra.setVisible(true);
-            telaDeCompra.ObjetosNovaPagina ();
+            telaCategorias.setVisible(true);
+            telaCategorias.ObjetosNovaPagina ();
             this.setVisible(false);
         }
     }//GEN-LAST:event_btHeadsetActionPerformed
@@ -817,8 +812,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtos.clear();
             this.produtos.addAll(memoriasRam);
-            telaDeCompra.setVisible(true);
-            telaDeCompra.ObjetosNovaPagina ();
+            telaCategorias.setVisible(true);
+            telaCategorias.ObjetosNovaPagina ();
             this.setVisible(false);
         }
     }//GEN-LAST:event_btMemoriaRAMActionPerformed
@@ -834,8 +829,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtos.clear();
             this.produtos.addAll(monitores);
-            telaDeCompra.setVisible(true);
-            telaDeCompra.ObjetosNovaPagina ();
+            telaCategorias.setVisible(true);
+            telaCategorias.ObjetosNovaPagina ();
             this.setVisible(false);
         }
     }//GEN-LAST:event_btMonitorActionPerformed
@@ -851,8 +846,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtos.clear();
             this.produtos.addAll(mouses);
-            telaDeCompra.setVisible(true);
-            telaDeCompra.ObjetosNovaPagina ();
+            telaCategorias.setVisible(true);
+            telaCategorias.ObjetosNovaPagina ();
             this.setVisible(false);
         }
     }//GEN-LAST:event_btMouseActionPerformed
@@ -868,8 +863,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtos.clear();
             this.produtos.addAll(notebooks);
-            telaDeCompra.setVisible(true);
-            telaDeCompra.ObjetosNovaPagina ();
+            telaCategorias.setVisible(true);
+            telaCategorias.ObjetosNovaPagina ();
             this.setVisible(false);
         }
     }//GEN-LAST:event_btNotebookActionPerformed
@@ -885,8 +880,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtos.clear();
             this.produtos.addAll(placasDeVideos);
-            telaDeCompra.setVisible(true);
-            telaDeCompra.ObjetosNovaPagina ();
+            telaCategorias.setVisible(true);
+            telaCategorias.ObjetosNovaPagina ();
             this.setVisible(false);
         }
     }//GEN-LAST:event_btPlacaDeVideoActionPerformed
@@ -902,8 +897,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtos.clear();
             this.produtos.addAll(placasMae);
-            telaDeCompra.setVisible(true);
-            telaDeCompra.ObjetosNovaPagina ();
+            telaCategorias.setVisible(true);
+            telaCategorias.ObjetosNovaPagina ();
             this.setVisible(false);
         }
     }//GEN-LAST:event_btPlacaMaeActionPerformed
@@ -919,8 +914,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtos.clear();
             this.produtos.addAll(processadores);
-            telaDeCompra.setVisible(true);
-            telaDeCompra.ObjetosNovaPagina ();
+            telaCategorias.setVisible(true);
+            telaCategorias.ObjetosNovaPagina ();
             this.setVisible(false);
         }
     }//GEN-LAST:event_btProcessadorActionPerformed
@@ -936,14 +931,14 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtos.clear();
             this.produtos.addAll(teclados);
-            telaDeCompra.setVisible(true);
-            telaDeCompra.ObjetosNovaPagina ();
+            telaCategorias.setVisible(true);
+            telaCategorias.ObjetosNovaPagina ();
             this.setVisible(false);
         }
     }//GEN-LAST:event_btTecladoActionPerformed
 
     public void verifyContentFavorites () {
-        this.constructorValuesteste();
+        this.constructorValue();
         popUpMenu.revalidate();
         popUpMenu.repaint();
         
@@ -958,8 +953,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         this.removefavorito(value);
         
     }
-    public void constructorValuesteste () {
-        int count = 0;
+    public void constructorValue () {
         popUpMenu.removeAll();
 //        popUpMenu.setLayout(new GridLayout(0, 2));
         popUpMenu.setLayout(new FlowLayout());
@@ -985,6 +979,139 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         }
     }
     
+    public void aparecerComboComparar ()
+    {
+        String tipo = cbTipo.getSelectedItem().toString();
+        switch (tipo)
+        {
+            case "Armazenamento":
+                cbProduto1.removeAllItems();
+                cbProduto2.removeAllItems();
+                for (Armazenamento armazenamento: armazenamentos)
+                {
+                    cbProduto1.addItem(armazenamento);
+                    cbProduto2.addItem(armazenamento);
+                }
+                break;
+            case "Computador":
+                cbProduto1.removeAllItems();
+                cbProduto2.removeAllItems();
+                for (Computador computador: computadores)
+                {
+                    cbProduto1.addItem(computador);
+                    cbProduto2.addItem(computador);
+                }
+                break;
+            case "Cooler":
+                cbProduto1.removeAllItems();
+                cbProduto2.removeAllItems();
+                for (Cooler cooler: coolers)
+                {
+                    cbProduto1.addItem(cooler);
+                    cbProduto2.addItem(cooler);
+                }
+                break;
+            case "Fonte":
+                cbProduto1.removeAllItems();
+                cbProduto2.removeAllItems();
+                for (Fonte fonte: fontes)
+                {
+                    cbProduto1.addItem(fonte);
+                    cbProduto2.addItem(fonte);
+                }
+                break;
+            case "Gabinete":
+                cbProduto1.removeAllItems();
+                cbProduto2.removeAllItems();
+                for (Gabinete gabinete: gabinetes)
+                {
+                    cbProduto1.addItem(gabinete);
+                    cbProduto2.addItem(gabinete);
+                }
+                break;
+            case "Headset":
+                cbProduto1.removeAllItems();
+                cbProduto2.removeAllItems();
+                for (Headset headset: headsets)
+                {
+                    cbProduto1.addItem(headset);
+                    cbProduto2.addItem(headset);
+                }
+                break;
+            case "Memória RAM":
+                cbProduto1.removeAllItems();
+                cbProduto2.removeAllItems();
+                for (MemoriaRAM memoriaRAM: memoriasRam)
+                {
+                    cbProduto1.addItem(memoriaRAM);
+                    cbProduto2.addItem(memoriaRAM);
+                }
+                break;
+            case "Monitor":
+                cbProduto1.removeAllItems();
+                cbProduto2.removeAllItems();
+                for (Monitor monitor: monitores)
+                {
+                    cbProduto1.addItem(monitor);
+                    cbProduto2.addItem(monitor);
+                }
+                break;
+            case "Mouse":
+                cbProduto1.removeAllItems();
+                cbProduto2.removeAllItems();
+                for (Mouse mouse: mouses)
+                {
+                    cbProduto1.addItem(mouse);
+                    cbProduto2.addItem(mouse);
+                }
+                break;
+            case "Notebook":
+                cbProduto1.removeAllItems();
+                cbProduto2.removeAllItems();
+                for (Notebook notebook: notebooks)
+                {
+                    cbProduto1.addItem(notebook);
+                    cbProduto2.addItem(notebook);
+                }
+                break;
+            case "Placa de Vídeo":
+                cbProduto1.removeAllItems();
+                cbProduto2.removeAllItems();
+                for (PlacaDeVideo placaDeVideo: placasDeVideos)
+                {
+                    cbProduto1.addItem(placaDeVideo);
+                    cbProduto2.addItem(placaDeVideo);
+                }
+                break;
+            case "Placa Mãe":
+                cbProduto1.removeAllItems();
+                cbProduto2.removeAllItems();
+                for (PlacaMae placaMae: placasMae)
+                {
+                    cbProduto1.addItem(placaMae);
+                    cbProduto2.addItem(placaMae);
+                }
+                break;
+            case "Processador":
+                cbProduto1.removeAllItems();
+                cbProduto2.removeAllItems();
+                for (Processador processador: processadores)
+                {
+                    cbProduto1.addItem(processador);
+                    cbProduto2.addItem(processador);
+                }
+                break;
+            case "Teclado":
+                cbProduto1.removeAllItems();
+                cbProduto2.removeAllItems();
+                for (Teclado teclado: teclados)
+                {
+                    cbProduto1.addItem(teclado);
+                    cbProduto2.addItem(teclado);
+                }
+                break;
+        }
+    }
     
     private void btCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCartActionPerformed
        if(this.favoritos.size() == 10){
@@ -996,13 +1123,87 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
     }//GEN-LAST:event_btCartActionPerformed
 
     private void btCompareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCompareActionPerformed
-       if(this.favoritos.size() == 10){
-          jOptionPane1.showMessageDialog(null, "Ops, você só pode adicionar 10 itens aos seus favoritos");
-       } else {
-       this.adicionaFavorito("123456");
-       this.verifyContentFavorites();
-       }
+        melhorCompra1.setVisible(false);
+        melhorCompra2.setVisible(false);
+        produtos.clear();
+        String tipo = cbTipo.getSelectedItem().toString();
+        switch (tipo)
+        {
+            case "Armazenamento":
+                produtos.addAll(armazenamentos);
+                break;
+            case "Computador":
+                produtos.addAll(computadores);
+                break;
+            case "Cooler":
+                produtos.addAll(coolers);
+                break;
+            case "Fonte":
+                produtos.addAll(fontes);
+                break;
+            case "Gabinete":
+                produtos.addAll(gabinetes);
+                break;
+            case "Headset":
+                produtos.addAll(headsets);
+                break;
+            case "Memória RAM":
+                produtos.addAll(memoriasRam);
+                break;
+            case "Monitor":
+                produtos.addAll(monitores);
+                break;
+            case "Mouse":
+                produtos.addAll(mouses);
+                break;
+            case "Notebook":
+                produtos.addAll(notebooks);
+                break;
+            case "Placa de Vídeo":
+                produtos.addAll(placasDeVideos);
+                break;
+            case "Placa Mãe":
+                produtos.addAll(placasMae);
+                break;
+            case "Processador":
+                produtos.addAll(processadores);
+                break;
+            case "Teclado":
+                produtos.addAll(teclados);
+                break;
+        }
+        
+        imgProd1.setIcon(new ImageIcon(Utilitarios.imagemInternet(produtos.get(produtos.indexOf(cbProduto1.getSelectedItem())).getImagem()).getImage().getScaledInstance(imgProd1.getWidth(), imgProd1.getHeight(), Image.SCALE_SMOOTH)));
+        imgProd2.setIcon(new ImageIcon(Utilitarios.imagemInternet(produtos.get(produtos.indexOf(cbProduto2.getSelectedItem())).getImagem()).getImage().getScaledInstance(imgProd2.getWidth(), imgProd2.getHeight(), Image.SCALE_SMOOTH)));
+        taProd1.setText(produtos.get(produtos.indexOf(cbProduto1.getSelectedItem())).imprimirDados(produtos.get(0).getCategoria()));
+        taProd2.setText(produtos.get(produtos.indexOf(cbProduto2.getSelectedItem())).imprimirDados(produtos.get(0).getCategoria()));
+        
     }//GEN-LAST:event_btCompareActionPerformed
+
+    private void cbTipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbTipoItemStateChanged
+        aparecerComboComparar();
+    }//GEN-LAST:event_cbTipoItemStateChanged
+
+    private void btPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisaActionPerformed
+//        produtos.clear();
+//        produtos.addAll(armazenamentos);
+//        produtos.addAll(computadores);
+//        produtos.addAll(coolers);
+//        produtos.addAll(fontes);
+//        produtos.addAll(gabinetes);
+//        produtos.addAll(headsets);
+//        produtos.addAll(memoriasRam);
+//        produtos.addAll(monitores);
+//        produtos.addAll(mouses);
+//        produtos.addAll(notebooks);
+//        produtos.addAll(placasDeVideos);
+//        produtos.addAll(placasMae);
+//        produtos.addAll(processadores);
+//        produtos.addAll(teclados);
+//        telaCategorias.setVisible(true);
+//        telaCategorias.ObjetosNovaPagina ();
+//        this.setVisible(false);
+    }//GEN-LAST:event_btPesquisaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
@@ -1041,8 +1242,9 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
     private javax.swing.JLabel imgProd2;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel melhorCompra1;
+    private javax.swing.JLabel melhorCompra2;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel popUpMenu;
     private javax.swing.JTextArea taProd1;
@@ -1053,8 +1255,6 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
     private javax.swing.JTextField tfPesquisa;
     // End of variables declaration//GEN-END:variables
 
-    
-    
     @Override
     public void adicionaFavorito(String value) {
         this.favoritos.put(valueTeste, value + valueTeste);
@@ -1064,10 +1264,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
     @Override
     public void removefavorito(int key) {
         this.favoritos.remove(key);
-        this.constructorValuesteste();    
+        this.constructorValue();    
         popUpMenu.revalidate();
         popUpMenu.repaint();
     }
-
-    
 }

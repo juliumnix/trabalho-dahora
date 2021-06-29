@@ -8,6 +8,7 @@ package Telas;
 import Codigo.Autenticador;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -58,6 +59,11 @@ public class LoginView extends javax.swing.JFrame implements Autenticador{
         setMinimumSize(null);
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(34, 33, 44));
         jPanel1.setForeground(new java.awt.Color(34, 33, 44));
@@ -207,14 +213,22 @@ public class LoginView extends javax.swing.JFrame implements Autenticador{
     }//GEN-LAST:event_jCheckBoxVisivelActionPerformed
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
+        logar ();
+    }//GEN-LAST:event_btLoginActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+
+    }//GEN-LAST:event_formKeyPressed
+    
+    public void logar ()
+    {
         login = tfEmail.getText();
         senha = pfSenha.getText();
         
-        //Home.setVisible(true);
+        principal.aparecerComboComparar ();
         principal.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btLoginActionPerformed
-
+    }
     public void apareceImagem(){
         ImageIcon imgIco = new ImageIcon(getClass().getResource("/imagens/BOOM.png"));
         Image image = imgIco.getImage().getScaledInstance(JLabelIcon.getWidth(), JLabelIcon.getHeight(), Image.SCALE_SMOOTH);

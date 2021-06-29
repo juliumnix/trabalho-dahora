@@ -15,7 +15,7 @@ public class Mouse extends Produto {
     private boolean bluetooth;
 
     public Mouse(String modelo, float valor, String descricao, String marca, String categoria, String imagem,
-                 boolean botoesLaterais, boolean semFio, boolean bluetooth) {
+    boolean bluetooth, boolean botoesLaterais, boolean semFio) {
         super(modelo, valor, descricao, marca, categoria, imagem);
         this.botoesLaterais = botoesLaterais;
         this.semFio = semFio;
@@ -47,9 +47,9 @@ public class Mouse extends Produto {
     }
 
     @Override
-    public String toString() 
+    public String imprimirDados(String imprimir) 
     {
-        return "Mouse - " + super.toString() + ", Botões laterais: " + botoesLaterais + ", Sem fio: " + semFio + ", Bluetooth: " + bluetooth;
+        return super.imprimirDados(imprimir) + ", Botões laterais: " + botoesLaterais + ", Sem fio: " + semFio + ", Bluetooth: " + bluetooth;
     }
     
 }

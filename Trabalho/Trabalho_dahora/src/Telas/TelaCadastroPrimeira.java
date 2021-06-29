@@ -1,5 +1,8 @@
 package Telas;
 
+import Codigo.Computador;
+import Codigo.Notebook;
+
 public class TelaCadastroPrimeira extends javax.swing.JFrame {
     private TelaPrincipal principal;
     private String modelo;
@@ -48,6 +51,29 @@ public class TelaCadastroPrimeira extends javax.swing.JFrame {
         return this.marca;
     }
     
+    public void gerarComputador ()
+    {
+        Computador computador = new Computador (modelo, valor, descricao, marca, categoria, imagem);
+        if (principal.getComputador().add(computador) == true) 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro realizado com sucesso");
+        } else 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro duplicado");
+        }
+    }
+    
+    public void gerarNotebook ()
+    {
+        Notebook notebook = new Notebook (modelo, valor, descricao, marca, categoria, imagem);
+        if (principal.getNotebook().add(notebook) == true) 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro realizado com sucesso");
+        } else 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro duplicado");
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -72,7 +98,7 @@ public class TelaCadastroPrimeira extends javax.swing.JFrame {
         lbMarca = new javax.swing.JLabel();
         lbImagem = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(34, 33, 44));
         setMaximumSize(new java.awt.Dimension(400, 220));
         setResizable(false);
@@ -166,9 +192,23 @@ public class TelaCadastroPrimeira extends javax.swing.JFrame {
     private void proximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proximoActionPerformed
         try {
             SetarValores();
-            TelaCadastroSegunda segunda = new TelaCadastroSegunda (this, principal);
-            segunda.setVisible(true);
-            this.setVisible(false);
+            if (this.categoria.equals("Computador"))
+            {
+                gerarComputador();
+                principal.aparecerComboComparar ();
+            }else
+            {
+                if (this.categoria.equals("Notebook"))
+                {
+                    gerarNotebook();
+                    principal.aparecerComboComparar ();
+                }else
+                {
+                    TelaCadastroSegunda segunda = new TelaCadastroSegunda (this, principal);
+                    segunda.setVisible(true);
+                    this.setVisible(false);  
+                }
+            }
         } catch (Exception e) {
             jOptionPane1.showMessageDialog(null, "Preencha todos os campos");
         }

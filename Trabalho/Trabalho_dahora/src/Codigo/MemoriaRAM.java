@@ -11,11 +11,11 @@ package Codigo;
  */
 public class MemoriaRAM extends Produto{
     private int capacidade;
-    private int ddr;
+    private String ddr;
     private float velocidade;
     
     public MemoriaRAM (String modelo, float valor, String descricao, String marca, String categoria, String imagem,
-            int capacidade, int ddt, float velocidade)
+            int capacidade, float velocidade, String ddr)
     {
         super(modelo, valor, descricao, marca, categoria, imagem);
         this.capacidade = capacidade;
@@ -28,7 +28,7 @@ public class MemoriaRAM extends Produto{
         return this.capacidade;
     }
     
-    public int getDdr ()
+    public String getDdr ()
     {
         return this.ddr;
     }
@@ -46,9 +46,9 @@ public class MemoriaRAM extends Produto{
         }
     }
 
-    public void setDdr(int ddr) 
+    public void setDdr(String ddr) 
     {
-        if (ddr > 0)
+        if (!ddr.isEmpty())
         {
             this.ddr = ddr;
         }
@@ -63,9 +63,9 @@ public class MemoriaRAM extends Produto{
     }
 
     @Override
-    public String toString() 
+    public String imprimirDados(String imprimir) 
     {
-        return "Memória RAM - " + super.toString() + ", Capacidade: " + capacidade + ", DDR: " + ddr + ", Velocidade: " + velocidade;
+        return super.imprimirDados(imprimir) + ", Capacidade: " + capacidade + ", DDR: " + ddr + ", Velocidade: " + velocidade;
     }
     
 }

@@ -1,6 +1,17 @@
 package Telas;
 
 import Codigo.Armazenamento;
+import Codigo.Cooler;
+import Codigo.Fonte;
+import Codigo.Gabinete;
+import Codigo.Headset;
+import Codigo.MemoriaRAM;
+import Codigo.Monitor;
+import Codigo.Mouse;
+import Codigo.PlacaDeVideo;
+import Codigo.PlacaMae;
+import Codigo.Processador;
+import Codigo.Teclado;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +71,7 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jLabel1.setVisible(true);
         jLabel1.setText("Velocidade da Ventoinha:");
         jLabel2.setVisible(true);
-        jLabel2.setText("Tamanho:");
+        jLabel2.setText("Tipo:");
         jTextField1.setVisible(true);
         jComboBox1.setLocation(155, 40);
         jComboBox1.setVisible(true);
@@ -74,7 +85,7 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jLabel1.setVisible(true);
         jLabel1.setText("Certificação:");
         jLabel2.setVisible(true);
-        jLabel2.setText("Tensão:");
+        jLabel2.setText("Tensão (W):");
         jComboBox1.setLocation(155, 10);
         jComboBox1.setVisible(true);
         jComboBox1.addItem("Plus");
@@ -85,12 +96,12 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jComboBox1.addItem("Titanium");
         jComboBox2.setLocation(155, 40);
         jComboBox2.setVisible(true);
-        jComboBox2.addItem("550W");
-        jComboBox2.addItem("650W");
-        jComboBox2.addItem("750W");
-        jComboBox2.addItem("850W");
-        jComboBox2.addItem("950W");
-        jComboBox2.addItem("1050W");
+        jComboBox2.addItem("550");
+        jComboBox2.addItem("650");
+        jComboBox2.addItem("750");
+        jComboBox2.addItem("850");
+        jComboBox2.addItem("950");
+        jComboBox2.addItem("1050");
     }
     
     public void gabinete ()
@@ -121,16 +132,16 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jLabel4.setText("Tipo:");
         jComboBox1.setLocation(155, 10);
         jComboBox1.setVisible(true);
-        jComboBox1.addItem("Possui");
-        jComboBox1.addItem("Não possui");
+        jComboBox1.addItem("true");
+        jComboBox1.addItem("false");
         jComboBox2.setLocation(155, 40);
         jComboBox2.setVisible(true);
-        jComboBox2.addItem("Possui");
-        jComboBox2.addItem("Não possui");
+        jComboBox2.addItem("true");
+        jComboBox2.addItem("false");
         jComboBox3.setLocation(155, 70);
         jComboBox3.setVisible(true);
-        jComboBox3.addItem("Sim");
-        jComboBox3.addItem("Não");
+        jComboBox3.addItem("true");
+        jComboBox3.addItem("false");
         jComboBox4.setLocation(155, 100);
         jComboBox4.setVisible(true);
         jComboBox4.addItem("2.0 (estéreo)");
@@ -163,7 +174,7 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jLabel2.setVisible(true);
         jLabel2.setText("Aspecto:");
         jLabel3.setVisible(true);
-        jLabel3.setText("Frame Rate:"); 
+        jLabel3.setText("Frame Rate (hz):"); 
         jLabel4.setVisible(true);
         jLabel4.setText("Resolução:"); 
         jTextField1.setVisible(true);
@@ -174,11 +185,11 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jComboBox1.addItem("21:9");       
         jComboBox2.setLocation(155, 70);
         jComboBox2.setVisible(true);
-        jComboBox2.addItem("60 hz");
-        jComboBox2.addItem("75 hz");
-        jComboBox2.addItem("90 hz");
-        jComboBox2.addItem("120 hz");
-        jComboBox2.addItem("144 hz");
+        jComboBox2.addItem("60");
+        jComboBox2.addItem("75");
+        jComboBox2.addItem("90");
+        jComboBox2.addItem("120");
+        jComboBox2.addItem("144");
         jComboBox3.setLocation(155, 100);
         jComboBox3.setVisible(true);
         jComboBox3.addItem("HD");
@@ -197,16 +208,16 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jLabel3.setText("É Sem Fio:");
         jComboBox1.setLocation(155, 10);
         jComboBox1.setVisible(true);
-        jComboBox1.addItem("Sim");
-        jComboBox1.addItem("Não");
+        jComboBox1.addItem("true");
+        jComboBox1.addItem("false");
         jComboBox2.setLocation(155, 40);
         jComboBox2.setVisible(true);
-        jComboBox2.addItem("Sim");
-        jComboBox2.addItem("Não");
+        jComboBox2.addItem("true");
+        jComboBox2.addItem("false");
         jComboBox3.setLocation(155, 70);
         jComboBox3.setVisible(true);
-        jComboBox3.addItem("Sim");
-        jComboBox3.addItem("Não");
+        jComboBox3.addItem("true");
+        jComboBox3.addItem("false");
     }
     
     public void placaDeVideo ()
@@ -219,8 +230,8 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jTextField1.setVisible(true);
         jComboBox1.setLocation(155, 40);
         jComboBox1.setVisible(true);
-        jComboBox1.addItem("Sim");
-        jComboBox1.addItem("Não");
+        jComboBox1.addItem("true");
+        jComboBox1.addItem("false");
     }
     
     public void placaMae ()
@@ -243,8 +254,8 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jTextField3.setVisible(true);
         jComboBox1.setLocation(155, 100);
         jComboBox1.setVisible(true);
-        jComboBox1.addItem("Sim");
-        jComboBox1.addItem("Não");
+        jComboBox1.addItem("true");
+        jComboBox1.addItem("false");
         jComboBox2.setLocation(155, 130);
         jComboBox2.setVisible(true);
         jComboBox2.addItem("AT");
@@ -256,8 +267,8 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jComboBox2.addItem("NLX");
         jComboBox3.setLocation(155, 160);
         jComboBox3.setVisible(true);
-        jComboBox3.addItem("Sim");
-        jComboBox3.addItem("Não");
+        jComboBox3.addItem("true");
+        jComboBox3.addItem("false");
     }
     
     public void processador ()
@@ -282,19 +293,27 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         jLabel2.setVisible(true);
         jLabel2.setText("Apresenta Numérico:");
         jLabel3.setVisible(true);
-        jLabel3.setText("Sem Fio:");
+        jLabel3.setText("Tipo:");
+        jLabel4.setVisible(true);
+        jLabel4.setText("Sem Fio:");
         jComboBox1.setLocation(155, 10);
         jComboBox1.setVisible(true);
-        jComboBox1.addItem("Sim");
-        jComboBox1.addItem("Não");
+        jComboBox1.addItem("true");
+        jComboBox1.addItem("false");
         jComboBox2.setLocation(155, 40);
         jComboBox2.setVisible(true);
-        jComboBox2.addItem("Sim");
-        jComboBox2.addItem("Não");
+        jComboBox2.addItem("true");
+        jComboBox2.addItem("false");
         jComboBox3.setLocation(155, 70);
         jComboBox3.setVisible(true);
-        jComboBox3.addItem("Sim");
-        jComboBox3.addItem("Não");
+        jComboBox3.addItem("Mecânico");
+        jComboBox3.addItem("Membrana");
+        jComboBox3.addItem("Semi-Mecânico");
+        jComboBox4.setLocation(155, 100);
+        jComboBox4.setVisible(true);
+        jComboBox4.addItem("true");
+        jComboBox4.addItem("false");
+        
     }
     
     public void componentesCategoria ()
@@ -353,7 +372,156 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         }
     }
     
-
+    public void gerarCooler ()
+    {
+        Cooler cooler = new Cooler (primeira.getModelo(), primeira.getValor(), primeira.getDescricao(),
+        primeira.getMarca(), categoria, primeira.getImagem(), Float.parseFloat(jTextField1.getText()), jComboBox1.getSelectedItem().toString());
+        if (principal.getCooler().add(cooler) == true) 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro realizado com sucesso");
+        } else 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro duplicado");
+        }
+    }
+    
+    public void gerarFonte ()
+    {
+        Fonte fonte = new Fonte (primeira.getModelo(), primeira.getValor(), primeira.getDescricao(),
+        primeira.getMarca(), categoria, primeira.getImagem(), jComboBox1.getSelectedItem().toString(), Integer.parseInt(jComboBox2.getSelectedItem().toString()));
+        if (principal.getFonte().add(fonte) == true) 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro realizado com sucesso");
+        } else 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro duplicado");
+        }
+    }
+    
+    public void gerarGabinete ()
+    {
+        Gabinete gabinete = new Gabinete (primeira.getModelo(), primeira.getValor(), primeira.getDescricao(),
+        primeira.getMarca(), categoria, primeira.getImagem(), Float.parseFloat(jTextField1.getText()), jComboBox1.getSelectedItem().toString());
+        if (principal.getGabinete().add(gabinete) == true) 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro realizado com sucesso");
+        } else 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro duplicado");
+        }
+    }
+    
+    public void gerarHeadset ()
+    {
+        Headset headset = new Headset (primeira.getModelo(), primeira.getValor(), primeira.getDescricao(),
+        primeira.getMarca(), categoria, primeira.getImagem(), Boolean.parseBoolean(jComboBox1.getSelectedItem().toString()), 
+        Boolean.parseBoolean(jComboBox2.getSelectedItem().toString()), Boolean.parseBoolean(jComboBox3.getSelectedItem().toString()), jComboBox4.getSelectedItem().toString());
+        if (principal.getHeadset().add(headset) == true) 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro realizado com sucesso");
+        } else 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro duplicado");
+        }
+    }
+    
+    public void gerarMemoriaRam ()
+    {
+        MemoriaRAM memoriaRAM = new MemoriaRAM (primeira.getModelo(), primeira.getValor(), primeira.getDescricao(),
+        primeira.getMarca(), categoria, primeira.getImagem(), Integer.parseInt(jTextField1.getText()), Float.parseFloat(jTextField2.getText()), jComboBox1.getSelectedItem().toString());
+        if (principal.getMemoriaRAM().add(memoriaRAM) == true) 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro realizado com sucesso");
+        } else 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro duplicado");
+        }
+    }
+    
+    public void gerarMonitor ()
+    {
+        Monitor monitor = new Monitor (primeira.getModelo(), primeira.getValor(), primeira.getDescricao(),
+        primeira.getMarca(), categoria, primeira.getImagem(), Float.parseFloat(jTextField1.getText()), jComboBox1.getSelectedItem().toString(),
+        Integer.parseInt(jComboBox2.getSelectedItem().toString()), jComboBox3.getSelectedItem().toString());
+        if (principal.getMonitor().add(monitor) == true) 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro realizado com sucesso");
+        } else 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro duplicado");
+        }
+    }
+    
+    public void gerarMouse ()
+    {
+        Mouse mouse = new Mouse (primeira.getModelo(), primeira.getValor(), primeira.getDescricao(),
+        primeira.getMarca(), categoria, primeira.getImagem(), Boolean.parseBoolean(jComboBox1.getSelectedItem().toString()),
+        Boolean.parseBoolean(jComboBox2.getSelectedItem().toString()), Boolean.parseBoolean(jComboBox3.getSelectedItem().toString()));
+        if (principal.getMouse().add(mouse) == true) 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro realizado com sucesso");
+        } else 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro duplicado");
+        }
+    }
+    
+    public void gerarPlacaDeVideo ()
+    {
+        PlacaDeVideo placaDeVideo = new PlacaDeVideo (primeira.getModelo(), primeira.getValor(), primeira.getDescricao(),
+        primeira.getMarca(), categoria, primeira.getImagem(), Integer.parseInt(jTextField1.getText()), Boolean.parseBoolean(jComboBox1.getSelectedItem().toString()));
+        if (principal.getPlacaDeVideo().add(placaDeVideo) == true) 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro realizado com sucesso");
+        } else 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro duplicado");
+        }
+    }
+    
+    public void gerarPlacaMae ()
+    {
+        PlacaMae placaMae = new PlacaMae (primeira.getModelo(), primeira.getValor(), primeira.getDescricao(),
+        primeira.getMarca(), categoria, primeira.getImagem(), Integer.parseInt(jTextField1.getText()), Integer.parseInt(jTextField2.getText()),
+        Integer.parseInt(jTextField3.getText()), Boolean.parseBoolean(jComboBox1.getSelectedItem().toString()), jComboBox2.getSelectedItem().toString(),
+        Boolean.parseBoolean(jComboBox3.getSelectedItem().toString()));
+        if (principal.getPlacaMae().add(placaMae) == true) 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro realizado com sucesso");
+        } else 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro duplicado");
+        }
+    }
+    
+    public void gerarProcessador ()
+    {
+        Processador processador = new Processador (primeira.getModelo(), primeira.getValor(), primeira.getDescricao(),
+        primeira.getMarca(), categoria, primeira.getImagem(), Integer.parseInt(jTextField1.getText()), Integer.parseInt(jTextField2.getText()),
+        Float.parseFloat(jTextField3.getText()));
+        if (principal.getProcessador().add(processador) == true) 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro realizado com sucesso");
+        } else 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro duplicado");
+        }
+    }
+    
+    public void gerarTeclado ()
+    {
+        Teclado teclado = new Teclado (primeira.getModelo(), primeira.getValor(), primeira.getDescricao(),
+        primeira.getMarca(), categoria, primeira.getImagem(), Boolean.parseBoolean(jComboBox1.getSelectedItem().toString()),
+        Boolean.parseBoolean(jComboBox2.getSelectedItem().toString()), jComboBox3.getSelectedItem().toString(), Boolean.parseBoolean(jComboBox4.getSelectedItem().toString()));
+        if (principal.getTeclado().add(teclado) == true) 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro realizado com sucesso");
+        } else 
+        {
+            jOptionPane1.showMessageDialog(null, "Cadastro duplicado");
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -511,39 +679,51 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         {
             case "Armazenamento":
                 gerarArmazenamento ();
+                principal.aparecerComboComparar ();
                 break;
             case "Cooler":
-                cooler ();
+                gerarCooler ();
+                principal.aparecerComboComparar ();
                 break;
             case "Fonte":
-                fonte ();
+                gerarFonte ();
+                principal.aparecerComboComparar ();
                 break;
             case "Gabinete":
-                gabinete();
+                gerarGabinete();
+                principal.aparecerComboComparar ();
                 break;
             case "Headset":
-                headset ();
+                gerarHeadset ();
+                principal.aparecerComboComparar ();
                 break;
             case "Memória RAM":
-                memoriaRam ();
+                gerarMemoriaRam ();
+                principal.aparecerComboComparar ();
                 break;
             case "Monitor":
-                monitor ();
+                gerarMonitor ();
+                principal.aparecerComboComparar ();
                 break;
             case "Mouse":
-                mouse ();
+                gerarMouse ();
+                principal.aparecerComboComparar ();
                 break;
             case "Placa de Vídeo":
-                placaDeVideo();
+                gerarPlacaDeVideo();
+                principal.aparecerComboComparar ();
                 break;
             case "Placa Mãe":
-                placaMae();
+                gerarPlacaMae();
+                principal.aparecerComboComparar ();
                 break;
             case "Processador":
-                processador ();
+                gerarProcessador ();
+                principal.aparecerComboComparar ();
                 break;
             case "Teclado":
-                teclado();
+                gerarTeclado();
+                principal.aparecerComboComparar ();
                 break;
         }
     }//GEN-LAST:event_CadastrarActionPerformed
