@@ -9,7 +9,7 @@ package Codigo;
  *
  * @author juliu
  */
-public abstract class Produto {
+public abstract class Produto implements Comparable<Produto> {
     protected String modelo;
     protected float valor;
     protected String descricao;
@@ -109,6 +109,15 @@ public abstract class Produto {
     public String imprimirDados (String cat)
     {
         return cat+":\n Modelo: " + modelo + "\n Valor: " + valor + "\n Descrição: " + descricao + "\n Marca: " + marca + "\n Categoria: " + categoria;
+    }
+    
+    @Override
+    public int compareTo(Produto other) {
+        int compareInt = this.modelo.compareTo(other.modelo);
+        if (compareInt < 0) return -1; //this.modelo é maior
+        if (compareInt > 0) return 1; // other.modelo é maior
+        return 0; //eles são iguais
+        
     }
 }
 

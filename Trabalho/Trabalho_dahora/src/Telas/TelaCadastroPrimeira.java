@@ -99,6 +99,7 @@ public class TelaCadastroPrimeira extends javax.swing.JFrame {
         lbImagem = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastrar Produto");
         setBackground(new java.awt.Color(34, 33, 44));
         setMaximumSize(new java.awt.Dimension(400, 220));
         setResizable(false);
@@ -195,13 +196,13 @@ public class TelaCadastroPrimeira extends javax.swing.JFrame {
             if (this.categoria.equals("Computador"))
             {
                 gerarComputador();
-                principal.aparecerComboComparar ();
+                principal.alterarComboBox ();
             }else
             {
                 if (this.categoria.equals("Notebook"))
                 {
                     gerarNotebook();
-                    principal.aparecerComboComparar ();
+                    principal.alterarComboBox ();
                 }else
                 {
                     TelaCadastroSegunda segunda = new TelaCadastroSegunda (this, principal);

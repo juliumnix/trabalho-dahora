@@ -545,6 +545,7 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         Cadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastrar Produto");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -679,51 +680,51 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         {
             case "Armazenamento":
                 gerarArmazenamento ();
-                principal.aparecerComboComparar ();
+                principal.alterarComboBox ();
                 break;
             case "Cooler":
                 gerarCooler ();
-                principal.aparecerComboComparar ();
+                principal.alterarComboBox ();
                 break;
             case "Fonte":
                 gerarFonte ();
-                principal.aparecerComboComparar ();
+                principal.alterarComboBox ();
                 break;
             case "Gabinete":
                 gerarGabinete();
-                principal.aparecerComboComparar ();
+                principal.alterarComboBox ();
                 break;
             case "Headset":
                 gerarHeadset ();
-                principal.aparecerComboComparar ();
+                principal.alterarComboBox ();
                 break;
             case "Memória RAM":
                 gerarMemoriaRam ();
-                principal.aparecerComboComparar ();
+                principal.alterarComboBox ();
                 break;
             case "Monitor":
                 gerarMonitor ();
-                principal.aparecerComboComparar ();
+                principal.alterarComboBox ();
                 break;
             case "Mouse":
                 gerarMouse ();
-                principal.aparecerComboComparar ();
+                principal.alterarComboBox ();
                 break;
             case "Placa de Vídeo":
                 gerarPlacaDeVideo();
-                principal.aparecerComboComparar ();
+                principal.alterarComboBox ();
                 break;
             case "Placa Mãe":
                 gerarPlacaMae();
-                principal.aparecerComboComparar ();
+                principal.alterarComboBox ();
                 break;
             case "Processador":
                 gerarProcessador ();
-                principal.aparecerComboComparar ();
+                principal.alterarComboBox ();
                 break;
             case "Teclado":
                 gerarTeclado();
-                principal.aparecerComboComparar ();
+                principal.alterarComboBox ();
                 break;
         }
     }//GEN-LAST:event_CadastrarActionPerformed
