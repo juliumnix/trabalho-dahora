@@ -1145,7 +1145,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         produtos.addAll(placasMae);
         produtos.addAll(processadores);
         produtos.addAll(teclados);
-        Utilitarios.entrarTelaCategorias(telaCategorias, this);
+        Utilitarios.entrarTelaCategorias(telaCategorias, this, tfPesquisa.getText());
     }//GEN-LAST:event_btPesquisaActionPerformed
 
     private void destaque1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_destaque1MouseClicked

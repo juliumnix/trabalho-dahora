@@ -132,6 +132,15 @@ public class Utilitarios {
         telaCategorias.getIcon().requestFocus();
     }
     
+    public final static void entrarTelaCategorias (TelaCategorias telaCategorias, JFrame other, String pesquisa)
+    {
+        other.setVisible(false);
+        telaCategorias.setVisible(true);
+        centralizarTela(telaCategorias);
+        telaCategorias.ObjetosNovaPagina(pesquisa);
+        telaCategorias.getIcon().requestFocus();
+    }
+    
     public final static void entrarTelaProduto (TelaProduto telaProduto, JFrame other)
     {
         other.setVisible(false);

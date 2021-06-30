@@ -12,10 +12,8 @@ import Codigo.PlacaDeVideo;
 import Codigo.PlacaMae;
 import Codigo.Processador;
 import Codigo.Teclado;
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.ComboBoxModel;
+import Codigo.Utilitarios;
+import java.awt.Toolkit;
 
 public class TelaCadastroSegunda extends javax.swing.JFrame {
     private TelaCadastroPrimeira primeira;
@@ -28,7 +26,14 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         this.categoria = primeira.getCategoria();
         initComponents();
         componentesCategoria();
+        configurarTela();
         
+    }
+    
+    public void configurarTela()
+    {
+        Utilitarios.centralizarTela(this);
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
     }
     
     public void setarVisibleFalse ()
@@ -676,56 +681,63 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
-        switch (this.categoria)
+        try 
         {
-            case "Armazenamento":
-                gerarArmazenamento ();
-                principal.alterarComboBox ();
-                break;
-            case "Cooler":
-                gerarCooler ();
-                principal.alterarComboBox ();
-                break;
-            case "Fonte":
-                gerarFonte ();
-                principal.alterarComboBox ();
-                break;
-            case "Gabinete":
-                gerarGabinete();
-                principal.alterarComboBox ();
-                break;
-            case "Headset":
-                gerarHeadset ();
-                principal.alterarComboBox ();
-                break;
-            case "Memória RAM":
-                gerarMemoriaRam ();
-                principal.alterarComboBox ();
-                break;
-            case "Monitor":
-                gerarMonitor ();
-                principal.alterarComboBox ();
-                break;
-            case "Mouse":
-                gerarMouse ();
-                principal.alterarComboBox ();
-                break;
-            case "Placa de Vídeo":
-                gerarPlacaDeVideo();
-                principal.alterarComboBox ();
-                break;
-            case "Placa Mãe":
-                gerarPlacaMae();
-                principal.alterarComboBox ();
-                break;
-            case "Processador":
-                gerarProcessador ();
-                principal.alterarComboBox ();
-                break;
-            case "Teclado":
-                gerarTeclado();
-                principal.alterarComboBox ();
-                break;
+            switch (this.categoria)
+            {
+                case "Armazenamento":
+                    gerarArmazenamento ();
+                    principal.alterarComboBox ();
+                    break;
+                case "Cooler":
+                    gerarCooler ();
+                    principal.alterarComboBox ();
+                    break;
+                case "Fonte":
+                    gerarFonte ();
+                    principal.alterarComboBox ();
+                    break;
+                case "Gabinete":
+                    gerarGabinete();
+                    principal.alterarComboBox ();
+                    break;
+                case "Headset":
+                    gerarHeadset ();
+                    principal.alterarComboBox ();
+                    break;
+                case "Memória RAM":
+                    gerarMemoriaRam ();
+                    principal.alterarComboBox ();
+                    break;
+                case "Monitor":
+                    gerarMonitor ();
+                    principal.alterarComboBox ();
+                    break;
+                case "Mouse":
+                    gerarMouse ();
+                    principal.alterarComboBox ();
+                    break;
+                case "Placa de Vídeo":
+                    gerarPlacaDeVideo();
+                    principal.alterarComboBox ();
+                    break;
+                case "Placa Mãe":
+                    gerarPlacaMae();
+                    principal.alterarComboBox ();
+                    break;
+                case "Processador":
+                    gerarProcessador ();
+                    principal.alterarComboBox ();
+                    break;
+                case "Teclado":
+                    gerarTeclado();
+                    principal.alterarComboBox ();
+                    break;
+            }
+            
+        } catch (Exception e) 
+        {
+            jOptionPane1.showMessageDialog(null, "Preencha todos os campos");
         }
     }//GEN-LAST:event_CadastrarActionPerformed
 

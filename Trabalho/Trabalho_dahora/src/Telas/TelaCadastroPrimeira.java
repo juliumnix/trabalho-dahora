@@ -2,6 +2,8 @@ package Telas;
 
 import Codigo.Computador;
 import Codigo.Notebook;
+import Codigo.Utilitarios;
+import java.awt.Toolkit;
 
 public class TelaCadastroPrimeira extends javax.swing.JFrame {
     private TelaPrincipal principal;
@@ -15,6 +17,13 @@ public class TelaCadastroPrimeira extends javax.swing.JFrame {
     public TelaCadastroPrimeira(TelaPrincipal principal) {
         this.principal = principal;
         initComponents();
+        configurarTela();
+    }
+    
+    public void configurarTela()
+    {
+        Utilitarios.centralizarTela(this);
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
     }
     
     public void SetarValores ()

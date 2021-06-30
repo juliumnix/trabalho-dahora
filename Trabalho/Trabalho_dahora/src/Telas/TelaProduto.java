@@ -6,42 +6,29 @@ import java.awt.*;
 import javax.swing.*;
 
 public class TelaProduto extends javax.swing.JFrame {
-
+    //telas
     private TelaLogin telaLogin;
     private TelaPrincipal principal;
     private TelaCategorias telaCategorias;
 
     public TelaProduto(TelaCategorias categoria, TelaPrincipal principal, TelaLogin login) {
+        //telas
         this.telaLogin = login;
         this.principal = principal;
         this.telaCategorias = categoria;
         initComponents();
         configurarTela();
-        taDescricao.setLineWrap(true);
-        icon.requestFocus();
-        popUpMenu.setVisible(false);     
-
     }
     
     public void configurarTela(){
         this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
-        
-        ImageIcon imgIco = new ImageIcon(getClass().getResource("/imagens/BOOM.png"));
-        Image image = imgIco.getImage().getScaledInstance(icon.getWidth(), icon.getHeight(), Image.SCALE_SMOOTH);
-        icon.setIcon(new ImageIcon(image));
-        
-        ImageIcon imageIcon = new ImageIcon (getClass().getResource("/imagens/IconSearch.png"));
-        Image imageIconSearch = imageIcon.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH);
-        btPesquisa.setIcon(new ImageIcon(imageIconSearch));
-        
-        ImageIcon iconCart = new ImageIcon (getClass().getResource("/imagens/IconCart.png"));
-        Image iconCartAUX = iconCart.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH);
-        btCart.setIcon(new ImageIcon(iconCartAUX));
-        btAddCart.setIcon(new ImageIcon(iconCartAUX));
-        
-        ImageIcon iconFavorites = new ImageIcon (getClass().getResource("/imagens/IconFavorites.png"));
-        Image iconFavoritesAUX = iconFavorites.getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH);
-        btFavorites.setIcon(new ImageIcon(iconFavoritesAUX));
+        Utilitarios.aparecerImagemLocal(icon, "src/imagens/BOOM.png");
+        Utilitarios.aparecerImagemLocal(btPesquisa, "src/imagens/IconSearch.png");
+        Utilitarios.aparecerImagemLocal(btCart, "src/imagens/IconCart.png");
+        Utilitarios.aparecerImagemLocal(btAddCart, "src/imagens/IconCart.png");        
+        taDescricao.setLineWrap(true);
+        icon.requestFocus();
+        popUpMenu.setVisible(false); 
     }
     
     public void construirProduto (int index)
@@ -74,8 +61,8 @@ public class TelaProduto extends javax.swing.JFrame {
         btTeclado = new javax.swing.JButton();
         tfPesquisa = new javax.swing.JTextField();
         btPesquisa = new javax.swing.JButton();
+        btaux = new javax.swing.JButton();
         btCart = new javax.swing.JButton();
-        btFavorites = new javax.swing.JButton();
         popUpMenu = new javax.swing.JPanel();
         produto = new javax.swing.JPanel();
         imagemProduto = new javax.swing.JLabel();
@@ -88,13 +75,6 @@ public class TelaProduto extends javax.swing.JFrame {
         setTitle("BOOM - Loja de Informática");
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
-        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
-            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
-                formWindowGainedFocus(evt);
-            }
-            public void windowLostFocus(java.awt.event.WindowEvent evt) {
-            }
-        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bg.setBackground(new java.awt.Color(34, 33, 44));
@@ -341,29 +321,29 @@ public class TelaProduto extends javax.swing.JFrame {
                 tfPesquisaFocusLost(evt);
             }
         });
-        tfPesquisa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfPesquisaActionPerformed(evt);
-            }
-        });
         bg.add(tfPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 6, 522, 28));
 
         btPesquisa.setBackground(new java.awt.Color(121, 112, 169));
         btPesquisa.setBorder(null);
+        btPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPesquisaActionPerformed(evt);
+            }
+        });
         bg.add(btPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 6, 41, 28));
+
+        btaux.setBackground(new java.awt.Color(121, 112, 169));
+        btaux.setBorder(null);
+        bg.add(btaux, new org.netbeans.lib.awtextra.AbsoluteConstraints(732, 6, 28, 28));
 
         btCart.setBackground(new java.awt.Color(121, 112, 169));
         btCart.setBorder(null);
-        bg.add(btCart, new org.netbeans.lib.awtextra.AbsoluteConstraints(732, 6, 28, 28));
-
-        btFavorites.setBackground(new java.awt.Color(121, 112, 169));
-        btFavorites.setBorder(null);
-        btFavorites.addActionListener(new java.awt.event.ActionListener() {
+        btCart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btFavoritesActionPerformed(evt);
+                btCartActionPerformed(evt);
             }
         });
-        bg.add(btFavorites, new org.netbeans.lib.awtextra.AbsoluteConstraints(766, 6, 28, 28));
+        bg.add(btCart, new org.netbeans.lib.awtextra.AbsoluteConstraints(766, 6, 28, 28));
 
         popUpMenu.setBackground(new java.awt.Color(69, 65, 88));
         popUpMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -426,20 +406,14 @@ public class TelaProduto extends javax.swing.JFrame {
 
     
     private void tfPesquisaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfPesquisaFocusLost
-        if (tfPesquisa.getText().equals(""))
-        {
-            tfPesquisa.setText("Pesquisa");
-        }
+        Utilitarios.aparecerTexto("Pesquisa", tfPesquisa);
     }//GEN-LAST:event_tfPesquisaFocusLost
 
     private void tfPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfPesquisaFocusGained
-        if (tfPesquisa.getText().equals("Pesquisa"))
-        {
-            tfPesquisa.setText("");
-        }
+        Utilitarios.desaparecerTexto("Pesquisa", tfPesquisa);
     }//GEN-LAST:event_tfPesquisaFocusGained
 
-    private void btFavoritesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFavoritesActionPerformed
+    private void btCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCartActionPerformed
         if (popUpMenu.isVisible())
         {
             popUpMenu.setVisible(false);
@@ -447,11 +421,7 @@ public class TelaProduto extends javax.swing.JFrame {
         {
             popUpMenu.setVisible(true);
         }
-    }//GEN-LAST:event_btFavoritesActionPerformed
-
-    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
-        
-    }//GEN-LAST:event_formWindowGainedFocus
+    }//GEN-LAST:event_btCartActionPerformed
 
     private void btArmazenamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btArmazenamentoActionPerformed
         principal.getProdutos().clear();
@@ -462,10 +432,6 @@ public class TelaProduto extends javax.swing.JFrame {
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
         Utilitarios.entrarTelaLogin(telaLogin, this);
     }//GEN-LAST:event_btSairActionPerformed
-
-    private void tfPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPesquisaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfPesquisaActionPerformed
 
     private void iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconMouseClicked
         Utilitarios.entrarTelaPrincipal(principal, this);
@@ -549,6 +515,25 @@ public class TelaProduto extends javax.swing.JFrame {
         Utilitarios.entrarTelaCategorias(telaCategorias, this);
     }//GEN-LAST:event_btTecladoActionPerformed
 
+    private void btPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisaActionPerformed
+        principal.getProdutos().clear();
+        principal.getProdutos().addAll(principal.getArmazenamentos());
+        principal.getProdutos().addAll(principal.getComputador());
+        principal.getProdutos().addAll(principal.getCooler());
+        principal.getProdutos().addAll(principal.getFonte());
+        principal.getProdutos().addAll(principal.getGabinete());
+        principal.getProdutos().addAll(principal.getHeadset());
+        principal.getProdutos().addAll(principal.getMemoriaRAM());
+        principal.getProdutos().addAll(principal.getMonitor());
+        principal.getProdutos().addAll(principal.getMouse());
+        principal.getProdutos().addAll(principal.getNotebook());
+        principal.getProdutos().addAll(principal.getPlacaDeVideo());
+        principal.getProdutos().addAll(principal.getPlacaMae());
+        principal.getProdutos().addAll(principal.getProcessador());
+        principal.getProdutos().addAll(principal.getTeclado());
+        Utilitarios.entrarTelaCategorias(telaCategorias, this, tfPesquisa.getText());
+    }//GEN-LAST:event_btPesquisaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JButton btAddCart;
@@ -556,7 +541,6 @@ public class TelaProduto extends javax.swing.JFrame {
     private javax.swing.JButton btCart;
     private javax.swing.JButton btComputador;
     private javax.swing.JButton btCooler;
-    private javax.swing.JButton btFavorites;
     private javax.swing.JButton btFonte;
     private javax.swing.JButton btGabinete;
     private javax.swing.JButton btHeadset;
@@ -570,6 +554,7 @@ public class TelaProduto extends javax.swing.JFrame {
     private javax.swing.JButton btProcessador;
     private javax.swing.JButton btSair;
     private javax.swing.JButton btTeclado;
+    private javax.swing.JButton btaux;
     private javax.swing.JLabel icon;
     private javax.swing.JLabel imagemProduto;
     private javax.swing.JScrollPane jScrollPane1;
