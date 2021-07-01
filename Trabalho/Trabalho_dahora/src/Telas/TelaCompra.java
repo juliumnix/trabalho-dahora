@@ -79,6 +79,45 @@ public class TelaCompra extends javax.swing.JFrame implements MapManipulator{
         
         }
     }
+    
+        public void verifyContentTelaCompra () {
+        this.construtorTelaCompra();
+        jPanel1.revalidate();
+        jPanel1.repaint();
+        
+    }
+    
+    public void construtorTelaCompra () {
+        jPanel1.removeAll();
+        jPanel1.setLayout(new FlowLayout());
+        for (Map.Entry<Integer, String> entry : telaPrincipal.getFavoritos().entrySet()) {
+          JLabel _lbl = new JLabel("<html><div><p style='color: #FFCA80; text-align: center;'>id:"+entry.getKey()+" "+entry.getValue()+"</p></div></html>");
+          _lbl.setText(entry.getValue()); 
+          int width = _lbl.getText().length();
+          if(width > 10) {
+             _lbl.setFont(new Font("Dialog", 0, 10));  
+          }
+          _lbl.setForeground(new Color(255,202,128));
+          
+          _lbl.setMinimumSize(new Dimension(116, 16));
+          JButton botaoDelete = new JButton ("<html><div><p style=' color: #FFCA80; background: #7970A9; text-align: center;'>Delete</p></div></html>");
+          botaoDelete.setBackground(new Color(121,112,169));
+          botaoDelete.addActionListener(new ActionListener(){
+              @Override
+              public void actionPerformed(ActionEvent e) {
+              String action = e.getActionCommand();
+              int value = Integer.parseInt(action);
+              removefavorito(value);
+              }
+              
+          });
+            botaoDelete.setActionCommand(entry.getKey().toString());
+            jPanel1.add(_lbl);
+            jPanel1.add(botaoDelete);
+        
+        
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -116,6 +155,18 @@ public class TelaCompra extends javax.swing.JFrame implements MapManipulator{
         setTitle("BOOM - Loja de Informática");
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bg.setBackground(new java.awt.Color(34, 33, 44));
@@ -398,6 +449,11 @@ public class TelaCompra extends javax.swing.JFrame implements MapManipulator{
         jButton1.setForeground(new java.awt.Color(69, 65, 88));
         jButton1.setText("Finalizar");
         jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         produtos.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, 109, 25));
 
         jPanel1.setBackground(new java.awt.Color(121, 112, 169));
@@ -552,6 +608,22 @@ public class TelaCompra extends javax.swing.JFrame implements MapManipulator{
         Utilitarios.entrarTelaCategorias(telaCategorias, this, tfPesquisa.getText());
     }//GEN-LAST:event_btPesquisaActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        this.verifyContentTelaCompra();
+        jPanel1.revalidate();
+        jPanel1.repaint();    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        telaPrincipal.getFavoritos().clear();
+        jOptionPane1.showMessageDialog(null, "Compra finalizada com sucesso, obrigado");
+        this.verifyContentFavorites();
+        this.verifyContentTelaCompra();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JButton btArmazenamento;
@@ -593,6 +665,9 @@ public class TelaCompra extends javax.swing.JFrame implements MapManipulator{
         this.constructorValue();    
         popUpMenu.revalidate();
         popUpMenu.repaint();
+        this.construtorTelaCompra();
+        jPanel1.revalidate();
+        jPanel1.repaint();
     }
 
 }
