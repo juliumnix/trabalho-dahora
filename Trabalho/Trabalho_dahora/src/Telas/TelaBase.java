@@ -5,7 +5,7 @@
  */
 package Telas;
 
-import Telas.LoginView;
+import Telas.TelaLogin;
 import java.awt.*;
 import javax.swing.*;
 
@@ -15,9 +15,9 @@ import javax.swing.*;
  */
 public class TelaBase extends javax.swing.JFrame {
 
-    private LoginView login;
+    private TelaLogin login;
 
-    public TelaBase(LoginView login) {
+    public TelaBase(TelaLogin login) {
         this.login = login;
         initComponents();
         apareceImagem();

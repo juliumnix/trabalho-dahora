@@ -5,6 +5,8 @@
  */
 package Codigo;
 
+import java.util.Objects;
+
 /**
  *
  * @author juliu
@@ -20,6 +22,53 @@ public class PlacaDeVideo extends Produto {
         this.memoria = memoria;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PlacaDeVideo other = (PlacaDeVideo) obj;
+        if (this.alimentacao != other.alimentacao) {
+            return false;
+        }
+        if (this.memoria != other.memoria) {
+            return false;
+        }
+        if (!Objects.equals(this.modelo, other.modelo))
+        {
+            return false;
+        }
+        if (Float.floatToIntBits(this.valor) != Float.floatToIntBits(other.valor))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.descricao, other.descricao))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.marca, other.marca))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.categoria, other.categoria))
+        {
+            return false;
+        }
+        return true;
+    }
+    
     public boolean getAlimentacao() {
         return alimentacao;
     }

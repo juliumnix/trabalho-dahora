@@ -5,6 +5,8 @@
  */
 package Codigo;
 
+import java.util.Objects;
+
 /**
  *
  * @author juliu
@@ -26,6 +28,65 @@ public class PlacaMae extends Produto {
         this.entradasPCIExpress = entradasPCIExpress;
         this.tamanho = tamanho;
         this.bluetooth = bluetooth;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PlacaMae other = (PlacaMae) obj;
+        if (this.wifi != other.wifi) {
+            return false;
+        }
+        if (this.entradasRAM != other.entradasRAM) {
+            return false;
+        }
+        if (this.entradasUSB != other.entradasUSB) {
+            return false;
+        }
+        if (this.entradasPCIExpress != other.entradasPCIExpress) {
+            return false;
+        }
+        if (this.bluetooth != other.bluetooth) {
+            return false;
+        }
+        if (!Objects.equals(this.tamanho, other.tamanho)) {
+            return false;
+        }
+        if (!Objects.equals(this.modelo, other.modelo))
+        {
+            return false;
+        }
+        if (Float.floatToIntBits(this.valor) != Float.floatToIntBits(other.valor))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.descricao, other.descricao))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.marca, other.marca))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.categoria, other.categoria))
+        {
+            return false;
+        }
+        return true;
     }
 
     public boolean getWifi() {

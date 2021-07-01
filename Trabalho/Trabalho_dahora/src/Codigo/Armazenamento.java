@@ -57,6 +57,26 @@ public class Armazenamento extends Produto {
             
             return false;
         }
+        if (!Objects.equals(this.modelo, other.modelo))
+        {
+            return false;
+        }
+        if (Float.floatToIntBits(this.valor) != Float.floatToIntBits(other.valor))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.descricao, other.descricao))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.marca, other.marca))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.categoria, other.categoria))
+        {
+            return false;
+        }
         return true;
     }
     

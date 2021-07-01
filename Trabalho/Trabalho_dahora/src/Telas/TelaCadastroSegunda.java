@@ -12,10 +12,8 @@ import Codigo.PlacaDeVideo;
 import Codigo.PlacaMae;
 import Codigo.Processador;
 import Codigo.Teclado;
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.ComboBoxModel;
+import Codigo.Utilitarios;
+import java.awt.Toolkit;
 
 public class TelaCadastroSegunda extends javax.swing.JFrame {
     private TelaCadastroPrimeira primeira;
@@ -28,7 +26,14 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         this.categoria = primeira.getCategoria();
         initComponents();
         componentesCategoria();
+        configurarTela();
         
+    }
+    
+    public void configurarTela()
+    {
+        Utilitarios.centralizarTela(this);
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
     }
     
     public void setarVisibleFalse ()
@@ -545,6 +550,7 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         Cadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastrar Produto");
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -675,56 +681,76 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastrarActionPerformed
-        switch (this.categoria)
+        try 
         {
-            case "Armazenamento":
-                gerarArmazenamento ();
-                principal.aparecerComboComparar ();
-                break;
-            case "Cooler":
-                gerarCooler ();
-                principal.aparecerComboComparar ();
-                break;
-            case "Fonte":
-                gerarFonte ();
-                principal.aparecerComboComparar ();
-                break;
-            case "Gabinete":
-                gerarGabinete();
-                principal.aparecerComboComparar ();
-                break;
-            case "Headset":
-                gerarHeadset ();
-                principal.aparecerComboComparar ();
-                break;
-            case "Memória RAM":
-                gerarMemoriaRam ();
-                principal.aparecerComboComparar ();
-                break;
-            case "Monitor":
-                gerarMonitor ();
-                principal.aparecerComboComparar ();
-                break;
-            case "Mouse":
-                gerarMouse ();
-                principal.aparecerComboComparar ();
-                break;
-            case "Placa de Vídeo":
-                gerarPlacaDeVideo();
-                principal.aparecerComboComparar ();
-                break;
-            case "Placa Mãe":
-                gerarPlacaMae();
-                principal.aparecerComboComparar ();
-                break;
-            case "Processador":
-                gerarProcessador ();
-                principal.aparecerComboComparar ();
-                break;
-            case "Teclado":
-                gerarTeclado();
-                principal.aparecerComboComparar ();
-                break;
+            switch (this.categoria)
+            {
+                case "Armazenamento":
+                    gerarArmazenamento ();
+                    principal.organizarProdutosGeral();
+                    principal.alterarComboBox ();
+                    break;
+                case "Cooler":
+                    gerarCooler ();
+                    principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
+                    break;
+                case "Fonte":
+                    gerarFonte ();
+                    principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
+                    break;
+                case "Gabinete":
+                    gerarGabinete();
+                    principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
+                    break;
+                case "Headset":
+                    gerarHeadset ();
+                    principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
+                    break;
+                case "Memória RAM":
+                    gerarMemoriaRam ();
+                    principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
+                    break;
+                case "Monitor":
+                    gerarMonitor ();
+                    principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
+                    break;
+                case "Mouse":
+                    gerarMouse ();
+                    principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
+                    break;
+                case "Placa de Vídeo":
+                    gerarPlacaDeVideo();
+                    principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
+                    break;
+                case "Placa Mãe":
+                    gerarPlacaMae();
+                    principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
+                    break;
+                case "Processador":
+                    gerarProcessador ();
+                    principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
+                    break;
+                case "Teclado":
+                    gerarTeclado();
+                    principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
+                    break;
+            }
+            
+            
+        } catch (Exception e) 
+        {
+            jOptionPane1.showMessageDialog(null, "Preencha todos os campos");
         }
     }//GEN-LAST:event_CadastrarActionPerformed
 
