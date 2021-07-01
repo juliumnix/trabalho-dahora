@@ -5,6 +5,8 @@
  */
 package Codigo;
 
+import java.util.Objects;
+
 /**
  *
  * @author Mateus
@@ -23,6 +25,59 @@ public class Teclado extends Produto{
         this.numerico = numerico;
         this.semFio = semFio;
         this.bluetooth = bluetooth;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Teclado other = (Teclado) obj;
+        if (this.numerico != other.numerico) {
+            return false;
+        }
+        if (this.semFio != other.semFio) {
+            return false;
+        }
+        if (this.bluetooth != other.bluetooth) {
+            return false;
+        }
+        if (!Objects.equals(this.tipo, other.tipo)) {
+            return false;
+        }
+        if (!Objects.equals(this.modelo, other.modelo))
+        {
+            return false;
+        }
+        if (Float.floatToIntBits(this.valor) != Float.floatToIntBits(other.valor))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.descricao, other.descricao))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.marca, other.marca))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.categoria, other.categoria))
+        {
+            return false;
+        }
+        return true;
     }
     
     public String getTipo ()

@@ -1,16 +1,25 @@
 package Codigo;
 
 import Telas.TelaCategorias;
+import Telas.TelaCompra;
 import Telas.TelaLogin;
 import Telas.TelaPrincipal;
 import Telas.TelaProduto;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
+import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -121,6 +130,8 @@ public class Utilitarios {
         centralizarTela(telaPrincipal);
         telaPrincipal.alterarComboBox();
         telaPrincipal.getIcon().requestFocus();
+        telaPrincipal.verifyContentFavorites();
+        telaPrincipal.getPopUpMenu().setVisible(false);
     }
     
     public final static void entrarTelaCategorias (TelaCategorias telaCategorias, JFrame other)
@@ -130,6 +141,8 @@ public class Utilitarios {
         centralizarTela(telaCategorias);
         telaCategorias.ObjetosNovaPagina();
         telaCategorias.getIcon().requestFocus();
+        telaCategorias.verifyContentFavorites();
+        telaCategorias.getPopUpMenu().setVisible(false);
     }
     
     public final static void entrarTelaCategorias (TelaCategorias telaCategorias, JFrame other, String pesquisa)
@@ -139,6 +152,8 @@ public class Utilitarios {
         centralizarTela(telaCategorias);
         telaCategorias.ObjetosNovaPagina(pesquisa);
         telaCategorias.getIcon().requestFocus();
+        telaCategorias.verifyContentFavorites();
+        telaCategorias.getPopUpMenu().setVisible(false);
     }
     
     public final static void entrarTelaProduto (TelaProduto telaProduto, JFrame other)
@@ -146,5 +161,16 @@ public class Utilitarios {
         other.setVisible(false);
         telaProduto.setVisible(true);
         centralizarTela(telaProduto);
+        telaProduto.verifyContentFavorites();
+        telaProduto.getPopUpMenu().setVisible(false);
+    }
+    
+    public final static void entrarTelaCompra (TelaCompra telaCompra, JFrame other)
+    {
+        other.setVisible(false);
+        telaCompra.setVisible(true);
+        centralizarTela(telaCompra);
+        telaCompra.verifyContentFavorites();
+        telaCompra.getPopUpMenu().setVisible(false);
     }
 }

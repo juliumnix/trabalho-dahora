@@ -687,53 +687,66 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
             {
                 case "Armazenamento":
                     gerarArmazenamento ();
+                    principal.organizarProdutosGeral();
                     principal.alterarComboBox ();
                     break;
                 case "Cooler":
                     gerarCooler ();
                     principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
                     break;
                 case "Fonte":
                     gerarFonte ();
                     principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
                     break;
                 case "Gabinete":
                     gerarGabinete();
                     principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
                     break;
                 case "Headset":
                     gerarHeadset ();
                     principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
                     break;
                 case "Memória RAM":
                     gerarMemoriaRam ();
                     principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
                     break;
                 case "Monitor":
                     gerarMonitor ();
                     principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
                     break;
                 case "Mouse":
                     gerarMouse ();
                     principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
                     break;
                 case "Placa de Vídeo":
                     gerarPlacaDeVideo();
                     principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
                     break;
                 case "Placa Mãe":
                     gerarPlacaMae();
                     principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
                     break;
                 case "Processador":
                     gerarProcessador ();
                     principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
                     break;
                 case "Teclado":
                     gerarTeclado();
                     principal.alterarComboBox ();
+                    principal.organizarProdutosGeral();
                     break;
             }
+            
             
         } catch (Exception e) 
         {

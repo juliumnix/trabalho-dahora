@@ -205,12 +205,14 @@ public class TelaCadastroPrimeira extends javax.swing.JFrame {
             if (this.categoria.equals("Computador"))
             {
                 gerarComputador();
+                principal.organizarProdutosGeral();
                 principal.alterarComboBox ();
             }else
             {
                 if (this.categoria.equals("Notebook"))
                 {
                     gerarNotebook();
+                    principal.organizarProdutosGeral();
                     principal.alterarComboBox ();
                 }else
                 {

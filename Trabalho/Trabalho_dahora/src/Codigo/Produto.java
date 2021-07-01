@@ -10,6 +10,7 @@ package Codigo;
  * @author juliu
  */
 public abstract class Produto implements Comparable<Produto> {
+    protected String auxiliar;
     protected String modelo;
     protected float valor;
     protected String descricao;
@@ -24,6 +25,7 @@ public abstract class Produto implements Comparable<Produto> {
         this.marca = marca;
         this.categoria = categoria;
         this.imagem = imagem;
+        this.auxiliar = "";
     };
 
     //gets
@@ -97,7 +99,15 @@ public abstract class Produto implements Comparable<Produto> {
             this.imagem = imagem;
         }
     }
+
+    public String getAuxiliar() {
+        return auxiliar;
+    }
     
+    public void setAuxiliar (String auxiliar)
+    {
+        this.auxiliar = auxiliar;
+    }
     
 
     @Override
@@ -113,7 +123,7 @@ public abstract class Produto implements Comparable<Produto> {
     
     @Override
     public int compareTo(Produto other) {
-        int compareInt = this.modelo.compareTo(other.modelo);
+        int compareInt = this.auxiliar.compareTo(other.auxiliar);
         if (compareInt < 0) return -1; //this.modelo é maior
         if (compareInt > 0) return 1; // other.modelo é maior
         return 0; //eles são iguais

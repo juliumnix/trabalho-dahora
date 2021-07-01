@@ -1,21 +1,28 @@
 package Telas;
 
+import Codigo.MapManipulator;
 import Codigo.Utilitarios;
 import Telas.TelaLogin;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Map;
 import javax.swing.*;
 
-public class TelaProduto extends javax.swing.JFrame {
+public class TelaProduto extends javax.swing.JFrame implements MapManipulator{
     //telas
     private TelaLogin telaLogin;
-    private TelaPrincipal principal;
+    private TelaPrincipal telaPrincipal;
     private TelaCategorias telaCategorias;
+    private TelaCompra telaCompra;
+    private int index;
 
     public TelaProduto(TelaCategorias categoria, TelaPrincipal principal, TelaLogin login) {
         //telas
         this.telaLogin = login;
-        this.principal = principal;
+        this.telaPrincipal = principal;
         this.telaCategorias = categoria;
+        this.telaCompra = new TelaCompra(telaPrincipal, telaCategorias, this, telaLogin);
         initComponents();
         configurarTela();
     }
@@ -31,16 +38,72 @@ public class TelaProduto extends javax.swing.JFrame {
         popUpMenu.setVisible(false); 
     }
     
-    public void construirProduto (int index)
+    public JPanel getPopUpMenu ()
     {
-        Utilitarios.criarPainelProduto(principal.getProdutos().get(index).getImagem(), imagemProduto, principal.getProdutos().get(index).getModelo()+" R$ "+principal.getProdutos().get(index).getValor(), tituloProduto);
-        taDescricao.setText(principal.getProdutos().get(index).imprimirDados(principal.getProdutos().get(index).getCategoria()));
+        return this.popUpMenu;
+    }
+    
+    public void construirProduto (int index, String modo)
+    {
+        this.index = index;
+        switch (modo)
+        {
+            case "EmUso":
+                Utilitarios.criarPainelProduto(telaPrincipal.getProdutosEmUso().get(this.index).getImagem(), imagemProduto, telaPrincipal.getProdutosEmUso().get(this.index).getModelo()+" R$ "+telaPrincipal.getProdutosEmUso().get(this.index).getValor(), tituloProduto);
+                taDescricao.setText(telaPrincipal.getProdutosEmUso().get(this.index).imprimirDados(telaPrincipal.getProdutosEmUso().get(this.index).getCategoria()));
+                break;
+            case "Geral":
+                Utilitarios.criarPainelProduto(telaPrincipal.getProdutosGeral().get(this.index).getImagem(), imagemProduto, telaPrincipal.getProdutosGeral().get(this.index).getModelo()+" R$ "+telaPrincipal.getProdutosGeral().get(this.index).getValor(), tituloProduto);
+                taDescricao.setText(telaPrincipal.getProdutosGeral().get(this.index).imprimirDados(telaPrincipal.getProdutosGeral().get(this.index).getCategoria()));
+                break;
+        }
+        
+    }
+    
+        public void verifyContentFavorites () {
+        this.constructorValue();
+        popUpMenu.revalidate();
+        popUpMenu.repaint();
+        
+    }
+   
+    public void constructorValue () {
+        popUpMenu.removeAll();
+        popUpMenu.setLayout(new FlowLayout());
+        for (Map.Entry<Integer, String> entry : telaPrincipal.getFavoritos().entrySet()) {
+          JLabel _lbl = new JLabel("<html><div><p style='color: #FFCA80; text-align: center;'>id:"+entry.getKey()+" "+entry.getValue()+"</p></div></html>");
+          _lbl.setText(entry.getValue()); 
+          int width = _lbl.getText().length();
+          if(width > 10) {
+             _lbl.setFont(new Font("Dialog", 0, 10));  
+          }
+          _lbl.setForeground(new Color(255,202,128));
+          
+          _lbl.setMinimumSize(new Dimension(116, 16));
+          JButton botaoDelete = new JButton ("<html><div><p style=' color: #FFCA80; background: #7970A9; text-align: center;'>Delete</p></div></html>");
+          botaoDelete.setBackground(new Color(121,112,169));
+          botaoDelete.addActionListener(new ActionListener(){
+              @Override
+              public void actionPerformed(ActionEvent e) {
+              String action = e.getActionCommand();
+              int value = Integer.parseInt(action);
+              removefavorito(value);
+              }
+              
+          });
+            botaoDelete.setActionCommand(entry.getKey().toString());
+            popUpMenu.add(_lbl);
+            popUpMenu.add(botaoDelete);
+        
+        
+        }
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jOptionPane1 = new javax.swing.JOptionPane();
         bg = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
         icon = new javax.swing.JLabel();
@@ -334,6 +397,11 @@ public class TelaProduto extends javax.swing.JFrame {
 
         btaux.setBackground(new java.awt.Color(121, 112, 169));
         btaux.setBorder(null);
+        btaux.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btauxActionPerformed(evt);
+            }
+        });
         bg.add(btaux, new org.netbeans.lib.awtextra.AbsoluteConstraints(732, 6, 28, 28));
 
         btCart.setBackground(new java.awt.Color(121, 112, 169));
@@ -356,6 +424,11 @@ public class TelaProduto extends javax.swing.JFrame {
 
         btAddCart.setBackground(new java.awt.Color(121, 112, 169));
         btAddCart.setBorder(null);
+        btAddCart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddCartActionPerformed(evt);
+            }
+        });
 
         tituloProduto.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         tituloProduto.setForeground(new java.awt.Color(255, 149, 128));
@@ -372,14 +445,14 @@ public class TelaProduto extends javax.swing.JFrame {
         produto.setLayout(produtoLayout);
         produtoLayout.setHorizontalGroup(
             produtoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(produtoLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, produtoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(produtoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(imagemProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                     .addGroup(produtoLayout.createSequentialGroup()
                         .addComponent(tituloProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btAddCart, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(imagemProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
                 .addGap(250, 250, 250))
         );
@@ -424,8 +497,8 @@ public class TelaProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_btCartActionPerformed
 
     private void btArmazenamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btArmazenamentoActionPerformed
-        principal.getProdutos().clear();
-        principal.getProdutos().addAll(principal.getArmazenamentos());
+        telaPrincipal.getProdutosEmUso().clear();
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getArmazenamentos());
         Utilitarios.entrarTelaCategorias(telaCategorias, this);
     }//GEN-LAST:event_btArmazenamentoActionPerformed
 
@@ -434,105 +507,118 @@ public class TelaProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_btSairActionPerformed
 
     private void iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconMouseClicked
-        Utilitarios.entrarTelaPrincipal(principal, this);
+        Utilitarios.entrarTelaPrincipal(telaPrincipal, this);
     }//GEN-LAST:event_iconMouseClicked
 
     private void btComputadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComputadorActionPerformed
-        principal.getProdutos().clear();
-        principal.getProdutos().addAll(principal.getComputador());
+        telaPrincipal.getProdutosEmUso().clear();
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getComputador());
         Utilitarios.entrarTelaCategorias(telaCategorias, this);
     }//GEN-LAST:event_btComputadorActionPerformed
 
     private void btCoolerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCoolerActionPerformed
-        principal.getProdutos().clear();
-        principal.getProdutos().addAll(principal.getCooler());
+        telaPrincipal.getProdutosEmUso().clear();
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getCooler());
         Utilitarios.entrarTelaCategorias(telaCategorias, this);
     }//GEN-LAST:event_btCoolerActionPerformed
 
     private void btFonteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFonteActionPerformed
-        principal.getProdutos().clear();
-        principal.getProdutos().addAll(principal.getFonte());
+        telaPrincipal.getProdutosEmUso().clear();
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getFonte());
         Utilitarios.entrarTelaCategorias(telaCategorias, this);
     }//GEN-LAST:event_btFonteActionPerformed
 
     private void btGabineteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGabineteActionPerformed
-        principal.getProdutos().clear();
-        principal.getProdutos().addAll(principal.getGabinete());
+        telaPrincipal.getProdutosEmUso().clear();
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getGabinete());
         Utilitarios.entrarTelaCategorias(telaCategorias, this);
     }//GEN-LAST:event_btGabineteActionPerformed
 
     private void btHeadsetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHeadsetActionPerformed
-        principal.getProdutos().clear();
-        principal.getProdutos().addAll(principal.getHeadset());
+        telaPrincipal.getProdutosEmUso().clear();
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getHeadset());
         Utilitarios.entrarTelaCategorias(telaCategorias, this);
     }//GEN-LAST:event_btHeadsetActionPerformed
 
     private void btMemoriaRAMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMemoriaRAMActionPerformed
-        principal.getProdutos().clear();
-        principal.getProdutos().addAll(principal.getMemoriaRAM());
+        telaPrincipal.getProdutosEmUso().clear();
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getMemoriaRAM());
         Utilitarios.entrarTelaCategorias(telaCategorias, this);
     }//GEN-LAST:event_btMemoriaRAMActionPerformed
 
     private void btMonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMonitorActionPerformed
-        principal.getProdutos().clear();
-        principal.getProdutos().addAll(principal.getMonitor());
+        telaPrincipal.getProdutosEmUso().clear();
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getMonitor());
         Utilitarios.entrarTelaCategorias(telaCategorias, this);
     }//GEN-LAST:event_btMonitorActionPerformed
 
     private void btMouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMouseActionPerformed
-        principal.getProdutos().clear();
-        principal.getProdutos().addAll(principal.getMouse());
+        telaPrincipal.getProdutosEmUso().clear();
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getMouse());
         Utilitarios.entrarTelaCategorias(telaCategorias, this);
     }//GEN-LAST:event_btMouseActionPerformed
 
     private void btNotebookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNotebookActionPerformed
-        principal.getProdutos().clear();
-        principal.getProdutos().addAll(principal.getNotebook());
+        telaPrincipal.getProdutosEmUso().clear();
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getNotebook());
         Utilitarios.entrarTelaCategorias(telaCategorias, this);
     }//GEN-LAST:event_btNotebookActionPerformed
 
     private void btPlacaDeVideoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPlacaDeVideoActionPerformed
-        principal.getProdutos().clear();
-        principal.getProdutos().addAll(principal.getPlacaDeVideo());
+        telaPrincipal.getProdutosEmUso().clear();
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getPlacaDeVideo());
         Utilitarios.entrarTelaCategorias(telaCategorias, this);
     }//GEN-LAST:event_btPlacaDeVideoActionPerformed
 
     private void btPlacaMaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPlacaMaeActionPerformed
-        principal.getProdutos().clear();
-        principal.getProdutos().addAll(principal.getPlacaMae());
+        telaPrincipal.getProdutosEmUso().clear();
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getPlacaMae());
         Utilitarios.entrarTelaCategorias(telaCategorias, this);
     }//GEN-LAST:event_btPlacaMaeActionPerformed
 
     private void btProcessadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcessadorActionPerformed
-        principal.getProdutos().clear();
-        principal.getProdutos().addAll(principal.getProcessador());
+        telaPrincipal.getProdutosEmUso().clear();
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getProcessador());
         Utilitarios.entrarTelaCategorias(telaCategorias, this);
     }//GEN-LAST:event_btProcessadorActionPerformed
 
     private void btTecladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTecladoActionPerformed
-        principal.getProdutos().clear();
-        principal.getProdutos().addAll(principal.getTeclado());
+        telaPrincipal.getProdutosEmUso().clear();
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getTeclado());
         Utilitarios.entrarTelaCategorias(telaCategorias, this);
     }//GEN-LAST:event_btTecladoActionPerformed
 
     private void btPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisaActionPerformed
-        principal.getProdutos().clear();
-        principal.getProdutos().addAll(principal.getArmazenamentos());
-        principal.getProdutos().addAll(principal.getComputador());
-        principal.getProdutos().addAll(principal.getCooler());
-        principal.getProdutos().addAll(principal.getFonte());
-        principal.getProdutos().addAll(principal.getGabinete());
-        principal.getProdutos().addAll(principal.getHeadset());
-        principal.getProdutos().addAll(principal.getMemoriaRAM());
-        principal.getProdutos().addAll(principal.getMonitor());
-        principal.getProdutos().addAll(principal.getMouse());
-        principal.getProdutos().addAll(principal.getNotebook());
-        principal.getProdutos().addAll(principal.getPlacaDeVideo());
-        principal.getProdutos().addAll(principal.getPlacaMae());
-        principal.getProdutos().addAll(principal.getProcessador());
-        principal.getProdutos().addAll(principal.getTeclado());
+        telaPrincipal.getProdutosEmUso().clear();
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getArmazenamentos());
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getComputador());
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getCooler());
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getFonte());
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getGabinete());
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getHeadset());
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getMemoriaRAM());
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getMonitor());
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getMouse());
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getNotebook());
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getPlacaDeVideo());
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getPlacaMae());
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getProcessador());
+        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getTeclado());
         Utilitarios.entrarTelaCategorias(telaCategorias, this, tfPesquisa.getText());
     }//GEN-LAST:event_btPesquisaActionPerformed
+
+    private void btAddCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddCartActionPerformed
+        if(this.telaPrincipal.getFavoritos().size() == 10){
+            jOptionPane1.showMessageDialog(null, "Ops, você só pode adicionar 10 itens aos seus favoritos");
+        } else {
+            this.adicionaFavorito(telaPrincipal.getProdutosEmUso().get(index).getModelo());
+            this.verifyContentFavorites();
+        }
+    }//GEN-LAST:event_btAddCartActionPerformed
+
+    private void btauxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btauxActionPerformed
+        Utilitarios.entrarTelaCompra(telaCompra, this);
+    }//GEN-LAST:event_btauxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
@@ -557,6 +643,7 @@ public class TelaProduto extends javax.swing.JFrame {
     private javax.swing.JButton btaux;
     private javax.swing.JLabel icon;
     private javax.swing.JLabel imagemProduto;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel popUpMenu;
@@ -565,4 +652,18 @@ public class TelaProduto extends javax.swing.JFrame {
     private javax.swing.JTextField tfPesquisa;
     private javax.swing.JLabel tituloProduto;
     // End of variables declaration//GEN-END:variables
+    @Override
+    public void adicionaFavorito(String value) {
+        telaPrincipal.getFavoritos().put(telaPrincipal.getValueTeste(), value);
+        telaPrincipal.adicionarValueTeste();
+    }
+
+    @Override
+    public void removefavorito(int key) {
+        telaPrincipal.getFavoritos().remove(key);
+        this.constructorValue();    
+        popUpMenu.revalidate();
+        popUpMenu.repaint();
+    }
+
 }
