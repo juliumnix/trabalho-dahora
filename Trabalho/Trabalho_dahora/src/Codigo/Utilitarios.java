@@ -132,6 +132,7 @@ public class Utilitarios {
         telaPrincipal.getIcon().requestFocus();
         telaPrincipal.verifyContentFavorites();
         telaPrincipal.getPopUpMenu().setVisible(false);
+        telaPrincipal.promocoes();
     }
     
     public final static void entrarTelaCategorias (TelaCategorias telaCategorias, JFrame other)
@@ -139,6 +140,7 @@ public class Utilitarios {
         other.setVisible(false);
         telaCategorias.setVisible(true);
         centralizarTela(telaCategorias);
+        telaCategorias.setPesquisa(false);
         telaCategorias.ObjetosNovaPagina();
         telaCategorias.getIcon().requestFocus();
         telaCategorias.verifyContentFavorites();
@@ -150,6 +152,7 @@ public class Utilitarios {
         other.setVisible(false);
         telaCategorias.setVisible(true);
         centralizarTela(telaCategorias);
+        telaCategorias.setPesquisa(true);
         telaCategorias.ObjetosNovaPagina(pesquisa);
         telaCategorias.getIcon().requestFocus();
         telaCategorias.verifyContentFavorites();

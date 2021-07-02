@@ -23,6 +23,8 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
     private List<JPanel> jPanells;
     private List<JLabel> jLabellsImg;
     private List<JLabel> jLabellsText;
+    
+    private boolean pesquisa;
 
     public TelaCategorias(TelaPrincipal principal)  {
        //telas
@@ -35,11 +37,21 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         this.jLabellsImg = new ArrayList<>();
         this.jLabellsText = new ArrayList<>();
         
+        pesquisa = false;
+        
         initComponents();
         addJPanel();
         addJLabelImg();
         addJLabelText();
         configurarTela();
+    }
+
+    public boolean getPesquisa() {
+        return pesquisa;
+    }
+
+    public void setPesquisa(boolean pesquisa) {
+        this.pesquisa = pesquisa;
     }
     
     public void addJPanel ()
@@ -817,66 +829,105 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
     }//GEN-LAST:event_btTecladoActionPerformed
 
     private void btPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisaActionPerformed
-        telaPrincipal.getProdutosEmUso().clear();
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getArmazenamentos());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getComputador());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getCooler());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getFonte());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getGabinete());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getHeadset());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getMemoriaRAM());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getMonitor());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getMouse());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getNotebook());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getPlacaDeVideo());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getPlacaMae());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getProcessador());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getTeclado());
         ObjetosNovaPagina (tfPesquisa.getText());
     }//GEN-LAST:event_btPesquisaActionPerformed
 
     private void produto1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto1MouseClicked
-        telaProduto.construirProduto(Integer.parseInt(produto1.getName()), "EmUso");
+        if (pesquisa == true)
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto1.getName()), "Geral");
+        }else
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto1.getName()), "EmUso");
+        }
         Utilitarios.entrarTelaProduto(telaProduto, this);
     }//GEN-LAST:event_produto1MouseClicked
 
     private void produto2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto2MouseClicked
-        telaProduto.construirProduto(Integer.parseInt(produto2.getName()), "EmUso");
+        if (pesquisa == true)
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto2.getName()), "Geral");
+        }else
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto2.getName()), "EmUso");
+        }
         Utilitarios.entrarTelaProduto(telaProduto, this);
     }//GEN-LAST:event_produto2MouseClicked
 
     private void produto3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto3MouseClicked
-        telaProduto.construirProduto(Integer.parseInt(produto3.getName()), "EmUso");
+        if (pesquisa == true)
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto3.getName()), "Geral");
+        }else
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto3.getName()), "EmUso");
+        }
         Utilitarios.entrarTelaProduto(telaProduto, this);
     }//GEN-LAST:event_produto3MouseClicked
 
     private void produto4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto4MouseClicked
-        telaProduto.construirProduto(Integer.parseInt(produto4.getName()), "EmUso");
+        if (pesquisa == true)
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto4.getName()), "Geral");
+        }else
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto4.getName()), "EmUso");
+        }
         Utilitarios.entrarTelaProduto(telaProduto, this);
     }//GEN-LAST:event_produto4MouseClicked
 
     private void produto5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto5MouseClicked
-        telaProduto.construirProduto(Integer.parseInt(produto5.getName()), "EmUso");
+        if (pesquisa == true)
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto5.getName()), "Geral");
+        }else
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto5.getName()), "EmUso");
+        }
         Utilitarios.entrarTelaProduto(telaProduto, this);
     }//GEN-LAST:event_produto5MouseClicked
 
     private void produto6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto6MouseClicked
-        telaProduto.construirProduto(Integer.parseInt(produto6.getName()), "EmUso");
+        if (pesquisa == true)
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto6.getName()), "Geral");
+        }else
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto6.getName()), "EmUso");
+        }
         Utilitarios.entrarTelaProduto(telaProduto, this);
     }//GEN-LAST:event_produto6MouseClicked
 
     private void produto7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto7MouseClicked
-        telaProduto.construirProduto(Integer.parseInt(produto7.getName()), "EmUso");
+        if (pesquisa == true)
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto7.getName()), "Geral");
+        }else
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto7.getName()), "EmUso");
+        }
         Utilitarios.entrarTelaProduto(telaProduto, this);
     }//GEN-LAST:event_produto7MouseClicked
 
     private void produto8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto8MouseClicked
-        telaProduto.construirProduto(Integer.parseInt(produto8.getName()), "EmUso");
+        if (pesquisa == true)
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto8.getName()), "Geral");
+        }else
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto8.getName()), "EmUso");
+        }
         Utilitarios.entrarTelaProduto(telaProduto, this);
     }//GEN-LAST:event_produto8MouseClicked
 
     private void produto9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto9MouseClicked
-        telaProduto.construirProduto(Integer.parseInt(produto9.getName()), "EmUso");
+        if (pesquisa == true)
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto9.getName()), "Geral");
+        }else
+        {
+            telaProduto.construirProduto(Integer.parseInt(produto9.getName()), "EmUso");
+        }
         Utilitarios.entrarTelaProduto(telaProduto, this);
     }//GEN-LAST:event_produto9MouseClicked
 
