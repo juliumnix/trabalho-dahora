@@ -70,7 +70,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
     private String categoriaEscolhida;
     
     private Map<Integer, String> favoritos;
-    private static int valueTeste;
+    private static int valueID;
   
     public TelaPrincipal(TelaLogin telaLogin) {
         //telas
@@ -102,6 +102,9 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         
         initComponents();
         configurarTela();
+        addJPanel();
+        addJLabelImg();
+        addJLabelText();
     }
     
     public void addJPanel ()
@@ -127,17 +130,19 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
     {
         for (Produto produto: produtosGeral)
         {
-            produto.setAuxiliar(produto.getModelo());
+            produto.setAuxiliar(String.valueOf(produto.getModelo()));
         }
         Collections.sort(produtosGeral);
-        int limitador = produtosGeral.size();
-        if (limitador > 3)
+        System.out.println(produtosGeral.size());
+        int count = 0;
+        for (Produto produto: produtosGeral) 
         {
-            limitador = 3;
-        }
-        for (int i = 0; i < limitador; i++) 
-        {
-            Utilitarios.criarPainelProduto(produtosGeral.get(i).getImagem(), jLabellsImg.get(i), produtosGeral.get(i).getModelo()+" R$ "+produtosGeral.get(i).getValor(), jLabellsText.get(i));
+            if (count >= 3)
+            {
+                break;
+            }
+            Utilitarios.criarPainelProduto(produto.getImagem(), jLabellsImg.get(count), produto.getModelo()+" R$ "+produto.getValor(), jLabellsText.get(count));
+            count++;
         }
         
     }
@@ -608,6 +613,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         bg.add(popUpMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 52, 109, 542));
 
         destaque1.setBackground(new java.awt.Color(69, 65, 88));
+        destaque1.setName("0"); // NOI18N
         destaque1.setPreferredSize(new java.awt.Dimension(170, 170));
         destaque1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -626,6 +632,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         bg.add(destaque1, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 52, -1, -1));
 
         destaque2.setBackground(new java.awt.Color(69, 65, 88));
+        destaque2.setName("1"); // NOI18N
         destaque2.setPreferredSize(new java.awt.Dimension(170, 170));
         destaque2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -644,6 +651,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         bg.add(destaque2, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 52, -1, -1));
 
         destaque3.setBackground(new java.awt.Color(69, 65, 88));
+        destaque3.setName("2"); // NOI18N
         destaque3.setPreferredSize(new java.awt.Dimension(170, 170));
         destaque3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -785,6 +793,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtosEmUso.clear();
             this.produtosEmUso.addAll(armazenamentos);
+//            telaCategorias.setPesquisa(false);
             Utilitarios.entrarTelaCategorias(telaCategorias, this);
         }
     }//GEN-LAST:event_btArmazenamentoActionPerformed
@@ -804,6 +813,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtosEmUso.clear();
             this.produtosEmUso.addAll(computadores);
+ //           telaCategorias.setPesquisa(false);
             Utilitarios.entrarTelaCategorias(telaCategorias, this);
         }
     }//GEN-LAST:event_btComputadorActionPerformed
@@ -819,6 +829,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtosEmUso.clear();
             this.produtosEmUso.addAll(coolers);
+//            telaCategorias.setPesquisa(false);
             Utilitarios.entrarTelaCategorias(telaCategorias, this);
         }
     }//GEN-LAST:event_btCoolerActionPerformed
@@ -834,6 +845,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtosEmUso.clear();
             this.produtosEmUso.addAll(fontes);
+//            telaCategorias.setPesquisa(false);
             Utilitarios.entrarTelaCategorias(telaCategorias, this);
         }
     }//GEN-LAST:event_btFonteActionPerformed
@@ -849,6 +861,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtosEmUso.clear();
             this.produtosEmUso.addAll(gabinetes);
+//            telaCategorias.setPesquisa(false);
             Utilitarios.entrarTelaCategorias(telaCategorias, this);
         }
     }//GEN-LAST:event_btGabineteActionPerformed
@@ -864,6 +877,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtosEmUso.clear();
             this.produtosEmUso.addAll(headsets);
+//            telaCategorias.setPesquisa(false);
             Utilitarios.entrarTelaCategorias(telaCategorias, this);
         }
     }//GEN-LAST:event_btHeadsetActionPerformed
@@ -879,6 +893,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtosEmUso.clear();
             this.produtosEmUso.addAll(memoriasRam);
+//            telaCategorias.setPesquisa(false);
             Utilitarios.entrarTelaCategorias(telaCategorias, this);
         }
     }//GEN-LAST:event_btMemoriaRAMActionPerformed
@@ -894,6 +909,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtosEmUso.clear();
             this.produtosEmUso.addAll(monitores);
+//            telaCategorias.setPesquisa(false);
             Utilitarios.entrarTelaCategorias(telaCategorias, this);
         }
     }//GEN-LAST:event_btMonitorActionPerformed
@@ -909,6 +925,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtosEmUso.clear();
             this.produtosEmUso.addAll(mouses);
+//            telaCategorias.setPesquisa(false);
             Utilitarios.entrarTelaCategorias(telaCategorias, this);
         }
     }//GEN-LAST:event_btMouseActionPerformed
@@ -924,6 +941,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtosEmUso.clear();
             this.produtosEmUso.addAll(notebooks);
+ //           telaCategorias.setPesquisa(false);
             Utilitarios.entrarTelaCategorias(telaCategorias, this);
         }
     }//GEN-LAST:event_btNotebookActionPerformed
@@ -939,6 +957,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtosEmUso.clear();
             this.produtosEmUso.addAll(placasDeVideos);
+//            telaCategorias.setPesquisa(false);
             Utilitarios.entrarTelaCategorias(telaCategorias, this);
         }
     }//GEN-LAST:event_btPlacaDeVideoActionPerformed
@@ -954,6 +973,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtosEmUso.clear();
             this.produtosEmUso.addAll(placasMae);
+//            telaCategorias.setPesquisa(false);
             Utilitarios.entrarTelaCategorias(telaCategorias, this);
         }
     }//GEN-LAST:event_btPlacaMaeActionPerformed
@@ -969,6 +989,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtosEmUso.clear();
             this.produtosEmUso.addAll(processadores);
+//            telaCategorias.setPesquisa(false);
             Utilitarios.entrarTelaCategorias(telaCategorias, this);
         }
     }//GEN-LAST:event_btProcessadorActionPerformed
@@ -984,6 +1005,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         {
             this.produtosEmUso.clear();
             this.produtosEmUso.addAll(teclados);
+//            telaCategorias.setPesquisa(false);
             Utilitarios.entrarTelaCategorias(telaCategorias, this);
         }
     }//GEN-LAST:event_btTecladoActionPerformed
@@ -1000,12 +1022,12 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
     }
 
     public static int getValueTeste() {
-        return valueTeste;
+        return valueID;
     }
     
     public static int adicionarValueTeste()
     {
-        return valueTeste++;
+        return valueID++;
     }
    
     public void constructorValue () {
@@ -1224,33 +1246,36 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
     }//GEN-LAST:event_cbTipoItemStateChanged
 
     private void btPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisaActionPerformed
-        produtosEmUso.clear();
-        produtosEmUso.addAll(armazenamentos);
-        produtosEmUso.addAll(computadores);
-        produtosEmUso.addAll(coolers);
-        produtosEmUso.addAll(fontes);
-        produtosEmUso.addAll(gabinetes);
-        produtosEmUso.addAll(headsets);
-        produtosEmUso.addAll(memoriasRam);
-        produtosEmUso.addAll(monitores);
-        produtosEmUso.addAll(mouses);
-        produtosEmUso.addAll(notebooks);
-        produtosEmUso.addAll(placasDeVideos);
-        produtosEmUso.addAll(placasMae);
-        produtosEmUso.addAll(processadores);
-        produtosEmUso.addAll(teclados);
+//        produtosEmUso.clear();
+//        produtosEmUso.addAll(armazenamentos);
+//        produtosEmUso.addAll(computadores);
+//        produtosEmUso.addAll(coolers);
+//        produtosEmUso.addAll(fontes);
+//        produtosEmUso.addAll(gabinetes);
+//        produtosEmUso.addAll(headsets);
+//        produtosEmUso.addAll(memoriasRam);
+//        produtosEmUso.addAll(monitores);
+//        produtosEmUso.addAll(mouses);
+//        produtosEmUso.addAll(notebooks);
+//        produtosEmUso.addAll(placasDeVideos);
+//        produtosEmUso.addAll(placasMae);
+//        produtosEmUso.addAll(processadores);
+//        produtosEmUso.addAll(teclados);
         Utilitarios.entrarTelaCategorias(telaCategorias, this, tfPesquisa.getText());
     }//GEN-LAST:event_btPesquisaActionPerformed
 
     private void destaque1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_destaque1MouseClicked
+        telaProduto.construirProduto(Integer.parseInt(destaque1.getName()), "Geral");
         Utilitarios.entrarTelaProduto(telaProduto, this);
     }//GEN-LAST:event_destaque1MouseClicked
 
     private void destaque2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_destaque2MouseClicked
+        telaProduto.construirProduto(Integer.parseInt(destaque2.getName()), "Geral");
         Utilitarios.entrarTelaProduto(telaProduto, this);
     }//GEN-LAST:event_destaque2MouseClicked
 
     private void destaque3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_destaque3MouseClicked
+        telaProduto.construirProduto(Integer.parseInt(destaque3.getName()), "Geral");
         Utilitarios.entrarTelaProduto(telaProduto, this);
     }//GEN-LAST:event_destaque3MouseClicked
 
@@ -1310,8 +1335,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
 
     @Override
     public void adicionaFavorito(String value) {
-        this.favoritos.put(valueTeste, value + valueTeste);
-        valueTeste++;
+        this.favoritos.put(valueID, value + valueID);
+        valueID++;
     }
 
     @Override

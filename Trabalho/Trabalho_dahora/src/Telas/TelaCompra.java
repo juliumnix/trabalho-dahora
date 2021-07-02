@@ -590,21 +590,6 @@ public class TelaCompra extends javax.swing.JFrame implements MapManipulator{
     }//GEN-LAST:event_btTecladoActionPerformed
 
     private void btPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisaActionPerformed
-        telaPrincipal.getProdutosEmUso().clear();
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getArmazenamentos());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getComputador());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getCooler());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getFonte());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getGabinete());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getHeadset());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getMemoriaRAM());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getMonitor());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getMouse());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getNotebook());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getPlacaDeVideo());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getPlacaMae());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getProcessador());
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getTeclado());
         Utilitarios.entrarTelaCategorias(telaCategorias, this, tfPesquisa.getText());
     }//GEN-LAST:event_btPesquisaActionPerformed
 
