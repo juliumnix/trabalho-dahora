@@ -9,8 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class TelaLogin extends javax.swing.JFrame implements Autenticador{
-    TelaPrincipal principal = new TelaPrincipal(this);
+public class TelaLogin extends javax.swing.JFrame {
+//    TelaPrincipal principal = new TelaPrincipal(this);
     
     private String login;
     private String senha;
@@ -132,7 +132,7 @@ public class TelaLogin extends javax.swing.JFrame implements Autenticador{
                     .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -178,7 +178,7 @@ public class TelaLogin extends javax.swing.JFrame implements Autenticador{
     {
         login = tfEmail.getText();
         senha = pfSenha.getText();
-        Utilitarios.entrarTelaPrincipal(principal, this);
+//        Utilitarios.entrarTelaPrincipal(principal, this);
     }
     public void configurarTela(){
         Utilitarios.aparecerImagemLocal(lLogo, "src/imagens/BOOM.png");
@@ -186,6 +186,11 @@ public class TelaLogin extends javax.swing.JFrame implements Autenticador{
         this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
         lLogo.requestFocus();
     }
+    
+    public void exibirTela(){
+        setVisible(true);
+    }
+    
     
     //gets
     public String getLogin ()
@@ -202,37 +207,9 @@ public class TelaLogin extends javax.swing.JFrame implements Autenticador{
         return this.lLogo;
     }
     
-    @Override
-    public boolean verificaAdm() {
-        if (this.login.contains("@adm.com"))
-        {
-            return true;
-        }else
-        {
-            return false;
-        }
-    }
+    
 
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InstantiationException ex) {
-                    Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
-                    Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (UnsupportedLookAndFeelException ex) {
-                    Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                new TelaLogin().setVisible(true);
-                
-            }
-        });
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLogin;
     private javax.swing.JCheckBox ckVisivel;
