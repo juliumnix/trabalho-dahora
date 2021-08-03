@@ -40,10 +40,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import Controlador.ControladorTelaPrincipal;
+
+
 public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator, Comparator<JTextArea>{
     //telas
     private TelaCategorias telaCategorias;
-    private TelaLogin telaLogin;
+//    private TelaLogin telaLogin;
     private TelaProduto telaProduto;
     private TelaCompra telaCompra;
     //coleções
@@ -72,12 +75,12 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
     private Map<Integer, String> favoritos;
     private static int valueID;
   
-    public TelaPrincipal(TelaLogin telaLogin) {
+    public TelaPrincipal() {
         //telas
-        this.telaLogin = telaLogin;
+//        this.telaLogin = telaLogin;
         this.telaCategorias = new TelaCategorias(this);
-        this. telaProduto = new TelaProduto (telaCategorias, this, this.telaLogin);
-        this.telaCompra = new TelaCompra(this, telaCategorias, telaProduto, telaLogin);
+//        this. telaProduto = new TelaProduto (telaCategorias, this, this.telaLogin);
+//        this.telaCompra = new TelaCompra(this, telaCategorias, telaProduto, telaLogin);
         //coleções
         this.armazenamentos = new HashSet<>();
         this.computadores = new HashSet<>();
@@ -226,9 +229,9 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         return this.produtosGeral;
     }
     
-    public TelaLogin getLogin (){
-        return this.telaLogin;
-    }
+//    public TelaLogin getLogin (){
+//        return this.telaLogin;
+//    }
 
     public String getCategoriaEscolhida() {
         return categoriaEscolhida;
@@ -256,6 +259,11 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
         melhorCompra2.setVisible(false);
         popUpMenu.setVisible(false);
     }
+    
+     public void exibirTela(){
+        setVisible(true);
+    }
+    
     
     public void organizarProdutosGeral ()
     {
@@ -785,7 +793,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements MapManipulator,
     private void btArmazenamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btArmazenamentoActionPerformed
         this.categoriaEscolhida = "Armazenamento";
         
-        if (telaLogin.verificaAdm() == true)
+        if ()
         {
             TelaCadastroPrimeira cadastro = new TelaCadastroPrimeira (this);
             cadastro.setVisible(true);
