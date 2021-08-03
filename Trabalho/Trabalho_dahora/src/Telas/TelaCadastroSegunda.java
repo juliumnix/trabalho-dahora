@@ -20,9 +20,7 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
     private TelaPrincipal principal;
     private String categoria;
 
-    public TelaCadastroSegunda(TelaCadastroPrimeira primeira, TelaPrincipal principal) {
-        this.primeira = primeira;
-        this.principal = principal;
+    public TelaCadastroSegunda() {
         this.categoria = primeira.getCategoria();
         initComponents();
         componentesCategoria();
@@ -525,6 +523,10 @@ public class TelaCadastroSegunda extends javax.swing.JFrame {
         {
             jOptionPane1.showMessageDialog(null, "Cadastro duplicado");
         }
+    }
+    
+    public void exibirTela(){
+        setVisible(true);
     }
     
     @SuppressWarnings("unchecked")

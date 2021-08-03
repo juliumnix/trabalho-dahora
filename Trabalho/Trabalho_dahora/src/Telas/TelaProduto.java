@@ -17,12 +17,7 @@ public class TelaProduto extends javax.swing.JFrame implements MapManipulator{
     private TelaCompra telaCompra;
     private int index;
 
-    public TelaProduto(TelaCategorias categoria, TelaPrincipal principal, TelaLogin login) {
-        //telas
-        this.telaLogin = login;
-        this.telaPrincipal = principal;
-        this.telaCategorias = categoria;
-        this.telaCompra = new TelaCompra(telaPrincipal, telaCategorias, this, telaLogin);
+    public TelaProduto() {
         initComponents();
         configurarTela();
     }
@@ -97,6 +92,10 @@ public class TelaProduto extends javax.swing.JFrame implements MapManipulator{
         
         
         }
+    }
+    
+    public void exibirTela(){
+        setVisible(true);
     }
 
     @SuppressWarnings("unchecked")

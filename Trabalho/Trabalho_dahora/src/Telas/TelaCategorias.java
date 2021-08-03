@@ -26,10 +26,8 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
     
     private boolean pesquisa;
 
-    public TelaCategorias(TelaPrincipal principal)  {
+    public TelaCategorias()  {
        //telas
-        this.telaPrincipal = principal;
-        this.telaLogin = principal.getLogin();
         this.telaProduto = new TelaProduto (this, this.telaPrincipal, this.telaLogin);
         this.telaCompra = new TelaCompra(telaPrincipal, this, telaProduto, telaLogin);
         //coleções
@@ -202,6 +200,10 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
     public JPanel getPopUpMenu ()
     {
         return this.popUpMenu;
+    }
+    
+    public void exibirTela(){
+        setVisible(true);
     }
 
     @SuppressWarnings("unchecked")

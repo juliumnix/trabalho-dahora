@@ -1,6 +1,5 @@
 
 import Controlador.ControladorGeral;
-import Controlador.ControladorTelaLogin;
 import Telas.TelaLogin;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +19,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class App {
     
     public static void main(String[] args){
-        ControladorGeral controlador = new ControladorGeral();
+        ControladorGeral controladorGeral = new ControladorGeral();
          java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -34,7 +33,7 @@ public class App {
                 } catch (UnsupportedLookAndFeelException ex) {
                     Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               controlador.exibirTelaLogin();;
+               controladorGeral.getControladorTelaLogin().exibir();
                 
             }
         });

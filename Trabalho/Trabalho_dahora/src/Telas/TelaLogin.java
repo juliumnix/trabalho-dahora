@@ -1,26 +1,67 @@
 package Telas;
 
-import Codigo.Autenticador;
-import Codigo.Utilitarios;
-import java.awt.Toolkit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//JAVA
+import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
+//SWING
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
 
 public class TelaLogin extends javax.swing.JFrame {
-//    TelaPrincipal principal = new TelaPrincipal(this);
-    
-    private String login;
-    private String senha;
-    
 
     public TelaLogin() {
         initComponents();
-        configurarTela();
     }
-
+    
+    //ACOES
+    public void adicionarAcaoBtLogin(ActionListener acao)
+    {
+        btLogin.addActionListener(acao);
+    }
+    
+    public void adicionarFocusTfEmail (FocusListener focus)
+    {
+        tfEmail.addFocusListener(focus);
+    }
+    
+    public void adicionarFocusPfSenha (FocusListener focus)
+    {
+        pfSenha.addFocusListener(focus);
+    }
+    
+    public void adicionarAcaoCkVisivel(ActionListener acao)
+    {
+        ckVisivel.addActionListener(acao);
+    }
+    
+    public void exibirTela(){
+        setVisible(true);
+    }
+    
+    //GETS SWING
+    public JTextField getTfEmail ()
+    {
+        return this.tfEmail;
+    }
+    
+    public JPasswordField getPfSenha ()
+    {
+        return this.pfSenha;
+    }
+    
+    public JCheckBox getCkVisivel ()
+    {
+        return this.ckVisivel;
+    }
+    
+    public JLabel getlLogo ()
+    {
+        return this.lLogo;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -57,46 +98,20 @@ public class TelaLogin extends javax.swing.JFrame {
         tfEmail.setForeground(new java.awt.Color(255, 149, 128));
         tfEmail.setText("Email");
         tfEmail.setPreferredSize(new java.awt.Dimension(600, 24));
-        tfEmail.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                tfEmailFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                tfEmailFocusLost(evt);
-            }
-        });
 
         btLogin.setBackground(new java.awt.Color(121, 112, 169));
         btLogin.setForeground(new java.awt.Color(69, 65, 88));
         btLogin.setText("Login");
         btLogin.setBorder(null);
         btLogin.setPreferredSize(new java.awt.Dimension(100, 24));
-        btLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLoginActionPerformed(evt);
-            }
-        });
 
         ckVisivel.setBackground(new java.awt.Color(34, 33, 44));
         ckVisivel.setForeground(new java.awt.Color(255, 149, 128));
         ckVisivel.setText("Mostrar senha");
-        ckVisivel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ckVisivelActionPerformed(evt);
-            }
-        });
 
         pfSenha.setBackground(new java.awt.Color(69, 65, 88));
         pfSenha.setForeground(new java.awt.Color(255, 149, 128));
         pfSenha.setText("Senhadaora");
-        pfSenha.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                pfSenhaFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                pfSenhaFocusLost(evt);
-            }
-        });
 
         javax.swing.GroupLayout pBackgroundLayout = new javax.swing.GroupLayout(pBackground);
         pBackground.setLayout(pBackgroundLayout);
@@ -132,7 +147,7 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(174, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,66 +165,8 @@ public class TelaLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+   
 
-    private void tfEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfEmailFocusGained
-        Utilitarios.desaparecerTexto("Email", tfEmail);
-    }//GEN-LAST:event_tfEmailFocusGained
-
-    private void tfEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfEmailFocusLost
-        Utilitarios.aparecerTexto("Email", tfEmail);
-    }//GEN-LAST:event_tfEmailFocusLost
-
-    private void pfSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pfSenhaFocusGained
-        Utilitarios.desaparecerTexto("Senhadaora", pfSenha);
-    }//GEN-LAST:event_pfSenhaFocusGained
-
-    private void pfSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pfSenhaFocusLost
-        Utilitarios.aparecerTexto("Senhadaora", pfSenha);
-    }//GEN-LAST:event_pfSenhaFocusLost
-
-    private void ckVisivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckVisivelActionPerformed
-        Utilitarios.visibilidadeSenha(ckVisivel, pfSenha);
-    }//GEN-LAST:event_ckVisivelActionPerformed
-
-    private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
-        logar ();
-    }//GEN-LAST:event_btLoginActionPerformed
-    public void logar ()
-    {
-        login = tfEmail.getText();
-        senha = pfSenha.getText();
-//        Utilitarios.entrarTelaPrincipal(principal, this);
-    }
-    public void configurarTela(){
-        Utilitarios.aparecerImagemLocal(lLogo, "src/imagens/BOOM.png");
-        Utilitarios.centralizarTela(this);
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
-        lLogo.requestFocus();
-    }
-    
-    public void exibirTela(){
-        setVisible(true);
-    }
-    
-    
-    //gets
-    public String getLogin ()
-    {
-        return this.login;
-    }
-    public String getSenha ()
-    {
-        return this.senha;
-    }
-    
-    public JLabel getlLogo ()
-    {
-        return this.lLogo;
-    }
-    
-    
-
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLogin;
     private javax.swing.JCheckBox ckVisivel;
