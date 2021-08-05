@@ -62,7 +62,7 @@
                       <Component id="jComboBox4" min="-2" pref="235" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <EmptySpace min="155" pref="155" max="-2" attributes="0"/>
-                          <Component id="Cadastrar" min="-2" max="-2" attributes="0"/>
+                          <Component id="btCadastrar" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -87,7 +87,7 @@
                   <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
                   <Component id="jComboBox4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                  <Component id="Cadastrar" min="-2" max="-2" attributes="0"/>
+                  <Component id="btCadastrar" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -304,7 +304,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="Cadastrar">
+        <Component class="javax.swing.JButton" name="btCadastrar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="a9" green="70" red="79" type="rgb"/>
@@ -320,9 +320,6 @@
               <Dimension value="[80, 25]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CadastrarActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

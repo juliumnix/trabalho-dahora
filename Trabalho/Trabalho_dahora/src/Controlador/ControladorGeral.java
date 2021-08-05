@@ -1,7 +1,9 @@
 package Controlador;
 
-//TELAS
+//CODIGOS
 import Codigo.Utilitarios;
+
+//TELAS
 import Telas.TelaCadastroPrimeira;
 import Telas.TelaCadastroSegunda;
 import Telas.TelaCategorias;
@@ -9,6 +11,8 @@ import Telas.TelaCompra;
 import Telas.TelaLogin;
 import Telas.TelaPrincipal;
 import Telas.TelaProduto;
+
+//SWING
 import javax.swing.JFrame;
 
 public class ControladorGeral {
@@ -60,43 +64,63 @@ public class ControladorGeral {
     }
     
     public void exibirTelaCadastroPrimeira() {
+        controladorTelaCadastroPrimeira.limparCampos();
         controladorTelaCadastroPrimeira.exibir();
     }
     
     public void exibirTelaCadastroSegunda() {
+        controladorTelaCadastroSegunda.limparCampos();
         controladorTelaCadastroSegunda.exibir();
     }
     
     public void exibirTelaCategorias(TelaCategorias telaCategorias, JFrame other) {
-        Utilitarios.entrarTelaCategorias(telaCategorias, other);
+        other.setVisible(false);
+        telaCategorias.getIcon().requestFocus();
+        telaCategorias.getPopUpMenu().setVisible(false);
+        controladorTelaCategorias.setPesquisa(false);
+        controladorTelaCategorias.ObjetosNovaPagina();
+        controladorTelaCategorias.verifyContentFavorites();
         controladorTelaCategorias.exibir();
     }
     
     public void exibirTelaCategorias(TelaCategorias telaCategorias, JFrame other, String pesquisa) {
-        Utilitarios.entrarTelaCategorias(telaCategorias, other, pesquisa);
+        other.setVisible(false);
+        telaCategorias.getIcon().requestFocus();
+        telaCategorias.getPopUpMenu().setVisible(false);
+        controladorTelaCategorias.setPesquisa(false);
+        controladorTelaCategorias.ObjetosNovaPagina(pesquisa);
+        controladorTelaCategorias.verifyContentFavorites();
         controladorTelaCategorias.exibir();
     }
     
     public void exibirTelaCompra(TelaCompra telaCompra, JFrame other) {
-        Utilitarios.entrarTelaCompra(telaCompra, other);
+        other.setVisible(false);
+        telaCompra.getPopUpMenu().setVisible(false);
+        controladorTelaCompra.verifyContentFavorites();
         controladorTelaCompra.exibir();
     }
     
     public void exibirTelaLogin(TelaLogin telaLogin, JFrame other) {
-        Utilitarios.entrarTelaLogin(telaLogin, other);
+        other.setVisible(false);
+        telaLogin.getlLogo().requestFocus();
         controladorTelaLogin.exibir();
     }
     
     public void exibirTelaPrincipal(TelaPrincipal telaPrincipal, JFrame other) {
-        Utilitarios.entrarTelaPrincipal(telaPrincipal, other);
-        controladorTelaPrincipal.exibir();
+        other.setVisible(false);
+        telaPrincipal.getIcon().requestFocus();
+        telaPrincipal.getPopUpMenu().setVisible(false);
+        telaPrincipal.getTfPesquisa().setText("");
         controladorTelaPrincipal.verifyContentFavorites();
         controladorTelaPrincipal.promocoes();
         controladorTelaPrincipal.alterarComboBox();
+        controladorTelaPrincipal.exibir();
     }
     
     public void exibirTelaProduto(TelaProduto telaProduto, JFrame other) {
-        Utilitarios.entrarTelaProduto(telaProduto, other);
+        other.setVisible(false);
+        telaProduto.getPopUpMenu().setVisible(false);
+        controladorTelaProduto.verifyContentFavorites();
         controladorTelaProduto.exibir();
     }
     

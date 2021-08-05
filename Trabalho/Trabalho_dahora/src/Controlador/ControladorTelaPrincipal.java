@@ -18,6 +18,7 @@ import Codigo.Processador;
 import Codigo.Produto;
 import Codigo.Teclado;
 import Codigo.Utilitarios;
+
 //TELAS
 import Telas.TelaPrincipal;
 
@@ -44,6 +45,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 //SWING
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -176,8 +178,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
                 {
                     produtosEmUso.clear();
                     produtosEmUso.addAll(armazenamentos);
-        //            telaCategorias.setPesquisa(false);
-                    Utilitarios.entrarTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
                 }
             }
         });
@@ -196,8 +197,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
                 {
                     produtosEmUso.clear();
                     produtosEmUso.addAll(computadores);
-        //            telaCategorias.setPesquisa(false);
-                    Utilitarios.entrarTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
                 }
             }
         });
@@ -216,8 +216,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
                 {
                     produtosEmUso.clear();
                     produtosEmUso.addAll(coolers);
-        //            telaCategorias.setPesquisa(false);
-                    Utilitarios.entrarTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
                 }
             }
         });
@@ -236,8 +235,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
                 {
                     produtosEmUso.clear();
                     produtosEmUso.addAll(fontes);
-        //            telaCategorias.setPesquisa(false);
-                    Utilitarios.entrarTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
                 }
             }
         });
@@ -256,8 +254,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
                 {
                     produtosEmUso.clear();
                     produtosEmUso.addAll(gabinetes);
-        //            telaCategorias.setPesquisa(false);
-                    Utilitarios.entrarTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
                 }
             }
         });
@@ -276,8 +273,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
                 {
                     produtosEmUso.clear();
                     produtosEmUso.addAll(headsets);
-        //            telaCategorias.setPesquisa(false);
-                    Utilitarios.entrarTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
                 }
             }
         });
@@ -296,8 +292,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
                 {
                     produtosEmUso.clear();
                     produtosEmUso.addAll(memoriasRam);
-        //            telaCategorias.setPesquisa(false);
-                    Utilitarios.entrarTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
                 }
             }
         });
@@ -316,8 +311,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
                 {
                     produtosEmUso.clear();
                     produtosEmUso.addAll(monitores);
-        //            telaCategorias.setPesquisa(false);
-                    Utilitarios.entrarTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
                 }
             }
         });
@@ -336,8 +330,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
                 {
                     produtosEmUso.clear();
                     produtosEmUso.addAll(mouses);
-        //            telaCategorias.setPesquisa(false);
-                    Utilitarios.entrarTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
                 }
             }
         });
@@ -355,9 +348,8 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
                 } else
                 {
                     produtosEmUso.clear();
-                    produtosEmUso.addAll(notebooks);;
-        //            telaCategorias.setPesquisa(false);
-                    Utilitarios.entrarTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    produtosEmUso.addAll(notebooks);
+                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
                 }
             }
         });
@@ -376,8 +368,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
                 {
                     produtosEmUso.clear();
                     produtosEmUso.addAll(placasDeVideos);
-        //            telaCategorias.setPesquisa(false);
-                    Utilitarios.entrarTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
                 }
             }
         });
@@ -396,8 +387,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
                 {
                     produtosEmUso.clear();
                     produtosEmUso.addAll(placasMae);
-        //            telaCategorias.setPesquisa(false);
-                    Utilitarios.entrarTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
                 }
             }
         });
@@ -416,8 +406,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
                 {
                     produtosEmUso.clear();
                     produtosEmUso.addAll(processadores);
-        //            telaCategorias.setPesquisa(false);
-                    Utilitarios.entrarTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
                 }
             }
         });
@@ -436,8 +425,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
                 {
                     produtosEmUso.clear();
                     produtosEmUso.addAll(teclados);
-        //            telaCategorias.setPesquisa(false);
-                    Utilitarios.entrarTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
                 }
             }
         });
@@ -507,7 +495,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
                 }
 
                 telaPrincipal.getImgProd1().setIcon(new ImageIcon(Utilitarios.imagemInternet(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto1().getSelectedItem())).getImagem()).getImage().getScaledInstance(telaPrincipal.getImgProd1().getWidth(), telaPrincipal.getImgProd1().getHeight(), Image.SCALE_SMOOTH)));
-                telaPrincipal.getImgProd1().setIcon(new ImageIcon(Utilitarios.imagemInternet(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto2().getSelectedItem())).getImagem()).getImage().getScaledInstance(telaPrincipal.getImgProd2().getWidth(), telaPrincipal.getImgProd2().getHeight(), Image.SCALE_SMOOTH)));
+                telaPrincipal.getImgProd2().setIcon(new ImageIcon(Utilitarios.imagemInternet(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto2().getSelectedItem())).getImagem()).getImage().getScaledInstance(telaPrincipal.getImgProd2().getWidth(), telaPrincipal.getImgProd2().getHeight(), Image.SCALE_SMOOTH)));
                 telaPrincipal.getTaProd1().setText(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto1().getSelectedItem())).imprimirDados(produtosEmUso.get(0).getCategoria()));
                 telaPrincipal.getTaProd2().setText(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto2().getSelectedItem())).imprimirDados(produtosEmUso.get(0).getCategoria()));
 
@@ -551,7 +539,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             @Override
             public void mouseClicked(MouseEvent e) 
             {
-                controladorGeral.getControladorTelaProduto().getTelaProduto().construirProduto(Integer.parseInt(telaPrincipal.getDestaque1().getName()), "Geral");
+                controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaPrincipal.getDestaque1().getName()), "Geral");
                 controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaPrincipal);
             }
             
@@ -567,7 +555,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             @Override
             public void mouseClicked(MouseEvent e) 
             {
-                controladorGeral.getControladorTelaProduto().getTelaProduto().construirProduto(Integer.parseInt(telaPrincipal.getDestaque2().getName()), "Geral");
+                controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaPrincipal.getDestaque2().getName()), "Geral");
                 controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaPrincipal);
             }
             
@@ -583,7 +571,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             @Override
             public void mouseClicked(MouseEvent e) 
             {
-                controladorGeral.getControladorTelaProduto().getTelaProduto().construirProduto(Integer.parseInt(telaPrincipal.getDestaque3().getName()), "Geral");
+                controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaPrincipal.getDestaque3().getName()), "Geral");
                 controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaPrincipal);
             }
             

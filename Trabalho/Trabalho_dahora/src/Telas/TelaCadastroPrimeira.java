@@ -1,6 +1,9 @@
 package Telas;
 
+//JAVA
 import java.awt.event.ActionListener;
+
+//SWING
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 

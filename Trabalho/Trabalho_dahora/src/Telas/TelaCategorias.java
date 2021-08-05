@@ -1,200 +1,183 @@
 package Telas;
 
-import Codigo.MapManipulator;
-import Codigo.Produto;
-import Codigo.Utilitarios;
-import Telas.TelaLogin;
-import java.awt.*;
-import java.awt.event.ActionEvent;
+//JAVA
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseListener;
+
+//SWING
 import javax.swing.*;
-import java.util.List;
-import java.util.Map;
 
-public class TelaCategorias extends javax.swing.JFrame implements MapManipulator {
-    //telas
-    private TelaPrincipal telaPrincipal;
-    private TelaLogin telaLogin;
-    private TelaProduto telaProduto;
-    private TelaCompra telaCompra;
-    //coleções;
-    private List<JPanel> jPanells;
-    private List<JLabel> jLabellsImg;
-    private List<JLabel> jLabellsText;
+public class TelaCategorias extends javax.swing.JFrame {
     
-    private boolean pesquisa;
-
     public TelaCategorias()  {
-       //telas
-        this.telaProduto = new TelaProduto (this, this.telaPrincipal, this.telaLogin);
-        this.telaCompra = new TelaCompra(telaPrincipal, this, telaProduto, telaLogin);
-        //coleções
-        this.jPanells = new ArrayList<>();
-        this.jLabellsImg = new ArrayList<>();
-        this.jLabellsText = new ArrayList<>();
-        
-        pesquisa = false;
-        
         initComponents();
-        addJPanel();
-        addJLabelImg();
-        addJLabelText();
-        configurarTela();
-    }
-
-    public boolean getPesquisa() {
-        return pesquisa;
-    }
-
-    public void setPesquisa(boolean pesquisa) {
-        this.pesquisa = pesquisa;
     }
     
-    public void addJPanel ()
+    //ACOES
+    public void adicionarFocusTfPesquisa (FocusListener focus)
     {
-        jPanells.add(produto1);
-        jPanells.add(produto2);
-        jPanells.add(produto3);
-        jPanells.add(produto4);
-        jPanells.add(produto5);
-        jPanells.add(produto6);
-        jPanells.add(produto7);
-        jPanells.add(produto8);
-        jPanells.add(produto9);
-    }
-    public void addJLabelImg ()
-    {
-        jLabellsImg.add(img1);
-        jLabellsImg.add(img2);
-        jLabellsImg.add(img3);
-        jLabellsImg.add(img4);
-        jLabellsImg.add(img5);
-        jLabellsImg.add(img6);
-        jLabellsImg.add(img7);
-        jLabellsImg.add(img8);
-        jLabellsImg.add(img9);
-        
-    }
-    public void addJLabelText ()
-    {
-        jLabellsText.add(text1);
-        jLabellsText.add(text2);
-        jLabellsText.add(text3);
-        jLabellsText.add(text4);
-        jLabellsText.add(text5);
-        jLabellsText.add(text6);
-        jLabellsText.add(text7);
-        jLabellsText.add(text8);
-        jLabellsText.add(text9);
-        
+        tfPesquisa.addFocusListener(focus);
     }
     
-    public void setVisiblesFalse ()
+    public void adicionarAcaoBtCart(ActionListener acao)
     {
-        produto1.setVisible(false);
-        produto2.setVisible(false);
-        produto3.setVisible(false);
-        produto4.setVisible(false);
-        produto5.setVisible(false);
-        produto6.setVisible(false);
-        produto7.setVisible(false);
-        produto8.setVisible(false);
-        produto9.setVisible(false);
-        
+        btCart.addActionListener(acao);
     }
     
-    public void ObjetosNovaPagina ()
+    public void adicionarMouseIcon(MouseListener mouse)
     {
-        setVisiblesFalse();
-        for (Produto produto: telaPrincipal.getProdutosEmUso())
-        {
-            produto.setAuxiliar(produto.getModelo());
-        }
-        Collections.sort(telaPrincipal.getProdutosEmUso());
-        for (int i = 0; i < telaPrincipal.getProdutosEmUso().size(); i++) 
-        {
-            jPanells.get(i).setVisible(true);
-            Utilitarios.criarPainelProduto(telaPrincipal.getProdutosEmUso().get(i).getImagem(), jLabellsImg.get(i), telaPrincipal.getProdutosEmUso().get(i).getModelo()+" R$ "+telaPrincipal.getProdutosEmUso().get(i).getValor(), jLabellsText.get(i));
-        }
-        
+        icon.addMouseListener(mouse);
     }
     
-    public void ObjetosNovaPagina (String pesquisa)
+     public void adicionarAcaoBtArmazenamento(ActionListener acao)
     {
-        setVisiblesFalse();
-        List<Produto> produtosOrdenados = new ArrayList<>();
-        for (Produto produto: telaPrincipal.getProdutosGeral())
-        {
-            if (produto.imprimirDados(produto.getCategoria()).contains(pesquisa))
-            {
-                produtosOrdenados.add(produto);
-            }
-        }
-        for (Produto produto: telaPrincipal.getProdutosGeral())
-        {
-            produto.setAuxiliar(produto.getModelo());
-        }
-        Collections.sort(produtosOrdenados);
-        for (int i = 0; i < produtosOrdenados.size(); i++) 
-        {
-            jPanells.get(i).setVisible(true);
-            Utilitarios.criarPainelProduto(produtosOrdenados.get(i).getImagem(), jLabellsImg.get(i), produtosOrdenados.get(i).getModelo()+" R$ "+produtosOrdenados.get(i).getValor(), jLabellsText.get(i));
-        }
-    }
-     
-    public void configurarTela(){
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
-        Utilitarios.aparecerImagemLocal(icon, "src/imagens/BOOM.png");
-        Utilitarios.aparecerImagemLocal(btPesquisa, "src/imagens/IconSearch.png");
-        Utilitarios.aparecerImagemLocal(btCart, "src/imagens/IconCart.png");
-        icon.requestFocus();
-        popUpMenu.setVisible(false);
+        btArmazenamento.addActionListener(acao);
     }
     
-            public void verifyContentFavorites () {
-        this.constructorValue();
-        popUpMenu.revalidate();
-        popUpMenu.repaint();
-        
-    }
-   
-    public void constructorValue () {
-        popUpMenu.removeAll();
-        popUpMenu.setLayout(new FlowLayout());
-        for (Map.Entry<Integer, String> entry : telaPrincipal.getFavoritos().entrySet()) {
-          JLabel _lbl = new JLabel("<html><div><p style='color: #FFCA80; text-align: center;'>id:"+entry.getKey()+" "+entry.getValue()+"</p></div></html>");
-          _lbl.setText(entry.getValue()); 
-          int width = _lbl.getText().length();
-          if(width > 10) {
-             _lbl.setFont(new Font("Dialog", 0, 10));  
-          }
-          _lbl.setForeground(new Color(255,202,128));
-          
-          _lbl.setMinimumSize(new Dimension(116, 16));
-          JButton botaoDelete = new JButton ("<html><div><p style=' color: #FFCA80; background: #7970A9; text-align: center;'>Delete</p></div></html>");
-          botaoDelete.setBackground(new Color(121,112,169));
-          botaoDelete.addActionListener(new ActionListener(){
-              @Override
-              public void actionPerformed(ActionEvent e) {
-              String action = e.getActionCommand();
-              int value = Integer.parseInt(action);
-              removefavorito(value);
-              }
-              
-          });
-            botaoDelete.setActionCommand(entry.getKey().toString());
-            popUpMenu.add(_lbl);
-            popUpMenu.add(botaoDelete);
-        
-        
-        }
+    public void adicionarAcaoBtComputador(ActionListener acao)
+    {
+        btComputador.addActionListener(acao);
     }
     
-    public JLabel getIcon ()
+    public void adicionarAcaoBtCooler(ActionListener acao)
     {
-        return this.icon;
+        btCooler.addActionListener(acao);
+    }
+    
+    public void adicionarAcaoBtFonte(ActionListener acao)
+    {
+        btFonte.addActionListener(acao);
+    }
+    
+    public void adicionarAcaoBtGabinete(ActionListener acao)
+    {
+        btGabinete.addActionListener(acao);
+    }
+    
+    public void adicionarAcaoBtHeadset(ActionListener acao)
+    {
+        btHeadset.addActionListener(acao);
+    }
+    
+    public void adicionarAcaoBtMemoriaRAM(ActionListener acao)
+    {
+        btMemoriaRAM.addActionListener(acao);
+    }
+    
+    public void adicionarAcaoBtMonitor(ActionListener acao)
+    {
+        btMonitor.addActionListener(acao);
+    }
+    
+    public void adicionarAcaoBtMouse(ActionListener acao)
+    {
+        btMouse.addActionListener(acao);
+    }
+    
+    public void adicionarAcaoBtNotebook(ActionListener acao)
+    {
+        btNotebook.addActionListener(acao);
+    }
+    
+    public void adicionarAcaoBtPlacaDeVideo(ActionListener acao)
+    {
+        btPlacaDeVideo.addActionListener(acao);
+    }
+    
+    public void adicionarAcaoBtPlacaMae(ActionListener acao)
+    {
+        btPlacaMae.addActionListener(acao);
+    }
+    
+    public void adicionarAcaoBtProcessador(ActionListener acao)
+    {
+        btProcessador.addActionListener(acao);
+    }
+    
+    public void adicionarAcaoBtTeclado(ActionListener acao)
+    {
+        btTeclado.addActionListener(acao);
+    }
+    
+    public void adicionarAcaoBtSair(ActionListener acao)
+    {
+        btSair.addActionListener(acao);
+    }
+    
+    public void adicionarAcaoBtPesquisa(ActionListener acao)
+    {
+        btPesquisa.addActionListener(acao);
+    }
+    
+    public void adicionarMouseProduto1(MouseListener mouse)
+    {
+        produto1.addMouseListener(mouse);
+    }
+    
+    public void adicionarMouseProduto2(MouseListener mouse)
+    {
+        produto2.addMouseListener(mouse);
+    }
+    
+    public void adicionarMouseProduto3(MouseListener mouse)
+    {
+        produto3.addMouseListener(mouse);
+    }
+    
+    public void adicionarMouseProduto4(MouseListener mouse)
+    {
+        produto4.addMouseListener(mouse);
+    }
+    
+    public void adicionarMouseProduto5(MouseListener mouse)
+    {
+        produto5.addMouseListener(mouse);
+    }
+    
+    public void adicionarMouseProduto6(MouseListener mouse)
+    {
+        produto6.addMouseListener(mouse);
+    }
+    
+    public void adicionarMouseProduto7(MouseListener mouse)
+    {
+        produto7.addMouseListener(mouse);
+    }
+    
+    public void adicionarMouseProduto8(MouseListener mouse)
+    {
+        produto8.addMouseListener(mouse);
+    }
+    
+    public void adicionarMouseProduto9(MouseListener mouse)
+    {
+        produto9.addMouseListener(mouse);
+    }
+    
+    public void adicionarAcaoBtAux(ActionListener acao)
+    {
+        btaux.addActionListener(acao);
+    }
+    
+    public void exibirTela(){
+        setVisible(true);
+    }
+    
+    //GETS
+    public JButton getBtPesquisa ()
+    {
+        return this.btPesquisa;
+    }
+    
+    public JButton getBtCart ()
+    {
+        return this.btCart;
+    }
+    
+    public JTextField getTfPesquisa ()
+    {
+        return this.tfPesquisa;
     }
     
     public JPanel getPopUpMenu ()
@@ -202,8 +185,144 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         return this.popUpMenu;
     }
     
-    public void exibirTela(){
-        setVisible(true);
+    public JLabel getImg1 ()
+    {
+        return this.img1;
+    }
+    
+    public JLabel getImg2 ()
+    {
+        return this.img2;
+    }
+    
+    public JLabel getImg3 ()
+    {
+        return this.img3;
+    }
+    
+    public JLabel getImg4 ()
+    {
+        return this.img4;
+    }
+    
+    public JLabel getImg5 ()
+    {
+        return this.img5;
+    }
+    
+    public JLabel getImg6 ()
+    {
+        return this.img6;
+    }
+    
+    public JLabel getImg7 ()
+    {
+        return this.img7;
+    }
+    
+    public JLabel getImg8 ()
+    {
+        return this.img8;
+    }
+    
+    public JLabel getImg9 ()
+    {
+        return this.img9;
+    }
+    
+    public JLabel getText1 ()
+    {
+        return this.text1;
+    }
+    
+    public JLabel getText2 ()
+    {
+        return this.text2;
+    }
+    
+    public JLabel getText3 ()
+    {
+        return this.text3;
+    }
+    
+    public JLabel getText4 ()
+    {
+        return this.text4;
+    }
+    
+    public JLabel getText5 ()
+    {
+        return this.text5;
+    }
+    
+    public JLabel getText6 ()
+    {
+        return this.text6;
+    }
+    
+    public JLabel getText7 ()
+    {
+        return this.text7;
+    }
+    
+    public JLabel getText8 ()
+    {
+        return this.text8;
+    }
+    
+    public JLabel getText9 ()
+    {
+        return this.text9;
+    }
+    
+    public JPanel getProduto1 ()
+    {
+        return this.produto1;
+    }
+    
+    public JPanel getProduto2 ()
+    {
+        return this.produto2;
+    }
+    
+    public JPanel getProduto3 ()
+    {
+        return this.produto3;
+    }
+    
+    public JPanel getProduto4 ()
+    {
+        return this.produto4;
+    }
+    
+    public JPanel getProduto5 ()
+    {
+        return this.produto5;
+    }
+    
+    public JPanel getProduto6 ()
+    {
+        return this.produto6;
+    }
+    
+    public JPanel getProduto7 ()
+    {
+        return this.produto7;
+    }
+    
+    public JPanel getProduto8 ()
+    {
+        return this.produto8;
+    }
+    
+    public JPanel getProduto9 ()
+    {
+        return this.produto9;
+    }
+    
+    public JLabel getIcon ()
+    {
+        return this.icon;
     }
 
     @SuppressWarnings("unchecked")
@@ -280,12 +399,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         menu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         menu.setPreferredSize(new java.awt.Dimension(121, 720));
         menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        icon.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                iconMouseClicked(evt);
-            }
-        });
         menu.add(icon, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 6, 95, 95));
 
         btArmazenamento.setBackground(new java.awt.Color(121, 112, 169));
@@ -295,11 +408,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         btArmazenamento.setBorder(null);
         btArmazenamento.setBorderPainted(false);
         btArmazenamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btArmazenamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btArmazenamentoActionPerformed(evt);
-            }
-        });
         menu.add(btArmazenamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 107, 109, 25));
 
         btComputador.setBackground(new java.awt.Color(121, 112, 169));
@@ -309,11 +417,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         btComputador.setBorder(null);
         btComputador.setMaximumSize(new java.awt.Dimension(103, 20));
         btComputador.setMinimumSize(new java.awt.Dimension(103, 20));
-        btComputador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btComputadorActionPerformed(evt);
-            }
-        });
         menu.add(btComputador, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 136, 109, 25));
 
         btCooler.setBackground(new java.awt.Color(121, 112, 169));
@@ -323,11 +426,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         btCooler.setBorder(null);
         btCooler.setMaximumSize(new java.awt.Dimension(103, 20));
         btCooler.setMinimumSize(new java.awt.Dimension(103, 20));
-        btCooler.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCoolerActionPerformed(evt);
-            }
-        });
         menu.add(btCooler, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 165, 109, 25));
 
         btFonte.setBackground(new java.awt.Color(121, 112, 169));
@@ -337,11 +435,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         btFonte.setBorder(null);
         btFonte.setMaximumSize(new java.awt.Dimension(103, 20));
         btFonte.setMinimumSize(new java.awt.Dimension(103, 20));
-        btFonte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btFonteActionPerformed(evt);
-            }
-        });
         menu.add(btFonte, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 194, 109, 25));
 
         btGabinete.setBackground(new java.awt.Color(121, 112, 169));
@@ -351,11 +444,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         btGabinete.setBorder(null);
         btGabinete.setMaximumSize(new java.awt.Dimension(103, 20));
         btGabinete.setMinimumSize(new java.awt.Dimension(103, 20));
-        btGabinete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btGabineteActionPerformed(evt);
-            }
-        });
         menu.add(btGabinete, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 223, 109, 25));
 
         btHeadset.setBackground(new java.awt.Color(121, 112, 169));
@@ -365,11 +453,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         btHeadset.setBorder(null);
         btHeadset.setMaximumSize(new java.awt.Dimension(103, 20));
         btHeadset.setMinimumSize(new java.awt.Dimension(103, 20));
-        btHeadset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btHeadsetActionPerformed(evt);
-            }
-        });
         menu.add(btHeadset, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 252, 109, 25));
 
         btMemoriaRAM.setBackground(new java.awt.Color(121, 112, 169));
@@ -379,11 +462,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         btMemoriaRAM.setBorder(null);
         btMemoriaRAM.setMaximumSize(new java.awt.Dimension(103, 20));
         btMemoriaRAM.setMinimumSize(new java.awt.Dimension(103, 20));
-        btMemoriaRAM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btMemoriaRAMActionPerformed(evt);
-            }
-        });
         menu.add(btMemoriaRAM, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 281, 109, 25));
 
         btMonitor.setBackground(new java.awt.Color(121, 112, 169));
@@ -393,11 +471,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         btMonitor.setBorder(null);
         btMonitor.setMaximumSize(new java.awt.Dimension(103, 20));
         btMonitor.setMinimumSize(new java.awt.Dimension(103, 20));
-        btMonitor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btMonitorActionPerformed(evt);
-            }
-        });
         menu.add(btMonitor, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 310, 109, 25));
 
         btMouse.setBackground(new java.awt.Color(121, 112, 169));
@@ -407,11 +480,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         btMouse.setBorder(null);
         btMouse.setMaximumSize(new java.awt.Dimension(103, 20));
         btMouse.setMinimumSize(new java.awt.Dimension(103, 20));
-        btMouse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btMouseActionPerformed(evt);
-            }
-        });
         menu.add(btMouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 339, 109, 25));
 
         btNotebook.setBackground(new java.awt.Color(121, 112, 169));
@@ -421,11 +489,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         btNotebook.setBorder(null);
         btNotebook.setMaximumSize(new java.awt.Dimension(103, 20));
         btNotebook.setMinimumSize(new java.awt.Dimension(103, 20));
-        btNotebook.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNotebookActionPerformed(evt);
-            }
-        });
         menu.add(btNotebook, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 368, 109, 25));
 
         btPlacaDeVideo.setBackground(new java.awt.Color(121, 112, 169));
@@ -435,11 +498,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         btPlacaDeVideo.setBorder(null);
         btPlacaDeVideo.setMaximumSize(new java.awt.Dimension(103, 20));
         btPlacaDeVideo.setMinimumSize(new java.awt.Dimension(103, 20));
-        btPlacaDeVideo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btPlacaDeVideoActionPerformed(evt);
-            }
-        });
         menu.add(btPlacaDeVideo, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 397, 109, 25));
 
         btPlacaMae.setBackground(new java.awt.Color(121, 112, 169));
@@ -449,11 +507,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         btPlacaMae.setBorder(null);
         btPlacaMae.setMaximumSize(new java.awt.Dimension(103, 20));
         btPlacaMae.setMinimumSize(new java.awt.Dimension(103, 20));
-        btPlacaMae.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btPlacaMaeActionPerformed(evt);
-            }
-        });
         menu.add(btPlacaMae, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 426, 109, 25));
 
         btProcessador.setBackground(new java.awt.Color(121, 112, 169));
@@ -462,11 +515,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         btProcessador.setText("Processador");
         btProcessador.setBorder(null);
         btProcessador.setMinimumSize(new java.awt.Dimension(103, 20));
-        btProcessador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btProcessadorActionPerformed(evt);
-            }
-        });
         menu.add(btProcessador, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 455, 109, 25));
 
         btSair.setBackground(new java.awt.Color(34, 33, 44));
@@ -476,11 +524,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         btSair.setBorder(null);
         btSair.setMaximumSize(new java.awt.Dimension(103, 20));
         btSair.setMinimumSize(new java.awt.Dimension(103, 20));
-        btSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSairActionPerformed(evt);
-            }
-        });
         menu.add(btSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 557, 109, 25));
 
         btTeclado.setBackground(new java.awt.Color(121, 112, 169));
@@ -490,11 +533,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         btTeclado.setBorder(null);
         btTeclado.setMaximumSize(new java.awt.Dimension(103, 20));
         btTeclado.setMinimumSize(new java.awt.Dimension(103, 20));
-        btTeclado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btTecladoActionPerformed(evt);
-            }
-        });
         menu.add(btTeclado, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 484, 109, 25));
 
         bg.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, 588));
@@ -503,41 +541,18 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         tfPesquisa.setForeground(new java.awt.Color(255, 149, 128));
         tfPesquisa.setText("Pesquisa");
         tfPesquisa.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        tfPesquisa.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                tfPesquisaFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                tfPesquisaFocusLost(evt);
-            }
-        });
         bg.add(tfPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 6, 522, 28));
 
         btPesquisa.setBackground(new java.awt.Color(121, 112, 169));
         btPesquisa.setBorder(null);
-        btPesquisa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btPesquisaActionPerformed(evt);
-            }
-        });
         bg.add(btPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(685, 6, 41, 28));
 
         btaux.setBackground(new java.awt.Color(121, 112, 169));
         btaux.setBorder(null);
-        btaux.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btauxActionPerformed(evt);
-            }
-        });
         bg.add(btaux, new org.netbeans.lib.awtextra.AbsoluteConstraints(732, 6, 28, 28));
 
         btCart.setBackground(new java.awt.Color(121, 112, 169));
         btCart.setBorder(null);
-        btCart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCartActionPerformed(evt);
-            }
-        });
         bg.add(btCart, new org.netbeans.lib.awtextra.AbsoluteConstraints(766, 6, 28, 28));
 
         popUpMenu.setBackground(new java.awt.Color(69, 65, 88));
@@ -547,11 +562,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         produto1.setBackground(new java.awt.Color(69, 65, 88));
         produto1.setName("0"); // NOI18N
         produto1.setPreferredSize(new java.awt.Dimension(170, 170));
-        produto1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                produto1MouseClicked(evt);
-            }
-        });
         produto1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         img1.setPreferredSize(new java.awt.Dimension(150, 120));
@@ -566,11 +576,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         produto2.setBackground(new java.awt.Color(69, 65, 88));
         produto2.setName("1"); // NOI18N
         produto2.setPreferredSize(new java.awt.Dimension(170, 170));
-        produto2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                produto2MouseClicked(evt);
-            }
-        });
         produto2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         text2.setBackground(new java.awt.Color(255, 149, 128));
@@ -585,11 +590,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         produto3.setBackground(new java.awt.Color(69, 65, 88));
         produto3.setName("2"); // NOI18N
         produto3.setPreferredSize(new java.awt.Dimension(170, 170));
-        produto3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                produto3MouseClicked(evt);
-            }
-        });
         produto3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         text3.setBackground(new java.awt.Color(255, 149, 128));
@@ -604,11 +604,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         produto4.setBackground(new java.awt.Color(69, 65, 88));
         produto4.setName("3"); // NOI18N
         produto4.setPreferredSize(new java.awt.Dimension(170, 170));
-        produto4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                produto4MouseClicked(evt);
-            }
-        });
         produto4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         text4.setBackground(new java.awt.Color(255, 149, 128));
@@ -623,11 +618,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         produto5.setBackground(new java.awt.Color(69, 65, 88));
         produto5.setName("4"); // NOI18N
         produto5.setPreferredSize(new java.awt.Dimension(170, 170));
-        produto5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                produto5MouseClicked(evt);
-            }
-        });
         produto5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         text5.setBackground(new java.awt.Color(255, 149, 128));
@@ -642,11 +632,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         produto6.setBackground(new java.awt.Color(69, 65, 88));
         produto6.setName("5"); // NOI18N
         produto6.setPreferredSize(new java.awt.Dimension(170, 170));
-        produto6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                produto6MouseClicked(evt);
-            }
-        });
         produto6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         text6.setBackground(new java.awt.Color(255, 149, 128));
@@ -661,11 +646,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         produto7.setBackground(new java.awt.Color(69, 65, 88));
         produto7.setName("6"); // NOI18N
         produto7.setPreferredSize(new java.awt.Dimension(170, 170));
-        produto7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                produto7MouseClicked(evt);
-            }
-        });
         produto7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         text7.setBackground(new java.awt.Color(255, 149, 128));
@@ -680,11 +660,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         produto8.setBackground(new java.awt.Color(69, 65, 88));
         produto8.setName("7"); // NOI18N
         produto8.setPreferredSize(new java.awt.Dimension(170, 170));
-        produto8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                produto8MouseClicked(evt);
-            }
-        });
         produto8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         text8.setBackground(new java.awt.Color(255, 149, 128));
@@ -699,11 +674,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         produto9.setBackground(new java.awt.Color(69, 65, 88));
         produto9.setName("8"); // NOI18N
         produto9.setPreferredSize(new java.awt.Dimension(170, 170));
-        produto9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                produto9MouseClicked(evt);
-            }
-        });
         produto9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         text9.setBackground(new java.awt.Color(255, 149, 128));
@@ -720,223 +690,6 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
         pack();
     }// </editor-fold>//GEN-END:initComponents
    
-    private void tfPesquisaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfPesquisaFocusLost
-        Utilitarios.aparecerTexto("Pesquisa", tfPesquisa);
-    }//GEN-LAST:event_tfPesquisaFocusLost
-
-    private void tfPesquisaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfPesquisaFocusGained
-        Utilitarios.desaparecerTexto("Pesquisa", tfPesquisa);
-    }//GEN-LAST:event_tfPesquisaFocusGained
-
-    private void btCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCartActionPerformed
-        if (popUpMenu.isVisible())
-        {
-            popUpMenu.setVisible(false);
-        }else
-        {
-            popUpMenu.setVisible(true);
-        }
-    }//GEN-LAST:event_btCartActionPerformed
-
-    private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        Utilitarios.entrarTelaLogin(telaLogin, this);
-    }//GEN-LAST:event_btSairActionPerformed
-
-    private void iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconMouseClicked
-        Utilitarios.entrarTelaPrincipal(telaPrincipal, this);
-    }//GEN-LAST:event_iconMouseClicked
-
-    private void btArmazenamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btArmazenamentoActionPerformed
-        telaPrincipal.getProdutosEmUso().clear();
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getArmazenamentos());
-        ObjetosNovaPagina ();
-    }//GEN-LAST:event_btArmazenamentoActionPerformed
-
-    private void btComputadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComputadorActionPerformed
-        telaPrincipal.getProdutosEmUso().clear();
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getComputador());
-        ObjetosNovaPagina ();
-    }//GEN-LAST:event_btComputadorActionPerformed
-
-    private void btCoolerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCoolerActionPerformed
-        telaPrincipal.getProdutosEmUso().clear();
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getCooler());
-        ObjetosNovaPagina ();
-    }//GEN-LAST:event_btCoolerActionPerformed
-
-    private void btFonteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFonteActionPerformed
-        telaPrincipal.getProdutosEmUso().clear();
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getFonte());
-        ObjetosNovaPagina ();
-    }//GEN-LAST:event_btFonteActionPerformed
-
-    private void btGabineteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGabineteActionPerformed
-        telaPrincipal.getProdutosEmUso().clear();
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getGabinete());
-        ObjetosNovaPagina ();
-    }//GEN-LAST:event_btGabineteActionPerformed
-
-    private void btHeadsetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHeadsetActionPerformed
-        telaPrincipal.getProdutosEmUso().clear();
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getHeadset());
-        ObjetosNovaPagina ();
-    }//GEN-LAST:event_btHeadsetActionPerformed
-
-    private void btMemoriaRAMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMemoriaRAMActionPerformed
-        telaPrincipal.getProdutosEmUso().clear();
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getMemoriaRAM());
-        ObjetosNovaPagina ();
-    }//GEN-LAST:event_btMemoriaRAMActionPerformed
-
-    private void btMonitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMonitorActionPerformed
-        telaPrincipal.getProdutosEmUso().clear();
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getMonitor());
-        ObjetosNovaPagina ();
-    }//GEN-LAST:event_btMonitorActionPerformed
-
-    private void btMouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMouseActionPerformed
-        telaPrincipal.getProdutosEmUso().clear();
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getMouse());
-        ObjetosNovaPagina ();
-    }//GEN-LAST:event_btMouseActionPerformed
-
-    private void btNotebookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNotebookActionPerformed
-        telaPrincipal.getProdutosEmUso().clear();
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getNotebook());
-        ObjetosNovaPagina ();
-    }//GEN-LAST:event_btNotebookActionPerformed
-
-    private void btPlacaDeVideoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPlacaDeVideoActionPerformed
-        telaPrincipal.getProdutosEmUso().clear();
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getPlacaDeVideo());
-        ObjetosNovaPagina ();
-    }//GEN-LAST:event_btPlacaDeVideoActionPerformed
-
-    private void btPlacaMaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPlacaMaeActionPerformed
-        telaPrincipal.getProdutosEmUso().clear();
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getPlacaMae());
-        ObjetosNovaPagina ();
-    }//GEN-LAST:event_btPlacaMaeActionPerformed
-
-    private void btProcessadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcessadorActionPerformed
-        telaPrincipal.getProdutosEmUso().clear();
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getProcessador());
-        ObjetosNovaPagina ();
-    }//GEN-LAST:event_btProcessadorActionPerformed
-
-    private void btTecladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTecladoActionPerformed
-        telaPrincipal.getProdutosEmUso().clear();
-        telaPrincipal.getProdutosEmUso().addAll(telaPrincipal.getTeclado());
-        ObjetosNovaPagina ();
-    }//GEN-LAST:event_btTecladoActionPerformed
-
-    private void btPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisaActionPerformed
-        ObjetosNovaPagina (tfPesquisa.getText());
-    }//GEN-LAST:event_btPesquisaActionPerformed
-
-    private void produto1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto1MouseClicked
-        if (pesquisa == true)
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto1.getName()), "Geral");
-        }else
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto1.getName()), "EmUso");
-        }
-        Utilitarios.entrarTelaProduto(telaProduto, this);
-    }//GEN-LAST:event_produto1MouseClicked
-
-    private void produto2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto2MouseClicked
-        if (pesquisa == true)
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto2.getName()), "Geral");
-        }else
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto2.getName()), "EmUso");
-        }
-        Utilitarios.entrarTelaProduto(telaProduto, this);
-    }//GEN-LAST:event_produto2MouseClicked
-
-    private void produto3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto3MouseClicked
-        if (pesquisa == true)
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto3.getName()), "Geral");
-        }else
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto3.getName()), "EmUso");
-        }
-        Utilitarios.entrarTelaProduto(telaProduto, this);
-    }//GEN-LAST:event_produto3MouseClicked
-
-    private void produto4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto4MouseClicked
-        if (pesquisa == true)
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto4.getName()), "Geral");
-        }else
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto4.getName()), "EmUso");
-        }
-        Utilitarios.entrarTelaProduto(telaProduto, this);
-    }//GEN-LAST:event_produto4MouseClicked
-
-    private void produto5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto5MouseClicked
-        if (pesquisa == true)
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto5.getName()), "Geral");
-        }else
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto5.getName()), "EmUso");
-        }
-        Utilitarios.entrarTelaProduto(telaProduto, this);
-    }//GEN-LAST:event_produto5MouseClicked
-
-    private void produto6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto6MouseClicked
-        if (pesquisa == true)
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto6.getName()), "Geral");
-        }else
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto6.getName()), "EmUso");
-        }
-        Utilitarios.entrarTelaProduto(telaProduto, this);
-    }//GEN-LAST:event_produto6MouseClicked
-
-    private void produto7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto7MouseClicked
-        if (pesquisa == true)
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto7.getName()), "Geral");
-        }else
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto7.getName()), "EmUso");
-        }
-        Utilitarios.entrarTelaProduto(telaProduto, this);
-    }//GEN-LAST:event_produto7MouseClicked
-
-    private void produto8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto8MouseClicked
-        if (pesquisa == true)
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto8.getName()), "Geral");
-        }else
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto8.getName()), "EmUso");
-        }
-        Utilitarios.entrarTelaProduto(telaProduto, this);
-    }//GEN-LAST:event_produto8MouseClicked
-
-    private void produto9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_produto9MouseClicked
-        if (pesquisa == true)
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto9.getName()), "Geral");
-        }else
-        {
-            telaProduto.construirProduto(Integer.parseInt(produto9.getName()), "EmUso");
-        }
-        Utilitarios.entrarTelaProduto(telaProduto, this);
-    }//GEN-LAST:event_produto9MouseClicked
-
-    private void btauxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btauxActionPerformed
-        Utilitarios.entrarTelaCompra(telaCompra, this);
-    }//GEN-LAST:event_btauxActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
     private javax.swing.JButton btArmazenamento;
@@ -989,17 +742,4 @@ public class TelaCategorias extends javax.swing.JFrame implements MapManipulator
     private javax.swing.JLabel text9;
     private javax.swing.JTextField tfPesquisa;
     // End of variables declaration//GEN-END:variables
-@Override
-    public void adicionaFavorito(String value) {
-        telaPrincipal.getFavoritos().put(telaPrincipal.getValueTeste(), value);
-        telaPrincipal.adicionarValueTeste();
-    }
-
-    @Override
-    public void removefavorito(int key) {
-        telaPrincipal.getFavoritos().remove(key);
-        this.constructorValue();    
-        popUpMenu.revalidate();
-        popUpMenu.repaint();
-    }
 }

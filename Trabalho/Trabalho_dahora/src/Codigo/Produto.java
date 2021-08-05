@@ -121,6 +121,11 @@ public abstract class Produto implements Comparable<Produto> {
         return cat+":\n Modelo: " + modelo + "\n Valor: " + valor + "\n Descrição: " + descricao + "\n Marca: " + marca + "\n Categoria: " + categoria;
     }
     
+    public String conteudoPesquisa ()
+    {
+        return modelo+" "+valor+" "+descricao+" "+marca+" "+categoria;
+    }
+    
     @Override
     public int compareTo(Produto other) {
         int compareInt = this.auxiliar.compareTo(other.auxiliar);

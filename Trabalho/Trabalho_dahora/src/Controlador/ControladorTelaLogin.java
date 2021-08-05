@@ -3,8 +3,10 @@ package Controlador;
 //CODIGO
 import Codigo.Autenticador;
 import Codigo.Utilitarios;
+
 //TELAS
 import Telas.TelaLogin;
+
 //JAVA
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -86,7 +88,7 @@ public class ControladorTelaLogin implements Autenticador {
     
     public boolean verificaAdm() 
     {
-        if (telaLogin.getPfSenha().getText().contains("@adm.com"))
+        if (telaLogin.getTfEmail().getText().contains("@adm.com"))
         {
             return true;
         }

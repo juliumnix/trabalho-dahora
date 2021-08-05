@@ -1,12 +1,10 @@
 package Codigo;
 
-import Telas.TelaCategorias;
-import Telas.TelaCompra;
-import Telas.TelaLogin;
-import Telas.TelaPrincipal;
-import Telas.TelaProduto;
+//JAVA
 import java.awt.Image;
 import java.net.URL;
+
+//SWING
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -104,52 +102,4 @@ public class Utilitarios {
     {
         frame.pack();
         frame.setLocationRelativeTo(null);
-    }
-    
-    public final static void entrarTelaLogin (TelaLogin telaLogin, JFrame other)
-    {
-        other.setVisible(false);
-        telaLogin.getlLogo().requestFocus();
-    }
-    
-    public final static void entrarTelaPrincipal (TelaPrincipal telaPrincipal, JFrame other)
-    {
-        other.setVisible(false);
-        telaPrincipal.getIcon().requestFocus();
-        telaPrincipal.getPopUpMenu().setVisible(false);
-    }
-    
-    public final static void entrarTelaCategorias (TelaCategorias telaCategorias, JFrame other)
-    {
-        other.setVisible(false);
-        telaCategorias.setPesquisa(false);
-        telaCategorias.ObjetosNovaPagina();
-        telaCategorias.getIcon().requestFocus();
-        telaCategorias.verifyContentFavorites();
-        telaCategorias.getPopUpMenu().setVisible(false);
-    }
-    
-    public final static void entrarTelaCategorias (TelaCategorias telaCategorias, JFrame other, String pesquisa)
-    {
-        other.setVisible(false);
-        telaCategorias.setPesquisa(true);
-        telaCategorias.ObjetosNovaPagina(pesquisa);
-        telaCategorias.getIcon().requestFocus();
-        telaCategorias.verifyContentFavorites();
-        telaCategorias.getPopUpMenu().setVisible(false);
-    }
-    
-    public final static void entrarTelaProduto (TelaProduto telaProduto, JFrame other)
-    {
-        other.setVisible(false);
-        telaProduto.verifyContentFavorites();
-        telaProduto.getPopUpMenu().setVisible(false);
-    }
-    
-    public final static void entrarTelaCompra (TelaCompra telaCompra, JFrame other)
-    {
-        other.setVisible(false);
-        telaCompra.verifyContentFavorites();
-        telaCompra.getPopUpMenu().setVisible(false);
-    }
-}
+    }}

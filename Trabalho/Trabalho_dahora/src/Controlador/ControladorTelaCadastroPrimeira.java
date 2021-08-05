@@ -1,10 +1,14 @@
 package Controlador;
 
+//CODIGO
 import Codigo.Computador;
 import Codigo.Notebook;
 import Codigo.Utilitarios;
+
+//TELAS
 import Telas.TelaCadastroPrimeira;
-import Telas.TelaCadastroSegunda;
+
+//JAVA
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +32,7 @@ public class ControladorTelaCadastroPrimeira {
     
     public void configurarTela()
     {
+        Utilitarios.centralizarTela(telaCadastroPrimeira);
         telaCadastroPrimeira.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
     }
     
@@ -41,6 +46,8 @@ public class ControladorTelaCadastroPrimeira {
                 try 
                 {
                     SetarValores();
+                    controladorGeral.getControladorTelaCadastroSegunda().SetCategoria(categoria);
+                    controladorGeral.getControladorTelaCadastroSegunda().componentesCategoria();
                     if (categoria.equals("Computador"))
                     {
                         gerarComputador();
@@ -55,8 +62,8 @@ public class ControladorTelaCadastroPrimeira {
                             controladorGeral.getControladorTelaPrincipal().alterarComboBox ();
                         }else
                         {
-                            controladorGeral.getControladorTelaCadastroSegunda().getTelaCadastroSegunda().setVisible(true);
-                            telaCadastroPrimeira.setVisible(false);  
+                            controladorGeral.exibirTelaCadastroSegunda();
+                            telaCadastroPrimeira.setVisible(false);
                         }
                     }
                 }catch (Exception error) {
@@ -98,6 +105,15 @@ public class ControladorTelaCadastroPrimeira {
         {
             controladorGeral.getControladorTelaPrincipal().getTelaPrincipal().getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
         }
+    }
+    
+    public void limparCampos ()
+    {
+        telaCadastroPrimeira.getTfModelo().setText("");
+        telaCadastroPrimeira.getTfValor().setText("");
+        telaCadastroPrimeira.getTfDescricao().setText("");
+        telaCadastroPrimeira.getTfMarca().setText("");
+        telaCadastroPrimeira.getTfImagem().setText("");
     }
     
     public void exibir()
