@@ -1,87 +1,56 @@
 package Telas;
 
-import Codigo.Computador;
-import Codigo.Notebook;
-import Codigo.Utilitarios;
-import java.awt.Toolkit;
+//JAVA
+import java.awt.event.ActionListener;
+
+//SWING
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class TelaCadastroPrimeira extends javax.swing.JFrame {
-    private TelaPrincipal principal;
-    private String modelo;
-    private float valor;
-    private String descricao;
-    private String marca;
-    private String categoria;
-    private String imagem;
 
-    public TelaCadastroPrimeira(TelaPrincipal principal) {
-        this.principal = principal;
+    public TelaCadastroPrimeira() {
         initComponents();
-        configurarTela();
     }
     
-    public void configurarTela()
-    {
-        Utilitarios.centralizarTela(this);
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
+    public void exibirTela(){
+        setVisible(true);
     }
     
-    public void SetarValores ()
+    public void adicionarAcaoBtProximo(ActionListener acao)
     {
-        this.modelo = textoModelo.getText();
-        this.valor = Float.parseFloat(textoValor.getText());
-        this.descricao = textoDescricao.getText();
-        this.marca = textoMarca.getText();
-        this.categoria = principal.getCategoriaEscolhida();
-        this.imagem = textoImagem.getText();
-    }
-
-    public String getModelo() {
-        return this.modelo;
-    }
-
-    public float getValor() {
-        return this.valor;
-    }
-
-    public String getDescricao() {
-        return this.descricao;
-    }
-
-    public String getCategoria() {
-        return this.categoria;
-    }
-
-    public String getImagem() {
-        return this.imagem;
-    }
-
-    public String getMarca() {
-        return this.marca;
+        btProximo.addActionListener(acao);
     }
     
-    public void gerarComputador ()
+    //GETS
+    public JTextField getTfModelo ()
     {
-        Computador computador = new Computador (modelo, valor, descricao, marca, categoria, imagem);
-        if (principal.getComputador().add(computador) == true) 
-        {
-            jOptionPane1.showMessageDialog(null, "Cadastro realizado com sucesso");
-        } else 
-        {
-            jOptionPane1.showMessageDialog(null, "Cadastro duplicado");
-        }
+        return this.textoModelo;
     }
     
-    public void gerarNotebook ()
+    public JTextField getTfValor ()
     {
-        Notebook notebook = new Notebook (modelo, valor, descricao, marca, categoria, imagem);
-        if (principal.getNotebook().add(notebook) == true) 
-        {
-            jOptionPane1.showMessageDialog(null, "Cadastro realizado com sucesso");
-        } else 
-        {
-            jOptionPane1.showMessageDialog(null, "Cadastro duplicado");
-        }
+        return this.textoValor;
+    }
+    
+    public JTextField getTfDescricao ()
+    {
+        return this.textoDescricao;
+    }
+    
+    public JTextField getTfMarca ()
+    {
+        return this.textoMarca;
+    }
+    
+    public JTextField getTfImagem ()
+    {
+        return this.textoImagem;
+    }
+    
+    public JOptionPane getJOptionPane1 ()
+    {
+        return this.jOptionPane1;
     }
 
     @SuppressWarnings("unchecked")
@@ -95,7 +64,7 @@ public class TelaCadastroPrimeira extends javax.swing.JFrame {
         textoDescricao = new javax.swing.JTextField();
         textoMarca = new javax.swing.JTextField();
         textoImagem = new javax.swing.JTextField();
-        proximo = new javax.swing.JButton();
+        btProximo = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -141,17 +110,12 @@ public class TelaCadastroPrimeira extends javax.swing.JFrame {
         textoImagem.setForeground(new java.awt.Color(255, 149, 128));
         bg.add(textoImagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 290, -1));
 
-        proximo.setBackground(new java.awt.Color(121, 112, 169));
-        proximo.setForeground(new java.awt.Color(69, 65, 88));
-        proximo.setText("Próximo");
-        proximo.setBorder(null);
-        proximo.setPreferredSize(new java.awt.Dimension(80, 25));
-        proximo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                proximoActionPerformed(evt);
-            }
-        });
-        bg.add(proximo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, -1, -1));
+        btProximo.setBackground(new java.awt.Color(121, 112, 169));
+        btProximo.setForeground(new java.awt.Color(69, 65, 88));
+        btProximo.setText("Próximo");
+        btProximo.setBorder(null);
+        btProximo.setPreferredSize(new java.awt.Dimension(80, 25));
+        bg.add(btProximo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(121, 112, 169));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -199,35 +163,9 @@ public class TelaCadastroPrimeira extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void proximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_proximoActionPerformed
-        try {
-            SetarValores();
-            if (this.categoria.equals("Computador"))
-            {
-                gerarComputador();
-                principal.organizarProdutosGeral();
-                principal.alterarComboBox ();
-            }else
-            {
-                if (this.categoria.equals("Notebook"))
-                {
-                    gerarNotebook();
-                    principal.organizarProdutosGeral();
-                    principal.alterarComboBox ();
-                }else
-                {
-                    TelaCadastroSegunda segunda = new TelaCadastroSegunda (this, principal);
-                    segunda.setVisible(true);
-                    this.setVisible(false);  
-                }
-            }
-        } catch (Exception e) {
-            jOptionPane1.showMessageDialog(null, "Preencha todos os campos");
-        }
-    }//GEN-LAST:event_proximoActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JButton btProximo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -239,7 +177,6 @@ public class TelaCadastroPrimeira extends javax.swing.JFrame {
     private javax.swing.JLabel lbMarca;
     private javax.swing.JLabel lbModelo;
     private javax.swing.JLabel lbValor;
-    private javax.swing.JButton proximo;
     private javax.swing.JTextField textoDescricao;
     private javax.swing.JTextField textoImagem;
     private javax.swing.JTextField textoMarca;
