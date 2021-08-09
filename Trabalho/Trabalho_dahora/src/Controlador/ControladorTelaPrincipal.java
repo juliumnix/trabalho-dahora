@@ -18,6 +18,8 @@ import Codigo.Processador;
 import Codigo.Produto;
 import Codigo.Teclado;
 import Codigo.Utilitarios;
+import Excecoes.LoginException;
+
 
 //TELAS
 import Telas.TelaPrincipal;
@@ -37,6 +39,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -45,6 +48,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 //SWING
 import javax.swing.ImageIcon;
@@ -95,7 +100,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         addJLabelText();
     }
     
-    public void iniciarColecoes ()
+    public void iniciarColecoes ()  
     {
         this.armazenamentos = new HashSet<>();
         this.computadores = new HashSet<>();
@@ -171,14 +176,18 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             {
                 categoriaEscolhida = "Armazenamento";
         
-                if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
-                {
-                    controladorGeral.exibirTelaCadastroPrimeira();
-                } else
-                {
-                    produtosEmUso.clear();
-                    produtosEmUso.addAll(armazenamentos);
-                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                try {
+                    if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
+                    {
+                        controladorGeral.exibirTelaCadastroPrimeira();
+                    } else
+                    {
+                        produtosEmUso.clear();
+                        produtosEmUso.addAll(armazenamentos);
+                        controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    }
+                } catch (LoginException ex) {
+                     System.out.println(ex.getMessage());
                 }
             }
         });
@@ -190,14 +199,18 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             {
                 categoriaEscolhida = "Computador";
         
-                if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
-                {
-                    controladorGeral.exibirTelaCadastroPrimeira();
-                } else
-                {
-                    produtosEmUso.clear();
-                    produtosEmUso.addAll(computadores);
-                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                try {
+                    if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
+                    {
+                        controladorGeral.exibirTelaCadastroPrimeira();
+                    } else
+                    {
+                        produtosEmUso.clear();
+                        produtosEmUso.addAll(computadores);
+                        controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    }
+                } catch (LoginException ex) {
+                     System.out.println(ex.getMessage());
                 }
             }
         });
@@ -209,14 +222,18 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             {
                 categoriaEscolhida = "Cooler";
         
-                if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
-                {
-                    controladorGeral.exibirTelaCadastroPrimeira();
-                } else
-                {
-                    produtosEmUso.clear();
-                    produtosEmUso.addAll(coolers);
-                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                try {
+                    if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
+                    {
+                        controladorGeral.exibirTelaCadastroPrimeira();
+                    } else
+                    {
+                        produtosEmUso.clear();
+                        produtosEmUso.addAll(coolers);
+                        controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    }
+                } catch (LoginException ex) {
+                     System.out.println(ex.getMessage());
                 }
             }
         });
@@ -228,14 +245,18 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             {
                 categoriaEscolhida = "Fonte";
         
-                if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
-                {
-                    controladorGeral.exibirTelaCadastroPrimeira();
-                } else
-                {
-                    produtosEmUso.clear();
-                    produtosEmUso.addAll(fontes);
-                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                try {
+                    if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
+                    {
+                        controladorGeral.exibirTelaCadastroPrimeira();
+                    } else
+                    {
+                        produtosEmUso.clear();
+                        produtosEmUso.addAll(fontes);
+                        controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    }
+                } catch (LoginException ex) {
+                     System.out.println(ex.getMessage());
                 }
             }
         });
@@ -247,14 +268,18 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             {
                 categoriaEscolhida = "Gabinete";
         
-                if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
-                {
-                    controladorGeral.exibirTelaCadastroPrimeira();
-                } else
-                {
-                    produtosEmUso.clear();
-                    produtosEmUso.addAll(gabinetes);
-                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                try {
+                    if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
+                    {
+                        controladorGeral.exibirTelaCadastroPrimeira();
+                    } else
+                    {
+                        produtosEmUso.clear();
+                        produtosEmUso.addAll(gabinetes);
+                        controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    }
+                } catch (LoginException ex) {
+                    System.out.println(ex.getMessage());
                 }
             }
         });
@@ -266,14 +291,18 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             {
                 categoriaEscolhida = "Headset";
         
-                if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
-                {
-                    controladorGeral.exibirTelaCadastroPrimeira();
-                } else
-                {
-                    produtosEmUso.clear();
-                    produtosEmUso.addAll(headsets);
-                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                try {
+                    if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
+                    {
+                        controladorGeral.exibirTelaCadastroPrimeira();
+                    } else
+                    {
+                        produtosEmUso.clear();
+                        produtosEmUso.addAll(headsets);
+                        controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    }
+                } catch (LoginException ex) {
+                     System.out.println(ex.getMessage());
                 }
             }
         });
@@ -285,14 +314,18 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             {
                 categoriaEscolhida = "Memória RAM";
         
-                if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
-                {
-                    controladorGeral.exibirTelaCadastroPrimeira();
-                } else
-                {
-                    produtosEmUso.clear();
-                    produtosEmUso.addAll(memoriasRam);
-                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                try {
+                    if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
+                    {
+                        controladorGeral.exibirTelaCadastroPrimeira();
+                    } else
+                    {
+                        produtosEmUso.clear();
+                        produtosEmUso.addAll(memoriasRam);
+                        controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    }
+                } catch (LoginException ex) {
+                     System.out.println(ex.getMessage());
                 }
             }
         });
@@ -304,14 +337,18 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             {
                 categoriaEscolhida = "Monitor";
         
-                if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
-                {
-                    controladorGeral.exibirTelaCadastroPrimeira();
-                } else
-                {
-                    produtosEmUso.clear();
-                    produtosEmUso.addAll(monitores);
-                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                try {
+                    if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
+                    {
+                        controladorGeral.exibirTelaCadastroPrimeira();
+                    } else
+                    {
+                        produtosEmUso.clear();
+                        produtosEmUso.addAll(monitores);
+                        controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    }
+                } catch (LoginException ex) {
+                     System.out.println(ex.getMessage());
                 }
             }
         });
@@ -323,14 +360,18 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             {
                 categoriaEscolhida = "Mouse";
         
-                if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
-                {
-                    controladorGeral.exibirTelaCadastroPrimeira();
-                } else
-                {
-                    produtosEmUso.clear();
-                    produtosEmUso.addAll(mouses);
-                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                try {
+                    if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
+                    {
+                        controladorGeral.exibirTelaCadastroPrimeira();
+                    } else
+                    {
+                        produtosEmUso.clear();
+                        produtosEmUso.addAll(mouses);
+                        controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    }
+                } catch (LoginException ex) {
+                     System.out.println(ex.getMessage());
                 }
             }
         });
@@ -342,14 +383,18 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             {
                 categoriaEscolhida = "Notebook";
         
-                if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
-                {
-                    controladorGeral.exibirTelaCadastroPrimeira();
-                } else
-                {
-                    produtosEmUso.clear();
-                    produtosEmUso.addAll(notebooks);
-                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                try {
+                    if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
+                    {
+                        controladorGeral.exibirTelaCadastroPrimeira();
+                    } else
+                    {
+                        produtosEmUso.clear();
+                        produtosEmUso.addAll(notebooks);
+                        controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    }
+                } catch (LoginException ex) {
+                    System.out.println(ex.getMessage());
                 }
             }
         });
@@ -361,14 +406,18 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             {
                 categoriaEscolhida = "Placa de Vídeo";
         
-                if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
-                {
-                    controladorGeral.exibirTelaCadastroPrimeira();
-                } else
-                {
-                    produtosEmUso.clear();
-                    produtosEmUso.addAll(placasDeVideos);
-                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                try {
+                    if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
+                    {
+                        controladorGeral.exibirTelaCadastroPrimeira();
+                    } else
+                    {
+                        produtosEmUso.clear();
+                        produtosEmUso.addAll(placasDeVideos);
+                        controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    }
+                } catch (LoginException ex) {
+                    System.out.println(ex.getMessage());
                 }
             }
         });
@@ -380,14 +429,18 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             {
                 categoriaEscolhida = "Placa Mãe";
         
-                if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
-                {
-                    controladorGeral.exibirTelaCadastroPrimeira();
-                } else
-                {
-                    produtosEmUso.clear();
-                    produtosEmUso.addAll(placasMae);
-                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                try {
+                    if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
+                    {
+                        controladorGeral.exibirTelaCadastroPrimeira();
+                    } else
+                    {
+                        produtosEmUso.clear();
+                        produtosEmUso.addAll(placasMae);
+                        controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    }
+                } catch (LoginException ex) {
+                    System.out.println(ex.getMessage());
                 }
             }
         });
@@ -399,14 +452,18 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             {
                 categoriaEscolhida = "Processador";
         
-                if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
-                {
-                    controladorGeral.exibirTelaCadastroPrimeira();
-                } else
-                {
-                    produtosEmUso.clear();
-                    produtosEmUso.addAll(processadores);
-                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                try {
+                    if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
+                    {
+                        controladorGeral.exibirTelaCadastroPrimeira();
+                    } else
+                    {
+                        produtosEmUso.clear();
+                        produtosEmUso.addAll(processadores);
+                        controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    }
+                } catch (LoginException ex) {
+                     System.out.println(ex.getMessage());
                 }
             }
         });
@@ -418,19 +475,23 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             {
                 categoriaEscolhida = "Teclado";
         
-                if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
-                {
-                    controladorGeral.exibirTelaCadastroPrimeira();
-                } else
-                {
-                    produtosEmUso.clear();
-                    produtosEmUso.addAll(teclados);
-                    controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                try {
+                    if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
+                    {
+                        controladorGeral.exibirTelaCadastroPrimeira();
+                    } else
+                    {
+                        produtosEmUso.clear();
+                        produtosEmUso.addAll(teclados);
+                        controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal);
+                    }
+                } catch (LoginException ex) {
+                   System.out.println(ex.getMessage());
                 }
             }
         });
         
-        telaPrincipal.adicionarAcaoBtSair(new ActionListener() 
+        telaPrincipal.adicionarAcaoBtSair(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e) 
@@ -494,8 +555,14 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
                         break;
                 }
 
+                
+               
                 telaPrincipal.getImgProd1().setIcon(new ImageIcon(Utilitarios.imagemInternet(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto1().getSelectedItem())).getImagem()).getImage().getScaledInstance(telaPrincipal.getImgProd1().getWidth(), telaPrincipal.getImgProd1().getHeight(), Image.SCALE_SMOOTH)));
+           
                 telaPrincipal.getImgProd2().setIcon(new ImageIcon(Utilitarios.imagemInternet(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto2().getSelectedItem())).getImagem()).getImage().getScaledInstance(telaPrincipal.getImgProd2().getWidth(), telaPrincipal.getImgProd2().getHeight(), Image.SCALE_SMOOTH)));
+                
+               
+                
                 telaPrincipal.getTaProd1().setText(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto1().getSelectedItem())).imprimirDados(produtosEmUso.get(0).getCategoria()));
                 telaPrincipal.getTaProd2().setText(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto2().getSelectedItem())).imprimirDados(produtosEmUso.get(0).getCategoria()));
 
@@ -594,6 +661,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
     
     public void addJPanel ()
     {
+        
         jPanells.add(telaPrincipal.getDestaque1());
         jPanells.add(telaPrincipal.getDestaque2());
         jPanells.add(telaPrincipal.getDestaque3());
@@ -929,7 +997,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
     }
 
     @Override
-    public void removefavorito(int key) {
+    public void removefavorito(int key) {  
         this.favoritos.remove(key);
         this.constructorValue();    
         telaPrincipal.getPopUpMenu().revalidate();
