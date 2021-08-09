@@ -5,11 +5,13 @@
  */
 package Codigo;
 
+import Excecoes.LoginException;
+
 /**
  *
  * @author Mateus
  */
 public interface Autenticador {
     
-    boolean verificaAdm ();
+    boolean verificaAdm () throws LoginException;
 }

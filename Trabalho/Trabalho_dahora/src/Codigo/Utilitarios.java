@@ -1,7 +1,9 @@
 package Codigo;
 
 //JAVA
+import Excecoes.LoginException;
 import java.awt.Image;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 //SWING
@@ -23,11 +25,12 @@ public class Utilitarios {
             URL url  = new URL(urlInternet);
             imagemIcon = new ImageIcon(url);
             return imagemIcon;
-        } catch (Exception e) {
-            System.out.println(e);
+        } catch (MalformedURLException e) {
             return null;
         }
+        
     }
+    
     
     public final static void criarPainelProduto (String caminhoFoto, JLabel foto, String textoProduto ,JLabel texto)
     {

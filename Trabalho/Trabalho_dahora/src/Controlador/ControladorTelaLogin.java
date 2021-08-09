@@ -3,6 +3,7 @@ package Controlador;
 //CODIGO
 import Codigo.Autenticador;
 import Codigo.Utilitarios;
+import Excecoes.LoginException;
 
 //TELAS
 import Telas.TelaLogin;
@@ -24,9 +25,11 @@ public class ControladorTelaLogin implements Autenticador {
         this.controladorGeral = controladorGeral;
         configurarTela();
         inicializarAcoes();
+        
+       
     }
     
-    public void configurarTela()
+    public  void configurarTela()
     {
         Utilitarios.aparecerImagemLocal(telaLogin.getlLogo(), "src/imagens/BOOM.png");
         Utilitarios.centralizarTela(telaLogin);
@@ -41,7 +44,14 @@ public class ControladorTelaLogin implements Autenticador {
             @Override
             public void actionPerformed(ActionEvent e) 
             {
-                controladorGeral.exibirTelaPrincipal(controladorGeral.getControladorTelaPrincipal().getTelaPrincipal(), telaLogin);
+                try {
+                    verificaAdm();
+                    controladorGeral.exibirTelaPrincipal(controladorGeral.getControladorTelaPrincipal().getTelaPrincipal(), telaLogin);
+                    
+                } catch (LoginException ex) {
+                    System.out.println(ex.getMessage());
+                }
+                
             }
         });
         
@@ -86,16 +96,26 @@ public class ControladorTelaLogin implements Autenticador {
         
     }
     
-    public boolean verificaAdm() 
+    @Override
+    public boolean verificaAdm() throws LoginException 
     {
+        
+        if (telaLogin.getTfEmail().getText().equals("Email") ) {
+            throw new LoginException("Usuário vazio");
+            
+        } else {
+        
         if (telaLogin.getTfEmail().getText().contains("@adm.com"))
         {
+           
             return true;
         }
         else    
         {
             return false;
+            
         }
+       }
     }
     
     public void exibir()
