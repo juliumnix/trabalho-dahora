@@ -19,6 +19,7 @@ import Codigo.Produto;
 import Codigo.Teclado;
 import Codigo.Utilitarios;
 import Excecoes.LoginException;
+import DAO.CreateTableDAO;
 
 
 //TELAS
@@ -98,7 +99,11 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         addJPanel();
         addJLabelImg();
         addJLabelText();
+        
+        
     }
+    
+  
     
     public void iniciarColecoes ()  
     {
@@ -122,6 +127,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         this.jPanells = new ArrayList<>();
         this.jLabellsImg = new ArrayList<>();
         this.jLabellsText = new ArrayList<>();
+        CreateTableDAO.creatingTable();
     }
     
     public void configurarTela(){
