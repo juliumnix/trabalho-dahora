@@ -1,6 +1,7 @@
 package Telas;
 
 //JAVA
+import Codigo.ProdutoCarrinhoTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseListener;
@@ -10,9 +11,12 @@ import java.awt.event.WindowFocusListener;
 import javax.swing.*;
 
 public class TelaCompra extends javax.swing.JFrame {
+    
+    ProdutoCarrinhoTableModel tableModel = new ProdutoCarrinhoTableModel();
 
     public TelaCompra() {
         initComponents();
+        jTCarrinho.setModel(tableModel);
     }
     
     //ACOES
@@ -119,7 +123,12 @@ public class TelaCompra extends javax.swing.JFrame {
     
     public void adicionarAcaoJButton1(ActionListener acao)
     {
-        jButton1.addActionListener(acao);
+        jButton2.addActionListener(acao);
+    }
+    
+    public void adicionarAcaoBtExcluir(ActionListener acao)
+    {
+        btExcluir.addActionListener(acao);
     }
     
     //GETS SWING 
@@ -158,6 +167,16 @@ public class TelaCompra extends javax.swing.JFrame {
         return this.jPanel1;
     }
     
+    public ProdutoCarrinhoTableModel getTableModel ()
+    {
+        return this.tableModel;
+    }
+    
+    public JTable getJTableCarrinho ()
+    {
+        return this.jTCarrinho;
+    }
+    
     public void exibirTela(){
         setVisible(true);
     }
@@ -191,8 +210,11 @@ public class TelaCompra extends javax.swing.JFrame {
         btCart = new javax.swing.JButton();
         popUpMenu = new javax.swing.JPanel();
         produtos = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTCarrinho = new javax.swing.JTable();
+        btExcluir = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BOOM - Loja de Informática");
@@ -377,26 +399,56 @@ public class TelaCompra extends javax.swing.JFrame {
         produtos.setPreferredSize(new java.awt.Dimension(170, 170));
         produtos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(121, 112, 169));
-        jButton1.setForeground(new java.awt.Color(69, 65, 88));
-        jButton1.setText("Finalizar");
-        jButton1.setBorder(null);
-        produtos.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, 109, 25));
-
         jPanel1.setBackground(new java.awt.Color(121, 112, 169));
+
+        jTCarrinho.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTCarrinho);
+
+        btExcluir.setBackground(new java.awt.Color(69, 65, 88));
+        btExcluir.setForeground(new java.awt.Color(121, 112, 169));
+        btExcluir.setText("Excluir");
+        btExcluir.setBorder(null);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(193, Short.MAX_VALUE))
         );
 
         produtos.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 500, 480));
+
+        jButton2.setBackground(new java.awt.Color(121, 112, 169));
+        jButton2.setForeground(new java.awt.Color(69, 65, 88));
+        jButton2.setText("Finalizar");
+        jButton2.setBorder(null);
+        produtos.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, 109, 25));
 
         bg.add(produtos, new org.netbeans.lib.awtextra.AbsoluteConstraints(147, 52, 520, 540));
 
@@ -412,6 +464,7 @@ public class TelaCompra extends javax.swing.JFrame {
     private javax.swing.JButton btCart;
     private javax.swing.JButton btComputador;
     private javax.swing.JButton btCooler;
+    private javax.swing.JButton btExcluir;
     private javax.swing.JButton btFonte;
     private javax.swing.JButton btGabinete;
     private javax.swing.JButton btHeadset;
@@ -427,9 +480,11 @@ public class TelaCompra extends javax.swing.JFrame {
     private javax.swing.JButton btTeclado;
     private javax.swing.JButton btaux;
     private javax.swing.JLabel icon;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTCarrinho;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel popUpMenu;
     private javax.swing.JPanel produtos;
