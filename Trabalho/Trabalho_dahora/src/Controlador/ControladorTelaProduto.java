@@ -2,6 +2,7 @@ package Controlador;
 
 //CODIGO
 import Codigo.MapManipulator;
+import Codigo.ProdutoCarrinho;
 import Codigo.Utilitarios;
 
 //TELAS
@@ -28,7 +29,12 @@ import javax.swing.JLabel;
 public class ControladorTelaProduto implements MapManipulator {
     private TelaProduto telaProduto;
     private ControladorGeral controladorGeral;
+    
+    private String nome;
+    private float valor;
+    
     private int index;
+    private String modo;
 
     public ControladorTelaProduto(TelaProduto telaProduto, ControladorGeral controladorGeral) {
         this.telaProduto = telaProduto;
@@ -285,16 +291,39 @@ public class ControladorTelaProduto implements MapManipulator {
                 {
                 telaProduto.getJOptionPane1().showMessageDialog(null, "Ops, você só pode adicionar 10 itens aos seus favoritos");
                 } else {
-                    adicionaFavorito(controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(index).getModelo());
+                    switch (modo)
+                    {
+                        case "EmUso":
+                            adicionaFavorito(controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(index).getModelo());
+                        case "Geral":
+                            adicionaFavorito(controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(index).getModelo());
+                    }
+                    adicionarNaTabela();
                     verifyContentFavorites();
                 }
             }
         });
     }
     
+    public void adicionarNaTabela ()
+    {
+        ProdutoCarrinho p = new ProdutoCarrinho();
+        p.setNome(nome);
+        p.setValor(valor);
+        p.setQuantidade(1);
+        if (controladorGeral.getControladorTelaCompra().getTelaCompra().getTableModel().verificaDados(nome) == true)
+        {
+            controladorGeral.getControladorTelaCompra().getTelaCompra().getTableModel().adicionaQuantidade();
+        }else
+        {
+            controladorGeral.getControladorTelaCompra().getTelaCompra().getTableModel().addRow(p);
+        }   
+    }
+    
     public void construirProduto (int index, String modo)
     {
         this.index = index;
+        this.modo = modo;
         switch (modo)
         {
             case "EmUso":
@@ -303,6 +332,10 @@ public class ControladorTelaProduto implements MapManipulator {
                 controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(this.index).getModelo()+" R$ "+controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(this.index).getValor(),
                 telaProduto.getTituloProduto());
                 telaProduto.getTaDescricao().setText(controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(this.index).imprimirDados(controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(this.index).getCategoria()));
+                
+                this.nome = controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(this.index).getModelo();
+                this.valor = controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(this.index).getValor();
+                
                 break;
             case "Geral":
                 Utilitarios.criarPainelProduto(controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(this.index).getImagem(),
@@ -310,6 +343,10 @@ public class ControladorTelaProduto implements MapManipulator {
                 controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(this.index).getModelo()+" R$ "+controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(this.index).getValor(),
                 telaProduto.getTituloProduto());
                 telaProduto.getTaDescricao().setText(controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(this.index).imprimirDados(controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(this.index).getCategoria()));
+                
+                this.nome = controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(this.index).getModelo();
+                this.valor = controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(this.index).getValor();
+                
                 break;
         }
         
