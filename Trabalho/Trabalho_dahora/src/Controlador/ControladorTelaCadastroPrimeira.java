@@ -4,6 +4,8 @@ package Controlador;
 import Codigo.Computador;
 import Codigo.Notebook;
 import Codigo.Utilitarios;
+import DAO.ComputadorDAO;
+import DAO.NotebookDAO;
 
 //TELAS
 import Telas.TelaCadastroPrimeira;
@@ -88,7 +90,13 @@ public class ControladorTelaCadastroPrimeira {
         Computador computador = new Computador (modelo, valor, descricao, marca, categoria, imagem);
         if (controladorGeral.getControladorTelaPrincipal().getComputador().add(computador) == true) 
         {
+            try {
+                ComputadorDAO.salvarArmazenamento(computador);
             controladorGeral.getControladorTelaPrincipal().getTelaPrincipal().getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            
         } else 
         {
             controladorGeral.getControladorTelaPrincipal().getTelaPrincipal().getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
@@ -100,7 +108,12 @@ public class ControladorTelaCadastroPrimeira {
         Notebook notebook = new Notebook (modelo, valor, descricao, marca, categoria, imagem);
         if (controladorGeral.getControladorTelaPrincipal().getNotebook().add(notebook) == true) 
         {
+            try {
+                NotebookDAO.salvarArmazenamento(notebook);
             controladorGeral.getControladorTelaPrincipal().getTelaPrincipal().getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         } else 
         {
             controladorGeral.getControladorTelaPrincipal().getTelaPrincipal().getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");

@@ -30,6 +30,7 @@ public class CriarTabela {
         
         String sql = "CREATE TABLE teste ("
                 + "id INT AUTO_INCREMENT PRIMARY KEY,"
+                + "grupo VARCHAR(80) NOT NULL,"
                 + "auxiliar VARCHAR(80) NOT NULL,"
                 + "valor FLOAT NOT NULL,"
                 + "descricao VARCHAR(200) NOT NULL,"

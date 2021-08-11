@@ -14,6 +14,18 @@ import Codigo.PlacaMae;
 import Codigo.Processador;
 import Codigo.Teclado;
 import Codigo.Utilitarios;
+import DAO.ArmazenamentoDAO;
+import DAO.CoolerDAO;
+import DAO.FonteDAO;
+import DAO.GabineteDAO;
+import DAO.HeadsetDAO;
+import DAO.MemoriaRAMDAO;
+import DAO.MonitorDAO;
+import DAO.MouseDAO;
+import DAO.PlacaDeVideoDAO;
+import DAO.PlacaMaeDAO;
+import DAO.ProcessadorDAO;
+import DAO.TecladoDAO;
 
 //TELAS
 import Telas.TelaCadastroSegunda;
@@ -463,7 +475,14 @@ public class ControladorTelaCadastroSegunda {
         controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Integer.parseInt(telaCadastroSegunda.getJTextField1().getText()), Integer.parseInt(telaCadastroSegunda.getJTextField2().getText()), telaCadastroSegunda.getJComboBox1().getSelectedItem().toString());
         if (controladorGeral.getControladorTelaPrincipal().getArmazenamentos().add(armazenamento) == true) 
         {
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            try {
+                 ArmazenamentoDAO.salvarArmazenamento(armazenamento);
+                 telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+           
+            
         } else 
         {
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
@@ -476,7 +495,13 @@ public class ControladorTelaCadastroSegunda {
         controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Float.parseFloat(telaCadastroSegunda.getJTextField1().getText()), telaCadastroSegunda.getJComboBox1().getSelectedItem().toString());
         if (controladorGeral.getControladorTelaPrincipal().getCooler().add(cooler) == true) 
         {
+            try {
+            CoolerDAO.salvarArmazenamento(cooler);
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            
         } else 
         {
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
@@ -489,7 +514,13 @@ public class ControladorTelaCadastroSegunda {
         controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), telaCadastroSegunda.getJComboBox1().getSelectedItem().toString(), Integer.parseInt(telaCadastroSegunda.getJComboBox2().getSelectedItem().toString()));
         if (controladorGeral.getControladorTelaPrincipal().getFonte().add(fonte) == true) 
         {
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            try {
+                FonteDAO.salvarArmazenamento(fonte);
+                telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            
         } else 
         {
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
@@ -502,7 +533,12 @@ public class ControladorTelaCadastroSegunda {
         controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Float.parseFloat(telaCadastroSegunda.getJTextField1().getText()), telaCadastroSegunda.getJComboBox1().getSelectedItem().toString());
         if (controladorGeral.getControladorTelaPrincipal().getGabinete().add(gabinete) == true) 
         {
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            try {
+                GabineteDAO.salvarArmazenamento(gabinete);
+                telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         } else 
         {
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
@@ -516,7 +552,12 @@ public class ControladorTelaCadastroSegunda {
         Boolean.parseBoolean(telaCadastroSegunda.getJComboBox2().getSelectedItem().toString()), Boolean.parseBoolean(telaCadastroSegunda.getJComboBox3().getSelectedItem().toString()), telaCadastroSegunda.getJComboBox4().getSelectedItem().toString());
         if (controladorGeral.getControladorTelaPrincipal().getHeadset().add(headset) == true) 
         {
+            try {
+            HeadsetDAO.salvarArmazenamento(headset);
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         } else 
         {
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
@@ -529,7 +570,12 @@ public class ControladorTelaCadastroSegunda {
         controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Integer.parseInt(telaCadastroSegunda.getJTextField1().getText()), Float.parseFloat(telaCadastroSegunda.getJTextField2().getText()), telaCadastroSegunda.getJComboBox1().getSelectedItem().toString());
         if (controladorGeral.getControladorTelaPrincipal().getMemoriaRAM().add(memoriaRAM) == true) 
         {
+            try {
+            MemoriaRAMDAO.salvarArmazenamento(memoriaRAM);
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         } else 
         {
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
@@ -543,7 +589,12 @@ public class ControladorTelaCadastroSegunda {
         Integer.parseInt(telaCadastroSegunda.getJComboBox2().getSelectedItem().toString()), telaCadastroSegunda.getJComboBox3().getSelectedItem().toString());
         if (controladorGeral.getControladorTelaPrincipal().getMonitor().add(monitor) == true) 
         {
+            try {
+                MonitorDAO.salvarArmazenamento(monitor);
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         } else 
         {
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
@@ -557,7 +608,12 @@ public class ControladorTelaCadastroSegunda {
         Boolean.parseBoolean(telaCadastroSegunda.getJComboBox2().getSelectedItem().toString()), Boolean.parseBoolean(telaCadastroSegunda.getJComboBox3().getSelectedItem().toString()));
         if (controladorGeral.getControladorTelaPrincipal().getMouse().add(mouse) == true) 
         {
+            try {
+            MouseDAO.salvarArmazenamento(mouse);
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            } catch (Exception e) {
+             System.out.println(e.getMessage());
+            }
         } else 
         {
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
@@ -570,7 +626,12 @@ public class ControladorTelaCadastroSegunda {
         controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Integer.parseInt(telaCadastroSegunda.getJTextField1().getText()), Boolean.parseBoolean(telaCadastroSegunda.getJComboBox1().getSelectedItem().toString()));
         if (controladorGeral.getControladorTelaPrincipal().getPlacaDeVideo().add(placaDeVideo) == true) 
         {
+            try {
+                PlacaDeVideoDAO.salvarArmazenamento(placaDeVideo);
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         } else 
         {
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
@@ -585,7 +646,13 @@ public class ControladorTelaCadastroSegunda {
         Boolean.parseBoolean(telaCadastroSegunda.getJComboBox3().getSelectedItem().toString()));
         if (controladorGeral.getControladorTelaPrincipal().getPlacaMae().add(placaMae) == true) 
         {
+            
+            try {
+                PlacaMaeDAO.salvarArmazenamento(placaMae);
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         } else 
         {
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
@@ -599,7 +666,12 @@ public class ControladorTelaCadastroSegunda {
         Float.parseFloat(telaCadastroSegunda.getJTextField3().getText()));
         if (controladorGeral.getControladorTelaPrincipal().getProcessador().add(processador) == true) 
         {
+            try {
+                ProcessadorDAO.salvarArmazenamento(processador);
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         } else 
         {
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
@@ -613,7 +685,12 @@ public class ControladorTelaCadastroSegunda {
         Boolean.parseBoolean(telaCadastroSegunda.getJComboBox2().getSelectedItem().toString()), telaCadastroSegunda.getJComboBox3().getSelectedItem().toString(), Boolean.parseBoolean(telaCadastroSegunda.getJComboBox4().getSelectedItem().toString()));
         if (controladorGeral.getControladorTelaPrincipal().getTeclado().add(teclado) == true) 
         {
+            try {
+                TecladoDAO.salvarArmazenamento(teclado);
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         } else 
         {
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
