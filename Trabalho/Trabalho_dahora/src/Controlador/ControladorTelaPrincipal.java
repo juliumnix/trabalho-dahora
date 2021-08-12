@@ -18,6 +18,7 @@ import Codigo.Processador;
 import Codigo.Produto;
 import Codigo.Teclado;
 import Codigo.Utilitarios;
+import DAO.ArmazenamentoDAO;
 import Excecoes.LoginException;
 import DAO.CreateTableDAO;
 
@@ -127,7 +128,12 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         this.jPanells = new ArrayList<>();
         this.jLabellsImg = new ArrayList<>();
         this.jLabellsText = new ArrayList<>();
-        CreateTableDAO.creatingTable();
+        this.armazenamentos.addAll(ArmazenamentoDAO.getTodosArmazenamentos());
+    }
+    
+    public void criarTabela ()
+    {
+        CreateTableDAO.creatingTable();  
     }
     
     public void configurarTela(){

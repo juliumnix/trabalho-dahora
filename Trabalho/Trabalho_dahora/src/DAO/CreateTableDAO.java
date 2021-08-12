@@ -22,6 +22,7 @@ public class CreateTableDAO {
         
         String sql = "CREATE TABLE IF NOT EXISTS Produtos ("
                 + "id INT AUTO_INCREMENT PRIMARY KEY,"
+                + "marca VARCHAR(80) NOT NULL,"
                 + "modelo VARCHAR(80) NOT NULL,"
                 + "valor FLOAT NOT NULL,"
                 + "descricao VARCHAR(200) NOT NULL,"
