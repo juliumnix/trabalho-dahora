@@ -2,6 +2,7 @@ package Controlador;
 
 //CODIGO
 import Codigo.MapManipulator;
+import Codigo.Produto;
 import Codigo.ProdutoCarrinho;
 import Codigo.Utilitarios;
 
@@ -294,12 +295,14 @@ public class ControladorTelaProduto implements MapManipulator {
                     switch (modo)
                     {
                         case "EmUso":
-                            adicionaFavorito(controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(index).getModelo());
+                            adicionaCarrinho(controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(index));
+                            break;
                         case "Geral":
-                            adicionaFavorito(controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(index).getModelo());
+                            adicionaCarrinho(controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(index));
+                            break;
                     }
                     adicionarNaTabela();
-                    verifyContentFavorites();
+                    verifyContentCarrinho();
                 }
             }
         });
@@ -351,21 +354,20 @@ public class ControladorTelaProduto implements MapManipulator {
         }
         
     }
-    
-    public void verifyContentFavorites () 
-    {
-        this.constructorValue();
+        
+    public void verifyContentCarrinho () {
+        this.constructorValueCarrinho();
         telaProduto.getPopUpMenu().revalidate();
         telaProduto.getPopUpMenu().repaint();
         
     }
    
-    public void constructorValue () {
+    public void constructorValueCarrinho () {
         telaProduto.getPopUpMenu().removeAll();
         telaProduto.getPopUpMenu().setLayout(new FlowLayout());
-        for (Map.Entry<Integer, String> entry : controladorGeral.getControladorTelaPrincipal().getFavoritos().entrySet()) {
+        for (Map.Entry<Integer, Produto> entry : controladorGeral.getControladorTelaPrincipal().getCarrinho().entrySet()) {
           JLabel _lbl = new JLabel("<html><div><p style='color: #FFCA80; text-align: center;'>id:"+entry.getKey()+" "+entry.getValue()+"</p></div></html>");
-          _lbl.setText(entry.getValue()); 
+          _lbl.setText(entry.getValue().getModelo()); 
           int width = _lbl.getText().length();
           if(width > 10) {
              _lbl.setFont(new Font("Dialog", 0, 10));  
@@ -380,7 +382,7 @@ public class ControladorTelaProduto implements MapManipulator {
               public void actionPerformed(ActionEvent e) {
               String action = e.getActionCommand();
               int value = Integer.parseInt(action);
-              removefavorito(value);
+              removeCarrinho(value);
               }
               
           });
@@ -403,18 +405,18 @@ public class ControladorTelaProduto implements MapManipulator {
     {
         return this.telaProduto;
     }
-    
+
     @Override
-    public void adicionaFavorito(String value) {
-        controladorGeral.getControladorTelaPrincipal().getFavoritos().put(controladorGeral.getControladorTelaPrincipal().getValueTeste(), value);
+    public void adicionaCarrinho(Produto produto) {
+        controladorGeral.getControladorTelaPrincipal().getCarrinho().put(controladorGeral.getControladorTelaPrincipal().getValueTeste(), produto);
         controladorGeral.getControladorTelaPrincipal().adicionarValueTeste();
     }
 
     @Override
-    public void removefavorito(int key) {
-        controladorGeral.getControladorTelaPrincipal().getFavoritos().remove(key);
-        constructorValue();    
+    public void removeCarrinho(int key) {  
+        controladorGeral.getControladorTelaPrincipal().getCarrinho().remove(key);
+        this.constructorValueCarrinho();    
         telaProduto.getPopUpMenu().revalidate();
         telaProduto.getPopUpMenu().repaint();
-    }
+    } 
 }

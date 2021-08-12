@@ -589,20 +589,19 @@ public class ControladorTelaCategorias implements MapManipulator {
         }
     }
      
-    
-    public void verifyContentFavorites () {
-        this.constructorValue();
+    public void verifyContentCarrinho () {
+        this.constructorValueCarrinho();
         telaCategorias.getPopUpMenu().revalidate();
         telaCategorias.getPopUpMenu().repaint();
         
     }
    
-    public void constructorValue () {
+    public void constructorValueCarrinho () {
         telaCategorias.getPopUpMenu().removeAll();
         telaCategorias.getPopUpMenu().setLayout(new FlowLayout());
-        for (Map.Entry<Integer, String> entry : controladorGeral.getControladorTelaPrincipal().getFavoritos().entrySet()) {
+        for (Map.Entry<Integer, Produto> entry : controladorGeral.getControladorTelaPrincipal().getCarrinho().entrySet()) {
           JLabel _lbl = new JLabel("<html><div><p style='color: #FFCA80; text-align: center;'>id:"+entry.getKey()+" "+entry.getValue()+"</p></div></html>");
-          _lbl.setText(entry.getValue()); 
+          _lbl.setText(entry.getValue().getModelo()); 
           int width = _lbl.getText().length();
           if(width > 10) {
              _lbl.setFont(new Font("Dialog", 0, 10));  
@@ -617,13 +616,15 @@ public class ControladorTelaCategorias implements MapManipulator {
               public void actionPerformed(ActionEvent e) {
               String action = e.getActionCommand();
               int value = Integer.parseInt(action);
-              removefavorito(value);
+              removeCarrinho(value);
               }
               
           });
             botaoDelete.setActionCommand(entry.getKey().toString());
             telaCategorias.getPopUpMenu().add(_lbl);
             telaCategorias.getPopUpMenu().add(botaoDelete);
+        
+        
         }
     }
     
@@ -651,16 +652,16 @@ public class ControladorTelaCategorias implements MapManipulator {
     }
     
     @Override
-    public void adicionaFavorito(String value) {
-        controladorGeral.getControladorTelaPrincipal().getFavoritos().put(controladorGeral.getControladorTelaPrincipal().getValueTeste(), value);
+    public void adicionaCarrinho(Produto produto) {
+        controladorGeral.getControladorTelaPrincipal().getCarrinho().put(controladorGeral.getControladorTelaPrincipal().getValueTeste(), produto);
         controladorGeral.getControladorTelaPrincipal().adicionarValueTeste();
     }
 
     @Override
-    public void removefavorito(int key) {
-        controladorGeral.getControladorTelaPrincipal().getFavoritos().remove(key);
-        this.constructorValue();    
+    public void removeCarrinho(int key) {  
+        controladorGeral.getControladorTelaPrincipal().getCarrinho().remove(key);
+        this.constructorValueCarrinho();    
         telaCategorias.getPopUpMenu().revalidate();
         telaCategorias.getPopUpMenu().repaint();
-    }
+    } 
 }

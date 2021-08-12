@@ -2,6 +2,7 @@ package Controlador;
 
 //CODIGOS
 import Codigo.MapManipulator;
+import Codigo.Produto;
 import Codigo.Utilitarios;
 
 //TELAS
@@ -285,7 +286,7 @@ public class ControladorTelaCompra implements MapManipulator {
                 controladorGeral.getControladorTelaPrincipal().getFavoritos().clear();
                 telaCompra.getJOptionPane1().showMessageDialog(null, "Compra finalizada com sucesso, obrigado");
                 getTelaCompra().getTableModel().clearTable();
-                verifyContentFavorites();
+                verifyContentCarrinho();
             }
         });
         
@@ -311,19 +312,19 @@ public class ControladorTelaCompra implements MapManipulator {
         });
     }
     
-    public void verifyContentFavorites () {
-        this.constructorValue();
+    public void verifyContentCarrinho () {
+        this.constructorValueCarrinho();
         telaCompra.getPopUpMenu().revalidate();
         telaCompra.getPopUpMenu().repaint();
         
     }
    
-    public void constructorValue () {
+    public void constructorValueCarrinho () {
         telaCompra.getPopUpMenu().removeAll();
         telaCompra.getPopUpMenu().setLayout(new FlowLayout());
-        for (Map.Entry<Integer, String> entry : controladorGeral.getControladorTelaPrincipal().getFavoritos().entrySet()) {
+        for (Map.Entry<Integer, Produto> entry : controladorGeral.getControladorTelaPrincipal().getCarrinho().entrySet()) {
           JLabel _lbl = new JLabel("<html><div><p style='color: #FFCA80; text-align: center;'>id:"+entry.getKey()+" "+entry.getValue()+"</p></div></html>");
-          _lbl.setText(entry.getValue()); 
+          _lbl.setText(entry.getValue().getModelo()); 
           int width = _lbl.getText().length();
           if(width > 10) {
              _lbl.setFont(new Font("Dialog", 0, 10));  
@@ -338,7 +339,7 @@ public class ControladorTelaCompra implements MapManipulator {
               public void actionPerformed(ActionEvent e) {
               String action = e.getActionCommand();
               int value = Integer.parseInt(action);
-              removefavorito(value);
+              removeCarrinho(value);
               }
               
           });
@@ -362,18 +363,16 @@ public class ControladorTelaCompra implements MapManipulator {
     }
     
     @Override
-    public void adicionaFavorito(String value) {
-        controladorGeral.getControladorTelaPrincipal().getFavoritos().put(controladorGeral.getControladorTelaPrincipal().getValueTeste(), value);
+    public void adicionaCarrinho(Produto produto) {
+        controladorGeral.getControladorTelaPrincipal().getCarrinho().put(controladorGeral.getControladorTelaPrincipal().getValueTeste(), produto);
         controladorGeral.getControladorTelaPrincipal().adicionarValueTeste();
     }
 
     @Override
-    public void removefavorito(int key) {
-        controladorGeral.getControladorTelaPrincipal().getFavoritos().remove(key);
-        constructorValue();    
+    public void removeCarrinho(int key) {  
+        controladorGeral.getControladorTelaPrincipal().getCarrinho().remove(key);
+        this.constructorValueCarrinho();    
         telaCompra.getPopUpMenu().revalidate();
         telaCompra.getPopUpMenu().repaint();
-        telaCompra.getJPanel1().revalidate();
-        telaCompra.getJPanel1().repaint();
-    }
+    } 
 }

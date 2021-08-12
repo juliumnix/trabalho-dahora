@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Codigo;
 
-/**
- *
- * @author juliu
- */
 public interface MapManipulator {
     
-    public void adicionaFavorito(String value);
+    public void adicionaCarrinho(Produto produto);
     
-    public void removefavorito(int key);
+    public void removeCarrinho(int key);
     
 }

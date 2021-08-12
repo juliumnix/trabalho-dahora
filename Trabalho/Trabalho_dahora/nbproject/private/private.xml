@@ -4,13 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Documentos/Faculdade/3%20Semestre/Programação%20II/TrabalhoDaora/trabalho-dahora/Trabalho/Trabalho_dahora/src/Codigo/MapManipulator.java</file>
+            <file>file:/D:/Documentos/Faculdade/3%20Semestre/Programação%20II/TrabalhoDaora/trabalho-dahora/Trabalho/Trabalho_dahora/src/Controlador/ControladorTelaPrincipal.java</file>
             <file>file:/D:/Documentos/Faculdade/3%20Semestre/Programação%20II/TrabalhoDaora/trabalho-dahora/Trabalho/Trabalho_dahora/src/Controlador/ControladorTelaCompra.java</file>
-            <file>file:/D:/Documentos/Faculdade/3%20Semestre/Programação%20II/TrabalhoDaora/trabalho-dahora/Trabalho/Trabalho_dahora/src/Telas/TelaCompra.java</file>
-            <file>file:/D:/Documentos/Faculdade/3%20Semestre/Programação%20II/TrabalhoDaora/trabalho-dahora/Trabalho/Trabalho_dahora/src/Codigo/CarrinhoTableModel.java</file>
-            <file>file:/D:/Documentos/Faculdade/3%20Semestre/Programação%20II/TrabalhoDaora/trabalho-dahora/Trabalho/Trabalho_dahora/src/Codigo/ProdutoCarrinho.java</file>
-            <file>file:/D:/Documentos/Faculdade/3%20Semestre/Programação%20II/TrabalhoDaora/trabalho-dahora/Trabalho/Trabalho_dahora/src/Codigo/EstoqueTableModel.java</file>
-            <file>file:/D:/Documentos/Faculdade/3%20Semestre/Programação%20II/TrabalhoDaora/trabalho-dahora/Trabalho/Trabalho_dahora/src/Controlador/ControladorGeral.java</file>
-            <file>file:/D:/Documentos/Faculdade/3%20Semestre/Programação%20II/TrabalhoDaora/trabalho-dahora/Trabalho/Trabalho_dahora/src/Codigo/Autenticador.java</file>
+            <file>file:/D:/Documentos/Faculdade/3%20Semestre/Programação%20II/TrabalhoDaora/trabalho-dahora/Trabalho/Trabalho_dahora/src/Controlador/ControladorTelaEstoque.java</file>
+            <file>file:/D:/Documentos/Faculdade/3%20Semestre/Programação%20II/TrabalhoDaora/trabalho-dahora/Trabalho/Trabalho_dahora/src/Controlador/ControladorTelaProduto.java</file>
+            <file>file:/D:/Documentos/Faculdade/3%20Semestre/Programação%20II/TrabalhoDaora/trabalho-dahora/Trabalho/Trabalho_dahora/src/Controlador/ControladorTelaCategorias.java</file>
         </group>
     </open-files>
 </project-private>

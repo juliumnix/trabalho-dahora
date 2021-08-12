@@ -84,7 +84,7 @@ public class ControladorGeral {
         telaCategorias.getPopUpMenu().setVisible(false);
         controladorTelaCategorias.setPesquisa(false);
         controladorTelaCategorias.ObjetosNovaPagina();
-        controladorTelaCategorias.verifyContentFavorites();
+        controladorTelaCategorias.verifyContentCarrinho();
         controladorTelaCategorias.exibir();
     }
     
@@ -94,14 +94,14 @@ public class ControladorGeral {
         telaCategorias.getPopUpMenu().setVisible(false);
         controladorTelaCategorias.setPesquisa(false);
         controladorTelaCategorias.ObjetosNovaPagina(pesquisa);
-        controladorTelaCategorias.verifyContentFavorites();
+        controladorTelaCategorias.verifyContentCarrinho();
         controladorTelaCategorias.exibir();
     }
     
     public void exibirTelaCompra(TelaCompra telaCompra, JFrame other) {
         other.setVisible(false);
         telaCompra.getPopUpMenu().setVisible(false);
-        controladorTelaCompra.verifyContentFavorites();
+        controladorTelaCompra.verifyContentCarrinho();
         controladorTelaCompra.exibir();
     }
     
@@ -116,7 +116,8 @@ public class ControladorGeral {
         telaPrincipal.getIcon().requestFocus();
         telaPrincipal.getPopUpMenu().setVisible(false);
         telaPrincipal.getTfPesquisa().setText("");
-        controladorTelaPrincipal.verifyContentFavorites();
+        controladorTelaPrincipal.verifyContentCarrinho();
+        controladorTelaPrincipal.organizarProdutosGeral();
         controladorTelaPrincipal.promocoes();
         controladorTelaPrincipal.alterarComboBox();
         controladorTelaPrincipal.criarTabela();
@@ -126,14 +127,14 @@ public class ControladorGeral {
     public void exibirTelaProduto(TelaProduto telaProduto, JFrame other) {
         other.setVisible(false);
         telaProduto.getPopUpMenu().setVisible(false);
-        controladorTelaProduto.verifyContentFavorites();
+        controladorTelaProduto.verifyContentCarrinho();
         controladorTelaProduto.exibir();
     }
     
     public void exibirTelaEstoque(TelaEstoque telaEstoque, JFrame other) {
         other.setVisible(false);
         telaEstoque.getPopUpMenu().setVisible(false);
-        controladorTelaEstoque.verifyContentFavorites();
+        controladorTelaEstoque.verifyContentCarrinho();
         controladorTelaEstoque.configurarListaEstoque();
         controladorTelaEstoque.exibir();
     }
