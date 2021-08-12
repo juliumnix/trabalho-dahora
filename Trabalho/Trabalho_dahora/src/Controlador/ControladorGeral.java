@@ -114,6 +114,7 @@ public class ControladorGeral {
         controladorTelaPrincipal.verifyContentFavorites();
         controladorTelaPrincipal.promocoes();
         controladorTelaPrincipal.alterarComboBox();
+        controladorTelaPrincipal.criarTabela();
         controladorTelaPrincipal.exibir();
     }
     
