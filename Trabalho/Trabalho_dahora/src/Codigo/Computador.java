@@ -16,7 +16,7 @@ public class Computador extends Produto{
     public Computador(String modelo, float valor, String descricao, String marca, String categoria, String imagem) {
         super(modelo, valor, descricao, marca, categoria, imagem);
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
