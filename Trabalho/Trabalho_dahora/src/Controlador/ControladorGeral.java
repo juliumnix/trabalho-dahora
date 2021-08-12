@@ -1,13 +1,11 @@
 package Controlador;
 
-//CODIGOS
-import Codigo.Utilitarios;
-
 //TELAS
 import Telas.TelaCadastroPrimeira;
 import Telas.TelaCadastroSegunda;
 import Telas.TelaCategorias;
 import Telas.TelaCompra;
+import Telas.TelaEstoque;
 import Telas.TelaLogin;
 import Telas.TelaPrincipal;
 import Telas.TelaProduto;
@@ -24,6 +22,7 @@ public class ControladorGeral {
     private ControladorTelaLogin controladorTelaLogin;
     private ControladorTelaPrincipal controladorTelaPrincipal;
     private ControladorTelaProduto controladorTelaProduto;
+    private ControladorTelaEstoque controladorTelaEstoque;
     
     public ControladorGeral() {
         inicializarTelaCadastroPrimeira();
@@ -33,6 +32,7 @@ public class ControladorGeral {
         inicializarTelaLogin();
         inicializarTelaPrincipal();
         inicializarTelaProduto();
+        inicializarTelaEstoque();
     }
     
     public void inicializarTelaCadastroPrimeira() {
@@ -61,6 +61,11 @@ public class ControladorGeral {
     
     public void inicializarTelaProduto() {
         controladorTelaProduto = new ControladorTelaProduto(new TelaProduto(), this);
+    }
+    
+    public void inicializarTelaEstoque ()
+    {
+        controladorTelaEstoque = new ControladorTelaEstoque(new TelaEstoque(), this);
     }
     
     public void exibirTelaCadastroPrimeira() {
@@ -125,6 +130,14 @@ public class ControladorGeral {
         controladorTelaProduto.exibir();
     }
     
+    public void exibirTelaEstoque(TelaEstoque telaEstoque, JFrame other) {
+        other.setVisible(false);
+        telaEstoque.getPopUpMenu().setVisible(false);
+        controladorTelaEstoque.verifyContentFavorites();
+        controladorTelaEstoque.configurarListaEstoque();
+        controladorTelaEstoque.exibir();
+    }
+    
     public ControladorTelaCadastroPrimeira getControladorTelaCadastroPrimeira()
     {
         return this.controladorTelaCadastroPrimeira;
@@ -158,5 +171,10 @@ public class ControladorGeral {
     public ControladorTelaProduto getControladorTelaProduto()
     {
         return this.controladorTelaProduto;
+    }
+    
+    public ControladorTelaEstoque getControladorTelaEstoque()
+    {
+        return this.controladorTelaEstoque;
     }
 }

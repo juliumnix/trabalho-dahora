@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-public class ProdutoCarrinhoTableModel extends AbstractTableModel{
+public class CarrinhoTableModel extends AbstractTableModel{
     
     private List<ProdutoCarrinho> dados = new ArrayList<>();
     private String[] colunas = {"Nome", "Valor", "Quantidade"};
@@ -82,14 +82,6 @@ public class ProdutoCarrinhoTableModel extends AbstractTableModel{
         return false;
     }
     
-    public void removeTudo ()
-    {
-        for (int i = 0; i<dados.size(); i++)
-        {
-            removeRow(i);
-        }
-    }
-    
     public void adicionaQuantidade ()
     {
         int quantidadeAtual = dados.get(contagem).getQuantidade();
@@ -110,4 +102,9 @@ public class ProdutoCarrinhoTableModel extends AbstractTableModel{
         this.fireTableRowsDeleted(rowIndex, rowIndex);
     }
     
+    public void clearTable ()
+    {
+        this.dados.clear();
+        this.fireTableRowsDeleted(0, dados.size());
+    }  
 }
