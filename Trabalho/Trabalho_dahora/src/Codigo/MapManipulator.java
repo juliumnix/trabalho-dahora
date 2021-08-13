@@ -4,6 +4,5 @@ public interface MapManipulator {
     
     public void adicionaCarrinho(Produto produto);
     
-    public void removeCarrinho(int key);
-    
+    public void removeCarrinho(int key);    
 }

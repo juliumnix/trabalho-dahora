@@ -288,9 +288,9 @@ public class ControladorTelaProduto implements MapManipulator {
             @Override
             public void actionPerformed(ActionEvent e) 
             {
-                if(controladorGeral.getControladorTelaPrincipal().getFavoritos().size() == 10)
+                if(controladorGeral.getControladorTelaPrincipal().getCarrinho().size() == 10)
                 {
-                telaProduto.getJOptionPane1().showMessageDialog(null, "Ops, você só pode adicionar 10 itens aos seus favoritos");
+                telaProduto.getJOptionPane1().showMessageDialog(null, "Ops, você só pode adicionar 10 itens no seu carrinho");
                 } else {
                     switch (modo)
                     {
@@ -301,28 +301,12 @@ public class ControladorTelaProduto implements MapManipulator {
                             adicionaCarrinho(controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(index));
                             break;
                     }
-                    adicionarNaTabela();
                     verifyContentCarrinho();
                 }
             }
         });
     }
-    
-    public void adicionarNaTabela ()
-    {
-        ProdutoCarrinho p = new ProdutoCarrinho();
-        p.setNome(nome);
-        p.setValor(valor);
-        p.setQuantidade(1);
-        if (controladorGeral.getControladorTelaCompra().getTelaCompra().getTableModel().verificaDados(nome) == true)
-        {
-            controladorGeral.getControladorTelaCompra().getTelaCompra().getTableModel().adicionaQuantidade();
-        }else
-        {
-            controladorGeral.getControladorTelaCompra().getTelaCompra().getTableModel().addRow(p);
-        }   
-    }
-    
+
     public void construirProduto (int index, String modo)
     {
         this.index = index;
@@ -409,12 +393,14 @@ public class ControladorTelaProduto implements MapManipulator {
     @Override
     public void adicionaCarrinho(Produto produto) {
         controladorGeral.getControladorTelaPrincipal().getCarrinho().put(controladorGeral.getControladorTelaPrincipal().getValueTeste(), produto);
+        controladorGeral.getControladorTelaCompra().getTelaCompra().getTableModel().addRow(produto, controladorGeral.getControladorTelaPrincipal().getValueTeste());
         controladorGeral.getControladorTelaPrincipal().adicionarValueTeste();
     }
 
     @Override
     public void removeCarrinho(int key) {  
         controladorGeral.getControladorTelaPrincipal().getCarrinho().remove(key);
+        controladorGeral.getControladorTelaCompra().getTelaCompra().getTableModel().removeRow(key);
         this.constructorValueCarrinho();    
         telaProduto.getPopUpMenu().revalidate();
         telaProduto.getPopUpMenu().repaint();

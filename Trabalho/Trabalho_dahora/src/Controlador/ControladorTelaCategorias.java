@@ -654,12 +654,14 @@ public class ControladorTelaCategorias implements MapManipulator {
     @Override
     public void adicionaCarrinho(Produto produto) {
         controladorGeral.getControladorTelaPrincipal().getCarrinho().put(controladorGeral.getControladorTelaPrincipal().getValueTeste(), produto);
+        controladorGeral.getControladorTelaCompra().getTelaCompra().getTableModel().addRow(produto, controladorGeral.getControladorTelaPrincipal().getValueTeste());
         controladorGeral.getControladorTelaPrincipal().adicionarValueTeste();
     }
 
     @Override
     public void removeCarrinho(int key) {  
         controladorGeral.getControladorTelaPrincipal().getCarrinho().remove(key);
+        controladorGeral.getControladorTelaCompra().getTelaCompra().getTableModel().removeRow(key);
         this.constructorValueCarrinho();    
         telaCategorias.getPopUpMenu().revalidate();
         telaCategorias.getPopUpMenu().repaint();

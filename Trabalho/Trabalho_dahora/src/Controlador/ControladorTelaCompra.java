@@ -36,6 +36,7 @@ public class ControladorTelaCompra implements MapManipulator {
     public ControladorTelaCompra(TelaCompra telaCompra, ControladorGeral controladorGeral) {
         this.telaCompra = telaCompra;
         this.controladorGeral = controladorGeral;
+//        this.telaCompra.getTableModel().getDados().addAll(controladorGeral.getControladorTelaPrincipal().getCarrinho().values());
         configurarTela();
         inicializarAcoes();
     }
@@ -283,7 +284,7 @@ public class ControladorTelaCompra implements MapManipulator {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                controladorGeral.getControladorTelaPrincipal().getFavoritos().clear();
+                controladorGeral.getControladorTelaPrincipal().getCarrinho().clear();
                 telaCompra.getJOptionPane1().showMessageDialog(null, "Compra finalizada com sucesso, obrigado");
                 getTelaCompra().getTableModel().clearTable();
                 verifyContentCarrinho();
@@ -295,19 +296,9 @@ public class ControladorTelaCompra implements MapManipulator {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                if (getTelaCompra().getJTableCarrinho().getSelectedRow() != -1)
-                {
-                    int quantidade = getTelaCompra().getTableModel().getDados().get(getTelaCompra().getJTableCarrinho().getSelectedRow()).getQuantidade();
-                    if (quantidade > 1)
-                    {
-                        quantidade--;
-                        String quantidadeFinal = Integer.toString(quantidade);
-                        controladorGeral.getControladorTelaCompra().getTelaCompra().getTableModel().setValueAt(quantidadeFinal, getTelaCompra().getJTableCarrinho().getSelectedRow(), 2);
-                    }else
-                    {
-                        getTelaCompra().getTableModel().removeRow(getTelaCompra().getJTableCarrinho().getSelectedRow());
-                    }
-                }
+                int index = 0;
+                index = telaCompra.getTableModel().getContagemAuxiliar().get(telaCompra.getJTableCarrinho().getSelectedRow());
+                removeCarrinho(index);
             }
         });
     }
@@ -365,14 +356,16 @@ public class ControladorTelaCompra implements MapManipulator {
     @Override
     public void adicionaCarrinho(Produto produto) {
         controladorGeral.getControladorTelaPrincipal().getCarrinho().put(controladorGeral.getControladorTelaPrincipal().getValueTeste(), produto);
+        telaCompra.getTableModel().addRow(produto, controladorGeral.getControladorTelaPrincipal().getValueTeste());
         controladorGeral.getControladorTelaPrincipal().adicionarValueTeste();
     }
 
     @Override
     public void removeCarrinho(int key) {  
         controladorGeral.getControladorTelaPrincipal().getCarrinho().remove(key);
+        telaCompra.getTableModel().removeRow(key);
         this.constructorValueCarrinho();    
         telaCompra.getPopUpMenu().revalidate();
         telaCompra.getPopUpMenu().repaint();
-    } 
+    }  
 }

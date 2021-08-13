@@ -85,7 +85,6 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
     
     //AUXILIARES
     private String categoriaEscolhida;
-    private Map<Integer, String> favoritos;
     private Map<Integer, Produto> carrinho;
     private static int valueID;
 
@@ -118,7 +117,6 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         this.teclados = new HashSet<>();
         this.produtosEmUso = new ArrayList<>();
         this.produtosGeral = new ArrayList<>();
-        this.favoritos = new HashMap<>();
         this.carrinho = new HashMap<>();
         this.jPanells = new ArrayList<>();
         this.jLabellsImg = new ArrayList<>();
@@ -143,6 +141,22 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         telaPrincipal.getMelhorCompra1().setVisible(false);
         telaPrincipal.getMelhorCompra2().setVisible(false);
         telaPrincipal.getPopUpMenu().setVisible(false);
+    }
+    
+    public void visibilidadeBtEstoque ()
+    {
+        try 
+        {
+            if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
+            {
+                telaPrincipal.getBtEstoque().setVisible(true);
+            }else
+            {
+                telaPrincipal.getBtEstoque().setVisible(false);
+            }
+        } catch (LoginException ex) {
+            System.out.println(ex.getMessage());
+        } 
     }
     
     public void inicializarAcoes() 
@@ -1008,10 +1022,6 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         return categoriaEscolhida;
     }
     
-    public Map<Integer, String> getFavoritos() {
-        return favoritos;
-    }
-    
     public Map<Integer, Produto> getCarrinho() {
         return carrinho;
     }
@@ -1028,14 +1038,16 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
     @Override
     public void adicionaCarrinho(Produto produto) {
         this.carrinho.put(valueID, produto);
+        controladorGeral.getControladorTelaCompra().getTelaCompra().getTableModel().addRow(produto, controladorGeral.getControladorTelaPrincipal().getValueTeste());
         valueID++;
     }
 
     @Override
     public void removeCarrinho(int key) {  
         this.carrinho.remove(key);
+        controladorGeral.getControladorTelaCompra().getTelaCompra().getTableModel().removeRow(key);
         this.constructorValueCarrinho();
         telaPrincipal.getPopUpMenu().revalidate();
         telaPrincipal.getPopUpMenu().repaint();
-    } 
+    }     
 }

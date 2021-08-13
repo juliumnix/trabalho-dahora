@@ -1,24 +1,25 @@
 package Codigo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 public class CarrinhoTableModel extends AbstractTableModel{
     
-    private List<ProdutoCarrinho> dados = new ArrayList<>();
-    private String[] colunas = {"Nome", "Valor", "Quantidade"};
-    private int contagem;
+    private List<Produto> dados = new ArrayList<>();
+    private List<Integer> contagemAuxiliar = new ArrayList<>();
+    private String[] colunas = {"Modelo", "Valor"};
     
-    public int getContagem ()
-    {
-        return this.contagem;
-    }
-    
-    public List<ProdutoCarrinho> getDados ()
+    public List<Produto> getDados ()
     {
         return this.dados;
     }
+
+    public List<Integer> getContagemAuxiliar() {
+        return contagemAuxiliar;
+    }
+    
 
     @Override
     public String getColumnName(int column) {
@@ -40,71 +41,63 @@ public class CarrinhoTableModel extends AbstractTableModel{
         switch (columnIndex)
         {
             case 0:
-                return dados.get(rowIndex).getNome();
+                return dados.get(rowIndex).getModelo();
             case 1:
                 return dados.get(rowIndex).getValor();
-            case 2:
-                return dados.get(rowIndex).getQuantidade();
         }
         return null;
     }
 
-    @Override
-    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        switch (columnIndex)
-        {
-            case 0:
-                dados.get(rowIndex).setNome((String) aValue);
-                break;
-            case 1:
-                dados.get(rowIndex).setValor(Float.parseFloat((String) aValue));
-                break;
-            case 2:
-                dados.get(rowIndex).setQuantidade(Integer.parseInt((String) aValue));
-                break;
-        }
-        
-        this.fireTableRowsUpdated(rowIndex, rowIndex);
-    }
+//    @Override
+//    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+//        switch (columnIndex)
+//        {
+//            case 0:
+//                dados.get(rowIndex).setModelo((String) aValue);
+//                break;
+//            case 1:
+//                dados.get(rowIndex).setValor(Float.parseFloat((String) aValue));
+//                break;
+//        }
+//        
+//        this.fireTableRowsUpdated(rowIndex, rowIndex);
+//    }
     
-    public boolean verificaDados (String nome)
-    {
-        contagem = -1;
-        for (ProdutoCarrinho p: dados)
-        {
-            contagem++;
-            if (p.getNome() == nome)
-            {
-                return true;
-            }
-            
-        }
-        return false;
-    }
-    
-    public void adicionaQuantidade ()
-    {
-        int quantidadeAtual = dados.get(contagem).getQuantidade();
-        quantidadeAtual++;
-        String quantidadeFinal = Integer.toString(quantidadeAtual);
-        setValueAt(quantidadeFinal, contagem, 2);
-    }
-    
-    public void addRow (ProdutoCarrinho p)
+    public void addRow (Produto p, int i)
     {
         this.dados.add(p);
+        this.contagemAuxiliar.add(i);
         this.fireTableDataChanged();
     }
     
-    public void removeRow (int rowIndex)
+    public void removeRow (int x)
+    {
+        int index = 0;
+        for (int i = 0; i <= contagemAuxiliar.size(); i++)
+        {
+            if (contagemAuxiliar.get(i) == x)
+            {
+                index = i;
+                break;
+            }
+        }
+        this.dados.remove(index);
+        this.contagemAuxiliar.remove(index);
+        this.fireTableRowsDeleted(index, index);
+    }
+    
+    public void removeSelectedRow (int rowIndex)
     {
         this.dados.remove(rowIndex);
+        this.contagemAuxiliar.remove(rowIndex);
         this.fireTableRowsDeleted(rowIndex, rowIndex);
     }
+    
     
     public void clearTable ()
     {
         this.dados.clear();
+        this.contagemAuxiliar.clear();
         this.fireTableRowsDeleted(0, dados.size());
-    }  
+    }
 }
