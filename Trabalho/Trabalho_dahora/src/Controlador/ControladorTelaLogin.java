@@ -46,6 +46,7 @@ public class ControladorTelaLogin implements Autenticador {
             {
                 try {
                     verificaAdm();
+                    controladorGeral.getControladorTelaPrincipal().criarTabela();
                     controladorGeral.exibirTelaPrincipal(controladorGeral.getControladorTelaPrincipal().getTelaPrincipal(), telaLogin);
                     
                 } catch (LoginException ex) {

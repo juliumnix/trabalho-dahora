@@ -19,8 +19,21 @@ import Codigo.Produto;
 import Codigo.Teclado;
 import Codigo.Utilitarios;
 import DAO.ArmazenamentoDAO;
+import DAO.ComputadorDAO;
+import DAO.CoolerDAO;
 import Excecoes.LoginException;
 import DAO.CreateTableDAO;
+import DAO.FonteDAO;
+import DAO.GabineteDAO;
+import DAO.HeadsetDAO;
+import DAO.MemoriaRAMDAO;
+import DAO.MonitorDAO;
+import DAO.MouseDAO;
+import DAO.NotebookDAO;
+import DAO.PlacaDeVideoDAO;
+import DAO.PlacaMaeDAO;
+import DAO.ProcessadorDAO;
+import DAO.TecladoDAO;
 
 
 //TELAS
@@ -122,6 +135,19 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         this.jLabellsImg = new ArrayList<>();
         this.jLabellsText = new ArrayList<>();
         this.armazenamentos.addAll(ArmazenamentoDAO.getTodosArmazenamentos());
+        this.computadores.addAll(ComputadorDAO.getTodosComputadores());
+        this.coolers.addAll(CoolerDAO.getTodosCoolers());
+        this.fontes.addAll(FonteDAO.getTodosFontes());
+        this.gabinetes.addAll(GabineteDAO.getTodosGabinete());
+        this.headsets.addAll(HeadsetDAO.getTodosHeadset());
+        this.memoriasRam.addAll(MemoriaRAMDAO.getTodosMemoriaRAM());
+        this.monitores.addAll(MonitorDAO.getTodosMonitor());
+        this.mouses.addAll(MouseDAO.getTodosMouse());
+        this.notebooks.addAll(NotebookDAO.getTodosNotebook());
+        this.placasDeVideos.addAll(PlacaDeVideoDAO.getTodosPlacaDeVideo());
+        this.placasMae.addAll(PlacaMaeDAO.getTodosPlacaMae());
+        this.processadores.addAll(ProcessadorDAO.getTodosProcessadores());
+        this.teclados.addAll(TecladoDAO.getTodosTeclados());
     }
     
     public void criarTabela ()
@@ -731,7 +757,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             produto.setAuxiliar(String.valueOf(produto.getModelo()));
         }
         Collections.sort(produtosGeral);
-        System.out.println(produtosGeral.size());
+        System.out.println(produtosGeral);
         int count = 0;
         for (Produto produto: produtosGeral) 
         {
