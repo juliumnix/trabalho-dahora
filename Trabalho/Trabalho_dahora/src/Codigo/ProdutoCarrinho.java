@@ -1,16 +1,16 @@
 package Codigo;
 
 public class ProdutoCarrinho {
-    private String nome;
+    private String modelo;
     private float valor;
-    private int quantidade;
+    private int value;
 
-    public String getNome() {
-        return nome;
+    public String getModelo() {
+        return modelo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 
     public double getValor() {
@@ -21,12 +21,12 @@ public class ProdutoCarrinho {
         this.valor = valor;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public int getValue() {
+        return value;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setValue(int value) {
+        this.value = value;
     }
     
     

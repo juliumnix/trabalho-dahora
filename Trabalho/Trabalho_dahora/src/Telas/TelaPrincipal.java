@@ -145,6 +145,11 @@ public class TelaPrincipal extends javax.swing.JFrame{
         btaux.addActionListener(acao);
     }
     
+    public void adicionarAcaoBtEstoque(ActionListener acao)
+    {
+        btEstoque.addActionListener(acao);
+    }
+    
     public void exibirTela(){
         setVisible(true);
     }
@@ -158,6 +163,11 @@ public class TelaPrincipal extends javax.swing.JFrame{
     public JButton getBtCart ()
     {
         return this.btCart;
+    }
+    
+    public JButton getBtEstoque ()
+    {
+        return this.btEstoque;
     }
     
     public JTextArea getTaProd1 ()
@@ -293,6 +303,7 @@ public class TelaPrincipal extends javax.swing.JFrame{
         btProcessador = new javax.swing.JButton();
         btSair = new javax.swing.JButton();
         btTeclado = new javax.swing.JButton();
+        btEstoque = new javax.swing.JButton();
         tfPesquisa = new javax.swing.JTextField();
         btPesquisa = new javax.swing.JButton();
         btaux = new javax.swing.JButton();
@@ -479,6 +490,15 @@ public class TelaPrincipal extends javax.swing.JFrame{
         btTeclado.setMinimumSize(new java.awt.Dimension(103, 20));
         menu.add(btTeclado, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 484, 109, 25));
 
+        btEstoque.setBackground(new java.awt.Color(34, 33, 44));
+        btEstoque.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        btEstoque.setForeground(new java.awt.Color(255, 149, 128));
+        btEstoque.setText("Estoque");
+        btEstoque.setBorder(null);
+        btEstoque.setMaximumSize(new java.awt.Dimension(103, 20));
+        btEstoque.setMinimumSize(new java.awt.Dimension(103, 20));
+        menu.add(btEstoque, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 520, 109, 25));
+
         bg.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, 588));
 
         tfPesquisa.setBackground(new java.awt.Color(69, 65, 88));
@@ -636,6 +656,7 @@ public class TelaPrincipal extends javax.swing.JFrame{
     private javax.swing.JButton btCompare;
     private javax.swing.JButton btComputador;
     private javax.swing.JButton btCooler;
+    private javax.swing.JButton btEstoque;
     private javax.swing.JButton btFonte;
     private javax.swing.JButton btGabinete;
     private javax.swing.JButton btHeadset;
