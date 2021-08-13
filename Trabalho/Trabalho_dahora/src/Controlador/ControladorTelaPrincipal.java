@@ -754,10 +754,11 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
     {
         for (Produto produto: produtosGeral)
         {
+            System.out.println(produto.imprimirDados("Computador"));
             produto.setAuxiliar(String.valueOf(produto.getModelo()));
         }
         Collections.sort(produtosGeral);
-        System.out.println(produtosGeral);
+        //System.out.println(produtosGeral);
         int count = 0;
         for (Produto produto: produtosGeral) 
         {
