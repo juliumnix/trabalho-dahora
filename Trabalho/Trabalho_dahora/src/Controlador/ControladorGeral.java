@@ -120,7 +120,6 @@ public class ControladorGeral {
         controladorTelaPrincipal.organizarProdutosGeral();
         controladorTelaPrincipal.promocoes();
         controladorTelaPrincipal.alterarComboBox();
-        controladorTelaPrincipal.criarTabela();
         controladorTelaPrincipal.visibilidadeBtEstoque();
         controladorTelaPrincipal.exibir();
     }
