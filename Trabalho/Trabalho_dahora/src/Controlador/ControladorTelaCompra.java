@@ -2,6 +2,7 @@ package Controlador;
 
 //CODIGOS
 import Codigo.MapManipulator;
+import Codigo.Produto;
 import Codigo.Utilitarios;
 
 //TELAS
@@ -35,6 +36,7 @@ public class ControladorTelaCompra implements MapManipulator {
     public ControladorTelaCompra(TelaCompra telaCompra, ControladorGeral controladorGeral) {
         this.telaCompra = telaCompra;
         this.controladorGeral = controladorGeral;
+//        this.telaCompra.getTableModel().getDados().addAll(controladorGeral.getControladorTelaPrincipal().getCarrinho().values());
         configurarTela();
         inicializarAcoes();
     }
@@ -271,7 +273,6 @@ public class ControladorTelaCompra implements MapManipulator {
         {
             public void windowGainedFocus (WindowEvent e)
             {
-//                verifyContentTelaCompra();
                 telaCompra.getJPanel1().revalidate();
                 telaCompra.getJPanel1().repaint();
             }
@@ -283,11 +284,10 @@ public class ControladorTelaCompra implements MapManipulator {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                controladorGeral.getControladorTelaPrincipal().getFavoritos().clear();
+                controladorGeral.getControladorTelaPrincipal().getCarrinho().clear();
                 telaCompra.getJOptionPane1().showMessageDialog(null, "Compra finalizada com sucesso, obrigado");
-                controladorGeral.getControladorTelaCompra().getTelaCompra().getTableModel().removeTudo();
-                verifyContentFavorites();
-//                verifyContentTelaCompra();
+                getTelaCompra().getTableModel().clearTable();
+                verifyContentCarrinho();
             }
         });
         
@@ -296,36 +296,26 @@ public class ControladorTelaCompra implements MapManipulator {
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                if (getTelaCompra().getJTableCarrinho().getSelectedRow() != -1)
-                {
-                    int quantidade = getTelaCompra().getTableModel().getDados().get(getTelaCompra().getJTableCarrinho().getSelectedRow()).getQuantidade();
-                    if (quantidade > 1)
-                    {
-                        quantidade--;
-                        String quantidadeFinal = Integer.toString(quantidade);
-                        controladorGeral.getControladorTelaCompra().getTelaCompra().getTableModel().setValueAt(quantidadeFinal, getTelaCompra().getJTableCarrinho().getSelectedRow(), 2);
-                    }else
-                    {
-                        getTelaCompra().getTableModel().removeRow(getTelaCompra().getJTableCarrinho().getSelectedRow());
-                    }
-                }
+                int index = 0;
+                index = telaCompra.getTableModel().getContagemAuxiliar().get(telaCompra.getJTableCarrinho().getSelectedRow());
+                removeCarrinho(index);
             }
         });
     }
     
-    public void verifyContentFavorites () {
-        this.constructorValue();
+    public void verifyContentCarrinho () {
+        this.constructorValueCarrinho();
         telaCompra.getPopUpMenu().revalidate();
         telaCompra.getPopUpMenu().repaint();
         
     }
    
-    public void constructorValue () {
+    public void constructorValueCarrinho () {
         telaCompra.getPopUpMenu().removeAll();
         telaCompra.getPopUpMenu().setLayout(new FlowLayout());
-        for (Map.Entry<Integer, String> entry : controladorGeral.getControladorTelaPrincipal().getFavoritos().entrySet()) {
+        for (Map.Entry<Integer, Produto> entry : controladorGeral.getControladorTelaPrincipal().getCarrinho().entrySet()) {
           JLabel _lbl = new JLabel("<html><div><p style='color: #FFCA80; text-align: center;'>id:"+entry.getKey()+" "+entry.getValue()+"</p></div></html>");
-          _lbl.setText(entry.getValue()); 
+          _lbl.setText(entry.getValue().getModelo()); 
           int width = _lbl.getText().length();
           if(width > 10) {
              _lbl.setFont(new Font("Dialog", 0, 10));  
@@ -340,7 +330,7 @@ public class ControladorTelaCompra implements MapManipulator {
               public void actionPerformed(ActionEvent e) {
               String action = e.getActionCommand();
               int value = Integer.parseInt(action);
-              removefavorito(value);
+              removeCarrinho(value);
               }
               
           });
@@ -351,46 +341,7 @@ public class ControladorTelaCompra implements MapManipulator {
         
         }
     }
-    
-//        public void verifyContentTelaCompra () {
-//        this.construtorTelaCompra();
-//        telaCompra.getJPanel1().revalidate();
-//        telaCompra.getJPanel1().repaint();
-//        
-//    }
-//    
-//    public void construtorTelaCompra () {
-//        telaCompra.getJPanel1().removeAll();
-//        telaCompra.getJPanel1().setLayout(new FlowLayout());
-//        for (Map.Entry<Integer, String> entry : controladorGeral.getControladorTelaPrincipal().getFavoritos().entrySet()) {
-//          JLabel _lbl = new JLabel("<html><div><p style='color: #FFCA80; text-align: center;'>id:"+entry.getKey()+" "+entry.getValue()+"</p></div></html>");
-//          _lbl.setText(entry.getValue()); 
-//          int width = _lbl.getText().length();
-//          if(width > 10) {
-//             _lbl.setFont(new Font("Dialog", 0, 10));  
-//          }
-//          _lbl.setForeground(new Color(255,202,128));
-//          
-//          _lbl.setMinimumSize(new Dimension(116, 16));
-//          JButton botaoDelete = new JButton ("<html><div><p style=' color: #FFCA80; background: #7970A9; text-align: center;'>Delete</p></div></html>");
-//          botaoDelete.setBackground(new Color(121,112,169));
-//          botaoDelete.addActionListener(new ActionListener(){
-//              @Override
-//              public void actionPerformed(ActionEvent e) {
-//              String action = e.getActionCommand();
-//              int value = Integer.parseInt(action);
-//              removefavorito(value);
-//              }
-//              
-//          });
-//            botaoDelete.setActionCommand(entry.getKey().toString());
-//            telaCompra.getJPanel1().add(_lbl);
-//            telaCompra.getJPanel1().add(botaoDelete);
-//        
-//        
-//        }
-//    }
-    
+        
     public void exibir(){
         Utilitarios.centralizarTela(telaCompra);
         telaCompra.exibirTela();
@@ -403,19 +354,18 @@ public class ControladorTelaCompra implements MapManipulator {
     }
     
     @Override
-    public void adicionaFavorito(String value) {
-        controladorGeral.getControladorTelaPrincipal().getFavoritos().put(controladorGeral.getControladorTelaPrincipal().getValueTeste(), value);
+    public void adicionaCarrinho(Produto produto) {
+        controladorGeral.getControladorTelaPrincipal().getCarrinho().put(controladorGeral.getControladorTelaPrincipal().getValueTeste(), produto);
+        telaCompra.getTableModel().addRow(produto, controladorGeral.getControladorTelaPrincipal().getValueTeste());
         controladorGeral.getControladorTelaPrincipal().adicionarValueTeste();
     }
 
     @Override
-    public void removefavorito(int key) {
-        controladorGeral.getControladorTelaPrincipal().getFavoritos().remove(key);
-        constructorValue();    
+    public void removeCarrinho(int key) {  
+        controladorGeral.getControladorTelaPrincipal().getCarrinho().remove(key);
+        telaCompra.getTableModel().removeRow(key);
+        this.constructorValueCarrinho();    
         telaCompra.getPopUpMenu().revalidate();
         telaCompra.getPopUpMenu().repaint();
-//        construtorTelaCompra();
-        telaCompra.getJPanel1().revalidate();
-        telaCompra.getJPanel1().repaint();
-    }
+    }  
 }

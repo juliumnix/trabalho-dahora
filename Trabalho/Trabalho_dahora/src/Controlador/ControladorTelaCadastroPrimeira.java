@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 public class ControladorTelaCadastroPrimeira {
     private TelaCadastroPrimeira telaCadastroPrimeira;
     private ControladorGeral controladorGeral;
+    private String telaAnterior;
     private String modelo;
     private float valor;
     private String descricao;
@@ -81,7 +82,13 @@ public class ControladorTelaCadastroPrimeira {
         this.valor = Float.parseFloat(telaCadastroPrimeira.getTfValor().getText());
         this.descricao = telaCadastroPrimeira.getTfDescricao().getText();
         this.marca = telaCadastroPrimeira.getTfMarca().getText();
-        this.categoria = controladorGeral.getControladorTelaPrincipal().getCategoriaEscolhida();
+        if (telaAnterior == "Principal")
+        {
+            this.categoria = controladorGeral.getControladorTelaPrincipal().getCategoriaEscolhida();
+        }else if (telaAnterior == "Estoque")
+        {
+            this.categoria = controladorGeral.getControladorTelaEstoque().getCategoriaEscolhida();
+        }   
         this.imagem = telaCadastroPrimeira.getTfImagem().getText();
     }
     
@@ -169,5 +176,13 @@ public class ControladorTelaCadastroPrimeira {
     public String getMarca() 
     {
         return this.marca;
+    }
+    
+    public String getTelaAnterior() {
+        return telaAnterior;
+    }
+
+    public void setTelaAnterior(String telaAnterior) {
+        this.telaAnterior = telaAnterior;
     }
 }
