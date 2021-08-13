@@ -20,7 +20,7 @@ import java.util.List;
  * @author juliu
  */
 public class ComputadorDAO {
-     public static void salvarArmazenamento(Computador comp){
+    public static void salvarArmazenamento(Computador comp){
 //        CreateTableDAO.creatingTable();
          String sql = "INSERT INTO produtos (marca, modelo, valor, descricao, categoria, imagem) VALUES (?, ?, ?, ?, ?, ?)";
         
@@ -38,13 +38,9 @@ public class ComputadorDAO {
 
             stmt.execute();
             System.out.println("criou bixo");
-            conexao.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
-       
-        
        
     } 
       public static List<Computador> getTodosComputadores(){

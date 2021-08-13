@@ -51,7 +51,7 @@ public class PlacaDeVideoDAO {
     public static List<PlacaDeVideo> getTodosPlacaDeVideo(){
         List<PlacaDeVideo> placasDeVideo = new ArrayList<>();
         Connection connection = Conexao.getConexao();
-        String sql = "SELECT * FROM produtos WHERE categoria = 'Placa de VÃ­deo'";
+        String sql = "SELECT * FROM produtos WHERE categoria = 'Placa de Ví­deo'";
         Statement stmt;
 
         try {

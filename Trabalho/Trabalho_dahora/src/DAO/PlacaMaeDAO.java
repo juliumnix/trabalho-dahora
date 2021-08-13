@@ -56,7 +56,7 @@ public class PlacaMaeDAO {
     public static List<PlacaMae> getTodosPlacaMae(){
         List<PlacaMae> placasMae = new ArrayList<>();
         Connection connection = Conexao.getConexao();
-        String sql = "SELECT * FROM produtos WHERE categoria = 'Placa MÃ£e'";
+        String sql = "SELECT * FROM produtos WHERE categoria = 'Placa Mãe'";
         Statement stmt;
 
         try {

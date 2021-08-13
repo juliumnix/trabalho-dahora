@@ -53,7 +53,7 @@ public class CoolerDAO {
        public static List<Cooler> getTodosCoolers(){
         List<Cooler> coolers = new ArrayList<>();
         Connection connection = Conexao.getConexao();
-        String sql = "SELECT * FROM produtos WHERE categoria = 'Computador'";
+        String sql = "SELECT * FROM produtos WHERE categoria = 'Cooler'";
         Statement stmt;
 
         try {

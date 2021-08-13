@@ -53,7 +53,7 @@ public class MemoriaRAMDAO {
       public static List<MemoriaRAM> getTodosMemoriaRAM(){
         List<MemoriaRAM> memoriasRAM = new ArrayList<>();
         Connection connection = Conexao.getConexao();
-        String sql = "SELECT * FROM produtos WHERE categoria = 'MemÃ³ria RAM'";
+        String sql = "SELECT * FROM produtos WHERE categoria = 'Memória RAM'";
         Statement stmt;
 
         try {
