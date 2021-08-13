@@ -1,13 +1,11 @@
 package Controlador;
 
-//CODIGOS
-import Codigo.Utilitarios;
-
 //TELAS
 import Telas.TelaCadastroPrimeira;
 import Telas.TelaCadastroSegunda;
 import Telas.TelaCategorias;
 import Telas.TelaCompra;
+import Telas.TelaEstoque;
 import Telas.TelaLogin;
 import Telas.TelaPrincipal;
 import Telas.TelaProduto;
@@ -24,6 +22,7 @@ public class ControladorGeral {
     private ControladorTelaLogin controladorTelaLogin;
     private ControladorTelaPrincipal controladorTelaPrincipal;
     private ControladorTelaProduto controladorTelaProduto;
+    private ControladorTelaEstoque controladorTelaEstoque;
     
     public ControladorGeral() {
         inicializarTelaCadastroPrimeira();
@@ -33,6 +32,7 @@ public class ControladorGeral {
         inicializarTelaLogin();
         inicializarTelaPrincipal();
         inicializarTelaProduto();
+        inicializarTelaEstoque();
     }
     
     public void inicializarTelaCadastroPrimeira() {
@@ -63,6 +63,11 @@ public class ControladorGeral {
         controladorTelaProduto = new ControladorTelaProduto(new TelaProduto(), this);
     }
     
+    public void inicializarTelaEstoque ()
+    {
+        controladorTelaEstoque = new ControladorTelaEstoque(new TelaEstoque(), this);
+    }
+    
     public void exibirTelaCadastroPrimeira() {
         controladorTelaCadastroPrimeira.limparCampos();
         controladorTelaCadastroPrimeira.exibir();
@@ -79,7 +84,7 @@ public class ControladorGeral {
         telaCategorias.getPopUpMenu().setVisible(false);
         controladorTelaCategorias.setPesquisa(false);
         controladorTelaCategorias.ObjetosNovaPagina();
-        controladorTelaCategorias.verifyContentFavorites();
+        controladorTelaCategorias.verifyContentCarrinho();
         controladorTelaCategorias.exibir();
     }
     
@@ -89,14 +94,14 @@ public class ControladorGeral {
         telaCategorias.getPopUpMenu().setVisible(false);
         controladorTelaCategorias.setPesquisa(false);
         controladorTelaCategorias.ObjetosNovaPagina(pesquisa);
-        controladorTelaCategorias.verifyContentFavorites();
+        controladorTelaCategorias.verifyContentCarrinho();
         controladorTelaCategorias.exibir();
     }
     
     public void exibirTelaCompra(TelaCompra telaCompra, JFrame other) {
         other.setVisible(false);
         telaCompra.getPopUpMenu().setVisible(false);
-        controladorTelaCompra.verifyContentFavorites();
+        controladorTelaCompra.verifyContentCarrinho();
         controladorTelaCompra.exibir();
     }
     
@@ -111,18 +116,28 @@ public class ControladorGeral {
         telaPrincipal.getIcon().requestFocus();
         telaPrincipal.getPopUpMenu().setVisible(false);
         telaPrincipal.getTfPesquisa().setText("");
-        controladorTelaPrincipal.verifyContentFavorites();
+        controladorTelaPrincipal.verifyContentCarrinho();
+        controladorTelaPrincipal.organizarProdutosGeral();
         controladorTelaPrincipal.promocoes();
         controladorTelaPrincipal.alterarComboBox();
         controladorTelaPrincipal.criarTabela();
+        controladorTelaPrincipal.visibilidadeBtEstoque();
         controladorTelaPrincipal.exibir();
     }
     
     public void exibirTelaProduto(TelaProduto telaProduto, JFrame other) {
         other.setVisible(false);
         telaProduto.getPopUpMenu().setVisible(false);
-        controladorTelaProduto.verifyContentFavorites();
+        controladorTelaProduto.verifyContentCarrinho();
         controladorTelaProduto.exibir();
+    }
+    
+    public void exibirTelaEstoque(TelaEstoque telaEstoque, JFrame other) {
+        other.setVisible(false);
+        telaEstoque.getPopUpMenu().setVisible(false);
+        controladorTelaEstoque.verifyContentCarrinho();
+        controladorTelaEstoque.configurarListaEstoque();
+        controladorTelaEstoque.exibir();
     }
     
     public ControladorTelaCadastroPrimeira getControladorTelaCadastroPrimeira()
@@ -158,5 +173,10 @@ public class ControladorGeral {
     public ControladorTelaProduto getControladorTelaProduto()
     {
         return this.controladorTelaProduto;
+    }
+    
+    public ControladorTelaEstoque getControladorTelaEstoque()
+    {
+        return this.controladorTelaEstoque;
     }
 }

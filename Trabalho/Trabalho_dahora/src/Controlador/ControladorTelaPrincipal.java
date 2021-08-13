@@ -54,7 +54,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -63,8 +62,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 //SWING
 import javax.swing.ImageIcon;
@@ -101,7 +98,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
     
     //AUXILIARES
     private String categoriaEscolhida;
-    private Map<Integer, String> favoritos;
+    private Map<Integer, Produto> carrinho;
     private static int valueID;
 
     public ControladorTelaPrincipal(TelaPrincipal telaPrincipal, ControladorGeral controladorGeral) {
@@ -113,12 +110,8 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         inicializarAcoes();
         addJPanel();
         addJLabelImg();
-        addJLabelText();
-        
-        
+        addJLabelText();   
     }
-    
-  
     
     public void iniciarColecoes ()  
     {
@@ -138,7 +131,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         this.teclados = new HashSet<>();
         this.produtosEmUso = new ArrayList<>();
         this.produtosGeral = new ArrayList<>();
-        this.favoritos = new HashMap<>();
+        this.carrinho = new HashMap<>();
         this.jPanells = new ArrayList<>();
         this.jLabellsImg = new ArrayList<>();
         this.jLabellsText = new ArrayList<>();
@@ -163,6 +156,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         CreateTableDAO.creatingTable();  
     }
     
+    
     public void configurarTela(){
         telaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
         Utilitarios.aparecerImagemLocal(telaPrincipal.getIcon(), "src/imagens/BOOM.png");
@@ -174,6 +168,22 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         telaPrincipal.getMelhorCompra1().setVisible(false);
         telaPrincipal.getMelhorCompra2().setVisible(false);
         telaPrincipal.getPopUpMenu().setVisible(false);
+    }
+    
+    public void visibilidadeBtEstoque ()
+    {
+        try 
+        {
+            if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
+            {
+                telaPrincipal.getBtEstoque().setVisible(true);
+            }else
+            {
+                telaPrincipal.getBtEstoque().setVisible(false);
+            }
+        } catch (LoginException ex) {
+            System.out.println(ex.getMessage());
+        } 
     }
     
     public void inicializarAcoes() 
@@ -214,6 +224,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             public void actionPerformed(ActionEvent e) 
             {
                 categoriaEscolhida = "Armazenamento";
+                controladorGeral.getControladorTelaCadastroPrimeira().setTelaAnterior("Principal");
         
                 try {
                     if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
@@ -237,6 +248,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             public void actionPerformed(ActionEvent e) 
             {
                 categoriaEscolhida = "Computador";
+                controladorGeral.getControladorTelaCadastroPrimeira().setTelaAnterior("Principal");
         
                 try {
                     if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
@@ -260,6 +272,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             public void actionPerformed(ActionEvent e) 
             {
                 categoriaEscolhida = "Cooler";
+                controladorGeral.getControladorTelaCadastroPrimeira().setTelaAnterior("Principal");
         
                 try {
                     if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
@@ -283,6 +296,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             public void actionPerformed(ActionEvent e) 
             {
                 categoriaEscolhida = "Fonte";
+                controladorGeral.getControladorTelaCadastroPrimeira().setTelaAnterior("Principal");
         
                 try {
                     if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
@@ -306,6 +320,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             public void actionPerformed(ActionEvent e) 
             {
                 categoriaEscolhida = "Gabinete";
+                controladorGeral.getControladorTelaCadastroPrimeira().setTelaAnterior("Principal");
         
                 try {
                     if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
@@ -329,6 +344,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             public void actionPerformed(ActionEvent e) 
             {
                 categoriaEscolhida = "Headset";
+                controladorGeral.getControladorTelaCadastroPrimeira().setTelaAnterior("Principal");
         
                 try {
                     if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
@@ -352,6 +368,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             public void actionPerformed(ActionEvent e) 
             {
                 categoriaEscolhida = "Memória RAM";
+                controladorGeral.getControladorTelaCadastroPrimeira().setTelaAnterior("Principal");
         
                 try {
                     if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
@@ -375,6 +392,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             public void actionPerformed(ActionEvent e) 
             {
                 categoriaEscolhida = "Monitor";
+                controladorGeral.getControladorTelaCadastroPrimeira().setTelaAnterior("Principal");
         
                 try {
                     if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
@@ -398,6 +416,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             public void actionPerformed(ActionEvent e) 
             {
                 categoriaEscolhida = "Mouse";
+                controladorGeral.getControladorTelaCadastroPrimeira().setTelaAnterior("Principal");
         
                 try {
                     if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
@@ -421,6 +440,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             public void actionPerformed(ActionEvent e) 
             {
                 categoriaEscolhida = "Notebook";
+                controladorGeral.getControladorTelaCadastroPrimeira().setTelaAnterior("Principal");
         
                 try {
                     if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
@@ -444,6 +464,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             public void actionPerformed(ActionEvent e) 
             {
                 categoriaEscolhida = "Placa de Vídeo";
+                controladorGeral.getControladorTelaCadastroPrimeira().setTelaAnterior("Principal");
         
                 try {
                     if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
@@ -467,6 +488,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             public void actionPerformed(ActionEvent e) 
             {
                 categoriaEscolhida = "Placa Mãe";
+                controladorGeral.getControladorTelaCadastroPrimeira().setTelaAnterior("Principal");
         
                 try {
                     if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
@@ -490,6 +512,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             public void actionPerformed(ActionEvent e) 
             {
                 categoriaEscolhida = "Processador";
+                controladorGeral.getControladorTelaCadastroPrimeira().setTelaAnterior("Principal");
         
                 try {
                     if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
@@ -513,6 +536,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             public void actionPerformed(ActionEvent e) 
             {
                 categoriaEscolhida = "Teclado";
+                controladorGeral.getControladorTelaCadastroPrimeira().setTelaAnterior("Principal");
         
                 try {
                     if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
@@ -536,6 +560,15 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             public void actionPerformed(ActionEvent e) 
             {
                     controladorGeral.exibirTelaLogin(controladorGeral.getControladorTelaLogin().getTelaLogin(), telaPrincipal);
+            }
+        });
+        
+        telaPrincipal.adicionarAcaoBtEstoque( new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e) 
+            {
+                    controladorGeral.exibirTelaEstoque(controladorGeral.getControladorTelaEstoque().getTelaEstoque(), telaPrincipal);
             }
         });
         
@@ -763,24 +796,24 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         Collections.sort(produtosGeral);
     }
     
-    public void verifyContentFavorites () {
-        this.constructorValue();
-        telaPrincipal.getPopUpMenu().revalidate();
-        telaPrincipal.getPopUpMenu().repaint();
-        
-    }
-    
     public static int adicionarValueTeste()
     {
         return valueID++;
     }
+    
+    public void verifyContentCarrinho () {
+        this.constructorValueCarrinho();
+        telaPrincipal.getPopUpMenu().revalidate();
+        telaPrincipal.getPopUpMenu().repaint();
+        
+    }
    
-    public void constructorValue () {
+    public void constructorValueCarrinho () {
         telaPrincipal.getPopUpMenu().removeAll();
         telaPrincipal.getPopUpMenu().setLayout(new FlowLayout());
-        for (Map.Entry<Integer, String> entry : favoritos.entrySet()) {
+        for (Map.Entry<Integer, Produto> entry : carrinho.entrySet()) {
           JLabel _lbl = new JLabel("<html><div><p style='color: #FFCA80; text-align: center;'>id:"+entry.getKey()+" "+entry.getValue()+"</p></div></html>");
-          _lbl.setText(entry.getValue()); 
+          _lbl.setText(entry.getValue().getModelo()); 
           int width = _lbl.getText().length();
           if(width > 10) {
              _lbl.setFont(new Font("Dialog", 0, 10));  
@@ -795,7 +828,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
               public void actionPerformed(ActionEvent e) {
               String action = e.getActionCommand();
               int value = Integer.parseInt(action);
-              removefavorito(value);
+              removeCarrinho(value);
               }
               
           });
@@ -1016,8 +1049,8 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         return categoriaEscolhida;
     }
     
-    public Map<Integer, String> getFavoritos() {
-        return favoritos;
+    public Map<Integer, Produto> getCarrinho() {
+        return carrinho;
     }
 
     public static int getValueTeste() {
@@ -1030,16 +1063,18 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
     }
     
     @Override
-    public void adicionaFavorito(String value) {
-        this.favoritos.put(valueID, value + valueID);
+    public void adicionaCarrinho(Produto produto) {
+        this.carrinho.put(valueID, produto);
+        controladorGeral.getControladorTelaCompra().getTelaCompra().getTableModel().addRow(produto, controladorGeral.getControladorTelaPrincipal().getValueTeste());
         valueID++;
     }
 
     @Override
-    public void removefavorito(int key) {  
-        this.favoritos.remove(key);
-        this.constructorValue();    
+    public void removeCarrinho(int key) {  
+        this.carrinho.remove(key);
+        controladorGeral.getControladorTelaCompra().getTelaCompra().getTableModel().removeRow(key);
+        this.constructorValueCarrinho();
         telaPrincipal.getPopUpMenu().revalidate();
         telaPrincipal.getPopUpMenu().repaint();
-    } 
+    }     
 }

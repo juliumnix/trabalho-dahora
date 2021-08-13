@@ -1,7 +1,7 @@
 package Telas;
 
 //JAVA
-import Codigo.ProdutoCarrinhoTableModel;
+import Codigo.CarrinhoTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseListener;
@@ -12,7 +12,7 @@ import javax.swing.*;
 
 public class TelaCompra extends javax.swing.JFrame {
     
-    ProdutoCarrinhoTableModel tableModel = new ProdutoCarrinhoTableModel();
+    CarrinhoTableModel tableModel = new CarrinhoTableModel();
 
     public TelaCompra() {
         initComponents();
@@ -167,7 +167,7 @@ public class TelaCompra extends javax.swing.JFrame {
         return this.jPanel1;
     }
     
-    public ProdutoCarrinhoTableModel getTableModel ()
+    public CarrinhoTableModel getTableModel ()
     {
         return this.tableModel;
     }
