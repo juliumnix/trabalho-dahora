@@ -37,9 +37,14 @@ public class ComputadorDAO {
         
 
             stmt.execute();
+            
             System.out.println("criou bixo");
+            
+            conexao.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        } finally {
+            
         }
        
     } 

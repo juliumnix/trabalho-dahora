@@ -4,6 +4,8 @@ package Controlador;
 import Codigo.MapManipulator;
 import Codigo.Produto;
 import Codigo.Utilitarios;
+import DAO.DeleteFromTableDAO;
+import Excecoes.DeleteException;
 
 //TELAS
 import Telas.TelaCompra;
@@ -22,7 +24,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 //SWING
 import javax.swing.JButton;
@@ -284,10 +290,23 @@ public class ControladorTelaCompra implements MapManipulator {
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                List<Produto> auxiliarList = new ArrayList<>(); 
+                auxiliarList.addAll(getTelaCompra().getTableModel().getDados()); 
+                
                 controladorGeral.getControladorTelaPrincipal().getCarrinho().clear();
-                telaCompra.getJOptionPane1().showMessageDialog(null, "Compra finalizada com sucesso, obrigado");
+                
+                
                 getTelaCompra().getTableModel().clearTable();
                 verifyContentCarrinho();
+                for (Produto produto : auxiliarList) {
+                    try {
+                        DeleteFromTableDAO.excluirProduto(produto);
+                    } catch (DeleteException ex) {
+                        System.err.println(ex.getMessage());
+                    }
+                }
+                telaCompra.getJOptionPane1().showMessageDialog(null, "Compra finalizada com sucesso, obrigado");
+                
             }
         });
         

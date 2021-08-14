@@ -169,6 +169,10 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         telaPrincipal.getPopUpMenu().setVisible(false);
     }
     
+    public void limparListas(){
+        
+    }
+    
     public void visibilidadeBtEstoque ()
     {
         try 

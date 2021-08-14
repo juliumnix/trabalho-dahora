@@ -28,8 +28,6 @@ public abstract class Produto implements Comparable<Produto> {
         this.categoria = categoria;
         this.imagem = imagem;
         this.auxiliar = "";
-        
-        
     };
 
     //gets
