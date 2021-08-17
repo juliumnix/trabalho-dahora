@@ -14,19 +14,21 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author juliu
  */
 public class FonteDAO {
-     public static void salvarArmazenamento(Fonte font){
+     public static void salvarFonte(Fonte font){
 //        CreateTableDAO.creatingTable();
          String sql = "INSERT INTO produtos (marca, modelo, valor, descricao, categoria, imagem, tensao, certificacao) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         
-        Connection conexao = Conexao.getConexao();
-        
-        try {
+        Connection conexao;
+         try {
+            conexao = Conexao.getConexao();
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setString(1, font.getMarca());
             stmt.setString(2, font.getModelo());
@@ -40,14 +42,13 @@ public class FonteDAO {
 
             stmt.execute();
             System.out.println("criou bixo");
-        } catch (SQLException ex) {
+         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         
-        
-       
     } 
-     public static List<Fonte> getTodosFontes(){
+     
+     public static List<Fonte> getTodosFontes() throws SQLException{
         List<Fonte> fontes = new ArrayList<>();
         Connection connection = Conexao.getConexao();
         String sql = "SELECT * FROM produtos WHERE categoria = 'Fonte'";

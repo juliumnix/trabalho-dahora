@@ -98,7 +98,7 @@ public class ControladorTelaCadastroPrimeira {
         if (controladorGeral.getControladorTelaPrincipal().getComputador().add(computador) == true) 
         {
             try {
-                ComputadorDAO.salvarArmazenamento(computador);
+                ComputadorDAO.salvarComputador(computador);
             controladorGeral.getControladorTelaPrincipal().getTelaPrincipal().getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -116,7 +116,7 @@ public class ControladorTelaCadastroPrimeira {
         if (controladorGeral.getControladorTelaPrincipal().getNotebook().add(notebook) == true) 
         {
             try {
-                NotebookDAO.salvarArmazenamento(notebook);
+                NotebookDAO.salvarNotebook(notebook);
             controladorGeral.getControladorTelaPrincipal().getTelaPrincipal().getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());

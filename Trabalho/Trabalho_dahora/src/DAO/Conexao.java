@@ -14,18 +14,22 @@ import java.sql.SQLException;
  * @author juliu
  */
 public class Conexao {
-
-    public static Connection getConexao(){
+    private static Connection conexao;
+    
+    public static Connection getConexao() throws SQLException{
+        
+        if(conexao == null || conexao.isClosed()){
         try {
         final String stringDeConexao = "jdbc:mysql://localhost/produtos?verifyServerCertificate=false&useSSL=true";
         final String usuario = "root";
         final String senha = "1234";
 
-        return DriverManager.getConnection(stringDeConexao, usuario, senha);
-
+        conexao = DriverManager.getConnection(stringDeConexao, usuario, senha);
+        
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-
+        } 
     }
+        return conexao;
+   }
 }

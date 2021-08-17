@@ -9,6 +9,7 @@ import Telas.TelaEstoque;
 import Telas.TelaLogin;
 import Telas.TelaPrincipal;
 import Telas.TelaProduto;
+import java.sql.SQLException;
 
 //SWING
 import javax.swing.JFrame;
@@ -24,7 +25,7 @@ public class ControladorGeral {
     private ControladorTelaProduto controladorTelaProduto;
     private ControladorTelaEstoque controladorTelaEstoque;
     
-    public ControladorGeral() {
+    public ControladorGeral() throws SQLException {
         inicializarTelaCadastroPrimeira();
         inicializarTelaCadastroSegunda();
         inicializarTelaCategorias();
@@ -55,7 +56,7 @@ public class ControladorGeral {
         controladorTelaLogin = new ControladorTelaLogin(new TelaLogin(), this);
     }
     
-    public void inicializarTelaPrincipal() {
+    public void inicializarTelaPrincipal() throws SQLException {
         controladorTelaPrincipal = new ControladorTelaPrincipal(new TelaPrincipal(), this);
     }
     
@@ -121,6 +122,7 @@ public class ControladorGeral {
         controladorTelaPrincipal.promocoes();
         controladorTelaPrincipal.alterarComboBox();
         controladorTelaPrincipal.visibilidadeBtEstoque();
+        controladorTelaPrincipal.limparComparacao();
         controladorTelaPrincipal.exibir();
     }
     

@@ -10,30 +10,34 @@ import Excecoes.DeleteException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author juliu
  */
-public class DeleteFromTableDAO {
+public class ProdutoDAO {
     
      public static void excluirProduto(Produto prod) throws DeleteException {
         
-        Connection connection = Conexao.getConexao();
-        String sql = "DELETE FROM produtos WHERE categoria = ? AND modelo = ?";
-        PreparedStatement pstmt;
+            Connection conexao;
+         try {
+            conexao = Conexao.getConexao();
+            String sql = "DELETE FROM produtos WHERE categoria = ? AND modelo = ?";
+            PreparedStatement pstmt;
 
-        try {
-            pstmt = connection.prepareStatement(sql);
+            pstmt = conexao.prepareStatement(sql);
             pstmt.setString(1, prod.getCategoria());
             pstmt.setString(2, prod.getModelo());
             pstmt.execute();
             System.out.println("Produto apagado com sucesso!");
            
-        } catch (SQLException e) {
+        
+         } catch (SQLException ex) {
             throw new DeleteException(prod);
-            
-        }
+         }
+        
     }
     
 }

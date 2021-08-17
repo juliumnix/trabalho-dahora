@@ -14,7 +14,7 @@ import Codigo.Produto;
 public class DeleteException extends Exception {
     
     public DeleteException(Produto prod){
-    super("Ocorreu um problema ao apagar o produto " + prod.getModelo());
+        super("Ocorreu um problema ao apagar o produto " + prod.getModelo());
     }
 
    

@@ -22,7 +22,7 @@ import DAO.ArmazenamentoDAO;
 import DAO.ComputadorDAO;
 import DAO.CoolerDAO;
 import Excecoes.LoginException;
-import DAO.CreateTableDAO;
+import DAO.CreateTable;
 import DAO.FonteDAO;
 import DAO.GabineteDAO;
 import DAO.HeadsetDAO;
@@ -54,6 +54,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -101,7 +102,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
     private Map<Integer, Produto> carrinho;
     private static int valueID;
 
-    public ControladorTelaPrincipal(TelaPrincipal telaPrincipal, ControladorGeral controladorGeral) {
+    public ControladorTelaPrincipal(TelaPrincipal telaPrincipal, ControladorGeral controladorGeral) throws SQLException {
         this.telaPrincipal = telaPrincipal;
         this.controladorGeral = controladorGeral;
         iniciarColecoes();
@@ -112,7 +113,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         addJLabelText();   
     }
     
-    public void iniciarColecoes ()  
+    public void iniciarColecoes () throws SQLException  
     {
         this.armazenamentos = new HashSet<>();
         this.computadores = new HashSet<>();
@@ -134,6 +135,27 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         this.jPanells = new ArrayList<>();
         this.jLabellsImg = new ArrayList<>();
         this.jLabellsText = new ArrayList<>();
+        popularTabelas();
+    }
+    
+    public void popularTabelas () throws SQLException {
+        this.armazenamentos.clear();
+        this.computadores.clear();
+        this.coolers.clear();
+        this.fontes.clear();
+        this.gabinetes.clear();
+        this.headsets.clear();
+        this.memoriasRam.clear();
+        this.monitores.clear();
+        this.mouses.clear();
+        this.notebooks.clear();
+        this.placasDeVideos.clear();
+        this.placasMae.clear();
+        this.processadores.clear();
+        this.teclados.clear();
+        
+        
+        
         this.armazenamentos.addAll(ArmazenamentoDAO.getTodosArmazenamentos());
         this.computadores.addAll(ComputadorDAO.getTodosComputadores());
         this.coolers.addAll(CoolerDAO.getTodosCoolers());
@@ -149,10 +171,10 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         this.processadores.addAll(ProcessadorDAO.getTodosProcessadores());
         this.teclados.addAll(TecladoDAO.getTodosTeclados());
     }
-    
+      
     public void criarTabela ()
     {
-        CreateTableDAO.creatingTable();  
+        CreateTable.creatingTable();  
     }
     
     
@@ -169,8 +191,13 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         telaPrincipal.getPopUpMenu().setVisible(false);
     }
     
-    public void limparListas(){
-        
+    public void limparComparacao(){
+        telaPrincipal.getMelhorCompra1().setVisible(false);
+        telaPrincipal.getMelhorCompra2().setVisible(false);
+        telaPrincipal.getImgProd1().setVisible(false);
+        telaPrincipal.getImgProd2().setVisible(false);
+        telaPrincipal.getTaProd1().setText("");
+        telaPrincipal.getTaProd2().setText("");
     }
     
     public void visibilidadeBtEstoque ()
@@ -582,6 +609,9 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             {
                 telaPrincipal.getMelhorCompra1().setVisible(false);
                 telaPrincipal.getMelhorCompra2().setVisible(false);
+                telaPrincipal.getImgProd1().setVisible(true);
+                telaPrincipal.getImgProd2().setVisible(true);
+                
                 produtosEmUso.clear();
                 String tipo = telaPrincipal.getCbTipo().getSelectedItem().toString();
                 switch (tipo)
@@ -734,44 +764,101 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         });
     }
     
+    public void repaintJPanel () {
+       
+        this.promocoes();
+        
+    }
+    
+    
     public void addJPanel ()
     {
         
         jPanells.add(telaPrincipal.getDestaque1());
         jPanells.add(telaPrincipal.getDestaque2());
         jPanells.add(telaPrincipal.getDestaque3());
+        
+        
     }
     public void addJLabelImg ()
     {
         jLabellsImg.add(telaPrincipal.getImg1());
         jLabellsImg.add(telaPrincipal.getImg2());
         jLabellsImg.add(telaPrincipal.getImg3());
+        
+        
     }
     public void addJLabelText ()
     {
         jLabellsText.add(telaPrincipal.getText1());
         jLabellsText.add(telaPrincipal.getText2());
         jLabellsText.add(telaPrincipal.getText3());
+        
+        
     }
     
     public void promocoes ()
     {
         for (Produto produto: produtosGeral)
         {
-            System.out.println(produto.imprimirDados("Computador"));
             produto.setAuxiliar(String.valueOf(produto.getModelo()));
         }
+        
         Collections.sort(produtosGeral);
-        //System.out.println(produtosGeral);
+        
+
         int count = 0;
+        
+        
+        telaPrincipal.getImg1().setVisible(false);
+        telaPrincipal.getImg2().setVisible(false);
+        telaPrincipal.getImg3().setVisible(false);
+        telaPrincipal.getText1().setVisible(false);
+        telaPrincipal.getText2().setVisible(false);
+        telaPrincipal.getText3().setVisible(false);
+        
         for (Produto produto: produtosGeral) 
         {
+            System.out.println(count);
+            
+            
             if (count >= 3)
             {
                 break;
             }
-            Utilitarios.criarPainelProduto(produto.getImagem(), jLabellsImg.get(count), produto.getModelo()+" R$ "+produto.getValor(), jLabellsText.get(count));
+            
+            if (count == 2) {
+                
+                Utilitarios.criarPainelProduto(produto.getImagem(), jLabellsImg.get(count), produto.getModelo()+" R$ "+produto.getValor(), jLabellsText.get(count));
+                
+                    telaPrincipal.getImg3().setVisible(true);
+                    telaPrincipal.getText3().setVisible(true);
+                
+                
+            }
+            
+            if (count == 1) {
+                
+                 Utilitarios.criarPainelProduto(produto.getImagem(), jLabellsImg.get(count), produto.getModelo()+" R$ "+produto.getValor(), jLabellsText.get(count));
+                 
+                    telaPrincipal.getImg2().setVisible(true);
+                    telaPrincipal.getText2().setVisible(true);
+                
+                
+            }
+            
+            if (count == 0) {
+                
+                 Utilitarios.criarPainelProduto(produto.getImagem(), jLabellsImg.get(count), produto.getModelo()+" R$ "+produto.getValor(), jLabellsText.get(count));
+                 
+                    telaPrincipal.getImg1().setVisible(true);
+                    telaPrincipal.getText1().setVisible(true);
+                
+                
+            }
+            
             count++;
+            
         }
         
     }

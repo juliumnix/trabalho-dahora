@@ -14,19 +14,21 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author juliu
  */
 public class PlacaDeVideoDAO {
-    public static void salvarArmazenamento(PlacaDeVideo plac){
+    public static void salvarPlacaDeVideo(PlacaDeVideo plac){
 //        CreateTableDAO.creatingTable();
          String sql = "INSERT INTO produtos (marca, modelo, valor, descricao, categoria, imagem, alimentacao, memoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         
-        Connection conexao = Conexao.getConexao();
-        
+        Connection conexao;
         try {
+            conexao = Conexao.getConexao();
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setString(1, plac.getMarca());
             stmt.setString(2, plac.getModelo());
@@ -36,19 +38,17 @@ public class PlacaDeVideoDAO {
             stmt.setString(6, plac.getImagem());
             stmt.setBoolean(7, plac.getAlimentacao());
             stmt.setInt(8, plac.getMemoria());
-        
-
             stmt.execute();
             System.out.println("criou bixo");
-        } catch (SQLException ex) {
+            
+         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
-        
+       
        
     } 
     
-    public static List<PlacaDeVideo> getTodosPlacaDeVideo(){
+    public static List<PlacaDeVideo> getTodosPlacaDeVideo() throws SQLException{
         List<PlacaDeVideo> placasDeVideo = new ArrayList<>();
         Connection connection = Conexao.getConexao();
         String sql = "SELECT * FROM produtos WHERE categoria = 'Placa de Ví­deo'";
