@@ -11,7 +11,6 @@ import DAO.NotebookDAO;
 import Telas.TelaCadastroPrimeira;
 
 //JAVA
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,16 +28,9 @@ public class ControladorTelaCadastroPrimeira {
     public ControladorTelaCadastroPrimeira(TelaCadastroPrimeira telaCadastroPrimeira, ControladorGeral controladorGeral) {
         this.telaCadastroPrimeira = telaCadastroPrimeira;
         this.controladorGeral = controladorGeral;
-        configurarTela();
         inicializarAcoes();
     }
-    
-    public void configurarTela()
-    {
-        Utilitarios.centralizarTela(telaCadastroPrimeira);
-        telaCadastroPrimeira.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
-    }
-    
+        
     public void inicializarAcoes() 
     {
         telaCadastroPrimeira.adicionarAcaoBtProximo(new ActionListener() 
@@ -66,11 +58,11 @@ public class ControladorTelaCadastroPrimeira {
                         }else
                         {
                             controladorGeral.exibirTelaCadastroSegunda();
-                            telaCadastroPrimeira.setVisible(false);
+                            telaCadastroPrimeira.esconderTela();
                         }
                     }
                 }catch (Exception error) {
-                    telaCadastroPrimeira.getJOptionPane1().showMessageDialog(null, "Preencha todos os campos");
+                    telaCadastroPrimeira.mensagemJOptionPane("Preencha todos os campos");
                 }
             }
         });
@@ -78,10 +70,10 @@ public class ControladorTelaCadastroPrimeira {
     
     public void SetarValores ()
     {
-        this.modelo = telaCadastroPrimeira.getTfModelo().getText();
-        this.valor = Float.parseFloat(telaCadastroPrimeira.getTfValor().getText());
-        this.descricao = telaCadastroPrimeira.getTfDescricao().getText();
-        this.marca = telaCadastroPrimeira.getTfMarca().getText();
+        this.modelo = telaCadastroPrimeira.textoTfModelo();
+        this.valor = telaCadastroPrimeira.textoTfValor();
+        this.descricao = telaCadastroPrimeira.textoTfDescricao();
+        this.marca = telaCadastroPrimeira.textoTfMarca();
         if (telaAnterior == "Principal")
         {
             this.categoria = controladorGeral.getControladorTelaPrincipal().getCategoriaEscolhida();
@@ -89,7 +81,7 @@ public class ControladorTelaCadastroPrimeira {
         {
             this.categoria = controladorGeral.getControladorTelaEstoque().getCategoriaEscolhida();
         }   
-        this.imagem = telaCadastroPrimeira.getTfImagem().getText();
+        this.imagem = telaCadastroPrimeira.textoTfImagem();
     }
     
     public void gerarComputador ()
@@ -99,14 +91,14 @@ public class ControladorTelaCadastroPrimeira {
         {
             try {
                 ComputadorDAO.salvarComputador(computador);
-            controladorGeral.getControladorTelaPrincipal().getTelaPrincipal().getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            controladorGeral.getControladorTelaPrincipal().getTelaPrincipal().mensagemJOptionPane("Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
             
         } else 
         {
-            controladorGeral.getControladorTelaPrincipal().getTelaPrincipal().getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
+            controladorGeral.getControladorTelaPrincipal().getTelaPrincipal().mensagemJOptionPane("Cadastro duplicado");
         }
     }
     
@@ -117,24 +109,17 @@ public class ControladorTelaCadastroPrimeira {
         {
             try {
                 NotebookDAO.salvarNotebook(notebook);
-            controladorGeral.getControladorTelaPrincipal().getTelaPrincipal().getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            controladorGeral.getControladorTelaPrincipal().getTelaPrincipal().mensagemJOptionPane("Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         } else 
         {
-            controladorGeral.getControladorTelaPrincipal().getTelaPrincipal().getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
+            controladorGeral.getControladorTelaPrincipal().getTelaPrincipal().mensagemJOptionPane("Cadastro duplicado");
         }
     }
     
-    public void limparCampos ()
-    {
-        telaCadastroPrimeira.getTfModelo().setText("");
-        telaCadastroPrimeira.getTfValor().setText("");
-        telaCadastroPrimeira.getTfDescricao().setText("");
-        telaCadastroPrimeira.getTfMarca().setText("");
-        telaCadastroPrimeira.getTfImagem().setText("");
-    }
+    
     
     public void exibir()
     {

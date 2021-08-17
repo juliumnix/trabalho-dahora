@@ -1,6 +1,8 @@
 package Telas;
 
 //JAVA
+import Codigo.Utilitarios;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusListener;
 //SWING
@@ -14,6 +16,45 @@ public class TelaLogin extends javax.swing.JFrame {
 
     public TelaLogin() {
         initComponents();
+        configurarTela();
+    }
+    
+    public  void configurarTela()
+    {
+        Utilitarios.aparecerImagemLocal(lLogo, "src/imagens/BOOM.png");
+        Utilitarios.centralizarTela(this);
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
+        this.getlLogo().requestFocus();
+    }
+    
+    public void desaparecerLogin ()
+    {
+        Utilitarios.desaparecerTexto("Email", tfEmail);
+    }
+    
+    public void aparecerLogin ()
+    {
+        Utilitarios.aparecerTexto("Email", tfEmail);
+    }
+    
+    public void desaparecerSenha ()
+    {
+        Utilitarios.desaparecerTexto("Senhadaora", pfSenha);
+    }
+    
+    public void aparecerSenha ()
+    {
+        Utilitarios.aparecerTexto("Senhadaora", pfSenha);
+    }
+    
+    public void checkBoxSenha ()
+    {
+        Utilitarios.visibilidadeSenha(ckVisivel, pfSenha);
+    }
+    
+    public String retornarTextoLogin ()
+    {
+        return this.tfEmail.getText();
     }
     
     //ACOES

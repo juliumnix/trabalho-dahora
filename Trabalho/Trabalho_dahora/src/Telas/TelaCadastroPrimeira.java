@@ -1,20 +1,75 @@
 package Telas;
 
 //JAVA
+import Codigo.Utilitarios;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
-
-//SWING
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.JFrame;
 
 public class TelaCadastroPrimeira extends javax.swing.JFrame {
 
     public TelaCadastroPrimeira() {
         initComponents();
+        configurarTela();
+    }
+    
+    public void configurarTela ()
+    {
+        Utilitarios.centralizarTela(this);
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
+    }
+    
+    public void esconderSwing (JFrame componente)
+    {
+        componente.setVisible(false);
+    }
+    
+    public void limparCampos ()
+    {
+        textoModelo.setText("");
+        textoValor.setText("");
+        textoDescricao.setText("");
+        textoMarca.setText("");
+        textoImagem.setText("");
+    }
+    
+    public String textoTfModelo ()
+    {
+        return textoModelo.getText();
+    }
+    
+    public Float textoTfValor ()
+    {
+        return Float.parseFloat(textoValor.getText());
+    }
+    
+    public String textoTfDescricao ()
+    {
+        return textoDescricao.getText();
+    }
+    
+    public String textoTfMarca ()
+    {
+        return textoMarca.getText();
+    }
+    
+    public String textoTfImagem ()
+    {
+        return textoImagem.getText();
+    }
+    
+    public void mensagemJOptionPane (String texto)
+    {
+        jOptionPane1.showMessageDialog(null, texto);
     }
     
     public void exibirTela(){
         setVisible(true);
+    }
+    
+    public void esconderTela()
+    {
+        setVisible(false);
     }
     
     public void adicionarAcaoBtProximo(ActionListener acao)
@@ -22,37 +77,6 @@ public class TelaCadastroPrimeira extends javax.swing.JFrame {
         btProximo.addActionListener(acao);
     }
     
-    //GETS
-    public JTextField getTfModelo ()
-    {
-        return this.textoModelo;
-    }
-    
-    public JTextField getTfValor ()
-    {
-        return this.textoValor;
-    }
-    
-    public JTextField getTfDescricao ()
-    {
-        return this.textoDescricao;
-    }
-    
-    public JTextField getTfMarca ()
-    {
-        return this.textoMarca;
-    }
-    
-    public JTextField getTfImagem ()
-    {
-        return this.textoImagem;
-    }
-    
-    public JOptionPane getJOptionPane1 ()
-    {
-        return this.jOptionPane1;
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

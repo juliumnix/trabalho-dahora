@@ -13,7 +13,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -28,7 +27,6 @@ import java.util.Map;
 //SWING
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class ControladorTelaCategorias implements MapManipulator {
     private TelaCategorias telaCategorias;
@@ -36,38 +34,12 @@ public class ControladorTelaCategorias implements MapManipulator {
     
     //VARIAVEIS
     private boolean pesquisa;
-    
-    //COLECOES;
-    private List<JPanel> jPanells;
-    private List<JLabel> jLabellsImg;
-    private List<JLabel> jLabellsText;
 
     public ControladorTelaCategorias(TelaCategorias telaCategorias, ControladorGeral controladorGeral) {
         this.telaCategorias = telaCategorias;
         this.controladorGeral = controladorGeral;
         pesquisa = false;
-        iniciarColecoes();
-        addJPanel();
-        addJLabelImg();
-        addJLabelText();
-        configurarTela();
         inicializarAcoes();
-    }
-    
-    public void configurarTela(){
-        telaCategorias.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
-        Utilitarios.aparecerImagemLocal(telaCategorias.getIcon(), "src/imagens/BOOM.png");
-        Utilitarios.aparecerImagemLocal(telaCategorias.getBtPesquisa(), "src/imagens/IconSearch.png");
-        Utilitarios.aparecerImagemLocal(telaCategorias.getBtCart(), "src/imagens/IconCart.png");
-        telaCategorias.getIcon().requestFocus();
-        telaCategorias.getPopUpMenu().setVisible(false);
-    }
-    
-    public void iniciarColecoes ()
-    {
-        this.jPanells = new ArrayList<>();
-        this.jLabellsImg = new ArrayList<>();
-        this.jLabellsText = new ArrayList<>();
     }
     
     public void inicializarAcoes() 
@@ -77,13 +49,13 @@ public class ControladorTelaCategorias implements MapManipulator {
             @Override
             public void focusGained(FocusEvent e)
             {
-                Utilitarios.desaparecerTexto("Pesquisa", telaCategorias.getTfPesquisa());
+                telaCategorias.desaparecerTextoTfPesquisa();
             }
             
             @Override
             public void focusLost(FocusEvent e)
             {
-                Utilitarios.aparecerTexto("Pesquisa", telaCategorias.getTfPesquisa());
+                telaCategorias.aparecerTextoTfPesquisa();
             }
         });
         
@@ -94,10 +66,10 @@ public class ControladorTelaCategorias implements MapManipulator {
             {
                 if (telaCategorias.getPopUpMenu().isVisible())
                 {
-                    telaCategorias.getPopUpMenu().setVisible(false);
+                    telaCategorias.mudarVisibilidadePopUpMenu(false);
                 }else
                 {
-                    telaCategorias.getPopUpMenu().setVisible(true);
+                    telaCategorias.mudarVisibilidadePopUpMenu(true);
                 }
             }
         });
@@ -285,7 +257,7 @@ public class ControladorTelaCategorias implements MapManipulator {
             @Override
             public void actionPerformed(ActionEvent e) 
             {
-                ObjetosNovaPagina (telaCategorias.getTfPesquisa().getText());
+                ObjetosNovaPagina (telaCategorias.retornarTextoPesquisa());
             }
         });
         
@@ -296,10 +268,10 @@ public class ControladorTelaCategorias implements MapManipulator {
             {
                 if (pesquisa == true)
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto1().getName()), "Geral");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto1()), "Geral");
                 }else
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto1().getName()), "EmUso");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto1()), "EmUso");
                 }
                 controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaCategorias);
             }
@@ -318,10 +290,10 @@ public class ControladorTelaCategorias implements MapManipulator {
             {
                 if (pesquisa == true)
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto2().getName()), "Geral");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto2()), "Geral");
                 }else
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto2().getName()), "EmUso");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto2()), "EmUso");
                 }
                 controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaCategorias);
             }
@@ -340,10 +312,10 @@ public class ControladorTelaCategorias implements MapManipulator {
             {
                 if (pesquisa == true)
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto3().getName()), "Geral");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto3()), "Geral");
                 }else
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto3().getName()), "EmUso");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto3()), "EmUso");
                 }
                 controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaCategorias);
             }
@@ -362,10 +334,10 @@ public class ControladorTelaCategorias implements MapManipulator {
             {
                 if (pesquisa == true)
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto4().getName()), "Geral");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto4()), "Geral");
                 }else
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto4().getName()), "EmUso");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto4()), "EmUso");
                 }
                 controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaCategorias);
             }
@@ -384,10 +356,10 @@ public class ControladorTelaCategorias implements MapManipulator {
             {
                 if (pesquisa == true)
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto5().getName()), "Geral");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto5()), "Geral");
                 }else
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto5().getName()), "EmUso");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto5()), "EmUso");
                 }
                 controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaCategorias);
             }
@@ -406,10 +378,10 @@ public class ControladorTelaCategorias implements MapManipulator {
             {
                 if (pesquisa == true)
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto6().getName()), "Geral");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto6()), "Geral");
                 }else
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto6().getName()), "EmUso");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto6()), "EmUso");
                 }
                 controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaCategorias);
             }
@@ -428,10 +400,10 @@ public class ControladorTelaCategorias implements MapManipulator {
             {
                 if (pesquisa == true)
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto7().getName()), "Geral");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto7()), "Geral");
                 }else
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto7().getName()), "EmUso");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto7()), "EmUso");
                 }
                 controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaCategorias);
             }
@@ -450,10 +422,10 @@ public class ControladorTelaCategorias implements MapManipulator {
             {
                 if (pesquisa == true)
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto8().getName()), "Geral");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto8()), "Geral");
                 }else
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto8().getName()), "EmUso");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto8()), "EmUso");
                 }
                 controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaCategorias);
             }
@@ -472,10 +444,10 @@ public class ControladorTelaCategorias implements MapManipulator {
             {
                 if (pesquisa == true)
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto9().getName()), "Geral");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto9()), "Geral");
                 }else
                 {
-                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.getProduto9().getName()), "EmUso");
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaCategorias.retornarNomeProduto9()), "EmUso");
                 }
                 controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaCategorias);
             }
@@ -496,63 +468,10 @@ public class ControladorTelaCategorias implements MapManipulator {
             }
         });
     }
-    
-    public void addJPanel ()
-    {
-        jPanells.add(telaCategorias.getProduto1());
-        jPanells.add(telaCategorias.getProduto2());
-        jPanells.add(telaCategorias.getProduto3());
-        jPanells.add(telaCategorias.getProduto4());
-        jPanells.add(telaCategorias.getProduto5());
-        jPanells.add(telaCategorias.getProduto6());
-        jPanells.add(telaCategorias.getProduto7());
-        jPanells.add(telaCategorias.getProduto8());
-        jPanells.add(telaCategorias.getProduto9());
-    }
-    public void addJLabelImg ()
-    {
-        jLabellsImg.add(telaCategorias.getImg1());
-        jLabellsImg.add(telaCategorias.getImg2());
-        jLabellsImg.add(telaCategorias.getImg3());
-        jLabellsImg.add(telaCategorias.getImg4());
-        jLabellsImg.add(telaCategorias.getImg5());
-        jLabellsImg.add(telaCategorias.getImg6());
-        jLabellsImg.add(telaCategorias.getImg7());
-        jLabellsImg.add(telaCategorias.getImg8());
-        jLabellsImg.add(telaCategorias.getImg9());
-        
-    }
-    public void addJLabelText ()
-    {
-        jLabellsText.add(telaCategorias.getText1());
-        jLabellsText.add(telaCategorias.getText2());
-        jLabellsText.add(telaCategorias.getText3());
-        jLabellsText.add(telaCategorias.getText4());
-        jLabellsText.add(telaCategorias.getText5());
-        jLabellsText.add(telaCategorias.getText6());
-        jLabellsText.add(telaCategorias.getText7());
-        jLabellsText.add(telaCategorias.getText8());
-        jLabellsText.add(telaCategorias.getText9());
-        
-    }
-    
-    public void setVisiblesFalse ()
-    {
-        telaCategorias.getProduto1().setVisible(false);
-        telaCategorias.getProduto2().setVisible(false);
-        telaCategorias.getProduto3().setVisible(false);
-        telaCategorias.getProduto4().setVisible(false);
-        telaCategorias.getProduto5().setVisible(false);
-        telaCategorias.getProduto6().setVisible(false);
-        telaCategorias.getProduto7().setVisible(false);
-        telaCategorias.getProduto8().setVisible(false);
-        telaCategorias.getProduto9().setVisible(false);
-        
-    }
-    
+
     public void ObjetosNovaPagina ()
     {
-        setVisiblesFalse();
+        telaCategorias.setVisiblesFalse();
         for (Produto produto: controladorGeral.getControladorTelaPrincipal().getProdutosEmUso())
         {
             produto.setAuxiliar(produto.getModelo());
@@ -560,15 +479,15 @@ public class ControladorTelaCategorias implements MapManipulator {
         Collections.sort(controladorGeral.getControladorTelaPrincipal().getProdutosEmUso());
         for (int i = 0; i < controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().size(); i++) 
         {
-            jPanells.get(i).setVisible(true);
-            Utilitarios.criarPainelProduto(controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(i).getImagem(), jLabellsImg.get(i), controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(i).getModelo()+" R$ "+controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(i).getValor(), jLabellsText.get(i));
+            telaCategorias.getJPanells().get(i).setVisible(true);
+            Utilitarios.criarPainelProduto(controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(i).getImagem(), telaCategorias.getJLabellsImg().get(i), controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(i).getModelo()+" R$ "+controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(i).getValor(), telaCategorias.getJLabellsText().get(i));
         }
         
     }
     
     public void ObjetosNovaPagina (String pesquisa)
     {
-        setVisiblesFalse();
+        telaCategorias.setVisiblesFalse();
         List<Produto> produtosOrdenados = new ArrayList<>();
         for (Produto produto: controladorGeral.getControladorTelaPrincipal().getProdutosGeral())
         {
@@ -584,8 +503,8 @@ public class ControladorTelaCategorias implements MapManipulator {
         Collections.sort(produtosOrdenados);
         for (int i = 0; i < produtosOrdenados.size(); i++) 
         {
-            jPanells.get(i).setVisible(true);
-            Utilitarios.criarPainelProduto(produtosOrdenados.get(i).getImagem(), jLabellsImg.get(i), produtosOrdenados.get(i).getModelo()+" R$ "+produtosOrdenados.get(i).getValor(), jLabellsText.get(i));
+            telaCategorias.getJPanells().get(i).setVisible(true);
+            Utilitarios.criarPainelProduto(produtosOrdenados.get(i).getImagem(), telaCategorias.getJLabellsImg().get(i), produtosOrdenados.get(i).getModelo()+" R$ "+produtosOrdenados.get(i).getValor(), telaCategorias.getJLabellsText().get(i));
         }
     }
      

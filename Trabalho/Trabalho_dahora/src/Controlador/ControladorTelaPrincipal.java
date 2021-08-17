@@ -45,7 +45,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -93,9 +92,6 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
     private Set<Teclado> teclados;
     private List<Produto> produtosEmUso;
     private List<Produto> produtosGeral;
-    private List<JPanel> jPanells;
-    private List<JLabel> jLabellsImg;
-    private List<JLabel> jLabellsText;
     
     //AUXILIARES
     private String categoriaEscolhida;
@@ -106,11 +102,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         this.telaPrincipal = telaPrincipal;
         this.controladorGeral = controladorGeral;
         iniciarColecoes();
-        configurarTela();
-        inicializarAcoes();
-        addJPanel();
-        addJLabelImg();
-        addJLabelText();   
+        inicializarAcoes(); 
     }
     
     public void iniciarColecoes () throws SQLException  
@@ -132,9 +124,6 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         this.produtosEmUso = new ArrayList<>();
         this.produtosGeral = new ArrayList<>();
         this.carrinho = new HashMap<>();
-        this.jPanells = new ArrayList<>();
-        this.jLabellsImg = new ArrayList<>();
-        this.jLabellsText = new ArrayList<>();
         popularTabelas();
     }
     
@@ -153,9 +142,6 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         this.placasMae.clear();
         this.processadores.clear();
         this.teclados.clear();
-        
-        
-        
         this.armazenamentos.addAll(ArmazenamentoDAO.getTodosArmazenamentos());
         this.computadores.addAll(ComputadorDAO.getTodosComputadores());
         this.coolers.addAll(CoolerDAO.getTodosCoolers());
@@ -177,39 +163,16 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         CreateTable.creatingTable();  
     }
     
-    
-    public void configurarTela(){
-        telaPrincipal.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
-        Utilitarios.aparecerImagemLocal(telaPrincipal.getIcon(), "src/imagens/BOOM.png");
-        Utilitarios.aparecerImagemLocal(telaPrincipal.getBtPesquisa(), "src/imagens/IconSearch.png");
-        Utilitarios.aparecerImagemLocal(telaPrincipal.getBtCart(), "src/imagens/IconCart.png");
-        telaPrincipal.getIcon().requestFocus();
-        telaPrincipal.getTaProd1().setLineWrap(true);
-        telaPrincipal.getTaProd2().setLineWrap(true);
-        telaPrincipal.getMelhorCompra1().setVisible(false);
-        telaPrincipal.getMelhorCompra2().setVisible(false);
-        telaPrincipal.getPopUpMenu().setVisible(false);
-    }
-    
-    public void limparComparacao(){
-        telaPrincipal.getMelhorCompra1().setVisible(false);
-        telaPrincipal.getMelhorCompra2().setVisible(false);
-        telaPrincipal.getImgProd1().setVisible(false);
-        telaPrincipal.getImgProd2().setVisible(false);
-        telaPrincipal.getTaProd1().setText("");
-        telaPrincipal.getTaProd2().setText("");
-    }
-    
     public void visibilidadeBtEstoque ()
     {
         try 
         {
             if (controladorGeral.getControladorTelaLogin().verificaAdm() == true)
             {
-                telaPrincipal.getBtEstoque().setVisible(true);
+                telaPrincipal.mudarVisibilidadeBtEstoque(true);
             }else
             {
-                telaPrincipal.getBtEstoque().setVisible(false);
+                telaPrincipal.mudarVisibilidadeBtEstoque(false);
             }
         } catch (LoginException ex) {
             System.out.println(ex.getMessage());
@@ -223,13 +186,13 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             @Override
             public void focusGained(FocusEvent e)
             {
-                Utilitarios.desaparecerTexto("Pesquisa", telaPrincipal.getTfPesquisa());
+                telaPrincipal.desaparecerTextoTfPesquisa();
             }
             
             @Override
             public void focusLost(FocusEvent e)
             {
-                Utilitarios.aparecerTexto("Pesquisa", telaPrincipal.getTfPesquisa());
+                telaPrincipal.aparecerTextoTfPesquisa();
             }
         });
         
@@ -240,10 +203,10 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             {
                 if (telaPrincipal.getPopUpMenu().isVisible())
                 {
-                    telaPrincipal.getPopUpMenu().setVisible(false);
+                    telaPrincipal.mudarVisibilidadePopUpMenu(false);
                 }else
                 {
-                    telaPrincipal.getPopUpMenu().setVisible(true);
+                    telaPrincipal.mudarVisibilidadePopUpMenu(true);
                 }
             }
         });
@@ -607,13 +570,9 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             @Override
             public void actionPerformed(ActionEvent e) 
             {
-                telaPrincipal.getMelhorCompra1().setVisible(false);
-                telaPrincipal.getMelhorCompra2().setVisible(false);
-                telaPrincipal.getImgProd1().setVisible(true);
-                telaPrincipal.getImgProd2().setVisible(true);
-                
+                telaPrincipal.limparPainelCompare();
                 produtosEmUso.clear();
-                String tipo = telaPrincipal.getCbTipo().getSelectedItem().toString();
+                String tipo = telaPrincipal.retornarTextoCbTipo();
                 switch (tipo)
                 {
                     case "Armazenamento":
@@ -662,27 +621,24 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
 
                 
                
-                telaPrincipal.getImgProd1().setIcon(new ImageIcon(Utilitarios.imagemInternet(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto1().getSelectedItem())).getImagem()).getImage().getScaledInstance(telaPrincipal.getImgProd1().getWidth(), telaPrincipal.getImgProd1().getHeight(), Image.SCALE_SMOOTH)));
-           
-                telaPrincipal.getImgProd2().setIcon(new ImageIcon(Utilitarios.imagemInternet(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto2().getSelectedItem())).getImagem()).getImage().getScaledInstance(telaPrincipal.getImgProd2().getWidth(), telaPrincipal.getImgProd2().getHeight(), Image.SCALE_SMOOTH)));
+                telaPrincipal.iconImgProd1(new ImageIcon(Utilitarios.imagemInternet(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto1().getSelectedItem())).getImagem()).getImage().getScaledInstance(telaPrincipal.getImgProd1().getWidth(), telaPrincipal.getImgProd1().getHeight(), Image.SCALE_SMOOTH)));       
+                telaPrincipal.iconImgProd2(new ImageIcon(Utilitarios.imagemInternet(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto2().getSelectedItem())).getImagem()).getImage().getScaledInstance(telaPrincipal.getImgProd2().getWidth(), telaPrincipal.getImgProd2().getHeight(), Image.SCALE_SMOOTH)));
                 
-               
-                
-                telaPrincipal.getTaProd1().setText(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto1().getSelectedItem())).imprimirDados(produtosEmUso.get(0).getCategoria()));
-                telaPrincipal.getTaProd2().setText(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto2().getSelectedItem())).imprimirDados(produtosEmUso.get(0).getCategoria()));
+                telaPrincipal.setarTextoTaProd1(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto1().getSelectedItem())).imprimirDados(produtosEmUso.get(0).getCategoria()));
+                telaPrincipal.setarTextoTaProd2(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto2().getSelectedItem())).imprimirDados(produtosEmUso.get(0).getCategoria()));
 
                 int resultadoTeste = compare(telaPrincipal.getTaProd1(), telaPrincipal.getTaProd2());
                 if(resultadoTeste == 0)
                 {
-                    telaPrincipal.getJOptionPane1().showMessageDialog(null, "Selecione produtos diferentes para comparar");
+                    telaPrincipal.mensagemJOptionPane("Selecione produtos diferentes para comparar");
                 }else
                 {
                     if(produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto1().getSelectedItem())).getValor() <= produtosEmUso.get(produtosEmUso.indexOf(telaPrincipal.getCbProduto2().getSelectedItem())).getValor())
                     {
-                        telaPrincipal.getMelhorCompra1().setVisible(true);
+                        telaPrincipal.mudarVisibilidadeMelhorCompra1(true);
                     }else
                     {
-                        telaPrincipal.getMelhorCompra2().setVisible(true);
+                        telaPrincipal.mudarVisibilidadeMelhorCompra2(true);
                     }
                 }
             }
@@ -702,7 +658,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             @Override
             public void actionPerformed(ActionEvent e) 
             {
-                controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal, telaPrincipal.getTfPesquisa().getText());
+                controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaPrincipal, telaPrincipal.retornarTextoTfPesquisa());
             }
         });
         
@@ -711,8 +667,15 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             @Override
             public void mouseClicked(MouseEvent e) 
             {
-                controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaPrincipal.getDestaque1().getName()), "Geral");
-                controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaPrincipal);
+                if (produtosGeral.size() >= 1)
+                {
+                    telaPrincipal.destaque1SetEnabled(true);
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaPrincipal.retornarNomeDestaque1()), "Geral");
+                    controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaPrincipal);
+                }else
+                {
+                    telaPrincipal.destaque1SetEnabled(false);
+                }
             }
             
             @Override
@@ -727,8 +690,15 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             @Override
             public void mouseClicked(MouseEvent e) 
             {
-                controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaPrincipal.getDestaque2().getName()), "Geral");
-                controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaPrincipal);
+                if (produtosGeral.size() >= 2)
+                {
+                    telaPrincipal.destaque2SetEnabled(true);
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaPrincipal.retornarNomeDestaque2()), "Geral");
+                    controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaPrincipal);
+                }else
+                {
+                    telaPrincipal.destaque2SetEnabled(false);
+                }
             }
             
             @Override
@@ -743,8 +713,15 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             @Override
             public void mouseClicked(MouseEvent e) 
             {
-                controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaPrincipal.getDestaque3().getName()), "Geral");
-                controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaPrincipal);
+                if (produtosGeral.size() >= 3)
+                {
+                    telaPrincipal.destaque3SetEnabled(true);
+                    controladorGeral.getControladorTelaProduto().construirProduto(Integer.parseInt(telaPrincipal.retornarNomeDestaque3()), "Geral");
+                    controladorGeral.exibirTelaProduto(controladorGeral.getControladorTelaProduto().getTelaProduto(), telaPrincipal);
+                }else
+                {
+                    telaPrincipal.destaque3SetEnabled(false);
+                }
             }
             
             @Override
@@ -769,34 +746,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         this.promocoes();
         
     }
-    
-    
-    public void addJPanel ()
-    {
-        
-        jPanells.add(telaPrincipal.getDestaque1());
-        jPanells.add(telaPrincipal.getDestaque2());
-        jPanells.add(telaPrincipal.getDestaque3());
-        
-        
-    }
-    public void addJLabelImg ()
-    {
-        jLabellsImg.add(telaPrincipal.getImg1());
-        jLabellsImg.add(telaPrincipal.getImg2());
-        jLabellsImg.add(telaPrincipal.getImg3());
-        
-        
-    }
-    public void addJLabelText ()
-    {
-        jLabellsText.add(telaPrincipal.getText1());
-        jLabellsText.add(telaPrincipal.getText2());
-        jLabellsText.add(telaPrincipal.getText3());
-        
-        
-    }
-    
+
     public void promocoes ()
     {
         for (Produto produto: produtosGeral)
@@ -810,12 +760,12 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
         int count = 0;
         
         
-        telaPrincipal.getImg1().setVisible(false);
-        telaPrincipal.getImg2().setVisible(false);
-        telaPrincipal.getImg3().setVisible(false);
-        telaPrincipal.getText1().setVisible(false);
-        telaPrincipal.getText2().setVisible(false);
-        telaPrincipal.getText3().setVisible(false);
+        telaPrincipal.mudarVisibilidadeImg1(false);
+        telaPrincipal.mudarVisibilidadeImg2(false);
+        telaPrincipal.mudarVisibilidadeImg3(false);
+        telaPrincipal.mudarVisibilidadeText1(false);
+        telaPrincipal.mudarVisibilidadeText2(false);
+        telaPrincipal.mudarVisibilidadeText3(false);
         
         for (Produto produto: produtosGeral) 
         {
@@ -829,38 +779,25 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
             
             if (count == 2) {
                 
-                Utilitarios.criarPainelProduto(produto.getImagem(), jLabellsImg.get(count), produto.getModelo()+" R$ "+produto.getValor(), jLabellsText.get(count));
-                
-                    telaPrincipal.getImg3().setVisible(true);
-                    telaPrincipal.getText3().setVisible(true);
-                
-                
+                Utilitarios.criarPainelProduto(produto.getImagem(), telaPrincipal.getJLabellsImg().get(count), produto.getModelo()+" R$ "+produto.getValor(), telaPrincipal.getJLabellsText().get(count));    
+                    telaPrincipal.mudarVisibilidadeImg3(true);
+                    telaPrincipal.mudarVisibilidadeText3(true);
             }
             
             if (count == 1) {
                 
-                 Utilitarios.criarPainelProduto(produto.getImagem(), jLabellsImg.get(count), produto.getModelo()+" R$ "+produto.getValor(), jLabellsText.get(count));
-                 
-                    telaPrincipal.getImg2().setVisible(true);
-                    telaPrincipal.getText2().setVisible(true);
-                
-                
+                 Utilitarios.criarPainelProduto(produto.getImagem(), telaPrincipal.getJLabellsImg().get(count), produto.getModelo()+" R$ "+produto.getValor(), telaPrincipal.getJLabellsText().get(count));                
+                    telaPrincipal.mudarVisibilidadeImg2(true);
+                    telaPrincipal.mudarVisibilidadeText2(true);
             }
             
             if (count == 0) {
-                
-                 Utilitarios.criarPainelProduto(produto.getImagem(), jLabellsImg.get(count), produto.getModelo()+" R$ "+produto.getValor(), jLabellsText.get(count));
-                 
-                    telaPrincipal.getImg1().setVisible(true);
-                    telaPrincipal.getText1().setVisible(true);
-                
-                
+                 Utilitarios.criarPainelProduto(produto.getImagem(), telaPrincipal.getJLabellsImg().get(count), produto.getModelo()+" R$ "+produto.getValor(), telaPrincipal.getJLabellsText().get(count));                
+                    telaPrincipal.mudarVisibilidadeImg1(true);
+                    telaPrincipal.mudarVisibilidadeText1(true);
             }
-            
-            count++;
-            
-        }
-        
+            count++;  
+        }  
     }
     
     public void organizarProdutosGeral ()
@@ -895,8 +832,7 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
     public void verifyContentCarrinho () {
         this.constructorValueCarrinho();
         telaPrincipal.getPopUpMenu().revalidate();
-        telaPrincipal.getPopUpMenu().repaint();
-        
+        telaPrincipal.getPopUpMenu().repaint();       
     }
    
     public void constructorValueCarrinho () {
@@ -921,119 +857,115 @@ public class ControladorTelaPrincipal implements Comparator<JTextArea>, MapManip
               int value = Integer.parseInt(action);
               removeCarrinho(value);
               }
-              
           });
             botaoDelete.setActionCommand(entry.getKey().toString());
             telaPrincipal.getPopUpMenu().add(_lbl);
             telaPrincipal.getPopUpMenu().add(botaoDelete);
-        
-        
         }
     }
     
     public void alterarComboBox ()
     {
-        String tipo = telaPrincipal.getCbTipo().getSelectedItem().toString();
-        telaPrincipal.getCbProduto1().removeAllItems();
-        telaPrincipal.getCbProduto2().removeAllItems();
+        String tipo = telaPrincipal.retornarTextoCbTipo();
+        telaPrincipal.limparComboBox();
         switch (tipo)
         {
             case "Armazenamento":
                 for (Armazenamento armazenamento: armazenamentos)
                 {
-                    telaPrincipal.getCbProduto1().addItem(armazenamento);
-                    telaPrincipal.getCbProduto2().addItem(armazenamento);
+                    telaPrincipal.adicionarItemCb1(armazenamento);
+                    telaPrincipal.adicionarItemCb2(armazenamento);
                 }
                 break;
             case "Computador":
                 for (Computador computador: computadores)
                 {
-                    telaPrincipal.getCbProduto1().addItem(computador);
-                    telaPrincipal.getCbProduto2().addItem(computador);
+                    telaPrincipal.adicionarItemCb1(computador);
+                    telaPrincipal.adicionarItemCb2(computador);
                 }
                 break;
             case "Cooler":
                 for (Cooler cooler: coolers)
                 {
-                    telaPrincipal.getCbProduto1().addItem(cooler);
-                    telaPrincipal.getCbProduto2().addItem(cooler);
+                    telaPrincipal.adicionarItemCb1(cooler);
+                    telaPrincipal.adicionarItemCb2(cooler);
                 }
                 break;
             case "Fonte":
                 for (Fonte fonte: fontes)
                 {
-                    telaPrincipal.getCbProduto1().addItem(fonte);
-                    telaPrincipal.getCbProduto2().addItem(fonte);
+                    telaPrincipal.adicionarItemCb1(fonte);
+                    telaPrincipal.adicionarItemCb2(fonte);
                 }
                 break;
             case "Gabinete":
                 for (Gabinete gabinete: gabinetes)
                 {
-                    telaPrincipal.getCbProduto1().addItem(gabinete);
-                    telaPrincipal.getCbProduto2().addItem(gabinete);
+                    telaPrincipal.adicionarItemCb1(gabinete);
+                    telaPrincipal.adicionarItemCb2(gabinete);
                 }
                 break;
             case "Headset":
                 for (Headset headset: headsets)
                 {
-                    telaPrincipal.getCbProduto1().addItem(headset);
-                    telaPrincipal.getCbProduto2().addItem(headset);
+                    telaPrincipal.adicionarItemCb1(headset);
+                    telaPrincipal.adicionarItemCb2(headset);
                 }
                 break;
             case "Memória RAM":
                 for (MemoriaRAM memoriaRAM: memoriasRam)
                 {
-                    telaPrincipal.getCbProduto1().addItem(memoriaRAM);
-                    telaPrincipal.getCbProduto2().addItem(memoriaRAM);
+                    telaPrincipal.adicionarItemCb1(memoriaRAM);
+                    telaPrincipal.adicionarItemCb2(memoriaRAM);
                 }
                 break;
             case "Monitor":
                 for (Monitor monitor: monitores)
                 {
-                    telaPrincipal.getCbProduto1().addItem(monitor);
-                    telaPrincipal.getCbProduto2().addItem(monitor);
+                    telaPrincipal.adicionarItemCb1(monitor);
+                    telaPrincipal.adicionarItemCb2(monitor);
                 }
                 break;
             case "Mouse":
                 for (Mouse mouse: mouses)
                 {
-                    telaPrincipal.getCbProduto1().addItem(mouse);
-                    telaPrincipal.getCbProduto2().addItem(mouse);
+                    telaPrincipal.adicionarItemCb1(mouse);
+                    telaPrincipal.adicionarItemCb2(mouse);
                 }
                 break;
             case "Notebook":
                 for (Notebook notebook: notebooks)
                 {
-                    telaPrincipal.getCbProduto1().addItem(notebook);
-                    telaPrincipal.getCbProduto2().addItem(notebook);
+                    telaPrincipal.adicionarItemCb1(notebook);
+                    telaPrincipal.adicionarItemCb2(notebook);
                 }
                 break;
             case "Placa de Vídeo":
                 for (PlacaDeVideo placaDeVideo: placasDeVideos)
                 {
-                    telaPrincipal.getCbProduto1().addItem(placaDeVideo);
-                    telaPrincipal.getCbProduto2().addItem(placaDeVideo);
+                    telaPrincipal.adicionarItemCb1(placaDeVideo);
+                    telaPrincipal.adicionarItemCb2(placaDeVideo);
                 }
                 break;
             case "Placa Mãe":
                 for (PlacaMae placaMae: placasMae)
                 {
-                    telaPrincipal.getCbProduto1().addItem(placaMae);
-                    telaPrincipal.getCbProduto2().addItem(placaMae);
+                    telaPrincipal.adicionarItemCb1(placaMae);
+                    telaPrincipal.adicionarItemCb2(placaMae);
                 }
                 break;
             case "Processador":
                 for (Processador processador: processadores)
                 {
-                    telaPrincipal.getCbProduto1().addItem(processador);
-                    telaPrincipal.getCbProduto2().addItem(processador);
+                    telaPrincipal.adicionarItemCb1(processador);
+                    telaPrincipal.adicionarItemCb2(processador);
                 }
                 break;
             case "Teclado":
                 for (Teclado teclado: teclados)
                 {
-                    telaPrincipal.getCbProduto1().addItem(teclado);
-                    telaPrincipal.getCbProduto2().addItem(teclado);
+                    telaPrincipal.adicionarItemCb1(teclado);
+                    telaPrincipal.adicionarItemCb2(teclado);
                 }
                 break;
         }

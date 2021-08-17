@@ -9,7 +9,6 @@ import Excecoes.LoginException;
 import Telas.TelaLogin;
 
 //JAVA
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -23,18 +22,9 @@ public class ControladorTelaLogin implements Autenticador {
     public ControladorTelaLogin(TelaLogin telaLogin, ControladorGeral controladorGeral) {
         this.telaLogin = telaLogin;
         this.controladorGeral = controladorGeral;
-        configurarTela();
         inicializarAcoes();
         
        
-    }
-    
-    public  void configurarTela()
-    {
-        Utilitarios.aparecerImagemLocal(telaLogin.getlLogo(), "src/imagens/BOOM.png");
-        Utilitarios.centralizarTela(telaLogin);
-        telaLogin.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
-        telaLogin.getlLogo().requestFocus();
     }
     
     public void inicializarAcoes() 
@@ -61,13 +51,13 @@ public class ControladorTelaLogin implements Autenticador {
             @Override
             public void focusGained(FocusEvent e)
             {
-                Utilitarios.desaparecerTexto("Email", telaLogin.getTfEmail());
+                telaLogin.desaparecerLogin();
             }
             
             @Override
             public void focusLost(FocusEvent e)
             {
-                Utilitarios.aparecerTexto("Email", telaLogin.getTfEmail());
+                telaLogin.aparecerLogin();
             }
         });
         
@@ -76,13 +66,13 @@ public class ControladorTelaLogin implements Autenticador {
            @Override
             public void focusGained(FocusEvent e)
             {
-                Utilitarios.desaparecerTexto("Senhadaora", telaLogin.getPfSenha());
+                telaLogin.desaparecerSenha();
             }
             
             @Override
             public void focusLost(FocusEvent e)
             {
-                Utilitarios.aparecerTexto("Senhadaora", telaLogin.getPfSenha());
+                telaLogin.aparecerSenha();
             } 
         });
         
@@ -91,7 +81,7 @@ public class ControladorTelaLogin implements Autenticador {
             @Override
             public void actionPerformed(ActionEvent e) 
             {
-                Utilitarios.visibilidadeSenha(telaLogin.getCkVisivel(), telaLogin.getPfSenha());
+                telaLogin.checkBoxSenha();
             }
         });
         
@@ -101,12 +91,12 @@ public class ControladorTelaLogin implements Autenticador {
     public boolean verificaAdm() throws LoginException 
     {
         
-        if (telaLogin.getTfEmail().getText().equals("Email") ) {
+        if (telaLogin.retornarTextoLogin().equals("Email") ) {
             throw new LoginException("Usuário vazio");
             
         } else {
         
-        if (telaLogin.getTfEmail().getText().contains("@adm.com"))
+        if (telaLogin.retornarTextoLogin().contains("@adm.com"))
         {
            
             return true;
