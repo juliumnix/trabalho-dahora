@@ -15,7 +15,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -28,8 +27,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 //SWING
 import javax.swing.JButton;
@@ -43,18 +40,7 @@ public class ControladorTelaCompra implements MapManipulator {
     public ControladorTelaCompra(TelaCompra telaCompra, ControladorGeral controladorGeral) {
         this.telaCompra = telaCompra;
         this.controladorGeral = controladorGeral;
-//        this.telaCompra.getTableModel().getDados().addAll(controladorGeral.getControladorTelaPrincipal().getCarrinho().values());
-        configurarTela();
         inicializarAcoes();
-    }
-    
-    public void configurarTela(){
-        telaCompra.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
-        Utilitarios.aparecerImagemLocal(telaCompra.getIcon(), "src/imagens/BOOM.png");
-        Utilitarios.aparecerImagemLocal(telaCompra.getBtPesquisa(), "src/imagens/IconSearch.png");
-        Utilitarios.aparecerImagemLocal(telaCompra.getBtCart(), "src/imagens/IconCart.png");
-        telaCompra.getIcon().requestFocus();
-        telaCompra.getPopUpMenu().setVisible(false); 
     }
     
     public void inicializarAcoes() 
@@ -64,13 +50,13 @@ public class ControladorTelaCompra implements MapManipulator {
             @Override
             public void focusGained(FocusEvent e)
             {
-                Utilitarios.desaparecerTexto("Pesquisa", telaCompra.getTfPesquisa());
+                telaCompra.desaparecerTextoTfPesquisa();
             }
             
             @Override
             public void focusLost(FocusEvent e)
             {
-                Utilitarios.aparecerTexto("Pesquisa", telaCompra.getTfPesquisa());
+                telaCompra.aparecerTextoTfPesquisa();
             }
         });
         
@@ -81,10 +67,10 @@ public class ControladorTelaCompra implements MapManipulator {
             {
                 if (telaCompra.getPopUpMenu().isVisible())
                 {
-                    telaCompra.getPopUpMenu().setVisible(false);
+                    telaCompra.mudarVisibilidadePopUpMenu(false);
                 }else
                 {
-                    telaCompra.getPopUpMenu().setVisible(true);
+                    telaCompra.mudarVisibilidadePopUpMenu(true);
                 }
             }
         });
@@ -272,7 +258,7 @@ public class ControladorTelaCompra implements MapManipulator {
             @Override
             public void actionPerformed(ActionEvent e) 
             {
-                controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaCompra, telaCompra.getTfPesquisa().getText());
+                controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaCompra, telaCompra.retornarTextoPesquisa());
             }
         });
         
@@ -280,8 +266,7 @@ public class ControladorTelaCompra implements MapManipulator {
         {
             public void windowGainedFocus (WindowEvent e)
             {
-                telaCompra.getJPanel1().revalidate();
-                telaCompra.getJPanel1().repaint();
+                telaCompra.reiniciarPainel();
             }
             public void windowLostFocus(WindowEvent e){}
         });
@@ -316,7 +301,7 @@ public class ControladorTelaCompra implements MapManipulator {
                 }
                 controladorGeral.getControladorTelaPrincipal().repaintJPanel();
                 
-                telaCompra.getJOptionPane1().showMessageDialog(null, "Compra finalizada com sucesso, obrigado");
+                telaCompra.mensagemJOptionPane("Compra finalizada com sucesso, obrigado");
                 
             }
         });

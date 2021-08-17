@@ -1,107 +1,382 @@
 package Telas;
 
 //JAVA
+import Codigo.Utilitarios;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
-
-//SWING
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 public class TelaCadastroSegunda extends javax.swing.JFrame {
     
 
     public TelaCadastroSegunda() {
         initComponents();
+        configurarTela();
+    }
+    
+    public void configurarTela()
+    {
+        Utilitarios.centralizarTela(this);
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
+    }
+    
+    public String textoJTextField1 ()
+    {
+        return jTextField1.getText();
+    }
+    
+    public String textoJTextField2 ()
+    {
+        return jTextField2.getText();
+    }
+    
+    public String textoJTextField3 ()
+    {
+        return jTextField3.getText();
+    }
+    
+    public String textoJComboBox1 ()
+    {
+        return jComboBox1.getSelectedItem().toString();
+    }
+    
+    public String textoJComboBox2 ()
+    {
+        return jComboBox2.getSelectedItem().toString();
+    }
+    
+    public String textoJComboBox3 ()
+    {
+        return jComboBox3.getSelectedItem().toString();
+    }
+    
+    public String textoJComboBox4 ()
+    {
+        return jComboBox4.getSelectedItem().toString();
     }
     
     public void adicionarAcaoBtCadastrar(ActionListener acao)
     {
         btCadastrar.addActionListener(acao);
     }
+    
+    public void mensagemJOptionPane (String texto)
+    {
+        jOptionPane1.showMessageDialog(null, texto);
+    }
+    
+    public void setarVisibleFalse ()
+    {
+        jComboBox1.setVisible(false);
+        jComboBox2.setVisible(false);
+        jComboBox3.setVisible(false);
+        jComboBox4.setVisible(false);
+        jTextField1.setVisible(false);
+        jTextField2.setVisible(false);
+        jTextField3.setVisible(false);
+        jLabel1.setVisible(false);
+        jLabel2.setVisible(false);
+        jLabel3.setVisible(false);
+        jLabel4.setVisible(false);
+        jLabel5.setVisible(false);
+        jLabel6.setVisible(false);
+    }
+    
+    public void armazenamento ()
+    {
+        setarVisibleFalse();
+        jLabel1.setVisible(true);
+        jLabel1.setText("Capacidade:");
+        jLabel2.setVisible(true);
+        jLabel2.setText("Velocidade:");
+        jLabel3.setVisible(true);
+        jLabel3.setText("Tipo:");
+        jTextField1.setVisible(true);
+        jTextField2.setVisible(true);
+        jComboBox1.setLocation(155, 70);
+        jComboBox1.setVisible(true);
+        jComboBox1.addItem("HD");
+        jComboBox1.addItem("SSD");    
+    }
+    
+    public void cooler ()
+    {
+        setarVisibleFalse();
+        jLabel1.setVisible(true);
+        jLabel1.setText("Velocidade da Ventoinha:");
+        jLabel2.setVisible(true);
+        jLabel2.setText("Tipo:");
+        jTextField1.setVisible(true);
+        jComboBox1.setLocation(155, 40);
+        jComboBox1.setVisible(true);
+        jComboBox1.addItem("Cooler comum");
+        jComboBox1.addItem("Water Cooler");
+    }
+    
+    public void fonte ()
+    {
+        setarVisibleFalse();
+        jLabel1.setVisible(true);
+        jLabel1.setText("Certificação:");
+        jLabel2.setVisible(true);
+        jLabel2.setText("Tensão (W):");
+        jComboBox1.setLocation(155, 10);
+        jComboBox1.setVisible(true);
+        jComboBox1.addItem("Plus");
+        jComboBox1.addItem("Bronze");
+        jComboBox1.addItem("Silver");
+        jComboBox1.addItem("Gold");
+        jComboBox1.addItem("Platinum");
+        jComboBox1.addItem("Titanium");
+        jComboBox2.setLocation(155, 40);
+        jComboBox2.setVisible(true);
+        jComboBox2.addItem("550");
+        jComboBox2.addItem("650");
+        jComboBox2.addItem("750");
+        jComboBox2.addItem("850");
+        jComboBox2.addItem("950");
+        jComboBox2.addItem("1050");
+    }
+    
+    public void gabinete ()
+    {
+        setarVisibleFalse();
+        jLabel1.setVisible(true);
+        jLabel1.setText("Peso:");
+        jLabel2.setVisible(true);
+        jLabel2.setText("Tamanho:");
+        jTextField1.setVisible(true);
+        jComboBox1.setLocation(155, 40);
+        jComboBox1.setVisible(true);
+        jComboBox1.addItem("Pequeno");
+        jComboBox1.addItem("Médio");
+        jComboBox1.addItem("Grande");
+    }
+    
+    public void headset ()
+    {
+        setarVisibleFalse();
+        jLabel1.setVisible(true);
+        jLabel1.setText("Possui Bluetooth:");
+        jLabel2.setVisible(true);
+        jLabel2.setText("Possui Microfone:");
+        jLabel3.setVisible(true);
+        jLabel3.setText("É Sem Fio:");
+        jLabel4.setVisible(true);
+        jLabel4.setText("Tipo:");
+        jComboBox1.setLocation(155, 10);
+        jComboBox1.setVisible(true);
+        jComboBox1.addItem("true");
+        jComboBox1.addItem("false");
+        jComboBox2.setLocation(155, 40);
+        jComboBox2.setVisible(true);
+        jComboBox2.addItem("true");
+        jComboBox2.addItem("false");
+        jComboBox3.setLocation(155, 70);
+        jComboBox3.setVisible(true);
+        jComboBox3.addItem("true");
+        jComboBox3.addItem("false");
+        jComboBox4.setLocation(155, 100);
+        jComboBox4.setVisible(true);
+        jComboBox4.addItem("2.0 (estéreo)");
+        jComboBox4.addItem("5.1");
+        jComboBox4.addItem("7.1 (surround)");
+    }
+    
+    public void memoriaRam ()
+    {
+        setarVisibleFalse();
+        jLabel1.setVisible(true);
+        jLabel1.setText("Capacidade:");
+        jLabel2.setVisible(true);
+        jLabel2.setText("Velocidade:");
+        jLabel3.setVisible(true);
+        jLabel3.setText("DDR:"); 
+        jTextField1.setVisible(true);
+        jTextField2.setVisible(true);
+        jComboBox1.setLocation(155, 70);
+        jComboBox1.setVisible(true);
+        jComboBox1.addItem("DDR3");
+        jComboBox1.addItem("DDR4");
+    }
+    
+    public void monitor ()
+    {
+        setarVisibleFalse();
+        jLabel1.setVisible(true);
+        jLabel1.setText("Tamanho:");
+        jLabel2.setVisible(true);
+        jLabel2.setText("Aspecto:");
+        jLabel3.setVisible(true);
+        jLabel3.setText("Frame Rate (hz):"); 
+        jLabel4.setVisible(true);
+        jLabel4.setText("Resolução:"); 
+        jTextField1.setVisible(true);
+        jComboBox1.setLocation(155, 40);
+        jComboBox1.setVisible(true);
+        jComboBox1.addItem("4:3");
+        jComboBox1.addItem("16:9");
+        jComboBox1.addItem("21:9");       
+        jComboBox2.setLocation(155, 70);
+        jComboBox2.setVisible(true);
+        jComboBox2.addItem("60");
+        jComboBox2.addItem("75");
+        jComboBox2.addItem("90");
+        jComboBox2.addItem("120");
+        jComboBox2.addItem("144");
+        jComboBox3.setLocation(155, 100);
+        jComboBox3.setVisible(true);
+        jComboBox3.addItem("HD");
+        jComboBox3.addItem("Full HD");
+        jComboBox3.addItem("4k");
+    }
+    
+    public void mouse ()
+    {
+        setarVisibleFalse();
+        jLabel1.setVisible(true);
+        jLabel1.setText("Apresenta Bluetooth:");
+        jLabel2.setVisible(true);
+        jLabel2.setText("Apresenta Botões Laterais:");
+        jLabel3.setVisible(true);
+        jLabel3.setText("É Sem Fio:");
+        jComboBox1.setLocation(155, 10);
+        jComboBox1.setVisible(true);
+        jComboBox1.addItem("true");
+        jComboBox1.addItem("false");
+        jComboBox2.setLocation(155, 40);
+        jComboBox2.setVisible(true);
+        jComboBox2.addItem("true");
+        jComboBox2.addItem("false");
+        jComboBox3.setLocation(155, 70);
+        jComboBox3.setVisible(true);
+        jComboBox3.addItem("true");
+        jComboBox3.addItem("false");
+    }
+    
+    public void placaDeVideo ()
+    {
+        setarVisibleFalse();
+        jLabel1.setVisible(true);
+        jLabel1.setText("Memória:");
+        jLabel2.setVisible(true);
+        jLabel2.setText("Necessita Alimentação:");
+        jTextField1.setVisible(true);
+        jComboBox1.setLocation(155, 40);
+        jComboBox1.setVisible(true);
+        jComboBox1.addItem("true");
+        jComboBox1.addItem("false");
+    }
+    
+    public void placaMae ()
+    {
+        setarVisibleFalse();
+        jLabel1.setVisible(true);
+        jLabel1.setText("Entradas PCI-Express:");
+        jLabel2.setVisible(true);
+        jLabel2.setText("Entradas RAM:");
+        jLabel3.setVisible(true);
+        jLabel3.setText("Entradas USB:"); 
+        jLabel4.setVisible(true);
+        jLabel4.setText("Apresenta Bluetooth:"); 
+        jLabel5.setVisible(true);
+        jLabel5.setText("Tamanho:"); 
+        jLabel6.setVisible(true);
+        jLabel6.setText("Apresenta Wi-Fi:");
+        jTextField1.setVisible(true);
+        jTextField2.setVisible(true);
+        jTextField3.setVisible(true);
+        jComboBox1.setLocation(155, 100);
+        jComboBox1.setVisible(true);
+        jComboBox1.addItem("true");
+        jComboBox1.addItem("false");
+        jComboBox2.setLocation(155, 130);
+        jComboBox2.setVisible(true);
+        jComboBox2.addItem("AT");
+        jComboBox2.addItem("ATX");
+        jComboBox2.addItem("BABY AT");
+        jComboBox2.addItem("BTX");
+        jComboBox2.addItem("ITX");
+        jComboBox2.addItem("LPX");
+        jComboBox2.addItem("NLX");
+        jComboBox3.setLocation(155, 160);
+        jComboBox3.setVisible(true);
+        jComboBox3.addItem("true");
+        jComboBox3.addItem("false");
+    }
+    
+    public void processador ()
+    {
+        setarVisibleFalse();
+        jLabel1.setVisible(true);
+        jLabel1.setText("Geração:");
+        jLabel2.setVisible(true);
+        jLabel2.setText("Núcleos:");
+        jLabel3.setVisible(true);
+        jLabel3.setText("Velocidade Núcleo:");
+        jTextField1.setVisible(true);
+        jTextField2.setVisible(true);
+        jTextField3.setVisible(true);
+    }
+    
+    public void teclado ()
+    {
+        setarVisibleFalse();
+        jLabel1.setVisible(true);
+        jLabel1.setText("Apresenta Bluetooth:");
+        jLabel2.setVisible(true);
+        jLabel2.setText("Apresenta Numérico:");
+        jLabel3.setVisible(true);
+        jLabel3.setText("Tipo:");
+        jLabel4.setVisible(true);
+        jLabel4.setText("Sem Fio:");
+        jComboBox1.setLocation(155, 10);
+        jComboBox1.setVisible(true);
+        jComboBox1.addItem("true");
+        jComboBox1.addItem("false");
+        jComboBox2.setLocation(155, 40);
+        jComboBox2.setVisible(true);
+        jComboBox2.addItem("true");
+        jComboBox2.addItem("false");
+        jComboBox3.setLocation(155, 70);
+        jComboBox3.setVisible(true);
+        jComboBox3.addItem("Mecânico");
+        jComboBox3.addItem("Membrana");
+        jComboBox3.addItem("Semi-Mecânico");
+        jComboBox4.setLocation(155, 100);
+        jComboBox4.setVisible(true);
+        jComboBox4.addItem("true");
+        jComboBox4.addItem("false");
+        
+    }
+    
+    public void limparComboBox ()
+    {
+        jComboBox1.removeAllItems();
+        jComboBox2.removeAllItems();
+        jComboBox3.removeAllItems();
+        jComboBox4.removeAllItems();
+    }
+    
+    public void limparCampos()
+    {
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jComboBox1.setSelectedIndex(-1);
+        jComboBox2.setSelectedIndex(-1);
+        jComboBox3.setSelectedIndex(-1);
+        jComboBox4.setSelectedIndex(-1);
+    }
 
     public void exibirTela(){
         setVisible(true);
     }
     
-    //GETS SWING
-    public JTextField getJTextField1 ()
+    public void esconderTela()
     {
-        return this.jTextField1;
+        setVisible(false);
     }
-    
-    public JTextField getJTextField2 ()
-    {
-        return this.jTextField2;
-    }
-    
-    public JTextField getJTextField3 ()
-    {
-        return this.jTextField3;
-    }
-    
-    public JComboBox getJComboBox1 ()
-    {
-        return this.jComboBox1; 
-    }
-    
-    public JComboBox getJComboBox2 ()
-    {
-        return this.jComboBox2; 
-    }
-    
-    public JComboBox getJComboBox3 ()
-    {
-        return this.jComboBox3; 
-    }
-    
-    public JComboBox getJComboBox4 ()
-    {
-        return this.jComboBox4; 
-    }
-    
-    public JButton getCadastrar ()
-    {
-        return this.btCadastrar;
-    }
-    
-    public JLabel getJLabel1 ()
-    {
-        return this.jLabel1;
-    }
-    
-    public JLabel getJLabel2 ()
-    {
-        return this.jLabel2;
-    }
-    
-    public JLabel getJLabel3 ()
-    {
-        return this.jLabel3;
-    }
-    
-    public JLabel getJLabel4 ()
-    {
-        return this.jLabel4;
-    }
-    
-    public JLabel getJLabel5 ()
-    {
-        return this.jLabel5;
-    }
-    
-    public JLabel getJLabel6 ()
-    {
-        return this.jLabel6;
-    }
-    
-    public JOptionPane getJOptionPane1 ()
-    {
-        return this.jOptionPane1;
-    }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

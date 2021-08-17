@@ -3,7 +3,6 @@ package Controlador;
 //CODIGO
 import Codigo.MapManipulator;
 import Codigo.Produto;
-import Codigo.ProdutoCarrinho;
 import Codigo.Utilitarios;
 
 //TELAS
@@ -14,7 +13,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -40,19 +38,7 @@ public class ControladorTelaProduto implements MapManipulator {
     public ControladorTelaProduto(TelaProduto telaProduto, ControladorGeral controladorGeral) {
         this.telaProduto = telaProduto;
         this.controladorGeral = controladorGeral;
-        configurarTela();
         inicializarAcoes();
-    }
-    
-    public void configurarTela(){
-        telaProduto.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
-        Utilitarios.aparecerImagemLocal(telaProduto.getIcon(), "src/imagens/BOOM.png");
-        Utilitarios.aparecerImagemLocal(telaProduto.getBtPesquisa(), "src/imagens/IconSearch.png");
-        Utilitarios.aparecerImagemLocal(telaProduto.getBtCart(), "src/imagens/IconCart.png");
-        Utilitarios.aparecerImagemLocal(telaProduto.getBtAddCart(), "src/imagens/IconCart.png");        
-        telaProduto.getTaDescricao().setLineWrap(true);
-        telaProduto.getIcon().requestFocus();
-        telaProduto.getPopUpMenu().setVisible(false); 
     }
     
     public void inicializarAcoes() 
@@ -62,13 +48,13 @@ public class ControladorTelaProduto implements MapManipulator {
             @Override
             public void focusGained(FocusEvent e)
             {
-                Utilitarios.desaparecerTexto("Pesquisa", telaProduto.getTfPesquisa());
+                telaProduto.desaparecerTextoTfPesquisa();
             }
             
             @Override
             public void focusLost(FocusEvent e)
             {
-                Utilitarios.aparecerTexto("Pesquisa", telaProduto.getTfPesquisa());
+                telaProduto.aparecerTextoTfPesquisa();
             }
         });
         
@@ -79,10 +65,10 @@ public class ControladorTelaProduto implements MapManipulator {
             {
                 if (telaProduto.getPopUpMenu().isVisible())
                 {
-                    telaProduto.getPopUpMenu().setVisible(false);
+                    telaProduto.mudarVisibilidadePopUpMenu(false);
                 }else
                 {
-                    telaProduto.getPopUpMenu().setVisible(true);
+                    telaProduto.mudarVisibilidadePopUpMenu(true);
                 }
             }
         });
@@ -270,7 +256,7 @@ public class ControladorTelaProduto implements MapManipulator {
             @Override
             public void actionPerformed(ActionEvent e) 
             {
-                controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaProduto, telaProduto.getTfPesquisa().getText());
+                controladorGeral.exibirTelaCategorias(controladorGeral.getControladorTelaCategorias().getTelaCategorias(), telaProduto, telaProduto.retornarTextoTfPesquisa());
             }
         });
         
@@ -290,7 +276,7 @@ public class ControladorTelaProduto implements MapManipulator {
             {
                 if(controladorGeral.getControladorTelaPrincipal().getCarrinho().size() == 10)
                 {
-                telaProduto.getJOptionPane1().showMessageDialog(null, "Ops, você só pode adicionar 10 itens no seu carrinho");
+                telaProduto.mensagemJOptionPane("Ops, você só pode adicionar 10 itens no seu carrinho");
                 } else {
                     switch (modo)
                     {
@@ -318,7 +304,7 @@ public class ControladorTelaProduto implements MapManipulator {
                 telaProduto.getImagemProduto(),
                 controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(this.index).getModelo()+" R$ "+controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(this.index).getValor(),
                 telaProduto.getTituloProduto());
-                telaProduto.getTaDescricao().setText(controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(this.index).imprimirDados(controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(this.index).getCategoria()));
+                telaProduto.setarTextoTaDescricao(controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(this.index).imprimirDados(controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(this.index).getCategoria()));
                 
                 this.nome = controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(this.index).getModelo();
                 this.valor = controladorGeral.getControladorTelaPrincipal().getProdutosEmUso().get(this.index).getValor();
@@ -329,7 +315,7 @@ public class ControladorTelaProduto implements MapManipulator {
                 telaProduto.getImagemProduto(),
                 controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(this.index).getModelo()+" R$ "+controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(this.index).getValor(),
                 telaProduto.getTituloProduto());
-                telaProduto.getTaDescricao().setText(controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(this.index).imprimirDados(controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(this.index).getCategoria()));
+                telaProduto.setarTextoTaDescricao(controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(this.index).imprimirDados(controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(this.index).getCategoria()));
                 
                 this.nome = controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(this.index).getModelo();
                 this.valor = controladorGeral.getControladorTelaPrincipal().getProdutosGeral().get(this.index).getValor();

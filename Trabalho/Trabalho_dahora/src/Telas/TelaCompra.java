@@ -2,6 +2,8 @@ package Telas;
 
 //JAVA
 import Codigo.CarrinhoTableModel;
+import Codigo.Utilitarios;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseListener;
@@ -16,7 +18,38 @@ public class TelaCompra extends javax.swing.JFrame {
 
     public TelaCompra() {
         initComponents();
+        configurarTela();
         jTCarrinho.setModel(tableModel);
+    }
+    
+    public void configurarTela(){
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
+        Utilitarios.aparecerImagemLocal(icon, "src/imagens/BOOM.png");
+        Utilitarios.aparecerImagemLocal(btPesquisa, "src/imagens/IconSearch.png");
+        Utilitarios.aparecerImagemLocal(btCart, "src/imagens/IconCart.png");
+        icon.requestFocus();
+        popUpMenu.setVisible(false); 
+    }
+    
+    public void mudarVisibilidadePopUpMenu (Boolean bool)
+    {
+        this.popUpMenu.setVisible(bool);
+    }
+    
+    public void reiniciarPainel ()
+    {
+        jPanel1.revalidate();
+        jPanel1.repaint();
+    }
+    
+    public void aparecerTextoTfPesquisa ()
+    {
+        Utilitarios.aparecerTexto("Pesquisa", tfPesquisa);
+    }
+    
+    public void desaparecerTextoTfPesquisa ()
+    {
+        Utilitarios.desaparecerTexto("Pesquisa", tfPesquisa);
     }
     
     //ACOES
@@ -131,40 +164,19 @@ public class TelaCompra extends javax.swing.JFrame {
         btExcluir.addActionListener(acao);
     }
     
-    //GETS SWING 
-    public JButton getBtPesquisa ()
+    public void mensagemJOptionPane (String texto)
     {
-        return this.btPesquisa;
+        jOptionPane1.showMessageDialog(null, texto);
     }
     
-    public JButton getBtCart ()
+    public String retornarTextoPesquisa ()
     {
-        return this.btCart;
-    }
-
-    public JTextField getTfPesquisa ()
-    {
-        return this.tfPesquisa;
-    }
-
-    public JOptionPane getJOptionPane1 ()
-    {
-        return this.jOptionPane1;
+        return tfPesquisa.getText();
     }
     
     public JPanel getPopUpMenu ()
     {
         return this.popUpMenu;
-    }
-
-    public JLabel getIcon ()
-    {
-        return this.icon;
-    }
-    
-    public JPanel getJPanel1 ()
-    {
-        return this.jPanel1;
     }
     
     public CarrinhoTableModel getTableModel ()

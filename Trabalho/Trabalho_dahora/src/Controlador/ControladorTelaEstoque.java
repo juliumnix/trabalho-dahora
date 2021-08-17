@@ -37,7 +37,6 @@ public class ControladorTelaEstoque implements MapManipulator {
     public ControladorTelaEstoque(TelaEstoque telaEstoque, ControladorGeral controladorGeral) {
         this.telaEstoque = telaEstoque;
         this.controladorGeral = controladorGeral;
-        configurarTela();
         inicializarAcoes();
     }
     
@@ -59,15 +58,6 @@ public class ControladorTelaEstoque implements MapManipulator {
         telaEstoque.getTableModel().getProdutosCadastrados().addAll(controladorGeral.getControladorTelaPrincipal().getTeclado());
     }
     
-    public void configurarTela(){
-        telaEstoque.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
-        Utilitarios.aparecerImagemLocal(telaEstoque.getIcon(), "src/imagens/BOOM.png");
-        Utilitarios.aparecerImagemLocal(telaEstoque.getBtPesquisa(), "src/imagens/IconSearch.png");
-        Utilitarios.aparecerImagemLocal(telaEstoque.getBtCart(), "src/imagens/IconCart.png");
-        telaEstoque.getIcon().requestFocus();
-        telaEstoque.getPopUpMenu().setVisible(false); 
-    }
-    
     public void inicializarAcoes() 
     {
         telaEstoque.adicionarFocusTfPesquisa(new FocusListener()
@@ -75,13 +65,13 @@ public class ControladorTelaEstoque implements MapManipulator {
             @Override
             public void focusGained(FocusEvent e)
             {
-                Utilitarios.desaparecerTexto("Pesquisa", telaEstoque.getTfPesquisa());
+                telaEstoque.desaparecerTextoTfPesquisa();
             }
             
             @Override
             public void focusLost(FocusEvent e)
             {
-                Utilitarios.aparecerTexto("Pesquisa", telaEstoque.getTfPesquisa());
+                telaEstoque.aparecerTextoTfPesquisa();
             }
         });
         
@@ -92,10 +82,10 @@ public class ControladorTelaEstoque implements MapManipulator {
             {
                 if (telaEstoque.getPopUpMenu().isVisible())
                 {
-                    telaEstoque.getPopUpMenu().setVisible(false);
+                    telaEstoque.mudarVisibilidadePopUpMenu(false);
                 }else
                 {
-                    telaEstoque.getPopUpMenu().setVisible(true);
+                    telaEstoque.mudarVisibilidadePopUpMenu(true);
                 }
             }
         });
@@ -291,8 +281,7 @@ public class ControladorTelaEstoque implements MapManipulator {
         {
             public void windowGainedFocus (WindowEvent e)
             {
-                telaEstoque.getJPanel1().revalidate();
-                telaEstoque.getJPanel1().repaint();
+                telaEstoque.reiniciarPainel();
             }
             public void windowLostFocus(WindowEvent e){}
         });

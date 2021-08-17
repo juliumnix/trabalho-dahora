@@ -2,6 +2,8 @@ package Telas;
 
 //JAVA
 import Codigo.EstoqueTableModel;
+import Codigo.Utilitarios;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseListener;
@@ -16,7 +18,38 @@ public class TelaEstoque extends javax.swing.JFrame {
 
     public TelaEstoque() {
         initComponents();
+        configurarTela();
         jTCarrinho.setModel(tableModel);
+    }
+    
+    public void configurarTela(){
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
+        Utilitarios.aparecerImagemLocal(icon, "src/imagens/BOOM.png");
+        Utilitarios.aparecerImagemLocal(btPesquisa, "src/imagens/IconSearch.png");
+        Utilitarios.aparecerImagemLocal(btCart, "src/imagens/IconCart.png");
+        icon.requestFocus();
+        popUpMenu.setVisible(false); 
+    }
+    
+    public void mudarVisibilidadePopUpMenu (Boolean bool)
+    {
+        this.popUpMenu.setVisible(bool);
+    }
+    
+    public void aparecerTextoTfPesquisa ()
+    {
+        Utilitarios.aparecerTexto("Pesquisa", tfPesquisa);
+    }
+    
+    public void desaparecerTextoTfPesquisa ()
+    {
+        Utilitarios.desaparecerTexto("Pesquisa", tfPesquisa);
+    }
+    
+        public void reiniciarPainel ()
+    {
+        jPanel1.revalidate();
+        jPanel1.repaint();
     }
     
     //ACOES
@@ -117,44 +150,22 @@ public class TelaEstoque extends javax.swing.JFrame {
     
     public void adicionarWindowsGainedFocus(WindowFocusListener window)
     {
-        //verificar se é assim, a função original estava no JFrame
         this.addWindowFocusListener(window);
     }
-    
-    //GETS SWING 
-    public JButton getBtPesquisa ()
-    {
-        return this.btPesquisa;
+        
+    public void exibirTela(){
+        setVisible(true);
     }
-    
-    public JButton getBtCart ()
-    {
-        return this.btCart;
-    }
+    //GETS
 
     public JTextField getTfPesquisa ()
     {
         return this.tfPesquisa;
     }
-
-    public JOptionPane getJOptionPane1 ()
-    {
-        return this.jOptionPane1;
-    }
     
     public JPanel getPopUpMenu ()
     {
         return this.popUpMenu;
-    }
-
-    public JLabel getIcon ()
-    {
-        return this.icon;
-    }
-    
-    public JPanel getJPanel1 ()
-    {
-        return this.jPanel1;
     }
     
     public EstoqueTableModel getTableModel ()
@@ -165,10 +176,6 @@ public class TelaEstoque extends javax.swing.JFrame {
     public JTable getJTableCarrinho ()
     {
         return this.jTCarrinho;
-    }
-    
-    public void exibirTela(){
-        setVisible(true);
     }
 
     @SuppressWarnings("unchecked")

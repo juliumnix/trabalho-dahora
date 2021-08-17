@@ -31,7 +31,6 @@ import DAO.TecladoDAO;
 import Telas.TelaCadastroSegunda;
 
 //JAVA
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -43,15 +42,8 @@ public class ControladorTelaCadastroSegunda {
     public ControladorTelaCadastroSegunda(TelaCadastroSegunda telaCadastroSegunda, ControladorGeral controladorGeral) {
         this.telaCadastroSegunda = telaCadastroSegunda;
         this.controladorGeral = controladorGeral;
-        configurarTela();
         inicializarAcoes();
         
-    }
-    
-    public void configurarTela()
-    {
-        Utilitarios.centralizarTela(telaCadastroSegunda);
-        telaCadastroSegunda.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
     }
     
     public void inicializarAcoes()
@@ -126,345 +118,57 @@ public class ControladorTelaCadastroSegunda {
                     controladorGeral.getControladorTelaPrincipal().organizarProdutosGeral();
                     break;
             }
-            telaCadastroSegunda.setVisible(false);
+            telaCadastroSegunda.esconderTela();
             
             
         } catch (Exception error) 
         {
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Preencha todos os campos");
+            telaCadastroSegunda.mensagemJOptionPane("Preencha todos os campos");
         }
             }
         });
     }
     
-    public void setarVisibleFalse ()
-    {
-        telaCadastroSegunda.getJComboBox1().setVisible(false);
-        telaCadastroSegunda.getJComboBox2().setVisible(false);
-        telaCadastroSegunda.getJComboBox3().setVisible(false);
-        telaCadastroSegunda.getJComboBox4().setVisible(false);
-        telaCadastroSegunda.getJTextField1().setVisible(false);
-        telaCadastroSegunda.getJTextField2().setVisible(false);
-        telaCadastroSegunda.getJTextField3().setVisible(false);
-        telaCadastroSegunda.getJLabel1().setVisible(false);
-        telaCadastroSegunda.getJLabel2().setVisible(false);
-        telaCadastroSegunda.getJLabel3().setVisible(false);
-        telaCadastroSegunda.getJLabel4().setVisible(false);
-        telaCadastroSegunda.getJLabel5().setVisible(false);
-        telaCadastroSegunda.getJLabel6().setVisible(false);
-    }
-    
-    public void armazenamento ()
-    {
-        setarVisibleFalse();
-        telaCadastroSegunda.getJLabel1().setVisible(true);
-        telaCadastroSegunda.getJLabel1().setText("Capacidade:");
-        telaCadastroSegunda.getJLabel2().setVisible(true);
-        telaCadastroSegunda.getJLabel2().setText("Velocidade:");
-        telaCadastroSegunda.getJLabel3().setVisible(true);
-        telaCadastroSegunda.getJLabel3().setText("Tipo:");
-        telaCadastroSegunda.getJTextField1().setVisible(true);
-        telaCadastroSegunda.getJTextField2().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().setLocation(155, 70);
-        telaCadastroSegunda.getJComboBox1().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().addItem("HD");
-        telaCadastroSegunda.getJComboBox1().addItem("SSD");    
-    }
-    
-    public void cooler ()
-    {
-        setarVisibleFalse();
-        telaCadastroSegunda.getJLabel1().setVisible(true);
-        telaCadastroSegunda.getJLabel1().setText("Velocidade da Ventoinha:");
-        telaCadastroSegunda.getJLabel2().setVisible(true);
-        telaCadastroSegunda.getJLabel2().setText("Tipo:");
-        telaCadastroSegunda.getJTextField1().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().setLocation(155, 40);
-        telaCadastroSegunda.getJComboBox1().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().addItem("Cooler comum");
-        telaCadastroSegunda.getJComboBox1().addItem("Water Cooler");
-    }
-    
-    public void fonte ()
-    {
-        setarVisibleFalse();
-        telaCadastroSegunda.getJLabel1().setVisible(true);
-        telaCadastroSegunda.getJLabel1().setText("Certificação:");
-        telaCadastroSegunda.getJLabel2().setVisible(true);
-        telaCadastroSegunda.getJLabel2().setText("Tensão (W):");
-        telaCadastroSegunda.getJComboBox1().setLocation(155, 10);
-        telaCadastroSegunda.getJComboBox1().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().addItem("Plus");
-        telaCadastroSegunda.getJComboBox1().addItem("Bronze");
-        telaCadastroSegunda.getJComboBox1().addItem("Silver");
-        telaCadastroSegunda.getJComboBox1().addItem("Gold");
-        telaCadastroSegunda.getJComboBox1().addItem("Platinum");
-        telaCadastroSegunda.getJComboBox1().addItem("Titanium");
-        telaCadastroSegunda.getJComboBox2().setLocation(155, 40);
-        telaCadastroSegunda.getJComboBox2().setVisible(true);
-        telaCadastroSegunda.getJComboBox2().addItem("550");
-        telaCadastroSegunda.getJComboBox2().addItem("650");
-        telaCadastroSegunda.getJComboBox2().addItem("750");
-        telaCadastroSegunda.getJComboBox2().addItem("850");
-        telaCadastroSegunda.getJComboBox2().addItem("950");
-        telaCadastroSegunda.getJComboBox2().addItem("1050");
-    }
-    
-    public void gabinete ()
-    {
-        setarVisibleFalse();
-        telaCadastroSegunda.getJLabel1().setVisible(true);
-        telaCadastroSegunda.getJLabel1().setText("Peso:");
-        telaCadastroSegunda.getJLabel2().setVisible(true);
-        telaCadastroSegunda.getJLabel2().setText("Tamanho:");
-        telaCadastroSegunda.getJTextField1().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().setLocation(155, 40);
-        telaCadastroSegunda.getJComboBox1().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().addItem("Pequeno");
-        telaCadastroSegunda.getJComboBox1().addItem("Médio");
-        telaCadastroSegunda.getJComboBox1().addItem("Grande");
-    }
-    
-    public void headset ()
-    {
-        setarVisibleFalse();
-        telaCadastroSegunda.getJLabel1().setVisible(true);
-        telaCadastroSegunda.getJLabel1().setText("Possui Bluetooth:");
-        telaCadastroSegunda.getJLabel2().setVisible(true);
-        telaCadastroSegunda.getJLabel2().setText("Possui Microfone:");
-        telaCadastroSegunda.getJLabel3().setVisible(true);
-        telaCadastroSegunda.getJLabel3().setText("É Sem Fio:");
-        telaCadastroSegunda.getJLabel4().setVisible(true);
-        telaCadastroSegunda.getJLabel4().setText("Tipo:");
-        telaCadastroSegunda.getJComboBox1().setLocation(155, 10);
-        telaCadastroSegunda.getJComboBox1().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().addItem("true");
-        telaCadastroSegunda.getJComboBox1().addItem("false");
-        telaCadastroSegunda.getJComboBox2().setLocation(155, 40);
-        telaCadastroSegunda.getJComboBox2().setVisible(true);
-        telaCadastroSegunda.getJComboBox2().addItem("true");
-        telaCadastroSegunda.getJComboBox2().addItem("false");
-        telaCadastroSegunda.getJComboBox3().setLocation(155, 70);
-        telaCadastroSegunda.getJComboBox3().setVisible(true);
-        telaCadastroSegunda.getJComboBox3().addItem("true");
-        telaCadastroSegunda.getJComboBox3().addItem("false");
-        telaCadastroSegunda.getJComboBox4().setLocation(155, 100);
-        telaCadastroSegunda.getJComboBox4().setVisible(true);
-        telaCadastroSegunda.getJComboBox4().addItem("2.0 (estéreo)");
-        telaCadastroSegunda.getJComboBox4().addItem("5.1");
-        telaCadastroSegunda.getJComboBox4().addItem("7.1 (surround)");
-    }
-    
-    public void memoriaRam ()
-    {
-        setarVisibleFalse();
-        telaCadastroSegunda.getJLabel1().setVisible(true);
-        telaCadastroSegunda.getJLabel1().setText("Capacidade:");
-        telaCadastroSegunda.getJLabel2().setVisible(true);
-        telaCadastroSegunda.getJLabel2().setText("Velocidade:");
-        telaCadastroSegunda.getJLabel3().setVisible(true);
-        telaCadastroSegunda.getJLabel3().setText("DDR:"); 
-        telaCadastroSegunda.getJTextField1().setVisible(true);
-        telaCadastroSegunda.getJTextField2().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().setLocation(155, 70);
-        telaCadastroSegunda.getJComboBox1().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().addItem("DDR3");
-        telaCadastroSegunda.getJComboBox1().addItem("DDR4");
-    }
-    
-    public void monitor ()
-    {
-        setarVisibleFalse();
-        telaCadastroSegunda.getJLabel1().setVisible(true);
-        telaCadastroSegunda.getJLabel1().setText("Tamanho:");
-        telaCadastroSegunda.getJLabel2().setVisible(true);
-        telaCadastroSegunda.getJLabel2().setText("Aspecto:");
-        telaCadastroSegunda.getJLabel3().setVisible(true);
-        telaCadastroSegunda.getJLabel3().setText("Frame Rate (hz):"); 
-        telaCadastroSegunda.getJLabel4().setVisible(true);
-        telaCadastroSegunda.getJLabel4().setText("Resolução:"); 
-        telaCadastroSegunda.getJTextField1().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().setLocation(155, 40);
-        telaCadastroSegunda.getJComboBox1().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().addItem("4:3");
-        telaCadastroSegunda.getJComboBox1().addItem("16:9");
-        telaCadastroSegunda.getJComboBox1().addItem("21:9");       
-        telaCadastroSegunda.getJComboBox2().setLocation(155, 70);
-        telaCadastroSegunda.getJComboBox2().setVisible(true);
-        telaCadastroSegunda.getJComboBox2().addItem("60");
-        telaCadastroSegunda.getJComboBox2().addItem("75");
-        telaCadastroSegunda.getJComboBox2().addItem("90");
-        telaCadastroSegunda.getJComboBox2().addItem("120");
-        telaCadastroSegunda.getJComboBox2().addItem("144");
-        telaCadastroSegunda.getJComboBox3().setLocation(155, 100);
-        telaCadastroSegunda.getJComboBox3().setVisible(true);
-        telaCadastroSegunda.getJComboBox3().addItem("HD");
-        telaCadastroSegunda.getJComboBox3().addItem("Full HD");
-        telaCadastroSegunda.getJComboBox3().addItem("4k");
-    }
-    
-    public void mouse ()
-    {
-        setarVisibleFalse();
-        telaCadastroSegunda.getJLabel1().setVisible(true);
-        telaCadastroSegunda.getJLabel1().setText("Apresenta Bluetooth:");
-        telaCadastroSegunda.getJLabel2().setVisible(true);
-        telaCadastroSegunda.getJLabel2().setText("Apresenta Botões Laterais:");
-        telaCadastroSegunda.getJLabel3().setVisible(true);
-        telaCadastroSegunda.getJLabel3().setText("É Sem Fio:");
-        telaCadastroSegunda.getJComboBox1().setLocation(155, 10);
-        telaCadastroSegunda.getJComboBox1().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().addItem("true");
-        telaCadastroSegunda.getJComboBox1().addItem("false");
-        telaCadastroSegunda.getJComboBox2().setLocation(155, 40);
-        telaCadastroSegunda.getJComboBox2().setVisible(true);
-        telaCadastroSegunda.getJComboBox2().addItem("true");
-        telaCadastroSegunda.getJComboBox2().addItem("false");
-        telaCadastroSegunda.getJComboBox3().setLocation(155, 70);
-        telaCadastroSegunda.getJComboBox3().setVisible(true);
-        telaCadastroSegunda.getJComboBox3().addItem("true");
-        telaCadastroSegunda.getJComboBox3().addItem("false");
-    }
-    
-    public void placaDeVideo ()
-    {
-        setarVisibleFalse();
-        telaCadastroSegunda.getJLabel1().setVisible(true);
-        telaCadastroSegunda.getJLabel1().setText("Memória:");
-        telaCadastroSegunda.getJLabel2().setVisible(true);
-        telaCadastroSegunda.getJLabel2().setText("Necessita Alimentação:");
-        telaCadastroSegunda.getJTextField1().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().setLocation(155, 40);
-        telaCadastroSegunda.getJComboBox1().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().addItem("true");
-        telaCadastroSegunda.getJComboBox1().addItem("false");
-    }
-    
-    public void placaMae ()
-    {
-        setarVisibleFalse();
-        telaCadastroSegunda.getJLabel1().setVisible(true);
-        telaCadastroSegunda.getJLabel1().setText("Entradas PCI-Express:");
-        telaCadastroSegunda.getJLabel2().setVisible(true);
-        telaCadastroSegunda.getJLabel2().setText("Entradas RAM:");
-        telaCadastroSegunda.getJLabel3().setVisible(true);
-        telaCadastroSegunda.getJLabel3().setText("Entradas USB:"); 
-        telaCadastroSegunda.getJLabel4().setVisible(true);
-        telaCadastroSegunda.getJLabel4().setText("Apresenta Bluetooth:"); 
-        telaCadastroSegunda.getJLabel5().setVisible(true);
-        telaCadastroSegunda.getJLabel5().setText("Tamanho:"); 
-        telaCadastroSegunda.getJLabel6().setVisible(true);
-        telaCadastroSegunda.getJLabel6().setText("Apresenta Wi-Fi:");
-        telaCadastroSegunda.getJTextField1().setVisible(true);
-        telaCadastroSegunda.getJTextField2().setVisible(true);
-        telaCadastroSegunda.getJTextField3().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().setLocation(155, 100);
-        telaCadastroSegunda.getJComboBox1().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().addItem("true");
-        telaCadastroSegunda.getJComboBox1().addItem("false");
-        telaCadastroSegunda.getJComboBox2().setLocation(155, 130);
-        telaCadastroSegunda.getJComboBox2().setVisible(true);
-        telaCadastroSegunda.getJComboBox2().addItem("AT");
-        telaCadastroSegunda.getJComboBox2().addItem("ATX");
-        telaCadastroSegunda.getJComboBox2().addItem("BABY AT");
-        telaCadastroSegunda.getJComboBox2().addItem("BTX");
-        telaCadastroSegunda.getJComboBox2().addItem("ITX");
-        telaCadastroSegunda.getJComboBox2().addItem("LPX");
-        telaCadastroSegunda.getJComboBox2().addItem("NLX");
-        telaCadastroSegunda.getJComboBox3().setLocation(155, 160);
-        telaCadastroSegunda.getJComboBox3().setVisible(true);
-        telaCadastroSegunda.getJComboBox3().addItem("true");
-        telaCadastroSegunda.getJComboBox3().addItem("false");
-    }
-    
-    public void processador ()
-    {
-        setarVisibleFalse();
-        telaCadastroSegunda.getJLabel1().setVisible(true);
-        telaCadastroSegunda.getJLabel1().setText("Geração:");
-        telaCadastroSegunda.getJLabel2().setVisible(true);
-        telaCadastroSegunda.getJLabel2().setText("Núcleos:");
-        telaCadastroSegunda.getJLabel3().setVisible(true);
-        telaCadastroSegunda.getJLabel3().setText("Velocidade Núcleo:");
-        telaCadastroSegunda.getJTextField1().setVisible(true);
-        telaCadastroSegunda.getJTextField2().setVisible(true);
-        telaCadastroSegunda.getJTextField3().setVisible(true);
-    }
-    
-    public void teclado ()
-    {
-        setarVisibleFalse();
-        telaCadastroSegunda.getJLabel1().setVisible(true);
-        telaCadastroSegunda.getJLabel1().setText("Apresenta Bluetooth:");
-        telaCadastroSegunda.getJLabel2().setVisible(true);
-        telaCadastroSegunda.getJLabel2().setText("Apresenta Numérico:");
-        telaCadastroSegunda.getJLabel3().setVisible(true);
-        telaCadastroSegunda.getJLabel3().setText("Tipo:");
-        telaCadastroSegunda.getJLabel4().setVisible(true);
-        telaCadastroSegunda.getJLabel4().setText("Sem Fio:");
-        telaCadastroSegunda.getJComboBox1().setLocation(155, 10);
-        telaCadastroSegunda.getJComboBox1().setVisible(true);
-        telaCadastroSegunda.getJComboBox1().addItem("true");
-        telaCadastroSegunda.getJComboBox1().addItem("false");
-        telaCadastroSegunda.getJComboBox2().setLocation(155, 40);
-        telaCadastroSegunda.getJComboBox2().setVisible(true);
-        telaCadastroSegunda.getJComboBox2().addItem("true");
-        telaCadastroSegunda.getJComboBox2().addItem("false");
-        telaCadastroSegunda.getJComboBox3().setLocation(155, 70);
-        telaCadastroSegunda.getJComboBox3().setVisible(true);
-        telaCadastroSegunda.getJComboBox3().addItem("Mecânico");
-        telaCadastroSegunda.getJComboBox3().addItem("Membrana");
-        telaCadastroSegunda.getJComboBox3().addItem("Semi-Mecânico");
-        telaCadastroSegunda.getJComboBox4().setLocation(155, 100);
-        telaCadastroSegunda.getJComboBox4().setVisible(true);
-        telaCadastroSegunda.getJComboBox4().addItem("true");
-        telaCadastroSegunda.getJComboBox4().addItem("false");
-        
-    }
-    
     public void componentesCategoria ()
     {
-        telaCadastroSegunda.getJComboBox1().removeAllItems();
-        telaCadastroSegunda.getJComboBox2().removeAllItems();
-        telaCadastroSegunda.getJComboBox3().removeAllItems();
-        telaCadastroSegunda.getJComboBox4().removeAllItems();
+        telaCadastroSegunda.limparComboBox();
         switch (this.categoria)
         {
             case "Armazenamento":
-                armazenamento ();
+                telaCadastroSegunda.armazenamento ();
                 break;
             case "Cooler":
-                cooler ();
+                telaCadastroSegunda.cooler ();
                 break;
             case "Fonte":
-                fonte ();
+                telaCadastroSegunda.fonte ();
                 break;
             case "Gabinete":
-                gabinete();
+                telaCadastroSegunda.gabinete();
                 break;
             case "Headset":
-                headset ();
+                telaCadastroSegunda.headset ();
                 break;
             case "Memória RAM":
-                memoriaRam ();
+                telaCadastroSegunda.memoriaRam ();
                 break;
             case "Monitor":
-                monitor ();
+                telaCadastroSegunda.monitor ();
                 break;
             case "Mouse":
-                mouse ();
+                telaCadastroSegunda.mouse ();
                 break;
             case "Placa de Vídeo":
-                placaDeVideo();
+                telaCadastroSegunda.placaDeVideo();
                 break;
             case "Placa Mãe":
-                placaMae();
+                telaCadastroSegunda.placaMae();
                 break;
             case "Processador":
-                processador ();
+                telaCadastroSegunda.processador ();
                 break;
             case "Teclado":
-                teclado();
+                telaCadastroSegunda.teclado();
                 break;
         }
     }
@@ -472,12 +176,12 @@ public class ControladorTelaCadastroSegunda {
     public void gerarArmazenamento ()
     {
         Armazenamento armazenamento = new Armazenamento (controladorGeral.getControladorTelaCadastroPrimeira().getModelo(), controladorGeral.getControladorTelaCadastroPrimeira().getValor(), controladorGeral.getControladorTelaCadastroPrimeira().getDescricao(),
-        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Integer.parseInt(telaCadastroSegunda.getJTextField1().getText()), Integer.parseInt(telaCadastroSegunda.getJTextField2().getText()), telaCadastroSegunda.getJComboBox1().getSelectedItem().toString());
+        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Integer.parseInt(telaCadastroSegunda.textoJTextField1()), Integer.parseInt(telaCadastroSegunda.textoJTextField2()), telaCadastroSegunda.textoJComboBox1());
         if (controladorGeral.getControladorTelaPrincipal().getArmazenamentos().add(armazenamento) == true) 
         {
             try {
                  ArmazenamentoDAO.salvarArmazenamento(armazenamento);
-                 telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+                 telaCadastroSegunda.mensagemJOptionPane("Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -485,228 +189,219 @@ public class ControladorTelaCadastroSegunda {
             
         } else 
         {
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro duplicado");
         }
     }
     
     public void gerarCooler ()
     {
         Cooler cooler = new Cooler (controladorGeral.getControladorTelaCadastroPrimeira().getModelo(), controladorGeral.getControladorTelaCadastroPrimeira().getValor(), controladorGeral.getControladorTelaCadastroPrimeira().getDescricao(),
-        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Float.parseFloat(telaCadastroSegunda.getJTextField1().getText()), telaCadastroSegunda.getJComboBox1().getSelectedItem().toString());
+        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Float.parseFloat(telaCadastroSegunda.textoJTextField1()), telaCadastroSegunda.textoJComboBox1());
         if (controladorGeral.getControladorTelaPrincipal().getCooler().add(cooler) == true) 
         {
             try {
             CoolerDAO.salvarCooler(cooler);
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
             
         } else 
         {
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro duplicado");
         }
     }
     
     public void gerarFonte ()
     {
         Fonte fonte = new Fonte (controladorGeral.getControladorTelaCadastroPrimeira().getModelo(), controladorGeral.getControladorTelaCadastroPrimeira().getValor(), controladorGeral.getControladorTelaCadastroPrimeira().getDescricao(),
-        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), telaCadastroSegunda.getJComboBox1().getSelectedItem().toString(), Integer.parseInt(telaCadastroSegunda.getJComboBox2().getSelectedItem().toString()));
+        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), telaCadastroSegunda.textoJComboBox1(), Integer.parseInt(telaCadastroSegunda.textoJComboBox2()));
         if (controladorGeral.getControladorTelaPrincipal().getFonte().add(fonte) == true) 
         {
             try {
                 FonteDAO.salvarFonte(fonte);
-                telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+                telaCadastroSegunda.mensagemJOptionPane("Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
             
         } else 
         {
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro duplicado");
         }
     }
     
     public void gerarGabinete ()
     {
         Gabinete gabinete = new Gabinete (controladorGeral.getControladorTelaCadastroPrimeira().getModelo(), controladorGeral.getControladorTelaCadastroPrimeira().getValor(), controladorGeral.getControladorTelaCadastroPrimeira().getDescricao(),
-        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Float.parseFloat(telaCadastroSegunda.getJTextField1().getText()), telaCadastroSegunda.getJComboBox1().getSelectedItem().toString());
+        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Float.parseFloat(telaCadastroSegunda.textoJTextField1()), telaCadastroSegunda.textoJComboBox1());
         if (controladorGeral.getControladorTelaPrincipal().getGabinete().add(gabinete) == true) 
         {
             try {
                 GabineteDAO.salvarGabinete(gabinete);
-                telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+                telaCadastroSegunda.mensagemJOptionPane("Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         } else 
         {
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro duplicado");
         }
     }
     
     public void gerarHeadset ()
     {
         Headset headset = new Headset (controladorGeral.getControladorTelaCadastroPrimeira().getModelo(), controladorGeral.getControladorTelaCadastroPrimeira().getValor(), controladorGeral.getControladorTelaCadastroPrimeira().getDescricao(),
-        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Boolean.parseBoolean(telaCadastroSegunda.getJComboBox1().getSelectedItem().toString()), 
-        Boolean.parseBoolean(telaCadastroSegunda.getJComboBox2().getSelectedItem().toString()), Boolean.parseBoolean(telaCadastroSegunda.getJComboBox3().getSelectedItem().toString()), telaCadastroSegunda.getJComboBox4().getSelectedItem().toString());
+        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Boolean.parseBoolean(telaCadastroSegunda.textoJComboBox1()), 
+        Boolean.parseBoolean(telaCadastroSegunda.textoJComboBox2()), Boolean.parseBoolean(telaCadastroSegunda.textoJComboBox3()), telaCadastroSegunda.textoJComboBox4());
         if (controladorGeral.getControladorTelaPrincipal().getHeadset().add(headset) == true) 
         {
             try {
             HeadsetDAO.salvarHeadset(headset);
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         } else 
         {
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro duplicado");
         }
     }
     
     public void gerarMemoriaRam ()
     {
         MemoriaRAM memoriaRAM = new MemoriaRAM (controladorGeral.getControladorTelaCadastroPrimeira().getModelo(), controladorGeral.getControladorTelaCadastroPrimeira().getValor(), controladorGeral.getControladorTelaCadastroPrimeira().getDescricao(),
-        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Integer.parseInt(telaCadastroSegunda.getJTextField1().getText()), Float.parseFloat(telaCadastroSegunda.getJTextField2().getText()), telaCadastroSegunda.getJComboBox1().getSelectedItem().toString());
+        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Integer.parseInt(telaCadastroSegunda.textoJTextField1()), Float.parseFloat(telaCadastroSegunda.textoJTextField2()), telaCadastroSegunda.textoJComboBox1());
         if (controladorGeral.getControladorTelaPrincipal().getMemoriaRAM().add(memoriaRAM) == true) 
         {
             try {
             MemoriaRAMDAO.salvarMemoriaRAM(memoriaRAM);
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         } else 
         {
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro duplicado");
         }
     }
     
     public void gerarMonitor ()
     {
         Monitor monitor = new Monitor (controladorGeral.getControladorTelaCadastroPrimeira().getModelo(), controladorGeral.getControladorTelaCadastroPrimeira().getValor(), controladorGeral.getControladorTelaCadastroPrimeira().getDescricao(),
-        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Float.parseFloat(telaCadastroSegunda.getJTextField1().getText()), telaCadastroSegunda.getJComboBox1().getSelectedItem().toString(),
-        Integer.parseInt(telaCadastroSegunda.getJComboBox2().getSelectedItem().toString()), telaCadastroSegunda.getJComboBox3().getSelectedItem().toString());
+        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Float.parseFloat(telaCadastroSegunda.textoJTextField1()), telaCadastroSegunda.textoJComboBox1(),
+        Integer.parseInt(telaCadastroSegunda.textoJComboBox2()), telaCadastroSegunda.textoJComboBox3());
         if (controladorGeral.getControladorTelaPrincipal().getMonitor().add(monitor) == true) 
         {
             try {
                 MonitorDAO.salvarMonitor(monitor);
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         } else 
         {
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro duplicado");
         }
     }
     
     public void gerarMouse ()
     {
         Mouse mouse = new Mouse (controladorGeral.getControladorTelaCadastroPrimeira().getModelo(), controladorGeral.getControladorTelaCadastroPrimeira().getValor(), controladorGeral.getControladorTelaCadastroPrimeira().getDescricao(),
-        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Boolean.parseBoolean(telaCadastroSegunda.getJComboBox1().getSelectedItem().toString()),
-        Boolean.parseBoolean(telaCadastroSegunda.getJComboBox2().getSelectedItem().toString()), Boolean.parseBoolean(telaCadastroSegunda.getJComboBox3().getSelectedItem().toString()));
+        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Boolean.parseBoolean(telaCadastroSegunda.textoJComboBox1()),
+        Boolean.parseBoolean(telaCadastroSegunda.textoJComboBox2()), Boolean.parseBoolean(telaCadastroSegunda.textoJComboBox3()));
         if (controladorGeral.getControladorTelaPrincipal().getMouse().add(mouse) == true) 
         {
             try {
             MouseDAO.salvarMouse(mouse);
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro realizado com sucesso");
             } catch (Exception e) {
              System.out.println(e.getMessage());
             }
         } else 
         {
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro duplicado");
         }
     }
     
     public void gerarPlacaDeVideo ()
     {
         PlacaDeVideo placaDeVideo = new PlacaDeVideo (controladorGeral.getControladorTelaCadastroPrimeira().getModelo(), controladorGeral.getControladorTelaCadastroPrimeira().getValor(), controladorGeral.getControladorTelaCadastroPrimeira().getDescricao(),
-        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Integer.parseInt(telaCadastroSegunda.getJTextField1().getText()), Boolean.parseBoolean(telaCadastroSegunda.getJComboBox1().getSelectedItem().toString()));
+        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Integer.parseInt(telaCadastroSegunda.textoJTextField1()), Boolean.parseBoolean(telaCadastroSegunda.textoJComboBox1()));
         if (controladorGeral.getControladorTelaPrincipal().getPlacaDeVideo().add(placaDeVideo) == true) 
         {
             try {
                 PlacaDeVideoDAO.salvarPlacaDeVideo(placaDeVideo);
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         } else 
         {
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro duplicado");
         }
     }
     
     public void gerarPlacaMae ()
     {
         PlacaMae placaMae = new PlacaMae (controladorGeral.getControladorTelaCadastroPrimeira().getModelo(), controladorGeral.getControladorTelaCadastroPrimeira().getValor(), controladorGeral.getControladorTelaCadastroPrimeira().getDescricao(),
-        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Integer.parseInt(telaCadastroSegunda.getJTextField1().getText()), Integer.parseInt(telaCadastroSegunda.getJTextField2().getText()),
-        Integer.parseInt(telaCadastroSegunda.getJTextField3().getText()), Boolean.parseBoolean(telaCadastroSegunda.getJComboBox1().getSelectedItem().toString()), telaCadastroSegunda.getJComboBox2().getSelectedItem().toString(),
-        Boolean.parseBoolean(telaCadastroSegunda.getJComboBox3().getSelectedItem().toString()));
+        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Integer.parseInt(telaCadastroSegunda.textoJTextField1()), Integer.parseInt(telaCadastroSegunda.textoJTextField2()),
+        Integer.parseInt(telaCadastroSegunda.textoJTextField3()), Boolean.parseBoolean(telaCadastroSegunda.textoJComboBox1()), telaCadastroSegunda.textoJComboBox2(),
+        Boolean.parseBoolean(telaCadastroSegunda.textoJComboBox3()));
         if (controladorGeral.getControladorTelaPrincipal().getPlacaMae().add(placaMae) == true) 
         {
             
             try {
                 PlacaMaeDAO.salvarArmazenamento(placaMae);
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         } else 
         {
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro duplicado");
         }
     }
     
     public void gerarProcessador ()
     {
         Processador processador = new Processador (controladorGeral.getControladorTelaCadastroPrimeira().getModelo(), controladorGeral.getControladorTelaCadastroPrimeira().getValor(), controladorGeral.getControladorTelaCadastroPrimeira().getDescricao(),
-        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Integer.parseInt(telaCadastroSegunda.getJTextField1().getText()), Integer.parseInt(telaCadastroSegunda.getJTextField2().getText()),
-        Float.parseFloat(telaCadastroSegunda.getJTextField3().getText()));
+        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Integer.parseInt(telaCadastroSegunda.textoJTextField1()), Integer.parseInt(telaCadastroSegunda.textoJTextField2()),
+        Float.parseFloat(telaCadastroSegunda.textoJTextField3()));
         if (controladorGeral.getControladorTelaPrincipal().getProcessador().add(processador) == true) 
         {
             try {
                 ProcessadorDAO.salvarArmazenamento(processador);
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         } else 
         {
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro duplicado");
         }
     }
     
     public void gerarTeclado ()
     {
         Teclado teclado = new Teclado (controladorGeral.getControladorTelaCadastroPrimeira().getModelo(), controladorGeral.getControladorTelaCadastroPrimeira().getValor(), controladorGeral.getControladorTelaCadastroPrimeira().getDescricao(),
-        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Boolean.parseBoolean(telaCadastroSegunda.getJComboBox1().getSelectedItem().toString()),
-        Boolean.parseBoolean(telaCadastroSegunda.getJComboBox2().getSelectedItem().toString()), telaCadastroSegunda.getJComboBox3().getSelectedItem().toString(), Boolean.parseBoolean(telaCadastroSegunda.getJComboBox4().getSelectedItem().toString()));
+        controladorGeral.getControladorTelaCadastroPrimeira().getMarca(), categoria, controladorGeral.getControladorTelaCadastroPrimeira().getImagem(), Boolean.parseBoolean(telaCadastroSegunda.textoJComboBox1()),
+        Boolean.parseBoolean(telaCadastroSegunda.textoJComboBox2()), telaCadastroSegunda.textoJComboBox3(), Boolean.parseBoolean(telaCadastroSegunda.textoJComboBox4()));
         if (controladorGeral.getControladorTelaPrincipal().getTeclado().add(teclado) == true) 
         {
             try {
                 TecladoDAO.salvarArmazenamento(teclado);
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         } else 
         {
-            telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro duplicado");
+            telaCadastroSegunda.mensagemJOptionPane("Cadastro duplicado");
         }
     }
     
-    public void limparCampos()
-    {
-        telaCadastroSegunda.getJTextField1().setText("");
-        telaCadastroSegunda.getJTextField2().setText("");
-        telaCadastroSegunda.getJTextField3().setText("");
-        telaCadastroSegunda.getJComboBox1().setSelectedIndex(-1);
-        telaCadastroSegunda.getJComboBox2().setSelectedIndex(-1);
-        telaCadastroSegunda.getJComboBox3().setSelectedIndex(-1);
-        telaCadastroSegunda.getJComboBox4().setSelectedIndex(-1);
-    }
+    
     
     public void exibir()
     {

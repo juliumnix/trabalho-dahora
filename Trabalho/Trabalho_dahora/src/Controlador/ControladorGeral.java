@@ -70,18 +70,17 @@ public class ControladorGeral {
     }
     
     public void exibirTelaCadastroPrimeira() {
-        controladorTelaCadastroPrimeira.limparCampos();
+        controladorTelaCadastroPrimeira.getTelaCadastroPrimeira().limparCampos();
         controladorTelaCadastroPrimeira.exibir();
     }
     
     public void exibirTelaCadastroSegunda() {
-        controladorTelaCadastroSegunda.limparCampos();
+        controladorTelaCadastroSegunda.getTelaCadastroSegunda().limparCampos();
         controladorTelaCadastroSegunda.exibir();
     }
     
     public void exibirTelaCategorias(TelaCategorias telaCategorias, JFrame other) {
         other.setVisible(false);
-        telaCategorias.getIcon().requestFocus();
         telaCategorias.getPopUpMenu().setVisible(false);
         controladorTelaCategorias.setPesquisa(false);
         controladorTelaCategorias.ObjetosNovaPagina();
@@ -91,7 +90,6 @@ public class ControladorGeral {
     
     public void exibirTelaCategorias(TelaCategorias telaCategorias, JFrame other, String pesquisa) {
         other.setVisible(false);
-        telaCategorias.getIcon().requestFocus();
         telaCategorias.getPopUpMenu().setVisible(false);
         controladorTelaCategorias.setPesquisa(false);
         controladorTelaCategorias.ObjetosNovaPagina(pesquisa);
@@ -114,15 +112,14 @@ public class ControladorGeral {
     
     public void exibirTelaPrincipal(TelaPrincipal telaPrincipal, JFrame other) {
         other.setVisible(false);
-        telaPrincipal.getIcon().requestFocus();
         telaPrincipal.getPopUpMenu().setVisible(false);
-        telaPrincipal.getTfPesquisa().setText("");
+        telaPrincipal.limparTfPesquisa();
         controladorTelaPrincipal.verifyContentCarrinho();
         controladorTelaPrincipal.organizarProdutosGeral();
         controladorTelaPrincipal.promocoes();
         controladorTelaPrincipal.alterarComboBox();
         controladorTelaPrincipal.visibilidadeBtEstoque();
-        controladorTelaPrincipal.limparComparacao();
+        controladorTelaPrincipal.getTelaPrincipal().limparComparacao();
         controladorTelaPrincipal.exibir();
     }
     

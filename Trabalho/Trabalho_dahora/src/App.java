@@ -1,6 +1,7 @@
 
 import Controlador.ControladorGeral;
 import Telas.TelaLogin;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -18,7 +19,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class App {
     
-    public static void main(String[] args){
+    public static void main(String[] args) throws SQLException{
         ControladorGeral controladorGeral = new ControladorGeral();
          java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

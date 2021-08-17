@@ -2,11 +2,16 @@ package Telas;
 
 //CODIGO
 import Codigo.Produto;
+import Codigo.Utilitarios;
+import java.awt.Toolkit;
 //JAVA
 import java.awt.event.ActionListener;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.Icon;
 //SWING
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,12 +23,152 @@ import javax.swing.JTextField;
 
 public class TelaPrincipal extends javax.swing.JFrame{
   
+    private List<JPanel> jPanells;
+    private List<JLabel> jLabellsImg;
+    private List<JLabel> jLabellsText;
+    
     public TelaPrincipal() {
         initComponents();
-        
-        
+        iniciarColecoes();
+        configurarTela();
+        addJPanel();
+        addJLabelImg();
+        addJLabelText(); 
     }
     
+    public void iniciarColecoes ()
+    {
+        this.jPanells = new ArrayList<>();
+        this.jLabellsImg = new ArrayList<>();
+        this.jLabellsText = new ArrayList<>();
+    }
+    
+    public void configurarTela(){
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("src/imagens/1.png"));
+        Utilitarios.aparecerImagemLocal(icon, "src/imagens/BOOM.png");
+        Utilitarios.aparecerImagemLocal(btPesquisa, "src/imagens/IconSearch.png");
+        Utilitarios.aparecerImagemLocal(btCart, "src/imagens/IconCart.png");
+        icon.requestFocus();
+        taProd1.setLineWrap(true);
+        taProd2.setLineWrap(true);
+        melhorCompra1.setVisible(false);
+        melhorCompra2.setVisible(false);
+        popUpMenu.setVisible(false);
+    }
+    
+    public void limparComparacao(){
+        melhorCompra1.setVisible(false);
+        melhorCompra2.setVisible(false);
+        imgProd1.setVisible(false);
+        imgProd2.setVisible(false);
+        taProd1.setText("");
+        taProd2.setText("");
+    }
+    
+    public void mudarVisibilidadeBtEstoque (Boolean bool)
+    {
+        this.btEstoque.setVisible(bool);
+    }
+    
+    public void aparecerTextoTfPesquisa ()
+    {
+        Utilitarios.aparecerTexto("Pesquisa", tfPesquisa);
+    }
+    
+    public void desaparecerTextoTfPesquisa ()
+    {
+        Utilitarios.desaparecerTexto("Pesquisa", tfPesquisa);
+    }
+    
+    public void mudarVisibilidadePopUpMenu (Boolean bool)
+    {
+        this.popUpMenu.setVisible(bool);
+    }
+    
+    public void limparPainelCompare ()
+    {
+        melhorCompra1.setVisible(false);
+        melhorCompra2.setVisible(false);
+        imgProd1.setVisible(true);
+        imgProd2.setVisible(true);
+    }
+    
+    public void mudarVisibilidadeMelhorCompra1 (Boolean bool)
+    {
+        this.melhorCompra1.setVisible(bool);
+    }
+    
+    public void mudarVisibilidadeMelhorCompra2 (Boolean bool)
+    {
+        this.melhorCompra2.setVisible(bool);
+    }
+    
+    public void mudarVisibilidadeImg1 (Boolean bool)
+    {
+        this.img1.setVisible(bool);
+    }
+    
+    public void mudarVisibilidadeImg2 (Boolean bool)
+    {
+        this.img2.setVisible(bool);
+    }
+    
+    public void mudarVisibilidadeImg3 (Boolean bool)
+    {
+        this.img3.setVisible(bool);
+    }
+    
+    public void mudarVisibilidadeText1 (Boolean bool)
+    {
+        this.text1.setVisible(bool);
+    }
+    
+    public void mudarVisibilidadeText2 (Boolean bool)
+    {
+        this.text2.setVisible(bool);
+    }
+    
+    public void mudarVisibilidadeText3 (Boolean bool)
+    {
+        this.text3.setVisible(bool);
+    }
+    
+    public void destaque1SetEnabled (Boolean bool)
+    {
+        this.destaque1.setEnabled(bool);
+    }
+    
+    public void destaque2SetEnabled (Boolean bool)
+    {
+        this.destaque2.setEnabled(bool);
+    }
+    
+    public void destaque3SetEnabled (Boolean bool)
+    {
+        this.destaque3.setEnabled(bool);
+    }
+    
+    public String retornarTextoCbTipo ()
+    {
+        return cbTipo.getSelectedItem().toString();
+    }
+    
+    public void limparComboBox ()
+    {
+        cbProduto1.removeAllItems();
+        cbProduto2.removeAllItems();
+    }
+    
+    public void adicionarItemCb1 (Produto p)
+    {
+        this.cbProduto1.addItem(p);
+    }
+    
+    public void adicionarItemCb2 (Produto p)
+    {
+        this.cbProduto2.addItem(p);
+    }
+        
     //ACOES
     public void adicionarFocusTfPesquisa (FocusListener focus)
     {
@@ -150,26 +295,82 @@ public class TelaPrincipal extends javax.swing.JFrame{
         btEstoque.addActionListener(acao);
     }
     
+    public void mensagemJOptionPane (String texto)
+    {
+        jOptionPane1.showMessageDialog(null, texto);
+    }
+    
+    public void addJPanel ()
+    {
+        
+        jPanells.add(destaque1);
+        jPanells.add(destaque2);
+        jPanells.add(destaque3);   
+    }
+    public void addJLabelImg ()
+    {
+        jLabellsImg.add(img1);
+        jLabellsImg.add(img2);
+        jLabellsImg.add(img3);   
+    }
+    public void addJLabelText ()
+    {
+        jLabellsText.add(text1);
+        jLabellsText.add(text2);
+        jLabellsText.add(text3);  
+    }
+    
+    public void setarTextoTaProd1 (String texto)
+    {
+        taProd1.setText(texto);
+    }
+    
+    public void setarTextoTaProd2 (String texto)
+    {
+        taProd2.setText(texto);
+    }
+    
+    public String retornarTextoTfPesquisa ()
+    {
+        return this.tfPesquisa.getText();
+    }
+    
+    public void limparTfPesquisa ()
+    {
+        tfPesquisa.setText("");
+    }
+    
+    public String retornarNomeDestaque1 ()
+    {
+        return destaque1.getName();
+    }
+    
+    public String retornarNomeDestaque2 ()
+    {
+        return destaque2.getName();
+    }
+        
+    public String retornarNomeDestaque3 ()
+    {
+        return destaque3.getName();
+    }
+    
+    public void iconImgProd1 (Icon icon)
+    {
+        imgProd1.setIcon(icon);
+    }
+    
+    public void iconImgProd2 (Icon icon)
+    {
+        imgProd2.setIcon(icon);
+    }
+    
     public void exibirTela(){
+        icon.requestFocus();
         setVisible(true);
     }
     
     //GETS SWING 
-    public JButton getBtPesquisa ()
-    {
-        return this.btPesquisa;
-    }
-    
-    public JButton getBtCart ()
-    {
-        return this.btCart;
-    }
-    
-    public JButton getBtEstoque ()
-    {
-        return this.btEstoque;
-    }
-    
     public JTextArea getTaProd1 ()
     {
         return this.taProd1;
@@ -178,16 +379,6 @@ public class TelaPrincipal extends javax.swing.JFrame{
     public JTextArea getTaProd2 ()
     {
         return this.taProd2;
-    }
-    
-    public JTextField getTfPesquisa ()
-    {
-        return this.tfPesquisa;
-    }
-    
-    public JComboBox getCbTipo ()
-    {
-        return this.cbTipo;
     }
     
     public JComboBox getCbProduto1 ()
@@ -200,60 +391,9 @@ public class TelaPrincipal extends javax.swing.JFrame{
         return this.cbProduto2;
     }
     
-    public JOptionPane getJOptionPane1 ()
-    {
-        return this.jOptionPane1;
-    }
-    
-    public JPanel getDestaque1 ()
-    {
-        return this.destaque1;
-    }
-    
-    
-    public JPanel getDestaque2 ()
-    {
-        return this.destaque2;
-    }
-    
-    public JPanel getDestaque3 ()
-    {
-        return this.destaque3;
-    }
-    
     public JPanel getPopUpMenu ()
     {
         return this.popUpMenu;
-    }
-    
-    public JLabel getImg1 ()
-    {
-        return this.img1;
-    }
-    
-    public JLabel getImg2 ()
-    {
-        return this.img2;
-    }
-    
-    public JLabel getImg3 ()
-    {
-        return this.img3;
-    }
-    
-    public JLabel getText1 ()
-    {
-        return this.text1;
-    }
-    
-    public JLabel getText2 ()
-    {
-        return this.text2;
-    }
-    
-    public JLabel getText3 ()
-    {
-        return this.text3;
     }
     
     public JLabel getImgProd1 ()
@@ -265,20 +405,20 @@ public class TelaPrincipal extends javax.swing.JFrame{
     {
         return this.imgProd2;
     }
-    
-    public JLabel getIcon ()
+
+    public List<JPanel> getJPanells ()
     {
-        return this.icon;
+        return this.jPanells;
     }
     
-    public JLabel getMelhorCompra1 ()
+    public List<JLabel> getJLabellsImg ()
     {
-        return this.melhorCompra1;
+        return this.jLabellsImg;
     }
     
-    public JLabel getMelhorCompra2 ()
+    public List<JLabel> getJLabellsText ()
     {
-        return this.melhorCompra2;
+        return this.jLabellsText;
     }
     
     @SuppressWarnings("unchecked")
