@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,9 +27,9 @@ public class PlacaMaeDAO {
          String sql = "INSERT INTO produtos (marca, modelo, valor, descricao, categoria, imagem, wifi, entradasRAM, entradasUSB, entradasPCIExpress, tamanhoString, bluetooth ) "
                  + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
-        Connection conexao = Conexao.getConexao();
-        
+        Connection conexao;
         try {
+            conexao = Conexao.getConexao();
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setString(1, plac.getMarca());
             stmt.setString(2, plac.getModelo());
@@ -48,12 +50,10 @@ public class PlacaMaeDAO {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
-        
        
     } 
     
-    public static List<PlacaMae> getTodosPlacaMae(){
+    public static List<PlacaMae> getTodosPlacaMae() throws SQLException{
         List<PlacaMae> placasMae = new ArrayList<>();
         Connection connection = Conexao.getConexao();
         String sql = "SELECT * FROM produtos WHERE categoria = 'Placa Mãe'";

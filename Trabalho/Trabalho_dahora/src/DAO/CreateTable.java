@@ -15,12 +15,12 @@ import java.util.logging.Logger;
  *
  * @author juliu
  */
-public class CreateTableDAO {
+public class CreateTable {
     
     public static void creatingTable(){
-     Connection conexao = Conexao.getConexao();
-        
-        String sql = "CREATE TABLE IF NOT EXISTS Produtos ("
+     Connection conexao;
+        try {
+             String sql = "CREATE TABLE IF NOT EXISTS Produtos ("
                 + "id INT AUTO_INCREMENT PRIMARY KEY,"
                 + "marca VARCHAR(80) NOT NULL,"
                 + "modelo VARCHAR(80) NOT NULL,"
@@ -58,13 +58,16 @@ public class CreateTableDAO {
                 + ")";
         
         Statement stmt;
-        try {
-            stmt = conexao.createStatement();
+            conexao = Conexao.getConexao();
+             stmt = conexao.createStatement();
              stmt.execute(sql);
              System.out.println("Tabela criada com sucesso");
             conexao.close();
         } catch (SQLException ex) {
-            Logger.getLogger(CreateTableDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+            System.out.println(ex.getMessage());
+        }
+        
+       
+        
     }
 }

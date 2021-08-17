@@ -14,21 +14,23 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author juliu
  */
 public class CoolerDAO {
-     public static void salvarArmazenamento(Cooler comp){
+     public static void salvarCooler(Cooler comp){
 //        CreateTableDAO.creatingTable();
 //private float velocidadeVentoinha;
 //    private String tipo;
          String sql = "INSERT INTO produtos (marca, modelo, valor, descricao, categoria, imagem, velocidadeVentoinha, tipoString) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         
-        Connection conexao = Conexao.getConexao();
-        
-        try {
+        Connection conexao;
+         try {
+            conexao = Conexao.getConexao();
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setString(1, comp.getMarca());
             stmt.setString(2, comp.getModelo());
@@ -46,11 +48,10 @@ public class CoolerDAO {
             System.out.println(ex.getMessage());
         }
         
-        
        
     } 
 
-       public static List<Cooler> getTodosCoolers(){
+       public static List<Cooler> getTodosCoolers() throws SQLException{
         List<Cooler> coolers = new ArrayList<>();
         Connection connection = Conexao.getConexao();
         String sql = "SELECT * FROM produtos WHERE categoria = 'Cooler'";

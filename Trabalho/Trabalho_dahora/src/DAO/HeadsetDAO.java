@@ -14,19 +14,21 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author juliu
  */
 public class HeadsetDAO {
-    public static void salvarArmazenamento(Headset head){
+    public static void salvarHeadset(Headset head){
 //        CreateTableDAO.creatingTable();
          String sql = "INSERT INTO produtos (marca, modelo, valor, descricao, categoria, imagem, semFio, microfone, tipoString, bluetooth) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
         
-        Connection conexao = Conexao.getConexao();
-        
+        Connection conexao;
         try {
+            conexao = Conexao.getConexao();
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setString(1, head.getMarca());
             stmt.setString(2, head.getModelo());
@@ -46,11 +48,10 @@ public class HeadsetDAO {
             System.out.println(ex.getMessage());
         }
         
-        
        
     } 
     
-     public static List<Headset> getTodosHeadset(){
+     public static List<Headset> getTodosHeadset() throws SQLException{
         List<Headset> headsets = new ArrayList<>();
         Connection connection = Conexao.getConexao();
         String sql = "SELECT * FROM produtos WHERE categoria = 'Headset'";

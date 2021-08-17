@@ -4,7 +4,7 @@ package Controlador;
 import Codigo.MapManipulator;
 import Codigo.Produto;
 import Codigo.Utilitarios;
-import DAO.DeleteFromTableDAO;
+import DAO.ProdutoDAO;
 import Excecoes.DeleteException;
 
 //TELAS
@@ -24,6 +24,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -300,11 +301,21 @@ public class ControladorTelaCompra implements MapManipulator {
                 verifyContentCarrinho();
                 for (Produto produto : auxiliarList) {
                     try {
-                        DeleteFromTableDAO.excluirProduto(produto);
+                        ProdutoDAO.excluirProduto(produto);
+                        
+                        
                     } catch (DeleteException ex) {
                         System.err.println(ex.getMessage());
-                    }
+                    } 
                 }
+                
+                try {
+                    controladorGeral.getControladorTelaPrincipal().popularTabelas();
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+                controladorGeral.getControladorTelaPrincipal().repaintJPanel();
+                
                 telaCompra.getJOptionPane1().showMessageDialog(null, "Compra finalizada com sucesso, obrigado");
                 
             }

@@ -5,7 +5,7 @@
  */
 package DAO;
 import Codigo.Armazenamento;
-import DAO.CreateTableDAO;
+import DAO.CreateTable;
 import DAO.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,12 +26,12 @@ import jdbc.FabricaConexao;
 public class ArmazenamentoDAO {
     
     public static void salvarArmazenamento(Armazenamento arm){
-//        CreateTableDAO.creatingTable();
+//        CreateTable.creatingTable();
          String sql = "INSERT INTO produtos (marca, modelo, valor, descricao, categoria, imagem, capacidade, velocidade, tipoString) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
-        Connection conexao = Conexao.getConexao();
-        
+        Connection conexao;
         try {
+            conexao = Conexao.getConexao();
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setString(1, arm.getMarca());
             stmt.setString(2, arm.getModelo());
@@ -49,10 +49,14 @@ public class ArmazenamentoDAO {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        
+     
+            
+        
        
     }
     
-    public static List<Armazenamento> getTodosArmazenamentos(){
+    public static List<Armazenamento> getTodosArmazenamentos() throws SQLException{
         List<Armazenamento> armazenamentos = new ArrayList<>();
         Connection connection = Conexao.getConexao();
         String sql = "SELECT * FROM produtos WHERE categoria = 'Armazenamento'";

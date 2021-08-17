@@ -14,19 +14,21 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author juliu
  */
 public class MemoriaRAMDAO {
-    public static void salvarArmazenamento(MemoriaRAM mem){
+    public static void salvarMemoriaRAM(MemoriaRAM mem){
 //        CreateTableDAO.creatingTable();
          String sql = "INSERT INTO produtos (marca, modelo, valor, descricao, categoria, imagem, capacidade, ddr, velocidade) VALUES (?, ?, ?, ?, ?,?,?,?,?)";
         
-        Connection conexao = Conexao.getConexao();
-        
+        Connection conexao;
         try {
+            conexao = Conexao.getConexao();
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setString(1, mem.getMarca());
             stmt.setString(2, mem.getModelo());
@@ -43,14 +45,12 @@ public class MemoriaRAMDAO {
             System.out.println("criou bixo");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }
+        } 
         
-        
-       
     } 
     
     
-      public static List<MemoriaRAM> getTodosMemoriaRAM(){
+      public static List<MemoriaRAM> getTodosMemoriaRAM() throws SQLException{
         List<MemoriaRAM> memoriasRAM = new ArrayList<>();
         Connection connection = Conexao.getConexao();
         String sql = "SELECT * FROM produtos WHERE categoria = 'Memória RAM'";

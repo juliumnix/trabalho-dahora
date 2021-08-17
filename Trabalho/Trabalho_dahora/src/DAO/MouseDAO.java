@@ -14,19 +14,21 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author juliu
  */
 public class MouseDAO {
-    public static void salvarArmazenamento(Mouse mou){
+    public static void salvarMouse(Mouse mou){
 //        CreateTableDAO.creatingTable();
          String sql = "INSERT INTO produtos (marca, modelo, valor, descricao, categoria, imagem, botoesLaterais, semFio, bluetooth) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
         
-        Connection conexao = Conexao.getConexao();
-        
+        Connection conexao;
         try {
+            conexao = Conexao.getConexao();
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setString(1, mou.getMarca());
             stmt.setString(2, mou.getModelo());
@@ -41,15 +43,14 @@ public class MouseDAO {
 
             stmt.execute();
             System.out.println("criou bixo");
+            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         
-        
-       
     } 
     
-    public static List<Mouse> getTodosMouse(){
+    public static List<Mouse> getTodosMouse() throws SQLException{
         List<Mouse> mouses = new ArrayList<>();
         Connection connection = Conexao.getConexao();
         String sql = "SELECT * FROM produtos WHERE categoria = 'Mouse'";

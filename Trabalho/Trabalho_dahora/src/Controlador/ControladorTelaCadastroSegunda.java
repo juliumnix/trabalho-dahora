@@ -496,7 +496,7 @@ public class ControladorTelaCadastroSegunda {
         if (controladorGeral.getControladorTelaPrincipal().getCooler().add(cooler) == true) 
         {
             try {
-            CoolerDAO.salvarArmazenamento(cooler);
+            CoolerDAO.salvarCooler(cooler);
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -515,7 +515,7 @@ public class ControladorTelaCadastroSegunda {
         if (controladorGeral.getControladorTelaPrincipal().getFonte().add(fonte) == true) 
         {
             try {
-                FonteDAO.salvarArmazenamento(fonte);
+                FonteDAO.salvarFonte(fonte);
                 telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -534,7 +534,7 @@ public class ControladorTelaCadastroSegunda {
         if (controladorGeral.getControladorTelaPrincipal().getGabinete().add(gabinete) == true) 
         {
             try {
-                GabineteDAO.salvarArmazenamento(gabinete);
+                GabineteDAO.salvarGabinete(gabinete);
                 telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -553,7 +553,7 @@ public class ControladorTelaCadastroSegunda {
         if (controladorGeral.getControladorTelaPrincipal().getHeadset().add(headset) == true) 
         {
             try {
-            HeadsetDAO.salvarArmazenamento(headset);
+            HeadsetDAO.salvarHeadset(headset);
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -571,7 +571,7 @@ public class ControladorTelaCadastroSegunda {
         if (controladorGeral.getControladorTelaPrincipal().getMemoriaRAM().add(memoriaRAM) == true) 
         {
             try {
-            MemoriaRAMDAO.salvarArmazenamento(memoriaRAM);
+            MemoriaRAMDAO.salvarMemoriaRAM(memoriaRAM);
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -590,7 +590,7 @@ public class ControladorTelaCadastroSegunda {
         if (controladorGeral.getControladorTelaPrincipal().getMonitor().add(monitor) == true) 
         {
             try {
-                MonitorDAO.salvarArmazenamento(monitor);
+                MonitorDAO.salvarMonitor(monitor);
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -609,7 +609,7 @@ public class ControladorTelaCadastroSegunda {
         if (controladorGeral.getControladorTelaPrincipal().getMouse().add(mouse) == true) 
         {
             try {
-            MouseDAO.salvarArmazenamento(mouse);
+            MouseDAO.salvarMouse(mouse);
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
             } catch (Exception e) {
              System.out.println(e.getMessage());
@@ -627,7 +627,7 @@ public class ControladorTelaCadastroSegunda {
         if (controladorGeral.getControladorTelaPrincipal().getPlacaDeVideo().add(placaDeVideo) == true) 
         {
             try {
-                PlacaDeVideoDAO.salvarArmazenamento(placaDeVideo);
+                PlacaDeVideoDAO.salvarPlacaDeVideo(placaDeVideo);
             telaCadastroSegunda.getJOptionPane1().showMessageDialog(null, "Cadastro realizado com sucesso");
             } catch (Exception e) {
                 System.out.println(e.getMessage());

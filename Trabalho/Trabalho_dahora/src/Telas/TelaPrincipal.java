@@ -210,6 +210,7 @@ public class TelaPrincipal extends javax.swing.JFrame{
         return this.destaque1;
     }
     
+    
     public JPanel getDestaque2 ()
     {
         return this.destaque2;

@@ -14,19 +14,21 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author juliu
  */
 public class MonitorDAO {
-    public static void salvarArmazenamento(Monitor mon){
+    public static void salvarMonitor(Monitor mon){
 //        CreateTableDAO.creatingTable();
          String sql = "INSERT INTO produtos (marca ,modelo, valor, descricao, categoria, imagem, resolucao, tamanhoFloat, aspecto, frameRate) VALUES (?, ?, ?, ?, ?,?,?,?,?,?)";
         
-        Connection conexao = Conexao.getConexao();
-        
+        Connection conexao;
         try {
+            conexao = Conexao.getConexao();
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setString(1, mon.getMarca());
             stmt.setString(2, mon.getModelo());
@@ -38,19 +40,16 @@ public class MonitorDAO {
             stmt.setFloat(8, mon.getTamanho());
             stmt.setString(9, mon.getAspecto());
             stmt.setInt(10, mon.getFrameRate());
-        
 
             stmt.execute();
             System.out.println("criou bixo");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
-        
        
     } 
     
-    public static List<Monitor> getTodosMonitor(){
+    public static List<Monitor> getTodosMonitor() throws SQLException{
         List<Monitor> monitores = new ArrayList<>();
         Connection connection = Conexao.getConexao();
         String sql = "SELECT * FROM produtos WHERE categoria = 'Monitor'";
